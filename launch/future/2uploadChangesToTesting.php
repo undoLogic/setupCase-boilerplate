@@ -24,7 +24,7 @@ file_put_contents('files_to_upload.txt', implode("\n", $out));
 if ($branch == 'master') {
     $GITHUB_CURRENT_BRANCH = 'trunk';
 } else {
-    $GITHUB_CURRENT_BRANCH = 'branches/'.$branch;
+    $GITHUB_CURRENT_BRANCH = ''.$branch;
 }
 
 $rsync = "rsync -av --files-from=files_to_upload.txt \"$basePath/.\" ". $s['SSH_USER'] ."@" . $s['SSH_HOST'] .":".$s['TESTING_ABSOLUTE_PATH'].'/'.$GITHUB_CURRENT_BRANCH.'/.';
