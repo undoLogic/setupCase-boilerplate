@@ -1,0 +1,16 @@
+{
+  "localhost":{
+	"security": "q8W9P@2B^coek7GhH*F%TRMF#%CFl#fuI",
+	"host": "db",
+	"username":"root",
+	"password":"undologic",
+	"database": "storage"
+  },
+  "www.therathursdays.com":{
+	"security": "q8W9P@2B^coek7GhH*F%TRMF#%CFl#fuI",
+	"host": "localhost",
+	"username":"host",
+	"password":"user",
+	"database": "db"
+  }
+}

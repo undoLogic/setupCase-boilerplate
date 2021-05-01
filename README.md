@@ -181,14 +181,19 @@ brew install composer
 ```
 
 DOCKER Init - using PHP (once per computer)
-navigate into 'src' directory
+navigate into 'src' directory 
+ (YOU MUST HAVE GIT INSTALLED)
+
+IMPORTANT: This file changes often, so if the hash fails you will need to re-download the most recent here: https://getcomposer.org/download/ (Command-line installation)
 ```
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === 'c31c1e292ad7be5f49291169c0ac8f683499edddcfd4e42232982d0fd193004208a58ff6f353fde0012d35fdd72bc394') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
+## then we need to move this to our directory structure
+mv composer.phar /var/www/vhosts/website.com/www/src/composer.phar
 ```
-NOTE: You will need a github token for the installation process to get all required files and install
+NOTE: You will need a git-hub token for the installation process to get all required files and install
 
 DOCKER Install
 
@@ -250,10 +255,10 @@ Login to your docker shell
 
 ```angular2
 cd docker
-docker ps
-# find the 'web' 
-docker exec -it docker_web_1 bash 
-# You are now logged into the docker 
+dockerps
+# find the 'web'
+docker exec -it docker_web_1 bash
+# You are now logged into the docker
 cd /var/www/vhosts/website.com/
 cd www
 cd app (cd /path/to/app)

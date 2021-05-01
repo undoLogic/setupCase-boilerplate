@@ -1,8 +1,8 @@
 version: "2.0"
 services:
   web:
-    #image: "linux_web:a" #OR
     build: ./web
+    image: docker_web7
     ports:
       - "80:80"
       - "443:443"
@@ -12,22 +12,27 @@ services:
       - ../.:/var/www/vhosts/website.com/www
       - ./sites-available/:/etc/apache2/sites-available/
       - ./control/:/var/www/html/
+      - ./web/config/php.ini:/usr/local/etc/php/conf.d/php.ini
+      #- ./ssl/:/var/www/vhosts/website.com/ssl/
     links:
       - db
 
 
   db:
     image: "mysql:5.6.39"
+    command: --max_allowed_packet=932505856 --innodb-log-file-size=150663296     # Set max_allowed_packet to 256M (or any other value)
     volumes:
-          - ./sql/:/docker-entrypoint-initdb.d
+      - ./sql/:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: undologic
       MYSQL_DATABASE: LIVE_database
-      #volumes:
-            #- ../back-end/:/var/www/html #put the db here
-            #- ../back-end/:/var/www/html #import dir`
+        #volumes:
+        #- ../back-end/:/var/www/html #put the db here
+      #- ../back-end/:/var/www/html #import dir`
   phpmyadmin:
     image: "phpmyadmin/phpmyadmin"
+    environment:
+      UPLOAD_LIMIT: 300M
     ports:
       - "8081:80"
     links:
