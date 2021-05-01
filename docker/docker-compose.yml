@@ -13,11 +13,8 @@ services:
       - ./sites-available/:/etc/apache2/sites-available/
       - ./control/:/var/www/html/
       - ./web/config/php.ini:/usr/local/etc/php/conf.d/php.ini
-      #- ./ssl/:/var/www/vhosts/website.com/ssl/
     links:
       - db
-
-
   db:
     image: "mysql:5.6.39"
     command: --max_allowed_packet=932505856 --innodb-log-file-size=150663296     # Set max_allowed_packet to 256M (or any other value)
@@ -28,7 +25,7 @@ services:
       MYSQL_DATABASE: LIVE_database
         #volumes:
         #- ../back-end/:/var/www/html #put the db here
-      #- ../back-end/:/var/www/html #import dir`
+        #- ../back-end/:/var/www/html #import dir`
   phpmyadmin:
     image: "phpmyadmin/phpmyadmin"
     environment:
@@ -37,4 +34,3 @@ services:
       - "8081:80"
     links:
       - db
-
