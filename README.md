@@ -90,9 +90,6 @@ We now want to make sure we only commit/push files that we need to
 Remove the all the files/dirs in app/tmp
 - Then add a 'empty' file in app/tmp/empty (This will ensure git saves the directory)
   Ignore cached files
-- change the .gitignore file so the setupCase variant matches the previous step. This will ensure all the setupCase
-  are not saved into Git as they are always downloaded as required from the server (not needed to be in vcs)
-
 
 ## B. Visual Development
 
@@ -316,7 +313,7 @@ tail -F /var/www/vhosts/website.com/www/src/app/tmp/logs/debug.log
 ### Step 20: Finalizing a project
 Leading up to your ALPHA launch the following should be address
 - You should have logs that are accessible within the software. This means it is possible to see any issues without viewing linux logs and you can simply login and view the recent activity.
-- The most important logs to be first lauched are: debug.log (used to develop the software) & info.log (clear messages about what is happening)
+- The most important logs to be first launched are: debug.log (used to develop the software) & info.log (clear messages about what is happening)
 - Logs should be used to develop so this forces you to keep them clean and concise.
 
 ## B. Troubleshooting
