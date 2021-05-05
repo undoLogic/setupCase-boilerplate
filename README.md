@@ -166,8 +166,12 @@ Allows to setup automated testing to ensure your important functions in your pro
 This allows for rapid development.
 
 DOCKER Init - using PHP 
-navigate into 'src' directory 
- (YOU MUST HAVE GIT/ZIP INSTALLED on your docker image )
+First login to your docker container 
+```
+docker exec -it docker_web_1 bash
+```
+
+YOU MUST HAVE GIT/ZIP INSTALLED on your docker image
 
 IMPORTANT: This file changes often, so if the hash fails you will need to re-download the most recent here: https://getcomposer.org/download/ (Command-line installation)
 ```
