@@ -87,6 +87,16 @@ First time cleanup and preparation
 
 ### Step 8 gitignore and clean-up
 We now want to make sure we only commit/push files that we need to
+Ignore tmp folder
+-> First delete all folders within (cache/logs)
+-> Add an empty file called 'empty'
+
+Add to .gitignore file (root of your project files)
+```
+/src/app/tmp/cache/*
+/src/app/tmp/logs/*
+```
+
 Remove the all the files/dirs in app/tmp
 - Then add a 'empty' file in app/tmp/empty (This will ensure git saves the directory)
   Ignore cached files
