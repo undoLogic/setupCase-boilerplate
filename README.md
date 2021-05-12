@@ -87,6 +87,16 @@ First time cleanup and preparation
 
 ### Step 8 gitignore and clean-up
 We now want to make sure we only commit/push files that we need to
+Ignore tmp folder
+-> First delete all folders within (cache/logs)
+-> Add an empty file called 'empty'
+
+Add to .gitignore file (root of your project files)
+```
+/src/app/tmp/cache/*
+/src/app/tmp/logs/*
+```
+
 Remove the all the files/dirs in app/tmp
 - Then add a 'empty' file in app/tmp/empty (This will ensure git saves the directory)
   Ignore cached files
@@ -165,24 +175,17 @@ This page will then be a simplier view (without extra content you had on the int
 Allows to setup automated testing to ensure your important functions in your project behave the same before launch.
 This allows for rapid development.
 
-Mac Initialization (Once per computer installation only)
+DOCKER Init - using PHP 
+First login to your docker container 
 ```
-curl "https://phar.phpunit.de/phpunit-3.7.38.phar" -O
-chmod +x phpunit-3.7.38.phar
-mv phpunit-3.7.38.phar /usr/local/bin/phpunit.phar
-```
-
-Apple / Mac Install composer (first time only)
-```
-brew install composer
+docker exec -it docker_web_1 bash
 ```
 
-DOCKER Init - using PHP (once per computer)
-navigate into 'src' directory 
- (YOU MUST HAVE GIT INSTALLED)
+YOU MUST HAVE GIT/ZIP INSTALLED on your docker image
 
 IMPORTANT: This file changes often, so if the hash fails you will need to re-download the most recent here: https://getcomposer.org/download/ (Command-line installation)
 ```
+## This might be out of date so get the updated at: https://getcomposer.org/download/
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === 'c31c1e292ad7be5f49291169c0ac8f683499edddcfd4e42232982d0fd193004208a58ff6f353fde0012d35fdd72bc394') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
@@ -192,10 +195,6 @@ mv composer.phar /var/www/vhosts/website.com/www/src/composer.phar
 ```
 NOTE: You will need a git-hub token for the installation process to get all required files and install
 
-DOCKER Install
-
-Navigate to the source files 'src' directory
-
 Ensure your composer.json file in /src includes
 ```
 "require-dev": {
@@ -203,24 +202,20 @@ Ensure your composer.json file in /src includes
 },
 ```
 
-Install based on the composer file
-```angular2
-cd src
-composer install
-```
+Navigate to the source files 'src' directory (in your docker container)
 
-OR if you are using command line within the docker container (when you are in the SRC directory)
 ```
+cd /var/www/vhosts/website.com/www/src/
 php composer.phar install
 ```
 
-You should now be able to navigate and start building your tests
-```angular2
+You should now be able to view the testing framework
+```
 localhost/src/test.php
 ```
 
 To Create a TEST: create a file in /src/app/Test/Case/Model/PageTest.php
-```angular2
+```
 <?php
 
 App::uses('Controller', 'Controller');
