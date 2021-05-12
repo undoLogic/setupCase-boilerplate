@@ -154,6 +154,50 @@ will become
 
 IMPORTANT: Make sure you do NOT change href='#' as this will cause problems if you add "....$base; ?>#...."
 
+### Step 12b: Responsive design
+Different devices will display the content differently. You need to create media queries to ensure
+the layout looks good on all different devices
+
+The devices we target are:
+- Mobile: 360 x 640
+- Mobile (High quality): 375 x 812  
+- Tablet: 768 x 1024
+- Laptop: 1366 x 768
+- Desktop : 1920 x 1080
+
+Use the following code (in your CSS file) to create different views for the different devices
+
+```angular2html
+#Mobile Portrait / Vertical
+@media only screen (max-width: 599px) {
+    .cssStyle {
+        width: 100%;
+    }
+}
+
+#Mobile Landscape / Horizontal 
+@media only screen (min-width: 600px) and (max-width: 1199px) {
+    .cssStyle {
+        width: 100%;
+    }
+}
+
+#Laptop computer 
+@media only screen (min-width: 1200px) and (max-width: 1500px) {
+    .cssStyle {
+        width: 100%;
+    }
+}
+#Desktop
+@media only screen (min-width: 1500px) {
+    .cssStyle {
+        width: 100%;
+    }
+}
+```
+
+
+
 ### Step 13: Approve
 Approve all the visual changes with your client BEFORE starting any programming, database development, etc.
 Ideas only really start getting figured out when clients are seeing visual working models.
