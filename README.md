@@ -433,26 +433,23 @@ It is split into 3 separate functions for readability.
 
 2. Next run all these commands at the same time (you can remove or add any software that you use yourself)
 ```shell
-choco install powertoys -y
-choco install libreoffice-fresh -y
-choco install phpstorm --pre -y
+#minimal
 choco install docker-desktop -y
 choco install dropbox -y
 choco install firefox-dev --pre -y
 choco install git -y
 choco install tailscale -y
-choco install steam -y
 choco install openssh --pre -y
+
+#desktop
+choco install powertoys -y
+choco install libreoffice-fresh -y
+choco install phpstorm --pre -y
+choco install steam -y
 choco install microsoft-teams -y
 
 # programming nodejs
 choco install vcredist140 -y
-
-#-- maybe
-#choco install jetbrains-rider
-#choco install goland
-#choco install mingw
-
 ```
 
 manual steps

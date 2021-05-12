@@ -1,127 +1,139 @@
 <?php
-    /**
-	App::import("Vendor","Storage");
-	$storage = new Storage;
-	$encoded = $storage->put();
-	$decoded = $encryption->decode($encoded);
-	echo $decoded; //this will show hello
-     */
+/**
+App::import("Vendor","Storage");
+$storage = new Storage;
+$encoded = $storage->put();
+$decoded = $encryption->decode($encoded);
+echo $decoded; //this will show hello
+ */
 
-    class Storage {
+class Storage {
 
-        var $cacheLocation = 'images/cache/';
-        var $host = '';
-        var $domain = 'NOT-SET';
+    var $cacheLocation = 'images/cache/';
+    var $host = '';
+    var $domain = 'NOT-SET';
+    var $security = "CHANGEME";
 
-    	/***** methods for runtime ******/
+    function setup() {
+        $this->domain = Configure::read('storage.domain');
+        $this->host = Router::url('/', true).'modules'.DS.'storage';
+    }
 
-		//will download if not available in the cache or offer the cached version instead
-		function getFromCache($key_name) {
+    /***** methods for runtime ******/
 
-			$this->setup();
+    //will download if not available in the cache or offer the cached version instead
+    function getFromCache($key_name) {
 
-			//pr ($this->domain);exit;
+        $this->setup();
+
+        //pr ($this->domain);exit;
+        $files = glob($this->cacheLocation.$key_name.".*");
+
+        if (!empty($files)) {
+            $path_parts = pathinfo($files[0]);
+            if ($path_parts['extension'] == 'empty') {
+                //no image set the placeholder
+                return false;
+            } else {
+                return $files[0];
+            }
+        } else {
+            //let's see if our image exists on the server
+            //pr ($files);exit;
+            //let's get our image from our storage
+            $found = $this->get($key_name);
+
+            if ($found['status'] == 200) {
+
+                //only process valid images
+                $valid_images = array('image/png', 'image/jpeg');
+
+                if (in_array($found['mime'], $valid_images)) {
+                    //good image
+
+                    $newImage = $this->cacheLocation.$key_name.'.'.str_replace("image/", '', $found['mime']);
+                    file_put_contents(
+                        $newImage,
+                        base64_decode($found['data'])
+                    );
+                    return $newImage;
+                }  else {
+                    //not good image
+                    file_put_contents(
+                        $this->cacheLocation.$key_name.'.empty',
+                        ''
+                    );
+                    return false;
+                }
+
+            } else {
+                //write an empty file as we do NOT have an image
+                file_put_contents(
+                    $this->cacheLocation.$key_name.'.empty',
+                    ''
+                );
+                return false;
+            }
+        }
+    }
+
+    function removeSingleImageCache($key_name) {
+        $files = glob($this->cacheLocation.$key_name.".*");
+
+        foreach ($files as $file) {
+            unlink($file);
+        }
+
+    }
+
+    ////// end /////
 
 
-			$files = glob($this->cacheLocation.$key_name.".*");
-
-			if (!empty($files)) {
-				$path_parts = pathinfo($files[0]);
-				if ($path_parts['extension'] == 'empty') {
-					//no image set the placeholder
-					return false;
-				} else {
-					return $files[0];
-				}
-			} else {
-				//let's see if our image exists on the server
-				//pr ($files);exit;
-				//let's get our image from our storage
-				$found = $this->get($key_name);
-				if ($found['status'] == 200) {
-
-					//only process valid images
-					$valid_images = array('image/png', 'image/jpeg');
-					if (in_array($found['mime'], $valid_images)) {
-						//good image
-
-						$newImage = $this->cacheLocation.$key_name.'.'.str_replace("image/", '', $found['mime']);
-						file_put_contents(
-							$newImage,
-							base64_decode($found['data'])
-						);
-						return $newImage;
-					}  else {
-						//not good image
-						file_put_contents(
-							$this->cacheLocation.$key_name.'.empty',
-							''
-						);
-						return false;
-					}
-
-				} else {
-					//write an empty file as we do NOT have an image
-					file_put_contents(
-						$this->cacheLocation.$key_name.'.empty',
-						''
-					);
-					return false;
-				}
-			}
-		}
-
-		function removeSingleImageCache($key_name) {
-			$files = glob($this->cacheLocation.$key_name.".*");
-
-			foreach ($files as $file) {
-				unlink($file);
-			}
-
-		}
-
-		////// end /////
 
 
-    	function setup() {
-			$this->domain = Configure::read('storage.domain');
-		}
 
-		function put($key_name, $myData, $mime, $reference = false) {
 
-    		$this->setup();
+    function put($key_name, $myData, $mime, $reference = false) {
 
-			$data = array(
-				'domain' => $this->domain,
-				'data' => base64_encode($myData),
-				'mime' => $mime,
-				'key_name' => $key_name,
-				'md5' => md5($myData),
-				'reference' => $reference
-			);
-			$url = $this->host."/put.php";
-			$options = array(
-				'http' => array(
-					'method'  => 'POST',
-					'content' => json_encode( $data ),
-					'header'=>  "Content-Type: application/json\r\n" .
-						"Accept: application/json\r\n"
-				)
-			);
+        $this->setup();
 
-			//pr ($url);exit;
-			$context  = stream_context_create( $options );
-			//Testing the response
-			$result = file_get_contents( $url, false, $context );
-			return $result;
-		}
+//			pr ($this->host);
+//			echo Router::url('/', true);
+//			die('put');
 
-		function objectStorageGetByArray($files) {
-			foreach ($files as $key => $file) {
-				$files[$key]['objectStorage'] = $this->objectStorageGet($file['object_id']);
-			}
-			return $files;
-		}
+        $data = array(
+            'security' => $this->security,
+            'domain' => $this->domain,
+            'data' => base64_encode($myData),
+            'mime' => $mime,
+            'key_name' => $key_name,
+            'md5' => md5($myData),
+            'reference' => $reference
+        );
+        //pr ($data);exit;
+        $url = $this->host."/put.php";
+        $options = array(
+            'http' => array(
+                'method'  => 'POST',
+                'content' => json_encode( $data ),
+                'header'=>  "Content-Type: application/json\r\n" .
+                    "Accept: application/json\r\n"
+            )
+        );
+
+        //pr ($url);exit;
+        $context  = stream_context_create( $options );
+        //Testing the response
+        $result = file_get_contents( $url, false, $context );
+        return json_encode($result, true);
+    }
+
+    function objectStorageGetByArray($files) {
+        foreach ($files as $key => $file) {
+            $files[$key]['objectStorage'] = $this->objectStorageGet($file['object_id']);
+        }
+        return $files;
+    }
 //	function objectStorageGets($ids) {
 //		$array = array();
 //
@@ -132,77 +144,81 @@
 //	}
 
 
-	function get($key_name) {
+    function get($key_name) {
 
-		$this->setup();
+        $this->setup();
 
-		$url = $this->host."/get.php";
-		$data = array(
-			'key_name' => $key_name
-		);
-		$options = array(
-			'http' => array(
-				'method'  => 'POST',
-				'content' => json_encode( $data ),
-				'header'=>  "Content-Type: application/json\r\n" .
-					"Accept: application/json\r\n"
-			)
-		);
+        $url = $this->host."/get.php";
+        $data = array(
+            'security' => $this->security,
+            'key_name' => $key_name
+        );
+        $options = array(
+            'http' => array(
+                'method'  => 'POST',
+                'content' => json_encode( $data ),
+                'header'=>  "Content-Type: application/json\r\n" .
+                    "Accept: application/json\r\n"
+            )
+        );
 
-		$context  = stream_context_create( $options );
-		$result = file_get_contents( $url, false, $context );
+        $context  = stream_context_create( $options );
+        $result = file_get_contents( $url, false, $context );
 
-		$response = json_decode( $result,TRUE);
+        $response = json_decode( $result,TRUE);
 
-		if (empty($response)) {
-			return false;
-		} else {
-			if (empty($response['data'])) {
-				return false;
-			} else {
-				$image = base64_decode($response['data']);
-				$mime = $response['mime'];
-				$md5proof = md5($image);
-				//echo "<img src='data:".$mime.";base64," . base64_encode($image) . "'/>";
-				//pr ($response);
-				return $response;
-			}
-		}
-	}
+        //pr ($result);exit;
 
-	function delete($key_name) {
+        if (empty($response)) {
+            return false;
+        } else {
+            if (empty($response['data'])) {
+                return false;
+            } else {
+                $image = base64_decode($response['data']);
+                $mime = $response['mime'];
+                $md5proof = md5($image);
+                //echo "<img src='data:".$mime.";base64," . base64_encode($image) . "'/>";
+                //pr ($response);
+                return $response;
+            }
+        }
+    }
 
-		$this->setup();
+    function delete($key_name) {
 
-		$url = $this->host."/delete.php";
+        $this->setup();
 
-		$data = array(
-			'key_name' => $key_name
-		);
-		$options = array(
-			'http' => array(
-				'method'  => 'POST',
-				'content' => json_encode( $data ),
-				'header'=>  "Content-Type: application/json\r\n" .
-					"Accept: application/json\r\n"
-			)
-		);
-		$context  = stream_context_create( $options );
-		$result = file_get_contents( $url, false, $context );
-		$response = json_decode( $result,TRUE);
+        $url = $this->host."/delete.php";
 
-		//pr ($response);exit;
-		//$image = base64_decode($response['data']);
-		//$md5proof = md5($image);
-		//echo "<img src='data:image/png;base64," . base64_encode($image) . "'/>";
-		//pr ($response);
+        $data = array(
+            'security' => $this->security,
+            'key_name' => $key_name
+        );
+        $options = array(
+            'http' => array(
+                'method'  => 'POST',
+                'content' => json_encode( $data ),
+                'header'=>  "Content-Type: application/json\r\n" .
+                    "Accept: application/json\r\n"
+            )
+        );
+        $context  = stream_context_create( $options );
+        $result = file_get_contents( $url, false, $context );
+        $response = json_decode( $result,TRUE);
 
-		if ($response == '1') {
-			return true;
-		} else {
-			return false;
-		}
-	}
+        //pr ($response);exit;
+        //$image = base64_decode($response['data']);
+        //$md5proof = md5($image);
+        //echo "<img src='data:image/png;base64," . base64_encode($image) . "'/>";
+        //pr ($response);
+
+        if ($response == '1') {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 //	function upload($file_id) {
@@ -260,12 +276,12 @@
 
 
 
-	function beforeRenderFile() {}
-	function afterRenderFile() {}
-	function afterRender() {}
-	function beforeLayout() {}
-	function afterLayout() {}
+    function beforeRenderFile() {}
+    function afterRenderFile() {}
+    function afterRender() {}
+    function beforeLayout() {}
+    function afterLayout() {}
 
 
 
-    }
+}
