@@ -169,27 +169,27 @@ Use the following code (in your CSS file) to create different views for the diff
 
 ```angular2html
 #Mobile Portrait / Vertical
-@media only screen (max-width: 599px) {
+@media only screen and (max-width: 599px) {
     .cssStyle {
         width: 100%;
     }
 }
 
 #Mobile Landscape / Horizontal 
-@media only screen (min-width: 600px) and (max-width: 1199px) {
+@media only screen and (min-width: 600px) and (max-width: 1199px) {
     .cssStyle {
         width: 100%;
     }
 }
 
 #Laptop computer 
-@media only screen (min-width: 1200px) and (max-width: 1500px) {
+@media only screen and (min-width: 1200px) and (max-width: 1500px) {
     .cssStyle {
         width: 100%;
     }
 }
 #Desktop
-@media only screen (min-width: 1500px) {
+@media only screen and (min-width: 1500px) {
     .cssStyle {
         width: 100%;
     }
