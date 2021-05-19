@@ -196,6 +196,19 @@ Use the following code (in your CSS file) to create different views for the diff
 }
 ```
 
+Anchor tags need to be offset in certain occasions
+```
+<a class="anchor" id="top"></a>
+
+#CSS
+a.anchor {
+    display: block;
+    position: relative;
+    top: -250px;
+    visibility: hidden;
+}
+
+```
 
 
 ### Step 13: Approve
