@@ -38,6 +38,35 @@ svn export https://github.com/undoLogic/setupCase-boilerPlate/trunk/launch launc
 svn export https://github.com/undoLogic/setupCase-boilerPlate/trunk/docker docker/.
 ```
 
+#### Configuring Launch
+Launch needs to be configured to pull in the files from Github to your server
+1. Logon to your server via SSH
+2. First time only - Setup keys - This will create the private / public key in your .ssh directory (do not add a passphase)
+```
+ssh-keygen -t ed25519 -C "support@undologic.com"
+cd ~/.ssh
+cat id_ed25519.pub
+```
+3. Copy and paste the public key into the Deploy keys on github
+4. If you want to have multiple projects on the same server you will need to create a ssh config file
+```
+vi ~/.ssh
+# add the following into the file and save
+Host project1.github.com
+        Hostname github.com
+        IdentityFile ~/.ssh/project1.prv
+Host project2.github.com
+        Hostname github.com
+        IdentityFile ~/.ssh/project2.prv
+```
+5. You will need to rename your private public key as follows
+```
+mv ~/.ssh/id_ed25519 project1.prv
+mv ~/.ssh/id_ed25519.pub project1.pub
+```
+6. then complete the keygen another time and rename to project2. You can change project1 / project2 to anything you like
+
+
 #### Export library files only
 Included in this boilerplate is basic libraries for handling:
 - Switching between languages in your application
