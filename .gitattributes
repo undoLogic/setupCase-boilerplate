@@ -33,7 +33,7 @@
 *.map             text -diff
 *.od              text
 *.onlydata        text
-*.php             text diff=php
+*.php             text
 *.pl              text
 *.ps1             text eol=crlf
 *.py              text diff=python
