@@ -4,6 +4,8 @@
   "SSH_USER": "undologic",
   "TESTING_URL": "http://test.undologic.com",
   "TESTING_ABSOLUTE_PATH": "/home/undologic/www/test",
+  "STAGING_URL": "http://test.undologic.com",
+  "STAGING_ABSOLUTE_PATH": "/home/undologic/www/test",
   "LIVE_URL": "http://www.undologic.com",
   "LIVE_ABSOLUTE_PATH": "/home/undologic/www/www",
   "GITHUB_USER_SLASH_PROJECT": "undologic/projectname",

@@ -129,7 +129,7 @@ Add to .gitignore file (root of your project files)
 Remove the all the files/dirs in app/tmp
 - Then add a 'empty' file in app/tmp/empty (This will ensure git saves the directory)
   Ignore cached files
-
+  
 ## B. Visual Development
 
 ### Step 9: Create all your visual pages (concept ONLY)
@@ -397,9 +397,48 @@ Leading up to your ALPHA launch the following should be address
 - The most important logs to be first launched are: debug.log (used to develop the software) & info.log (clear messages about what is happening)
 - Logs should be used to develop so this forces you to keep them clean and concise.
 
-## B. Troubleshooting
+## D. LAUNCH: Uploading to TESTING / STAGING
 
-###Line endings were all messed up by a windows machine.
+### Step 1. Ensure you can connect to the testing / staging server over SSH
+Using PHPSTORM right click on the file '1_setupTestingServer.sh'
+-> This will attempt to upload your current project to the testing server
+-> It will automatically upload the correct branch (or main branch) you are working on to a dedicated URL so a client can test out specific branches before they are merged back into main / master.
+
+#### FIRST TIME ONLY: Prepare SSH private / public keys
+Your public SSH key must be assigned to the specific server in order to upload files to it. 
+- ensure that your system has a private / public key. Using PHPStorm open Terminal:
+```
+cd ~/.ssh
+ls
+```
+You SHOULD see 'id_rsa' & 'id_rsa.pub' (these are the private / public keys)
+-> If you do NOT see these files 
+```
+#FIRST TIME ONLY - do not run this command if the file already exists
+ssh-keygen -t ed25519 -C "support@undologic.com"
+```
+Copy&paste this key to your project manager, so they can add you to the testing / staging servers.
+```
+#this will allow you to copy / paste your key
+cat id_ed25519.pub
+```
+At this point you will be able to logon to a server securely using:
+```
+ssh user@server.com
+```
+How-ever we are going to use our commands (within our 'launch' dir), so you will not need to manually type any commands
+-> Located in /launch right-click on '1_setupTestingServer.sh'
+-> this will attempt to upload your current branch (whether it is master or a specific branch) to the testing server
+-> You will be prompted for your passphase (if you added a passphase to your private key)
+-> After the files are uploaded a browser will automatically open in your default browser, so you can easily begin testing on the TESTING/STAGING servers. 
+
+When you are approval all changes you can go LIVE by running the following command
+-> Right click and run '3_go_LIVE.sh"'
+-> This will copy all the files on the staging server to the LIVE server - the project is now LIVE
+
+## E. Troubleshooting
+
+###Line endings were all messed up by a Windows10 machine.
 -Logon to the docker machine 
 ```
 docker exec -it docker_web_1 bash
@@ -409,7 +448,7 @@ find . -type f -print0 | xargs -0 dos2unix
 ```
 
 
-## C. Programming Concepts
+## F. Code Snippets
 
 ### i. Calculating data with a multi-tiered structure
 This allows to efficiently convert a basic array into a multi-tiered array that calculates by custom fields
@@ -506,9 +545,9 @@ It is split into 3 separate functions for readability.
 
 
 
-## D. Windows Computer installation
+## G. Windows Computer installation
 
-### Use Choco to batch install your windows machine (Reformat, Reinstall)
+### Use Choco to batch install your Windows10 machine (Reformat, Reinstall)
 
 1. First install Choco: https://chocolatey.org/
 
