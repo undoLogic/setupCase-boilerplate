@@ -89,6 +89,13 @@ svn export https://github.com/cakephp/cakephp/branches/2.x
 mv 2.x src 
 ```
 
+### cleanup
+```angular2html
+#remove files as they are being added in our root instead
+rm src/.gitignore
+rm src/.gitattributes
+```
+
 #### Import our boilerplate on top of a fresh cakePHP install with standard settings
 ```angular2
 rsync -av libraries/cakePHP/2/. src/app/.
