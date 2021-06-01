@@ -1,8 +1,8 @@
 version: "2.0"
 services:
   web:
-    build: ./web
-    image: docker_web7
+    build: ./web74
+    image: docker_web74
     ports:
       - "80:80"
       - "443:443"
@@ -12,7 +12,7 @@ services:
       - ../.:/var/www/vhosts/website.com/www
       - ./sites-available/:/etc/apache2/sites-available/
       - ./control/:/var/www/html/
-      - ./web/config/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./ini/php.ini:/usr/local/etc/php/conf.d/php.ini
     links:
       - db
   db:
