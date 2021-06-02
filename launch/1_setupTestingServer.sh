@@ -3,20 +3,16 @@
 # get the public key from the live server (ssh into the server)
 # First time only: (subsequent times this will already be created - to check ls -la and you will see id_rsa*)
 # ssh-keygen -t ed25519 -C "support@undologic.com"
-# OR OLD VERSION (RSA)
-# ssh-keygen -t rsa -b 4096 -C "support@undologic.com"
 # cd ~/.ssh
 # cat id_ed25519.pub
-# OR RSA VERSION
-# cat id_rsa.pub
 # copy that public key
 # Github.com -> Settings -> Deploy keys
 # Add Deploy Key
 # Add comment which server (so you remember later)
 # Paste in the key into the box
 # IMPORTANT: You MUST manually connect the first time so the server before you can automate with the launch system
-SSH_HOST=$(grep '^ *"SSH_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-SSH_USER=$(grep '^ *"SSH_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+SSH_HOST=$(grep '^ *"TESTING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+SSH_USER=$(grep '^ *"TESTING_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 GITHUB_USER_SLASH_PROJECT=$(grep '^ *"GITHUB_USER_SLASH_PROJECT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 SRC_FILES_RELATIVE_PATH=$(grep '^ *"SRC_FILES_RELATIVE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING_URL=$(grep '^ *"TESTING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
