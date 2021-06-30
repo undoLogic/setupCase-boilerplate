@@ -549,7 +549,47 @@ It is split into 3 separate functions for readability.
 
 ```
 
+### ii. Security - ensure groups do not see wrong data
 
+this function will call up a specific model and ensure that the logged in user is allowed to share the group 
+```php
+
+//use - place this into any controller, match the 'Model' and pass in the ID so it can get verifed
+$this->ensureCorrectGroup('Model', $this->groupId(), $id);
+
+function ensureCorrectGroup($model, $group_id, $id) {
+        $testObj = ClassRegistry::init($model, 'Model');
+        $found = $testObj->find('first', array(
+            'contain' => array(),
+            'conditions' => array($model . '.id' => $id)
+        ));
+
+        if (!empty($found)) {
+            if ($found[$model]['group_id'] == $group_id) {
+                return true;
+            }
+            //some old transactions don't have groups, so we will let this pass
+            if ($found[$model]['group_id'] == 0) {
+                $this->Session->setFlash('No group assigned: save to add a group');
+                return true;
+            }
+        } else {
+            $this->Session->setFlash('Project does not exist in this group');
+            $this->redirect('/');
+        }
+}
+
+	function getGroupId() {
+
+		$user_info = $this->Auth->user();
+		//pr($user_info); exit;
+
+		if(isset($user_info['group_id'])){
+			return $user_info['group_id'];
+		}
+		return false;
+	}
+```
 
 
 ## G. Windows Computer installation
