@@ -555,7 +555,7 @@ this function will call up a specific model and ensure that the logged in user i
 ```php
 
 //use - place this into any controller, match the 'Model' and pass in the ID so it can get verifed
-$this->ensureCorrectGroup('Model', $this->groupId(), $id);
+$this->ensureCorrectGroup('Model', $this->getGroupId(), $id);
 
 function ensureCorrectGroup($model, $group_id, $id) {
         $testObj = ClassRegistry::init($model, 'Model');
