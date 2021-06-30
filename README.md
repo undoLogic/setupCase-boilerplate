@@ -340,14 +340,18 @@ Login to your docker shell
 
 ```angular2
 cd docker
-dockerps
-# find the 'web'
+
+# find the 'web' to know which container you are using eg docker_web_1
+docker ps
+
 docker exec -it docker_web_1 bash
-# You are now logged into the docker
+
+# You are now logged into the docker, now navigate to the project files root (cd path/to/app)
 cd /var/www/vhosts/website.com/
 cd www
-cd app (cd /path/to/app)
+cd app 
 ./Console/cake bake
+
 ```
 
 
