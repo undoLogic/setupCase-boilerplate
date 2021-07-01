@@ -18,7 +18,9 @@ else
   GITHUB_CURRENT_BRANCH=$GITHUB_CURRENT_BRANCH
 fi
 
-echo "ssh " $SSH_USER@$SSH_HOST "rsync -av --omit-dir-times --no-perms $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
+echo "ssh" $SSH_USER@$SSH_HOST "rsync -av --omit-dir-times --no-perms $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
+
+echo "LIVE URL:" $LIVE_URL
 
 read -p "Press enter to go LIVE"
 

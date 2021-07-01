@@ -5,6 +5,9 @@ RUN a2enmod rewrite
 
 RUN apt-get update && apt-get install -y \
 		vim \
+		git \
+		zip \
+		unzip \
 		mysql-client \
 		#mysql-server \
 		subversion \
@@ -28,7 +31,7 @@ RUN docker-php-ext-install mcrypt
 
 #RUN php5enmod imap
 
-COPY ./config/php.ini /usr/local/etc/php/
+#COPY ./config/php.ini /usr/local/etc/php/
 
 #@todo copy the files into the image - maybe later
 #COPY ./files/. /var/www/vhosts/website.com/www/
