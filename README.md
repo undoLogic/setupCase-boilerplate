@@ -283,12 +283,17 @@ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === 'c31c1e292ad7be5f49291169c0ac8f683499edddcfd4e42232982d0fd193004208a58ff6f353fde0012d35fdd72bc394') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
-## then we need to move this to our directory structure
+
+```
+
+After we need to move this to our directory structure
+
+```
 mv composer.phar /var/www/vhosts/website.com/www/src/composer.phar
 ```
 NOTE: You will need a git-hub token for the installation process to get all required files and install
 
-Ensure your composer.json file in /src includes
+Ensure your composer.json file in /src includes (you can remove other attributes if you do not need)
 ```
 "require-dev": {
     "phpunit/phpunit": "^3.7"
