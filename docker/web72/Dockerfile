@@ -5,6 +5,7 @@ RUN a2enmod rewrite
 RUN apt-get update && apt-get install -y \
         dos2unix \
         zip \
+        unzip \
         rsync \
         mariadb-client \
         subversion \

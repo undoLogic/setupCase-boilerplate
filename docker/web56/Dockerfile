@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
 		git \
 		zip \
 		unzip \
+		dos2unix \
 		mysql-client \
 		#mysql-server \
 		subversion \
