@@ -335,6 +335,19 @@ class PageTest extends CakeTestCase
 }
 ```
 
+#### ISSUES
+PHP 7.2 has issues with the current framework
+A very rough fix is to add
+C:\Users\sacha\PhpstormProjects\projectBrowser\src\vendors\phpunit\phpunit\PHPUnit\Framework\Assert.php
+
+```
+if ($expected == $actual) {
+    return true;
+} else {
+    die('ERROR: '.$expected.' DOES NOT EQUAL '.$actual);
+}
+```
+
 
 ### Step 16: Bake Models (if required)
 The models are created by using BAKE
