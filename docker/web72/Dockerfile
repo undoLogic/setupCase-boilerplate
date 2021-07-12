@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
         dtach \
         dos2unix \
         zip \
+        unzip \
         rsync \
         mariadb-client \
         subversion \
