@@ -6,6 +6,7 @@ RUN a2enmod rewrite
 RUN apt-get update && apt-get install -y \
         dvtm \
         dtach \
+        unzip \
 		vim \
 		git \
 		zip \
