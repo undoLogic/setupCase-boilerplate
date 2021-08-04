@@ -22,9 +22,13 @@ RUN apt-get update && apt-get install -y \
 		libc-client-dev \
 		#php5-imap \
 		libmcrypt-dev \
---no-install-recommends && rm -r /var/lib/apt/lists/*
+		libmagickwand-dev \
+		imagemagick \
+--no-install-recommends && rm -r /var/lib/apt/lists/* \
+    && pecl install imagick-3.4.3 \
+    && docker-php-ext-enable imagick
 
-RUN docker-php-ext-install pdo pdo_mysql curl sockets
+RUN docker-php-ext-install pdo pdo_mysql curl sockets mysqli
 
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap
