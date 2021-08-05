@@ -247,6 +247,22 @@ a.anchor {
 ```
 
 
+### Step 13b - AngularJS integrations
+Calling modal through angular loop
+```angular2html
+<a class="category-main-btn" href="#"
+	ng-click="openPopup();">Details</a>
+</span>
+```
+Then in the angularJS file
+```angular2html
+$scope.openPopup = function() {
+    $('#exampleModalCenter').modal('show');
+}
+```
+
+
+
 ### Step 13: Approve
 Approve all the visual changes with your client BEFORE starting any programming, database development, etc.
 Ideas only really start getting figured out when clients are seeing visual working models.
