@@ -1,5 +1,59 @@
 # setupCase-boilerPlate
-setupCase.com project base - Manage and launch your project with Docker and Ansible
+setupCase.com project base - Manage and launch your project with Docker
+
+## Quick Start
+
+First we need to export our source files to your computer. Navigate to an empty directory
+```angular2html
+svn export https://github.com/undoLogic/setupCase-boilerPlate/trunk/ . --force
+```
+
+Next we need to add cakePHP 2.x
+```angular2html
+svn export https://github.com/cakephp/cakephp/branches/2.x
+mv 2.x src
+
+#remove files as they are being added in our root instead
+rm src/.gitignore
+rm src/.gitattributes
+
+#Copy our standard libraries ontop of cakePHP
+rsync -av libraries/cakePHP/2/. src/app/.
+```
+
+Now we can startup our docker
+
+- Ensure you have installed docker from the website https://www.docker.com/
+
+```angular2html
+# navigate into /docker directory and start it up
+./1startDocker.sh
+```
+
+Docker will start and download all the files which are required. When complete you can open localhost in your favourite browser
+```angular2html
+http://localhost/
+```
+
+DONE: You should see all the files / folders. Click on phpInfo and ensure php is working correctly
+
+Now you are continue to create the website
+
+Integrate a layout into the CakePHP structure:
+- Download any layout from this site: https://graygrids.com/templates/category/free-html-templates/
+
+and use these instructions to integrate into the cakePHP structure
+- https://github.com/undoLogic/setupCase-boilerplate#step-12-add-layout
+
+then use these instructions to ensure the layout is working on different devices
+
+https://github.com/undoLogic/setupCase-boilerplate#step-12b-responsive-design
+
+
+## End of Quick Start
+
+- - - - 
+
 
 ## A. Installation
 
