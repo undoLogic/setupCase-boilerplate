@@ -49,7 +49,6 @@ then use these instructions to ensure the layout is working on different devices
 
 https://github.com/undoLogic/setupCase-boilerplate#step-12b-responsive-design
 
-
 ## End of Quick Start
 
 - - - - 
