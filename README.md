@@ -53,16 +53,18 @@ Download any template / layout and integrate into the CakePHP structure with the
 http://localhost/src
 ```
 
-Create pages: Now that you have a layout working you want to create new pages, so you can navigate between a few pages. 
-- Modify the controller and add new functions (eg Controller/Pages/newpage) and then you would create a view (Views/Pages/newpage.ctp)
-
-Ensure the layout looks good for all devices by making changes to the responsive design:
+Responsive Design: Ensure the layout looks good for all devices by making changes to the responsive design per our basic instructions:
 
 https://github.com/undoLogic/setupCase-boilerplate#step-12b-responsive-design
 
-Good Stuff ! You have now prepared a new project with the latest CakePHP v2, integrated it into our SetupCase library, added to a professional layout, customized it per spec, and verified it is working on different mobile devices ! 
+Good Stuff ! You have now: 
+- prepared a new project with the latest CakePHP v2 and docker
+- integrated it into our SetupCase library
+- added to a professional layout
+- customized the visuals and added new pages 
+- Verified it is working on different mobile devices !
 
-This concludes our Quick-Start guide. 
+This concludes our Quick-Start guide !
 
 ## End of Quick Start
 
