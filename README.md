@@ -260,6 +260,29 @@ will become
 
 IMPORTANT: Make sure you do NOT change href='#' as this will cause problems if you add "....$base; ?>#...."
 
+Now that the layout is working this means you can navigate to your browser and see it displaying correctly in the view
+
+```angular2html
+http://localhost/src/
+```
+
+If any errors on the screen ensure you have not missed any script assignments (eg <?= $baseLayout; ?> )
+
+PAGES
+
+Now that you have a layout working you want to create new pages, so you can navigate between a few pages.
+- CONTROLLER: Modify the controller and add new functions (eg Pages Controller - function newpage() {...})
+- VIEW: create a view (Views/Pages/newpage.ctp)
+- You will get better results piecing together pages like Lego / MegaBlocks by simply copy-paste portions of the visual code from the downloaded template / layout. This will allow you to create a page efficiently and will be impressive as it will right away look finished and polished. You can then finalize and modify to get the exact look you need. 
+- when you are done you can navigate to: 
+```angular2html
+http://localhost/src/Pages/newpage
+```
+
+and you would see the new page you created. 
+ 
+
+
 ### Step 12b: Responsive design
 Different devices will display the content differently. You need to create media queries to ensure
 the layout looks good on all different devices
