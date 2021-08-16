@@ -35,23 +35,40 @@ Docker will start and download all the files which are required. When complete y
 http://localhost/
 ```
 
-DONE: You should see all the files / folders. Click on phpInfo and ensure php is working correctly
+Start-up: You should see all the files / folders in the directory. Click on phpInfo and ensure php is working correctly. You know it has started up correctly.
 
-Now you are continue to create the website
+Next we are going to add a professional layout
+- We always integrate professional layouts and modify in line with our clients requests. This streamlines the development process.
+- We always purchase layouts, but for testing you can find free templates / layouts to download to test it all out for free
 
-Integrate a layout into the CakePHP structure:
-- Download any layout from this site: https://graygrids.com/templates/category/free-html-templates/
+https://startbootstrap.com/?showPro=false&showVue=false&showAngular=false
+  
+https://graygrids.com/templates/category/free-html-templates/
 
-and use these instructions to integrate into the cakePHP structure
+Download any template / layout and integrate into the CakePHP structure with these instructions (below)
 - https://github.com/undoLogic/setupCase-boilerplate#step-12-add-layout
+- Now when you navigate to your browser you should see the layout displaying correctly in your browser
 
-then use these instructions to ensure the layout is working on different devices
+```angular2html
+http://localhost/src
+```
+
+Create pages: Now that you have a layout working you want to create new pages, so you can navigate between a few pages. 
+- Modify the controller and add new functions (eg Controller/Pages/newpage) and then you would create a view (Views/Pages/newpage.ctp)
+
+Ensure the layout looks good for all devices by making changes to the responsive design:
 
 https://github.com/undoLogic/setupCase-boilerplate#step-12b-responsive-design
+
+Good Stuff ! You have now prepared a new project with the latest CakePHP v2, integrated it into our SetupCase library, added to a professional layout, customized it per spec, and verified it is working on different mobile devices ! 
+
+This concludes our Quick-Start guide. 
 
 ## End of Quick Start
 
 - - - - 
+
+# - - - Full Instructions below - - 
 
 
 ## A. Installation
