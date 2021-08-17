@@ -80,7 +80,7 @@ Good Stuff ! You have now:
 
 This concludes our Quick-Start guide !
 
-## End of Quick Start
+## End of Test / Quick Start
 
 - - - - 
 
