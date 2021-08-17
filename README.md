@@ -1,7 +1,21 @@
 # setupCase-boilerPlate
 setupCase.com project base - Manage and launch your project with Docker
 
-## Quick Start
+## Quick Start (About 30 minutes to complete)
+
+Here is a quick start which shows you how the overall technology stack works. 
+When complete you will have:
+- prepared a new project with the latest CakePHP v2 and docker using powershell / terminal
+- integrated it into our SetupCase library
+- integrated a free finalized layout into cakePHP
+- customized the visuals and added new pages
+- Verified and modified the responsive design for different mobile devices !
+
+###Requirements to run:
+- Windows 10 PRO OR MacOS
+- SVN installed (Easy way to install: https://community.chocolatey.org/packages/svn OR https://brew.sh/)
+- Docker installed (https://www.docker.com/) & Docker-compose
+- Powershell / Terminal
 
 First we need to export our source files to your computer. Navigate to an empty directory
 ```angular2html
