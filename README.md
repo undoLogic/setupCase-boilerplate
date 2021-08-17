@@ -1,9 +1,9 @@
 # setupCase-boilerPlate
 setupCase.com project base - Manage and launch your project with Docker
 
-## Quick Start (About 30 minutes to complete)
+## Test / Quick Start Instructions (Less than an hour)
 
-Here is a quick start which shows you how the overall technology stack works. 
+Here is a basic test / quick start guide which shows you how the overall technology stack works. 
 When complete you will have:
 - prepared a new project with the latest CakePHP v2 and docker using powershell / terminal
 - integrated it into our SetupCase library
