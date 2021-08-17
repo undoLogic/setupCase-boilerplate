@@ -12,7 +12,7 @@ When complete you will have:
 - Verified and modified the responsive design for different mobile devices !
 
 ###Requirements to run:
-- Windows 10 PRO OR MacOS
+- Windows 10 PRO with virtualization activated OR MacOS
 - SVN installed (Easy way to install: https://community.chocolatey.org/packages/svn OR https://brew.sh/)
 - Docker installed (https://www.docker.com/) & Docker-compose
 - Powershell / Terminal
