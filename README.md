@@ -27,6 +27,10 @@ Next we need to add cakePHP 2.x
 svn export https://github.com/cakephp/cakephp/branches/2.x
 mv 2.x src
 
+# this is an old branch and might not be a release on github anymore you can also use
+# https://github.com/cakephp/cakephp/archive/refs/tags/2.10.24.zip
+# and find specific tags on github (ensure you get the latest)
+
 #remove files as they are being added in our root instead
 rm src/.gitignore
 rm src/.gitattributes
