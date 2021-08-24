@@ -141,7 +141,7 @@ cat id_ed25519.pub
 3. Copy and paste the public key into the Deploy keys on github
 4. If you want to have multiple projects on the same server you will need to create a ssh config file
 ```
-vi ~/.ssh
+vi ~/.ssh/config
 # add the following into the file and save
 Host project1.github.com
         Hostname github.com
@@ -157,6 +157,12 @@ mv ~/.ssh/id_ed25519.pub project1.pub
 ```
 6. then complete the keygen another time and rename to project2. You can change project1 / project2 to anything you like
 
+7. Now when you checkout from github you use the following syntax
+```angular2html
+git clone git@project1.github.com:OWNER/repo-project1.git
+# OR
+git clone git@project2.github.com:OWNER/repo-project2.git
+```
 
 #### Export library files only
 Included in this boilerplate is basic libraries for handling:

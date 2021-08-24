@@ -14,6 +14,7 @@
   "LIVE_ABSOLUTE_PATH": "/home/undologic/www/www",
 
   "GITHUB_USER_SLASH_PROJECT": "undologic/projectname",
+  "GITHUB_HOST": "nf.github.com",
   "SRC_FILES_RELATIVE_PATH": "src",
   "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
 }
