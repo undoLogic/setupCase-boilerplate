@@ -31,3 +31,5 @@ RUN docker-php-ext-install pdo pdo_mysql curl sockets mysqli
 
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap
+
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli

@@ -8,6 +8,11 @@
 /src/app/webroot/updateCase.log
 /src/composer.lock
 
+### temp cake download files
+/4.x/*
+
+
+
 # IDE and editor specific files #
 #################################
 /nbproject
