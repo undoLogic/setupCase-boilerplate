@@ -1,100 +1,4 @@
-# setupCase-boilerPlate
-setupCase.com project base - Manage and launch your project with Docker
-
-## Test / Quick Start Instructions (Less than an hour)
-
-Here is a basic test / quick start guide which shows you how the overall technology stack works. 
-When complete you will have:
-- prepared a new project with the latest CakePHP v2 and docker using powershell / terminal
-- integrated it into our SetupCase library
-- integrated a free finalized layout into cakePHP
-- customized the visuals and added new pages
-- Verified and modified the responsive design for different mobile devices !
-
-###Requirements to run:
-- Windows 10 PRO with virtualization activated OR MacOS
-- SVN installed (Easy way to install: https://community.chocolatey.org/packages/svn OR https://brew.sh/)
-- Docker installed (https://www.docker.com/) & Docker-compose
-- Powershell / Terminal
-
-First we need to export our source files to your computer. Navigate to an empty directory
-```angular2html
-svn export https://github.com/undoLogic/setupCase-boilerPlate/trunk/ . --force
-```
-
-Next we need to add cakePHP 2.x
-```angular2html
-svn export https://github.com/cakephp/cakephp/branches/2.x
-mv 2.x src
-
-# this is an old branch and might not be a release on github anymore you can also use
-# https://github.com/cakephp/cakephp/archive/refs/tags/2.10.24.zip
-# and find specific tags on github (ensure you get the latest)
-
-#remove files as they are being added in our root instead
-rm src/.gitignore
-rm src/.gitattributes
-
-#Copy our standard libraries ontop of cakePHP
-rsync -av libraries/cakePHP/2/. src/app/.
-```
-
-Now we can startup our docker
-
-- Ensure you have installed docker from the website https://www.docker.com/
-
-```angular2html
-# navigate into /docker directory and start it up
-./1startDocker.sh
-```
-
-Docker will start and download all the files which are required. When complete you can open localhost in your favourite browser
-```angular2html
-http://localhost/
-```
-
-Start-up: You should see all the files / folders in the directory. Click on phpInfo and ensure php is working correctly. You know it has started up correctly.
-
-Next we are going to add a professional layout
-- We always integrate professional layouts and modify in line with our clients requests. This streamlines the development process.
-- We always purchase layouts, but for testing you can find free templates / layouts to download to test it all out for free
-
-https://startbootstrap.com/?showPro=false&showVue=false&showAngular=false
-  
-https://graygrids.com/templates/category/free-html-templates/
-
-Download any template / layout and integrate into the CakePHP structure with these instructions (below)
-- https://github.com/undoLogic/setupCase-boilerplate#step-12-add-layout
-- Now when you navigate to your browser you should see the layout displaying correctly in your browser
-
-```angular2html
-http://localhost/src
-```
-
-Responsive Design: Ensure the layout looks good for all devices by making changes to the responsive design per our basic instructions:
-
-https://github.com/undoLogic/setupCase-boilerplate#step-12b-responsive-design
-
-Good Stuff ! You have now: 
-- prepared a new project with the latest CakePHP v2 and docker
-- integrated it into our SetupCase library
-- added to a professional layout
-- customized the visuals and added new pages 
-- Verified it is working on different mobile devices !
-
-This concludes our Quick-Start guide !
-
-
-## End of Test / Quick Start
-
-- - - - 
-
-- - - - 
-
-- - - - 
-
-# - - - Full Instructions below - - 
-
+# Instructions
 
 ## A. Installation
 
@@ -237,7 +141,7 @@ Add to .gitignore file (root of your project files)
 Remove the all the files/dirs in app/tmp
 - Then add a 'empty' file in app/tmp/empty (This will ensure git saves the directory)
   Ignore cached files
-  
+
 ## B. Visual Development
 
 ### Step 9: Create all your visual pages (concept ONLY)
@@ -304,14 +208,14 @@ PAGES
 Now that you have a layout working you want to create new pages, so you can navigate between a few pages.
 - CONTROLLER: Modify the controller and add new functions (eg Pages Controller - function newpage() {...})
 - VIEW: create a view (Views/Pages/newpage.ctp)
-- You will get better results piecing together pages like Lego / MegaBlocks by simply copy-paste portions of the visual code from the downloaded template / layout. This will allow you to create a page efficiently and will be impressive as it will right away look finished and polished. You can then finalize and modify to get the exact look you need. 
-- when you are done you can navigate to: 
+- You will get better results piecing together pages like Lego / MegaBlocks by simply copy-paste portions of the visual code from the downloaded template / layout. This will allow you to create a page efficiently and will be impressive as it will right away look finished and polished. You can then finalize and modify to get the exact look you need.
+- when you are done you can navigate to:
 ```angular2html
 http://localhost/src/Pages/newpage
 ```
 
-and you would see the new page you created. 
- 
+and you would see the new page you created.
+
 
 
 ### Step 12b: Responsive design
@@ -320,7 +224,7 @@ the layout looks good on all different devices
 
 The devices we target are:
 - Mobile: 360 x 640
-- Mobile (High quality): 375 x 812  
+- Mobile (High quality): 375 x 812
 - Tablet: 768 x 1024
 - Laptop: 1366 x 768
 - Desktop : 1920 x 1080
@@ -408,8 +312,8 @@ This page will then be a simplier view (without extra content you had on the int
 Allows to setup automated testing to ensure your important functions in your project behave the same before launch.
 This allows for rapid development.
 
-DOCKER Init - using PHP 
-First login to your docker container 
+DOCKER Init - using PHP
+First login to your docker container
 ```
 docker exec -it docker_web_1 bash
 ```
@@ -574,14 +478,14 @@ Using PHPSTORM right click on the file '1_setupTestingServer.sh'
 -> It will automatically upload the correct branch (or main branch) you are working on to a dedicated URL so a client can test out specific branches before they are merged back into main / master.
 
 #### FIRST TIME ONLY: Prepare SSH private / public keys
-Your public SSH key must be assigned to the specific server in order to upload files to it. 
+Your public SSH key must be assigned to the specific server in order to upload files to it.
 - ensure that your system has a private / public key. Using PHPStorm open Terminal:
 ```
 cd ~/.ssh
 ls
 ```
 You SHOULD see 'id_rsa' & 'id_rsa.pub' (these are the private / public keys)
--> If you do NOT see these files 
+-> If you do NOT see these files
 ```
 #FIRST TIME ONLY - do not run this command if the file already exists
 ssh-keygen -t ed25519 -C "support@undologic.com"
@@ -599,7 +503,7 @@ How-ever we are going to use our commands (within our 'launch' dir), so you will
 -> Located in /launch right-click on '1_setupTestingServer.sh'
 -> this will attempt to upload your current branch (whether it is master or a specific branch) to the testing server
 -> You will be prompted for your passphase (if you added a passphase to your private key)
--> After the files are uploaded a browser will automatically open in your default browser, so you can easily begin testing on the TESTING/STAGING servers. 
+-> After the files are uploaded a browser will automatically open in your default browser, so you can easily begin testing on the TESTING/STAGING servers.
 
 When you are approval all changes you can go LIVE by running the following command
 -> Right click and run '3_go_LIVE.sh"'
@@ -608,7 +512,7 @@ When you are approval all changes you can go LIVE by running the following comma
 ## E. Troubleshooting
 
 ###Line endings were all messed up by a Windows10 machine.
--Logon to the docker machine 
+-Logon to the docker machine
 ```
 docker exec -it docker_web_1 bash
 apt-get update
@@ -713,7 +617,7 @@ It is split into 3 separate functions for readability.
 
 ### ii. Security - ensure groups do not see wrong data
 
-this function will call up a specific model and ensure that the logged in user is allowed to share the group 
+this function will call up a specific model and ensure that the logged in user is allowed to share the group
 ```php
 
 //use - place this into any controller, match the 'Model' and pass in the ID so it can get verifed
