@@ -24,12 +24,11 @@ svn export https://github.com/undoLogic/setupCase-boilerPlate/trunk/ . --force
 
 Next we need to add cakePHP 2.x
 ```angular2html
-svn export https://github.com/cakephp/cakephp/branches/2.x
-mv 2.x src
-
-# this is an old branch and might not be a release on github anymore you can also use
+# this is an old branch, so you need to find the latest tag https://github.com/cakephp/cakephp/tags
+# copy the link for the Source code .zip download EG:
 # https://github.com/cakephp/cakephp/archive/refs/tags/2.10.24.zip
-# and find specific tags on github (ensure you get the latest)
+svn export https://github.com/cakephp/cakephp/archive/refs/tags/2.10.24.zip
+mv 2.x src
 
 #remove files as they are being added in our root instead
 rm src/.gitignore
