@@ -72,7 +72,7 @@ http://localhost/src
 
 Responsive Design: Ensure the layout looks good for all devices by making changes to the responsive design per our basic instructions:
 
-https://github.com/undoLogic/setupCase-boilerplate#step-12b-responsive-design
+https://github.com/undoLogic/setupCase-boilerplate/blob/main/PROGRAMMING-GUIDE.md#step-12b-responsive-design
 
 Good Stuff ! You have now: 
 - prepared a new project with the latest CakePHP v2 and docker
