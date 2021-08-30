@@ -82,51 +82,16 @@ Included in this boilerplate is basic libraries for handling:
 svn export https://github.com/undoLogic/setupCase-boilerPlate/trunk/libraries/cakePHP/2/. libraries/cakePHP/2/. --force
 ```
 
-### Step 5: Add CakePHP 2.x
-You are now ready to add your source files
+### Step 5: Add CakePHP
+Follow our quick start guide for CakePHP installation here
 
-#### CakePHP 2.x
-This downloads the raw project from CakePHP and will place all files into 'src' directory.
+CakePHP v4
+https://github.com/undoLogic/setupCase-boilerplate/blob/main/QUICK-START-V4.md
 
-### 2.x version
-```angular2
-svn export https://github.com/cakephp/cakephp/branches/2.x
-mv 2.x src 
-```
+CakePHP v2
+https://github.com/undoLogic/setupCase-boilerplate/blob/main/QUICK-START-V2.md
 
-### cleanup
-```angular2html
-#remove files as they are being added in our root instead
-rm src/.gitignore
-rm src/.gitattributes
-```
-
-#### Import our boilerplate on top of a fresh cakePHP install with standard settings
-```angular2
-rsync -av libraries/cakePHP/2/. src/app/.
-```
-
-#### Cleanup files we will not need as we are creating our own in the base instead
-```
-rm src/.gitignore
-rm src/.gitattributes
-```
-
-### Step 6: Startup docker / test project
-Look into the docker folder
-Right click '2startDocker.sh' OR '3restartDocker.sh'
-
-Navigate to
-```angular2
-http://localhost/src
-```
-
-First time cleanup and preparation
-- Fix any errors (src/app/Config/core.php - security salt, etc)
-- Uncomment date_default_timezone_set('UTC');
-- Ensure gitignore is correct to prevent any large files from being uploaded
-
-### Step 8 gitignore and clean-up
+### Step 8 gitignore and clean-up (to be moved into quickstart later)
 We now want to make sure we only commit/push files that we need to
 Ignore tmp folder
 -> First delete all folders within (cache/logs)
