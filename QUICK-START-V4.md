@@ -69,8 +69,8 @@ http://localhost/src/
 
 Copy our Library for SetupCase base functionality
 ```angular2html
-# Copy our standard libraries ontop of cakePHP
-rsync -av /var/www/vhosts/website.com/www/libraries/cakePHP/4/. /var/www/vhosts/website.com/www/src/app/.
+# Copy our standard libraries on top of cakePHP
+rsync -av /var/www/vhosts/website.com/www/libraries/cakePHP/4/. /var/www/vhosts/website.com/www/src/.
 ```
 
 Start-up: You should see all the files / folders in the directory. Click on phpInfo and ensure php is working correctly. You know it has started up correctly.
@@ -103,6 +103,5 @@ Good Stuff ! You have now:
 - Verified it is working on different mobile devices !
 
 This concludes our Quick-Start guide !
-
 
 ## End of Test / Quick Start
