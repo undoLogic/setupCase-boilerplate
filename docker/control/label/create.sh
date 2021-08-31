@@ -5,4 +5,5 @@
 
 #rm pdf.pdf
 #sleep 1
-wkhtmltopdf --page-width 100 --page-height 100 label.html pdf.pdf
+# we need margins here to calibrate for each printer
+wkhtmltopdf --page-width 102 --page-height 58 label.html pdf3.pdf
