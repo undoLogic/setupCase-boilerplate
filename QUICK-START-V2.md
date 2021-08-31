@@ -27,8 +27,8 @@ Next we need to add cakePHP 2.x
 # this is an old branch, so you need to find the latest tag https://github.com/cakephp/cakephp/tags
 # copy the link for the Source code .zip download EG:
 # https://github.com/cakephp/cakephp/archive/refs/tags/2.10.24.zip
-svn export https://github.com/cakephp/cakephp/archive/refs/tags/2.10.24.zip
-mv 2.x src
+svn export https://github.com/cakephp/cakephp/tags/2.10.24
+mv 2.10.24 src
 
 #remove files as they are being added in our root instead
 rm src/.gitignore
