@@ -81,6 +81,10 @@ Next we are going to add a professional layout
 
 https://startbootstrap.com/?showPro=false&showVue=false&showAngular=false
 
+```shell
+curl https://github.com/startbootstrap/startbootstrap-sb-admin-2/archive/gh-pages.zip src/webroot/modules/layout/.
+```
+
 https://graygrids.com/templates/category/free-html-templates/
 
 Download any template / layout and integrate into the CakePHP structure with these instructions (below)
