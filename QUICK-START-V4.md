@@ -111,13 +111,24 @@ Now that the layout is working this means you can navigate to your browser and s
 
 Download any template / layout and integrate into the CakePHP structure with these instructions (below)
 
+
+lastly, you need to find the shared portion of the layout for all the pages and add the following code there
+-> this will allow to have many different pages which all share the same layout
+
+```angular2html
+<?= $this->Flash->render() ?>
+<?= $this->fetch('content') ?>
+```
+
+Now you can test it out and you should see the nice layout
+
 ```angular2html
 http://localhost/src
 ```
 
-### Create new page
+### Create pages and link together
 
-ensure you have in your appController or pagecontroller ourside of your class
+ensure you have in your appController or pagescontroller outside of your class
 ```angular2html
     use Cake\Routing\Router;
 ```
@@ -129,18 +140,39 @@ function newpage() {
 }
 ```
 
+and create a second page
 
+```angular2html
+function secondpage() {
+    $this->viewBuilder()->setLayout('new');
+    $this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
+}
+```
 
-Responsive Design: Ensure the layout looks good for all devices by making changes to the responsive design per our basic instructions:
+#### Create the nagivation
 
-https://github.com/undoLogic/setupCase-boilerplate/blob/main/PROGRAMMING-GUIDE.md#step-12b-responsive-design
+Modify the menu on the layout and add the following to jump between the pages. 
+
+Here is the href
+```angular2html
+<?= $this->Url->build(['controller' => 'Pages', 'action' => 'newpage']); ?>
+```
+
+so when you add to the link in the page you get 
+
+```angular2html
+<li class="nav-item active">
+    <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Pages', 'action' => 'secondpage']); ?>">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Second Page</span></a>
+</li>
+```
 
 Good Stuff ! You have now:
 - prepared a new project with the latest CakePHP v2 and docker
 - integrated it into our SetupCase library
 - added to a professional layout
-- customized the visuals and added new pages
-- Verified it is working on different mobile devices !
+- created a basic navigation
 
 This concludes our Quick-Start guide !
 
