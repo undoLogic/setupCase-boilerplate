@@ -126,6 +126,16 @@ Now you can test it out and you should see the nice layout
 http://localhost/src
 ```
 
+IMPORTANT: Comment out the default route for pages 
+```
+/src/config/routes.php
+
+### ensure this is commented so it does not activate
+### -> This causes issues with caps on url->builder
+
+//$builder->connect('/pages/*', 'Pages::display');
+```
+
 ### Create pages and link together
 
 ensure you have in your appController or pagescontroller outside of your class
