@@ -87,13 +87,35 @@ curl https://github.com/startbootstrap/startbootstrap-sb-admin-2/archive/gh-page
 
 https://graygrids.com/templates/category/free-html-templates/
 
+##Step 3: Add Layout
+Copy the index file from modules/layout/index.html
+
+WEBROOT/modules/layoutName Now integrate into (templates/layout/new.php)
+
+Add variable in App_controller in the beforeFilter()
+$this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
+
+Now in your view we need to link to the modules path -> anywhere you see 'src="assets......' will instead be 'src="assets......' -> This also applies to href, url etc
+
+<img src="assets/img.jpg"/>
+will become
+<img src="<?= $baseLayout; ?>assets/img.jpg"/>
+
+IMPORTANT: Make sure you do NOT change href='#' as this will cause problems if you add "....$base; ?>#...."
+
+Now that the layout is working this means you can navigate to your browser and see it displaying correctly in the view
+
 Download any template / layout and integrate into the CakePHP structure with these instructions (below)
+
 - https://github.com/undoLogic/setupCase-boilerplate#step-12-add-layout
 - Now when you navigate to your browser you should see the layout displaying correctly in your browser
 
 ```angular2html
 http://localhost/src
 ```
+
+
+
 
 Responsive Design: Ensure the layout looks good for all devices by making changes to the responsive design per our basic instructions:
 
