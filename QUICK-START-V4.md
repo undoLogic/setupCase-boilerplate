@@ -126,7 +126,9 @@ Now you can test it out and you should see the nice layout
 http://localhost/src
 ```
 
-IMPORTANT: Comment out the default route for pages 
+### Create pages and link together
+
+IMPORTANT: Before this can work you need to comment out the default pages routing
 ```
 /src/config/routes.php
 
@@ -135,8 +137,6 @@ IMPORTANT: Comment out the default route for pages
 
 //$builder->connect('/pages/*', 'Pages::display');
 ```
-
-### Create pages and link together
 
 ensure you have in your appController or pagescontroller outside of your class
 ```angular2html
