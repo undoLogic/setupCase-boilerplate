@@ -97,9 +97,13 @@ $this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
 
 Now in your view we need to link to the modules path -> anywhere you see 'src="assets......' will instead be 'src="assets......' -> This also applies to href, url etc
 
+```angular2html
 <img src="assets/img.jpg"/>
+```
 will become
+```angular2html
 <img src="<?= $baseLayout; ?>assets/img.jpg"/>
+```
 
 IMPORTANT: Make sure you do NOT change href='#' as this will cause problems if you add "....$base; ?>#...."
 
@@ -107,13 +111,18 @@ Now that the layout is working this means you can navigate to your browser and s
 
 Download any template / layout and integrate into the CakePHP structure with these instructions (below)
 
-- https://github.com/undoLogic/setupCase-boilerplate#step-12-add-layout
-- Now when you navigate to your browser you should see the layout displaying correctly in your browser
-
 ```angular2html
 http://localhost/src
 ```
 
+### Create new page
+
+```angular2html
+function newpage() {
+    $this->viewBuilder()->setLayout('new');
+    $this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
+}
+```
 
 
 
