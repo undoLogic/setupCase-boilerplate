@@ -161,11 +161,9 @@ Here is the href
 so when you add to the link in the page you get 
 
 ```angular2html
-<li class="nav-item active">
     <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Pages', 'action' => 'secondpage']); ?>">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Second Page</span></a>
-</li>
+        <span>New Page</span>
+</a>
 ```
 
 Good Stuff ! You have now:
