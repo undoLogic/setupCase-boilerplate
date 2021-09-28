@@ -117,6 +117,11 @@ http://localhost/src
 
 ### Create new page
 
+ensure you have in your appController or pagecontroller ourside of your class
+```angular2html
+    use Cake\Routing\Router;
+```
+
 ```angular2html
 function newpage() {
     $this->viewBuilder()->setLayout('new');
