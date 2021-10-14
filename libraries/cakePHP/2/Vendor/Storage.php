@@ -1,10 +1,15 @@
 <?php
 /**
+
+
 App::import("Vendor","Storage");
 $storage = new Storage;
-$encoded = $storage->put();
-$decoded = $encryption->decode($encoded);
-echo $decoded; //this will show hello
+$key_name = $page.'_'.$portal_row_id;
+$added = $storage->put($key_name, $myData, $mime, $reference = false);
+$file = $storage->get($key_name);
+
+<img src="data:<?= $file['mime']; ?>;base64, <?= $file['data']; ?>" alt="Image" />
+
  */
 
 class Storage {

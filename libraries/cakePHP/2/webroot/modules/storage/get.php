@@ -33,7 +33,7 @@ $mysqlCall = mysqli_real_escape_string($link, $key_name);
 
 $return['sql'] = $mysqlCall;
 
-$sqlFind = "SELECT id, key_name, mime, data, created FROM files WHERE current='1' AND key_name='" . $mysqlCall."';";
+$sqlFind = "SELECT id, key_name, mime, data, reference, created FROM files WHERE current='1' AND key_name='" . $mysqlCall."';";
 
 //echo $sqlFind;exit;
 
@@ -44,6 +44,7 @@ $found_key_name = '';
 $found_data = '';
 $found_mime = '';
 $found_verify = '';
+$found_reference = '';
 
 if (mysqli_num_rows($found) > 0) {
 
@@ -52,6 +53,7 @@ if (mysqli_num_rows($found) > 0) {
         $found_data = base64_encode($row['data']);
         $found_verify = md5($row['data']);
         $found_mime = $row['mime'];
+        $found_reference = $row['reference'];
         //base64_encode($row['data'])
         //echo "<img src='data:image/png;base64," . base64_encode($row['data']) . "'/>";
     }
@@ -62,10 +64,11 @@ if (mysqli_num_rows($found) > 0) {
     $return['data_verify'] = $found_verify;
     $return['data'] = $found_data;
     $return['mime'] = $found_mime;
+    $return['reference'] = $found_reference;
 
 } else {
     $return['status'] = 404;
-    $return['status_msg'] = "Nothing found in the database for the ".$id;
+    $return['status_msg'] = "Nothing found in the database for the ".$key_name;
 }
 
 // Close connection
