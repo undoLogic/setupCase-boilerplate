@@ -403,6 +403,8 @@ However... as soon as any page requires complicated programming immediately impl
 IMPORTANT: You should name all of your functions / methods the exact same between all controllers / models / views. you can prepend words to fit into your
 logic, but with the same name you can easily diagnose issues and find references efficiently.
 
+Authentication: In the Boilerplate files (app_controller / user controller / bootstrap)
+
 ### Step 18: Overview
 At this point you have a fully functional docker running with a custom website all that is left is a way to automate the publishing to your Staging / LIVE locations.
 Create an automated pipeline
