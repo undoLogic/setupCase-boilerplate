@@ -20,6 +20,7 @@
  */
 
 App::uses('Controller', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Application Controller
@@ -33,7 +34,24 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	public $components = array(
-		'Secure','Session'
+		'Secure','Session',
+
+        //Un-comment to activate the auth
+        'Auth' => array(
+            'loginAction' => array(
+                'user' => false,
+                'controller' => 'Users', 'action' => 'login',
+            ),
+            'authError' => 'Sorry you cannot see this', 'authenticate' => array(
+                'Form' => array(
+                    'fields' => array('username' => 'email')
+                )
+            ),
+            'loginRedirect' => array(
+                'controller' => 'users', 'action' => 'index'
+            ),
+            'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+        )
 	);
 
 	function beforeFilter()
@@ -46,6 +64,81 @@ class AppController extends Controller {
 		//uncheck to use authentication
         //$this->setupAuth();
 	}
+
+    function isLiveSite() {
+        $liveSites = Configure::read('liveServer');
+        if (in_array($_SERVER['HTTP_HOST'], $liveSites)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function send($to, $vars, $subject, $template = 'default', $cc = false, $bcc = false, $from = false) {
+
+        $Email = new CakeEmail();
+        $Email->viewVars(array(
+            'subject' => $subject,
+            'vars' => $vars,
+            'domain' => Router::url("/", TRUE)
+        ));
+        $Email->config('smtp');
+
+//        if (isset($vars['email'])) {
+//            $Email->from($vars['email']);
+//        }
+        //pr ($Email);exit;
+
+        if ($this->isLiveSite()) {
+            $Email->to($to);
+        } else {
+            $Email->to(Configure::read('test.email.to'));
+            $subject = 'TO: '.Configure::read('test.email.to').' - '.$subject;
+        }
+
+        //pr ($Email); exit;
+        //die ('stop');
+
+        if (!empty($bcc)) {
+            $Email->bcc($bcc);
+        } else {
+            //default go test@undo
+            $Email->bcc(array('test@undologic.com'));
+        }
+
+        if (empty($cc)) {
+            //no one cc'd
+        } else {
+            $Email->cc($cc);
+        }
+
+        //we do NOT have a from so we will add our default
+        if (empty($from)) {
+            $from = Configure::read('Email.from');
+        }
+
+        $Email->from($from);
+        $Email->replyTo($from);
+
+//        $from = Configure::read('Email.from');
+//        if (empty($from)) die ("add to bootstrap: Configure::write('Email.from', 'info@undologic.com');");
+//
+        $Email->subject($subject);
+        $Email->emailFormat('both');
+
+        $Email->template($template);
+
+        //pr ($Email);exit;
+
+        $sent = $Email->send();
+
+        if ($sent) {
+            return TRUE;
+        } else {
+            die ('could not email ');
+            return FALSE;
+        }
+    }
 
     public function writeToLog($filename, $message, $newLine = false) {
         if ($newLine) {
@@ -151,9 +244,6 @@ class AppController extends Controller {
         } else {
             $this->set('userInfo', false);
         }
-        function handleRedirect() {
-            $this->redirect('/login');
-        }
         if (isset($this->params['admin'])) {
             if ($this->params['admin']) {
                 $this->forceAdmin();
@@ -218,5 +308,8 @@ class AppController extends Controller {
         $user_info = $this->Auth->user();
         if(isset($user_info['group_id'])){ return $user_info['group_id']; }
         return false;
+    }
+    function handleRedirect() {
+        $this->redirect('/login');
     }
 }

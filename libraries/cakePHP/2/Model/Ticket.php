@@ -1,4 +1,17 @@
 <?php
+/*
+    CREATE TABLE `tickets` (
+      `id` int(11) NOT NULL,
+      `hash` varchar(255) NOT NULL,
+      `user_id` int(11) NOT NULL,
+      `created` datetime NOT NULL,
+      `modified` datetime NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    ALTER TABLE `tickets`
+      ADD PRIMARY KEY (`id`);
+    ALTER TABLE `tickets`
+      MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ */
 App::uses('AppModel', 'Model');
 /**
  * Ticket Model

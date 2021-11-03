@@ -37,50 +37,50 @@ class UsersController extends AppController {
 		die ('logged out');
 	}
 
-    private function emailReminder($to, $hash)
-    {
-
-        //pr ($to);
-        //pr ($hash);
-        //exit;
-
-        $domain = Router::url("/", TRUE);
-
-        $this->set('hash', $hash);
-        $this->set('domain', $domain);
-
-        $subject = 'Password Reset';
-
-        $Email = new CakeEmail();
-
-        //not working
-        //$Email->transport('smtp');
-
-        $Email->to($to);
-
-        $vars['hash'] = $hash;
-        $vars['domain'] = $domain;
-        $Email->viewVars($vars);
-
-        //$this->Email->lineLength = 200;
-        $Email->subject($subject);
-        $Email->from('info@undologic.com');
-
-        $Email->template('reset');
-        //$this->Email->layout = 'reset';
-        $Email->emailFormat('html');
-
-        //$this->Email->template = null;
-        //old method
-        //'Reset your password here.' . Router::url("/", true) . 'system/tickets/reset/' . $hash
-        $sent = $Email->send();
-
-        if ($sent) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
+//    private function emailReminder($to, $hash)
+//    {
+//
+//        //pr ($to);
+//        //pr ($hash);
+//        //exit;
+//
+//        $domain = Router::url("/", TRUE);
+//
+//        $this->set('hash', $hash);
+//        $this->set('domain', $domain);
+//
+//        $subject = 'Password Reset';
+//
+//        $Email = new CakeEmail();
+//
+//        //not working
+//        //$Email->transport('smtp');
+//
+//        $Email->to($to);
+//
+//        $vars['hash'] = $hash;
+//        $vars['domain'] = $domain;
+//        $Email->viewVars($vars);
+//
+//        //$this->Email->lineLength = 200;
+//        $Email->subject($subject);
+//        $Email->from('info@undologic.com');
+//
+//        $Email->template('reset');
+//        //$this->Email->layout = 'reset';
+//        $Email->emailFormat('html');
+//
+//        //$this->Email->template = null;
+//        //old method
+//        //'Reset your password here.' . Router::url("/", true) . 'system/tickets/reset/' . $hash
+//        $sent = $Email->send();
+//
+//        if ($sent) {
+//            return TRUE;
+//        } else {
+//            return FALSE;
+//        }
+//    }
 
 	function login() {
 		//pr($this->Auth->password('acs333')); exit;
@@ -89,24 +89,16 @@ class UsersController extends AppController {
 
 		if ($this->request->is('post')) {
 
-
-			$token = $this->User->tryLogin(
-				$this->request->data['User']['email'],
-				$this->request->data['User']['password']
-			);
-			if (!$token) {
-				$this->Session->setFlash('User/pass not correct');
-			} else {
-				$this->Session->write('token', $token);
-				$this->redirect(
-					array(
-						'admin' => true,
-						'controller' => 'Datas',
-						'action' => 'index'
-					)
-				);
-			}
-
+            if ($this->Auth->login()) {
+                $this->redirect($this->Auth->redirectUrl());
+            } else {
+                $this->Session->setFlash(
+                    $this->updateCase->Translate('Username or password is incorrect'),
+                    'default',
+                    array(),
+                    'auth'
+                );
+            }
 
 		} else {
 			// before login /register. create random number for human check
@@ -132,5 +124,27 @@ class UsersController extends AppController {
         exit;
     }
 
+    function forgot($key = FALSE) {
+        $this->set('section_admin', NULL);
+        if (!empty($this->data)) {
+            if ($userInfo = $this->User->doesUserExist($this->data['User']['email'])) {
+
+                //we have a user let's write a ticket
+                $hash = $this->User->Ticket->generate($userInfo['User']['id']);
+
+                //Let's create an email with the hash
+                $vars['hash'] = $hash;
+                $subject = 'Password Reset';
+
+                if ($this->send( $userInfo['User']['email'], $vars, $subject, 'reset' )) {
+                    $this->Session->setFlash('Email sent. Please check your email to reset your password');
+                } else {
+                    $this->Session->setFlash('Error; Please call customer service');
+                }
+            } else {
+                $this->Session->setFlash("No email exists");
+            }
+        }
+    }
 
 }

@@ -34,6 +34,8 @@ Configure::write('Users.user_type_id.client', 40);
 Configure::write('Users.user_type_id.ajax', 1);
 Configure::write('Users.user_type_id.v1', 1);
 
+Configure::write('test.email.to', 'email@email.com');
+
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 
