@@ -87,24 +87,100 @@ curl https://github.com/startbootstrap/startbootstrap-sb-admin-2/archive/gh-page
 
 https://graygrids.com/templates/category/free-html-templates/
 
+##Step 3: Add Layout
+Copy the index file from modules/layout/index.html
+
+WEBROOT/modules/layoutName Now integrate into (templates/layout/new.php)
+
+Add variable in App_controller in the beforeFilter()
+$this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
+
+Now in your view we need to link to the modules path -> anywhere you see 'src="assets......' will instead be 'src="assets......' -> This also applies to href, url etc
+
+```angular2html
+<img src="assets/img.jpg"/>
+```
+will become
+```angular2html
+<img src="<?= $baseLayout; ?>assets/img.jpg"/>
+```
+
+IMPORTANT: Make sure you do NOT change href='#' as this will cause problems if you add "....$base; ?>#...."
+
+Now that the layout is working this means you can navigate to your browser and see it displaying correctly in the view
+
 Download any template / layout and integrate into the CakePHP structure with these instructions (below)
-- https://github.com/undoLogic/setupCase-boilerplate#step-12-add-layout
-- Now when you navigate to your browser you should see the layout displaying correctly in your browser
+
+
+lastly, you need to find the shared portion of the layout for all the pages and add the following code there
+-> this will allow to have many different pages which all share the same layout
+
+```angular2html
+<?= $this->Flash->render() ?>
+<?= $this->fetch('content') ?>
+```
+
+Now you can test it out and you should see the nice layout
 
 ```angular2html
 http://localhost/src
 ```
 
-Responsive Design: Ensure the layout looks good for all devices by making changes to the responsive design per our basic instructions:
+### Create pages and link together
 
-https://github.com/undoLogic/setupCase-boilerplate/blob/main/PROGRAMMING-GUIDE.md#step-12b-responsive-design
+IMPORTANT: Before this can work you need to comment out the default pages routing
+```
+/src/config/routes.php
+
+### ensure this is commented so it does not activate
+### -> This causes issues with caps on url->builder
+
+//$builder->connect('/pages/*', 'Pages::display');
+```
+
+ensure you have in your appController or pagescontroller outside of your class
+```angular2html
+    use Cake\Routing\Router;
+```
+
+```angular2html
+function newpage() {
+    $this->viewBuilder()->setLayout('new');
+    $this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
+}
+```
+
+and create a second page
+
+```angular2html
+function secondpage() {
+    $this->viewBuilder()->setLayout('new');
+    $this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
+}
+```
+
+#### Create the nagivation
+
+Modify the menu on the layout and add the following to jump between the pages. 
+
+Here is the href
+```angular2html
+<?= $this->Url->build(['controller' => 'Pages', 'action' => 'newpage']); ?>
+```
+
+so when you add to the link in the page you get 
+
+```angular2html
+    <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Pages', 'action' => 'secondpage']); ?>">
+        <span>New Page</span>
+</a>
+```
 
 Good Stuff ! You have now:
 - prepared a new project with the latest CakePHP v2 and docker
 - integrated it into our SetupCase library
 - added to a professional layout
-- customized the visuals and added new pages
-- Verified it is working on different mobile devices !
+- created a basic navigation
 
 This concludes our Quick-Start guide !
 

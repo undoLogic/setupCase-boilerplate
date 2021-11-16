@@ -32,4 +32,3 @@ ALTER TABLE `files`
 --
 ALTER TABLE `files`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;

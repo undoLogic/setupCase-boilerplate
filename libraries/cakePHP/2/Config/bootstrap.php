@@ -28,11 +28,13 @@ Configure::write('liveServer', array(
 ));
 
 Configure::write('Users.user_type_id.admin', 111);
-Configure::write('Users.user_type_id.manager', 80);
-Configure::write('Users.user_type_id.staff', 70);
-Configure::write('Users.user_type_id.user', 11);
+Configure::write('Users.user_type_id.staff', 60);
+Configure::write('Users.user_type_id.client', 40);
+
 Configure::write('Users.user_type_id.ajax', 1);
 Configure::write('Users.user_type_id.v1', 1);
+
+Configure::write('test.email.to', 'email@email.com');
 
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));

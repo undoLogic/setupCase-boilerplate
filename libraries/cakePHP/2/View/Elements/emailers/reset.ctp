@@ -6,16 +6,16 @@
     In order to create / reset your password you can either:
 </p>
 <p>
-1-> <a href="<?= $domain; ?>reset/<?= $hash; ?>">click here to use the direct link</a>
+    1-> <a href="<?= $domain; ?>reset/<?= $vars['hash']; ?>">click here to use the direct link</a>
 </p>
 <p>
-OR
+    OR
 </p>
 <p>
-2-> copy and paste this key:<br/>
-<?= $hash; ?><br/>
-and navigate to <?= $domain; ?>reset<br/>
-to complete the reset
+    2-> copy and paste this key:<br/>
+    <?= $vars['hash']; ?><br/>
+    and navigate to <?= $domain; ?>reset<br/>
+    to complete the reset
 </p>
 
 <p>
