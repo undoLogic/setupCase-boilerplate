@@ -45,6 +45,7 @@ Next we are going to Login to our container to continue (ideal to avoid extra in
 ./2loginDockerContainer.bat
 ```
 
+### Option A. Automated CakePHP Install using Composer
 Composer is not auto-loaded. To setup:
 ```angular2html
 # After you have logged into the docker container
@@ -61,7 +62,17 @@ rm /var/www/vhosts/website.com/www/src/.gitignore
 rm /var/www/vhosts/website.com/www/src/.gitattributes
 ```
 
-Verify running
+### Option B. Manual CakePHP install
+
+Navigate to the CakePHP github releases page
+```shell
+https://github.com/cakephp/cakephp/releases
+```
+Find the most recent CakePHP 4 version and download the cakephp-4-3-1.zip to your computer
+-> NOTE: The source-code will only have CakePHP library without the app skeleton so do NOT download that one, instead the other link
+unzip and copy into the root
+
+### Verify running
 - Go to your browser and verify the CakePHP is running without any missing dependancies:
 ```angular2html
 http://localhost/src/
