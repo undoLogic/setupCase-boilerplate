@@ -12,3 +12,7 @@ https://github.com/undoLogic/setupCase-boilerplate/blob/main/QUICK-START-V2.md
 ### Follow our programming guide
 https://github.com/undoLogic/setupCase-boilerplate/blob/main/PROGRAMMING-GUIDE.md
 
+### Launch
+When you are ready to deploy your files to the server use our Launch Guide
+
+https://github.com/undoLogic/setupCase-boilerplate/blob/main/LAUNCH-GUIDE.md
