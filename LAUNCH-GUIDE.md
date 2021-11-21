@@ -75,8 +75,8 @@ ssh undologic@staging.undologic.com
 
 2. First time only - Setup keys - This will create the private / public key (*.pub) in your .ssh directory (do NOT add a passphase).
 ```
-ssh-keygen -t ed25519 -C "support@undologic.com"
 cd ~/.ssh
+ssh-keygen -t ed25519 -C "you@email.com"
 cat id_ed25519.pub
 ```
 3. Copy and paste the public key (ends with .pub) into the 'Deploy keys' on github.com (in your project)
@@ -89,21 +89,23 @@ cd launch
 ### Configure multiple projects on the same server 
 
 Github does NOT allow (for security) to add mutliple SSH-KEYS to the same server. In order to setup multiple projects on the same server you need to create separate github hostnames to reference each project.
-- Create a SSH config file on your target server
-- Create separate SSH keys for each project as instructed above
-- Then rename your public / private keys to the same as your project
+- First create the new private/public file which will be used for this github project and rename it to the project name
 ```
-mv ~/.ssh/id_ed25519 project1.prv
-mv ~/.ssh/id_ed25519.pub project1.pub
+cd ~/.ssh
+ssh-keygen -t ed25519 -C "you@email.com"
+mv id_ed25519 project1.prv
+mv id_ed25519.pub project1.pub
 ```
-- Then add the correct private keys into this config file
-- Then copy the public key (ends with .PUB) to Github -> deploy keys
-- Then ensure your GITHUB_HOST matches the correct github hostname
-- Your config file should look like the following
+
+- Now create or edit your ssh config file
+```
+  vi ~/.ssh/config
+```
+- Add your new public (ends with .PUB) you created above into the ssh config file
+- Ensure the GITHUB_HOST matches the Hostname you created
+- project1 can be any name to represent your project
 
 ```
-vi ~/.ssh/config
-# add the following into the file and save
 Host project1.github.com
         Hostname github.com
         IdentityFile ~/.ssh/project1.prv
@@ -112,10 +114,11 @@ Host project2.github.com
         IdentityFile ~/.ssh/project2.prv
 ```
 
-7. You do not need to manually clone, but just so you understand how this works
+NOTE: You do NOT need to manually clone, but just so you understand how this works, and if you wanted to manually clone
+Launch will automatically do this for you after you change 'GITHUB_HOST' in the launch/settings.json
+
 ```angular2html
 git clone git@project1.github.com:OWNER/repo-project1.git
 # OR
 git clone git@project2.github.com:OWNER/repo-project2.git
 ```
-Launch will automatically do this for you after you change 'GITHUB_HOST' in the launch/settings.json
