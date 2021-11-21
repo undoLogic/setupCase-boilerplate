@@ -102,7 +102,7 @@ mv id_ed25519.pub project1.pub
   vi ~/.ssh/config
 ```
 - Add your new public (ends with .PUB) you created above into the ssh config file
-- Ensure the GITHUB_HOST matches the Hostname you created
+- Ensure the GITHUB_HOST matches the Host line (Hostname is ALWAYS github.com)
 - project1 can be any name to represent your project
 
 ```
