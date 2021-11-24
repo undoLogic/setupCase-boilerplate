@@ -13,16 +13,18 @@ This is an automated file which is parsed by https://codeBlocks.setupcase.com
 ### BlockTitle: Foreach
 #### Tags: PHP5.x, PHP7.x, PHP8.x
 > A foreach allows to iterate through an array / list
+#### CodeName: Foreach
 ```
 foreach ($array as $key => $data) {
     //each loop
 }
 ```
 ***
-### Title: Routes 
+### BlockTitle: Routes 
 #### Tags: CakePHP2.x
 > Basic routes for all projects
-#### Path: /app/Config/routes.php
+#### CodeName: Routes
+#### CodePath: /app/Config/routes.php
 ```
 	Router::connect('/', array('controller' => 'pages', 'action' => 'index'));
 	Router::connect('/add', array('rep' => true, 'controller' => 'Users', 'action' => 'add'));
