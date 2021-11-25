@@ -96,3 +96,32 @@ app.controller('pagesCtrl', function ($scope, $http, $window, $location, $interv
 
 
 ***
+### BlockTitle: Auto-submit search only if user stops typing
+#### Tags: JS
+> When a user types in a search into a search box the submit process will only happen after the user stops typing. This ensures you only have a single submit to the database and still keep the user-experience clean and fluid.
+
+#### CodeName: Javascript file
+```javascript
+
+var searchTimer;
+
+function onChangeTextBox() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function() {
+        clearTimeout(searchTimer);
+        queryDatabase();
+    }, 100);
+}
+
+function queryDatabase() {
+    alert('query the db here...');
+    //here you would query the database
+    // it only runs a single time after the user stops typing
+}
+```
+
+#### CodeName: Html Search Input 
+```html
+<input type="text" placeholder="Filter products..." onkeydown="onChangeTextBox();"/>
+```
+***
