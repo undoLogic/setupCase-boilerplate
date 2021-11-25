@@ -166,5 +166,45 @@ foreach ($array as $key => $data) {
 $this->setupAuth();
 ```
 
+***
+### BlockTitle: Validation
+#### Tags: CakePHP2.x
+> Validation rules are used to validate Form inputs before saving into Database.
+#### CodeName: Validation
+#### CodePath: /app/Model/className.php
+#### CodeLocation: InArray = $validate
+```
+
+	var $validate = array(
+        'login' => array(
+            'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => true,
+                'message' => 'Letters and numbers only'
+            ),
+            'between' => array(
+                'rule' => array('lengthBetween', 5, 15),
+                'message' => 'Between 5 to 15 characters'
+            )
+        ),
+        'password' => array(
+            'rule' => array('minLength', '8'),
+            'message' => 'Minimum 8 characters long'
+        ),
+		'email' => 'email',
+		'message' => array(
+			'rule' => 'notEmpty',
+			'message' => 'Enter your name',
+			'allowEmpty' => false
+		),
+		'val' => array(
+			'rule' => array('comparison', '==', 55),
+			'message' => 'That answer is not correct: What do you get when you remove 5 from 60 ?',
+			'allowEmpty' => false
+		)
+	);
+
+```
+
 
 ***
