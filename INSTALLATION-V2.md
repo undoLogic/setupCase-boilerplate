@@ -43,7 +43,7 @@ Now we can startup our docker
 - Ensure you have installed docker from the website https://www.docker.com/
 
 ```angular2html
-# navigate into /docker directory and start it up
+# navigate into /DockerStage directory and start it up
 ./1startDocker.sh
 ```
 

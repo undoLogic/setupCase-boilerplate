@@ -28,8 +28,8 @@ Next we need to start up Docker
 
 Using Terminal: 
 ```angular2html
-# navigate into /docker directory and start it up
-cd docker
+# navigate into /DockerStage directory and start it up
+cd DockerStage
 ./1startDocker.sh
 ```
 
