@@ -210,12 +210,13 @@ $this->setupAuth();
 ### BlockTitle: Translation
 #### Tags: CakePHP2.x
 > Validation rules are used to validate Form inputs before saving into Database.
-#### CodeName: Initialization
-#### CodePath: /app/AppController.php
-#### CodeLocation: InClass = BeforeFilter
+#### CodeName: Helper
+#### CodePath: /app/View/Helper/
+
 ```php
-$translate = new Translate_ven;
-$this->set('translate', $translate);
+<?php
+App::import('Vendor', 'Translate_ven');
+class TranslateHelper extends Translate_ven {}
 ```
 
 #### CodeName: Usage In View
