@@ -206,13 +206,6 @@ $this->setupAuth();
 
 ```
 
-
-***
-
-
-
-
-
 ***
 ### BlockTitle: Translation
 #### Tags: CakePHP2.x
@@ -227,7 +220,7 @@ $this->set('translate', $translate);
 
 #### CodeName: Usage In View
 ```php
-<?= $translate->word('english'); ?>
+<? = $translate->word('english'); ?>
 ```
 #### CodeName: VendorFile
 #### CodePath: /app/Vendor/Translate_ven.php
@@ -465,6 +458,5 @@ $this->set('translate', $translate);
 
 
 ```
-
 
 ***
