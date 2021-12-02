@@ -203,32 +203,28 @@ $this->setupAuth();
 			'allowEmpty' => false
 		)
 	);
-
 ```
 
 ***
 ### BlockTitle: Translation
 #### Tags: CakePHP2.x
-> Validation rules are used to validate Form inputs before saving into Database.
+> Allows to manage your website / online software translations from an easy to use CSV file.
 #### CodeName: Helper
-#### CodePath: /app/View/Helper/
-
+#### CodePath: /app/View/Helper/TranslateHelper.php
 ```php
 <?php
 App::import('Vendor', 'Translate_ven');
 class TranslateHelper extends Translate_ven {}
 ```
-
 #### CodeName: Usage In View
 ```php
-<? = $translate->word('english'); ?>
+<?= $translate->word('english'); ?>
 ```
 #### CodeName: VendorFile
 #### CodePath: /app/Vendor/Translate_ven.php
 
 ```php
-
-	<?php
+<?php
     class Translate_ven extends Object {
 
         var $helpers = array();
@@ -263,7 +259,6 @@ class TranslateHelper extends Translate_ven {}
          */
         public function word($termOrg) {
 
-
             if (!$this->file) {
                 $this->file = APP.'Locale'.DS.'translate.csv';
             }
@@ -287,7 +282,6 @@ class TranslateHelper extends Translate_ven {}
             }
 
             //pr ($this->translateTable);exit;
-
             if (isset($this->translateTable[ $term ][$this->currLang])) {
                 return $this->translateTable[ $term ][$this->currLang];
             } else {
@@ -326,17 +320,12 @@ class TranslateHelper extends Translate_ven {}
                             [ $keys[ $keyIndex ] ] =
                                 $each[$keyIndex];
                         }
-
-
-
-
                     }
                 }
             } else {
                 //already loaded
                 return false;
             }
-
         }
         private function saveFile($line, $term = false) {
 
@@ -352,10 +341,9 @@ class TranslateHelper extends Translate_ven {}
 
         private function ensureTermAdded($term) {
             //get the csv
-
+            
             //pr ($this->translateTable[ $term ]);
             //pr ($term);
-
             //pr ('trans');
             //pr ($this->translateTable);
 
@@ -381,8 +369,8 @@ class TranslateHelper extends Translate_ven {}
             if (!isset($_SERVER['HTTP_HOST'])) {
                 //we are command line
                 $_SERVER['HTTP_HOST'] = '';
-
             }
+            
             $host = $_SERVER['HTTP_HOST'];
 
             $allowed = array('localhost', 'setup.updatecase.com');
@@ -395,7 +383,6 @@ class TranslateHelper extends Translate_ven {}
         }
 
         private function setupLang() {
-
 
             $currLang = Configure::read('currLang');
 
@@ -416,48 +403,20 @@ class TranslateHelper extends Translate_ven {}
             //if that term doesn't exist
         }
 
-
-
-
-
         /**
          * need all these since we are extending vendors from components / helpers
          */
-
-        function beforeRender() {
-
-        }
-
-        function initialize() {
-
-        }
-        function startup() {
-
-        }
-        function shutdown() {
-
-        }
-        function beforeRenderFile() {
-
-        }
-        function afterRenderFile() {
-
-        }
-        function afterRender() {
-
-        }
-        function beforeLayout() {
-
-        }
-        function afterLayout() {
-
-        }
-        function beforeRedirect() {
-
-        }
+        function beforeRender() {}
+        function initialize() {}
+        function startup() {}
+        function shutdown() {}
+        function beforeRenderFile() {}
+        function afterRenderFile() {}
+        function afterRender() {}
+        function beforeLayout() {}
+        function afterLayout() {}
+        function beforeRedirect() {}
+        
     }
-
-
 ```
-
 ***
