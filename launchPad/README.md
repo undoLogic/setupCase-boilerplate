@@ -84,6 +84,8 @@ cat id_ed25519.pub
 3. Copy and paste the public key (ends with .pub) into the 'Deploy keys' on github.com (in your project)
 
 4. You are now ready to run the LAUNCH script
+
+IMPORTANT: The first time you need to manually run the script as it will require you confirm YES to the authenticity. When you run the script copy and paste the script manully into your favourite ssh program
 ```
 cd launch
 ./2_setupStagingServer.sh
