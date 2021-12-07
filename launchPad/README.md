@@ -13,29 +13,29 @@ Launch needs to be configured for your target server as well as your github acco
 
 **NOTE: Normally you ONLY need STAGING and LIVE since they share the same database, TESTING is optional**
 
-1. open the file /launch/settings.json and modify all the rows
+1. open the file /launchPad/settings.json and modify all the rows
 
-TESTING_URL
+STAGING_URL
 - This requires you have CREATED a 'Subdomain' on your control panel
 - If your subdomain is 'test' then you would access your site with http://test.YourDomain.com
 - ONLY add the url WITHOUT http://
 - This row would be:
 
-    "TESTING_URL": "appsites.undologic.com",
+    "STAGING_URL": "appsites.undologic.com",
 
-TESTING_USER
+STAGING_USER
 - This is the username in your control panel
 - Top LEFT in the 'hosting account' box you will see 'Username:'
 
-    "TESTING_USER": "username",
+    "STAGING_USER": "username",
 
-TESTING_ABSOLUTE_PATH
+STAGING_ABSOLUTE_PATH
 - This is the path on your server to the location where the source files will be uploaded
 - Navigate (on the control panel) to "File Manager" -> "WWW"
 - This is the path where you will see the TESTING_URL you created above, click that link
 - the Path is located next to 'Location: ' for example "/home/username/www/test"
 
-    "TESTING_ABSOLUTE_PATH": "/home/username/www/test"
+    "STAGING_ABSOLUTE_PATH": "/home/username/www/test"
 
 #### STAGING AND LIVE
 _Staging is meant to share the same database as your LIVE server, which allows you to verify changes before going live and to correct the database if you have made any changes.
