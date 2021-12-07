@@ -68,6 +68,8 @@ BROWSER_LOCAL_PATH_WITH_PROGRAM
 To allow to export the GitHub source files to the server we must setup a public / private key. the PRIVATE key is ONLY on the server. the PUBLIC key goes onto Github -> deploy keys
 
 1. Logon to your server via SSH using the STAGING credentials
+   
+NOTE: New servers you need to put your PUBLIC SSH KEY into the Control panel -> ssh keys -> import ssh key
    ssh STAGING_USER @ STAGING_URL
 ```angular2html
 ssh undologic@staging.undologic.com
