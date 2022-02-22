@@ -1,6 +1,17 @@
 # setupCase-boilerPlate
 setupCase.com project base - Manage and launch your project with Docker and CakePHP
 
+### Download Launch
+svn export https://github.com/undoLogic/setupCase-boilerPlate/trunk/launchPad/. . --force
+
+### Download Docker
+svn export https://github.com/undoLogic/setupCase-boilerPlate/trunk/docker/. . --force
+
+
+
+
+
+
 ### Choose which version you want to use and use our QuickStart guides:
 
 QuickStart - CakePHP version 4.x
