@@ -1,6 +1,7 @@
 FROM php:7.1-apache
 
 RUN a2enmod rewrite
+RUN a2enmod ssl
 
 RUN apt-get update && apt-get install -y \
         wkhtmltopdf \
@@ -33,3 +34,6 @@ RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap
 
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
+EXPOSE 80
+EXPOSE 443
