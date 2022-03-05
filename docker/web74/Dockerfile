@@ -1,12 +1,11 @@
 FROM php:7.4-apache
 
 RUN a2enmod rewrite
+RUN a2enmod ssl
 
 RUN apt-get update && apt-get install -y \
-        dvtm \
-        dtach \
-        dos2unix \
         wkhtmltopdf \
+        dos2unix \
         zip \
         unzip \
         rsync \
@@ -33,3 +32,13 @@ RUN docker-php-ext-install pdo pdo_mysql curl sockets mysqli
 
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap
+
+RUN apt-get -y update \
+&& apt-get install -y libicu-dev \
+&& docker-php-ext-configure intl \
+&& docker-php-ext-install intl
+
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
+EXPOSE 80
+EXPOSE 443

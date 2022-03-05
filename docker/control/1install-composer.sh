@@ -18,4 +18,11 @@ fi
 php composer-setup.php --quiet
 RESULT=$?
 rm composer-setup.php
+
+if [$RESULT]
+then
+echo "ERROR: Something went wrong with compose installation"
+else
+echo "SUCCESS: Installed composer to file in current directory"
+fi
 exit $RESULT
