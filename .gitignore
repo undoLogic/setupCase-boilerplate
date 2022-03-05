@@ -8,6 +8,8 @@
 /src/app/webroot/updateCase.log
 /src/composer.lock
 
+/docker/control/composer.phar
+
 ### temp cake download files
 /4.x/*
 
