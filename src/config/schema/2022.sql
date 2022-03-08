@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `email` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `user_type_id`, ADD `password` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `email`, ADD `telephone` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `password`;
