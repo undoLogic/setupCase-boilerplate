@@ -13,6 +13,9 @@ Launch needs to be configured for your target server as well as your github acco
 
 **NOTE: Normally you ONLY need STAGING and LIVE since they share the same database, TESTING is optional**
 
+FIRST-TIME: Rename settings.json.NEW to settings.json
+-> this allows to upgrade and manually update your settings file without overwriting
+
 1. open the file /launchPad/settings.json and modify all the rows
 
 STAGING_URL
