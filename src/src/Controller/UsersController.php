@@ -52,7 +52,7 @@ class UsersController extends AppController
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
-        $this->Authentication->addUnauthenticatedActions(['login']);
+        $this->Authentication->addUnauthenticatedActions(['dashboard']);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
 
@@ -60,19 +60,15 @@ class UsersController extends AppController
     // login
     public function login()
     {
+
   //echo (new DefaultPasswordHasher())->hash('test123'); exit;
         //pr($this->Authentication->getResult()); exit;
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
         if ($result->isValid()) {
-            // redirect to /articles after login success
-            $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'Articles',
-                'action' => 'index',
-            ]);
-
-            return $this->redirect($redirect);
+           // pr($result); exit;
+            return $this->redirect(['controller' => 'users', 'action' => 'index']);
         }
         // display error if user submitted and authentication failed
         if ($this->request->is('post') && !$result->isValid()) {
@@ -80,23 +76,38 @@ class UsersController extends AppController
         }
     }
 
+    //logout
+    public function logout()
+    {
+        $result = $this->Authentication->getResult();
+
+        // regardless of POST or GET, redirect if user is logged in
+        if ($result->isValid()) {
+            $this->Authentication->logout();
+            $this->redirect(['users' => 'users', 'action' => 'index']);
+            //return $this->redirect(['controller' => 'users', 'action' => 'login']);
+        }
+    }//logout
+
     // index
     public function index(){
 
         $users = $this->Users->find('all');
         $users = $users->toArray();
-
         $this->set(compact('users'));
     }
+
     // view
     public function view($id = null){
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
     }
+
     public function edit(){
 
     }
+
     public function jsonAddUser(){
         $objData=file_get_contents('php://input');
         if(empty($objData)){
@@ -109,6 +120,7 @@ class UsersController extends AppController
         }
         exit;
     }
+
 //    public function add(){
 //        if(!empty($this->request->getData())){
 //            $user = $this->request->getData();
@@ -126,21 +138,16 @@ class UsersController extends AppController
 
     public function add(){
 
-            //$users = $this->Users->newEmptyEntity();
-
+            $users = $this->Users->newEmptyEntity();
             if ($this->request->is('post')) {
-                //$users = $this->Users->patchEntity($users, $this->request->getData());
+                $users = $this->Users->patchEntity($users, $this->request->getData());
                 //pr($users); exit;
-                if ($this->Users->save($this->request->getData())) {
+                if ($this->Users->save($users)) {
                     $this->Flash->success(__('The User has been saved.'));
-
-                    return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['users' => 'users', 'action' => 'index']);
                 }
                 $this->Flash->error(__('The User could not be saved. Please, try again.'));
             }
-
-
-
 
     }// end of add
 

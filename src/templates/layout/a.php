@@ -29,9 +29,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
+
     <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake',
         'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
-        ]) ?>
+    ]) ?>
 
     <!-- jquery, bootstrap , angularjs-->
     <?= $this->Html->script([
@@ -40,19 +41,21 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"
 
 
-        ]) ; ?>
+    ]) ; ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+
 </head>
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP 4 Integration</a>
+            <a href="<?= $this->Url->build('/') ?>"><span>Build Cake</span>PHP 4</a>
         </div>
         <div class="top-nav-links">
-
+           <?= $this->element('a/login_link'); ?>
         </div>
     </nav>
     <main class="main">
