@@ -19,6 +19,8 @@ php composer-setup.php --quiet
 RESULT=$?
 rm composer-setup.php
 
+mv composer.phar /usr/local/bin/composer
+
 if [$RESULT]
 then
 echo "ERROR: Something went wrong with compose installation"

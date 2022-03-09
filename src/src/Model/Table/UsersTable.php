@@ -24,22 +24,17 @@ class UsersTable extends Table
 
     function jsonAddUser($objData){
         $data = json_decode($objData, true);
-       // pr($data); exit;
 
         $user = $this->newEmptyEntity();
-
-
             $user = $this->patchEntity($user, $data);
-
             if ($this->save($user)) {
-              pr('saved'); exit;
+                return true;
 
 
             }else{
-                pr('not saved'); exit;
+               // pr('not saved'); exit;
             }
-
-
+            return false;
 
 
     }

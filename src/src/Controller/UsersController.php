@@ -72,7 +72,7 @@ class UsersController extends AppController
     public function jsonAddUser(){
         $objData=file_get_contents('php://input');
         if(empty($objData)){
-            $objData = '{"name":"testName"}';
+            $objData = '{"name":"Ron Doe","email":"ron@gmail.copm","telephone":"514-1123-4567"}';
         }
         if($this->Users->jsonAddUser($objData)){
             echo true;

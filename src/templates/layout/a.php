@@ -49,7 +49,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP 4 Integrationl</a>
+            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP 4 Integration</a>
         </div>
         <div class="top-nav-links">
 
