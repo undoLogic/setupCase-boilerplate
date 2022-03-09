@@ -30,3 +30,6 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+/src/logs/debug.log
+/src/logs/error.log
+/src/tmp/cache/models/myapp*
