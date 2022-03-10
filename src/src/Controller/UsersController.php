@@ -24,6 +24,9 @@ use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
 use Authentication\PasswordHasher\DefaultPasswordHasher; // Add this line
 use Cake\Datasource\ConnectionManager;
+use Cake\I18n\I18n;
+use Cake\I18n\Time;
+use Cake\I18n\Number;
 
 /**
  * Static content controller
@@ -92,6 +95,7 @@ class UsersController extends AppController
 
     // index
     public function index(){
+
 
         $users = $this->Users->find('all');
         $users = $users->toArray();

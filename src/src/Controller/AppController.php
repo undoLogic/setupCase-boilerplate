@@ -19,6 +19,11 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\EventInterface;
 use Cake\Routing\Router;
+use Cake\I18n\I18n;
+use Cake\I18n\Time;
+use Cake\I18n\Number;
+
+
 
 /**
  * Application Controller
@@ -60,6 +65,12 @@ class AppController extends Controller
         //then go look at phpmyadmin and you should be able to click 'blob' to dowload (change the extension to .jpg' and open the picture
 
         */
+        // set language
+        $current_locale = I18n::getLocale();
+        $this->set(compact('current_locale'));
+       // $this->setLocale();
+
+
 
     }
 
@@ -78,4 +89,20 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
+
+    function setLocale(){
+        $locale = I18n::getLocale();
+        if($locale === 'en_US'){
+            $current_locale = 'fr_CA';
+            $current_language = strtoupper(explode('_', $current_locale)[0]);
+           // pr($current_language); exit;
+            $this->set(compact('current_locale', 'current_language'));
+        }
+      //  $this->set(compact('current_locale'));
+        //I18n::setLocale('fr');
+        // pr( I18n::getDefaultLocale());
+        //pr( I18n::getLocale()); exit;
+        //pr( I18n::getDefaultLocale()); exit;
+    }
+
 }

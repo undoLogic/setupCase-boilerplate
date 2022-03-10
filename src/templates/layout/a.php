@@ -55,7 +55,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href="<?= $this->Url->build('/') ?>"><span>Build Cake</span>PHP 4</a>
         </div>
         <div class="top-nav-links">
-           <?= $this->element('a/login_link'); ?>
+           <?= $this->element('a/login_link'); ?> &nbsp;
+            <?= $current_locale; ?>
         </div>
     </nav>
     <main class="main">
