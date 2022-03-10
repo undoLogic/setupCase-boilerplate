@@ -45,7 +45,22 @@ class AppController extends Controller
         $this->viewBuilder()->setLayout('a');
         $this->set('webroot', Router::url('/'));
         $this->set('base', Router::url('/modules'));
-        $this->Authentication->addUnauthenticatedActions(['login']);
+        $this->Authentication->addUnauthenticatedActions(['login', 'add']);
+
+
+        /*
+
+        $blobImage = file_get_contents(APP.'webroot'.DS.'img'.DS.'TESTimage.jpg');
+        $blobImage = file_get_contents('img'.DS.'TESTimage.jpg');
+        $mime = 'image/jpg';
+        $key_name = 'TESTING';
+        $imageLink = 'link';
+        $object_storage_id = ClassRegistry::init('Storage','Model')->put($key_name, $blobImage, $mime, $imageLink);
+        //after success a new row will appearin tthe storage database.files
+        //then go look at phpmyadmin and you should be able to click 'blob' to dowload (change the extension to .jpg' and open the picture
+
+        */
+
     }
 
     public function initialize(): void

@@ -8,6 +8,6 @@ else
   FILENAME="docker-compose.yml"
 fi
 
-echo docker-compose -f $FILENAME down
+docker-compose -f $FILENAME down
 sleep 5
 docker-compose -f $FILENAME up -d

@@ -34,6 +34,7 @@ use Authentication\AuthenticationServiceProviderInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
+use Cake\I18n\Middleware\LocaleSelectorMiddleware;
 
 /**
  * Application setup class.
@@ -110,6 +111,10 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             ->add(new AuthenticationMiddleware($this));
 
         //;
+        // Add middleware and set the valid locales
+        $middlewareQueue->add(new LocaleSelectorMiddleware(['en_CA', 'fr_CA']));
+        // To accept any locale header value
+        $middlewareQueue->add(new LocaleSelectorMiddleware(['*']));
 
         return $middlewareQueue;
     }

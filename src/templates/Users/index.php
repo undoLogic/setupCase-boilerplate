@@ -7,8 +7,9 @@
                 <h4>Users </h4>
             </div>
             <div class="col-lg-6 text-right">
-                <a class="btn btn-primary" href="<?= $webroot ; ?>Users/add">Add User</a>
-                <a class="btn btn-primary" href="<?= $webroot ; ?>Users/edit">Add</a>
+                <a class="btn btn-primary" href="<?= $webroot ; ?>Users/add">Add User</a>&nbsp;
+                <a class="btn btn-primary" href="<?= $webroot ; ?>Users/edit">Add AngularJs</a>&nbsp;
+                <a class="btn btn-primary" href="<?= $webroot ; ?>Users/downloadImage">Download</a>&nbsp;
             </div>
         </div>
 

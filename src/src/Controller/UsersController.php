@@ -23,6 +23,7 @@ use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
 use Authentication\PasswordHasher\DefaultPasswordHasher; // Add this line
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Static content controller
@@ -150,6 +151,30 @@ class UsersController extends AppController
             }
 
     }// end of add
+
+    function downloadImage(){
+        //pr('here'); exit;
+        //ConnectionManager::setConfig('my_connection', $config);
+        //$connection = ConnectionManager::get('storage');
+        //$this->loadModel('Storage');
+
+
+
+//      $blobImage = file_get_contents(APP.'webroot'.DS.'img'.DS.'TESTimage.jpg');
+//      //$blobImage = file_get_contents('img'.DS.'TESTimage.jpg');
+//      $mime = 'image/jpg';
+//      $key_name = 'TESTING';
+//      $imageLink = 'link';
+//      //$object_storage_id = ClassRegistry::init('Storage','Model')->put($key_name, $blobImage, $mime, $imageLink);
+//      if($this->Storage->put($key_name, $blobImage, $mime, $imageLink)){
+//          pr('success'); exit;
+//      }
+      //after success a new row will appearin tthe storage database.files
+      //then go look at phpmyadmin and you should be able to click 'blob' to dowload (change the extension to .jpg' and open the picture
+
+
+
+    }
 
 
 }// end
