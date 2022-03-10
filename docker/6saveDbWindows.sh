@@ -7,7 +7,7 @@
 rm sql/db.sql
 
 # Backup
-docker exec docker_db_1 /usr/bin/mysqldump -u root --password=undologic LIVE_updateCase | Out-File -encoding utf8 -FilePath sql/db.sql
+docker exec docker-db-1 /usr/bin/mysqldump -u root --password=undologic LIVE_database | Out-File -encoding utf8 -FilePath sql/db.sql
 
 # Restore
 #cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
