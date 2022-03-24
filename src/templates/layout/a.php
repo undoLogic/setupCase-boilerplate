@@ -28,11 +28,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->meta('icon') ?>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake',
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
-    ]) ?>
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
 
     <!-- jquery, bootstrap , angularjs-->
     <?= $this->Html->script([
@@ -55,8 +54,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href="<?= $this->Url->build('/') ?>"><span>Build Cake</span>PHP 4</a>
         </div>
         <div class="top-nav-links">
+            <!-- login/logout -->
            <?= $this->element('a/login_link'); ?> &nbsp;
-            <?= $current_locale; ?>
+
+            <!-- language -->
+            <?= $this->element('a/language'); ?> &nbsp;
+
+
+
         </div>
     </nav>
     <main class="main">

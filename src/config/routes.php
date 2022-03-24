@@ -51,12 +51,17 @@ return static function (RouteBuilder $routes) {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'dashboard']);
-        //$builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+
+        // language prefix
+        $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
+       // $builder->connect('/:language/:prefix/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
+        $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
+        $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
-        $builder->connect('/pages/*', 'Pages::display');
+       // $builder->connect('/pages/*', 'Pages::display');
 
         /*
          * Connect catchall routes for all controllers.

@@ -53,6 +53,12 @@ class PagesController extends AppController
         // the infinite redirect loop issue
 
     }
+    public function switchToLanguage($lang, $link){
+        pr($link); exit;
+       $this->switchToLanguage($lang);
+
+
+    }
     public function dashboard(){
 
     }

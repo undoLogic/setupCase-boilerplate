@@ -10,6 +10,10 @@
                 <a class="btn btn-primary" href="<?= $webroot ; ?>Users/add">Add User</a>&nbsp;
                 <a class="btn btn-primary" href="<?= $webroot ; ?>Users/edit">Add AngularJs</a>&nbsp;
                 <a class="btn btn-primary" href="<?= $webroot ; ?>Users/downloadImage">Download</a>&nbsp;
+                <?= $this->Html->link('Edit',[
+                  'action' => 'add'
+]);
+                ?>
             </div>
         </div>
 
