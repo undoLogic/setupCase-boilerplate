@@ -4,6 +4,7 @@
 }else{
         $switch_to = 'en_US';
     }
+    //
     echo $switch_to;
     ?>
 
