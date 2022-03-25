@@ -1,8 +1,9 @@
 <?php
-// src/Model/Entity/Article.php
-namespaceApp\Model\Entity;
 
-useCake\ORM\Entity;
+
+
+namespace App\Model\Entity;
+use Cake\ORM\Entity;
 
 class UserType extends Entity
 {

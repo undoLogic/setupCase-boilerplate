@@ -54,7 +54,7 @@ return static function (RouteBuilder $routes) {
 
         // language prefix
         $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
-       // $builder->connect('/:language/:prefix/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
+        $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
         $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
         $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
 

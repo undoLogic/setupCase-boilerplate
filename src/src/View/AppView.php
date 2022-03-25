@@ -39,21 +39,16 @@ class AppView extends View
     {
         $this->loadHelper('Authentication.Identity');
         parent::initialize();
+
         $this->loadHelper('Html');
         $this->loadHelper('Form');
         $this->loadHelper('Flash');
-    }
+        //$this->loadHelper('Url');
+       // $this->loadHelper('App');
+       // $this->loadHelper('Url');
 
-    function url($url = null, $full = false) {
-        if(!isset($url['language']) && isset($this->params['language'])) {
-
-            if (is_array($url)) {
-                $url['language'] = $this->params['language'];
-            }
-
-        }
-
-        return parent::url($url, $full);
 
     }
+
+
 }

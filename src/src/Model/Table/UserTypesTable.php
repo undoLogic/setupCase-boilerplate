@@ -12,9 +12,9 @@ class UserTypesTable extends Table
         parent::initialize($config);
         $this->setTable('user_types');
         // associations
-//        $this->hasMany('User', [
-//            'foreignKey' => 'user_type_id'
-//        ]);
+        $this->hasMany('User', [
+            'foreignKey' => 'user_type_id'
+        ]);
     }
 
 

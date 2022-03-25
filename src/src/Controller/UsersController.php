@@ -24,6 +24,7 @@ use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
 use Authentication\PasswordHasher\DefaultPasswordHasher; // Add this line
 use Cake\Datasource\ConnectionManager;
+use Cake\Routing\Router;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
 use Cake\I18n\Number;
@@ -88,10 +89,39 @@ class UsersController extends AppController
         // regardless of POST or GET, redirect if user is logged in
         if ($result->isValid()) {
             $this->Authentication->logout();
-            $this->redirect(['users' => 'users', 'action' => 'index']);
+            $this->redirect(['controller' => 'users', 'action' => 'index']);
             //return $this->redirect(['controller' => 'users', 'action' => 'login']);
         }
     }//logout
+
+    function export(){
+
+       $this->Users->exportUsers();
+        $this->Flash->success('User Exported to CSV');
+        $this->redirect(['controller' => 'users', 'action' => 'index']);
+       exit;
+    }
+
+    function uploadFile(){
+        $user = $this->Users->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $users = $this->Users->patchEntity($user, $this->request->getData());
+            $attachment = $this->request->getData('file_upload');
+            //pr($webroot); exit;
+            //pr($attachment); exit;
+            $targetPath = Router::url('/Files');
+            //pr($targetPath); exit;
+            $attachment->moveTo($targetPath);
+//            $name = $attachment->getClientFilename();
+//            $type = $attachment->getClientMediaType();
+//            $size = $attachment->getSize();
+//            $tmpName = $attachment->getStream()->getMetadata('uri');
+            pr($attachment); exit;
+        }
+
+    }
+
+
 
     // index
     public function index(){
@@ -155,6 +185,8 @@ class UsersController extends AppController
             }
 
     }// end of add
+
+
 
     function downloadImage(){
         //pr('here'); exit;
