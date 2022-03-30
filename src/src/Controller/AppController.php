@@ -91,6 +91,9 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
 
+       // pr ( $this->request->getAttribute('params'));
+        //exit;
+
 
     }// end of initialize
 

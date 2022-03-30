@@ -50,13 +50,15 @@ return static function (RouteBuilder $routes) {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'dashboard']);
+        $builder->connect('/', ['prefix' => 'Admin', 'controller' => 'Pages', 'action' => 'dashboard']);
+
+        $builder->connect('/:prefix/:controller/:action/*');
 
         // language prefix
-        $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
-        $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
-        $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
-        $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
+        //$builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
+        //$builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
+        //$builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
+        //$builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
@@ -78,6 +80,23 @@ return static function (RouteBuilder $routes) {
          */
         $builder->fallbacks();
     });
+
+//    $routes->prefix('Admin', ['path' => '/my_prefix'], function (RouteBuilder $routes) {
+//        // Routes connected here are prefixed with '/my_prefix'
+//        $routes->connect('/{controller}');
+//    });
+
+//    $routes->prefix('Admin', function (RouteBuilder $routes) {
+//        // All routes here will be prefixed with `/admin`, and
+//        // have the `'prefix' => 'Admin'` route element added that
+//        // will be required when generating URLs for these routes
+//        $routes->fallbacks(DashedRoute::class);
+//    });
+
+
+
+
+
 
     /*
      * If you need a different set of middleware or none at all,
