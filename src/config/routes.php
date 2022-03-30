@@ -50,20 +50,17 @@ return static function (RouteBuilder $routes) {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['prefix' => 'Admin', 'controller' => 'Pages', 'action' => 'dashboard']);
+        $builder->connect('/', ['controller' => 'Pages', 'action' => 'dashboard']);
+        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
-        $builder->connect('/:prefix/:controller/:action/*');
+        //default naming
+        $builder->connect('/:language/:prefix/:controller/:action/*');
 
         // language prefix
-        //$builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
-        //$builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
-        //$builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
-        //$builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
-
-        /*
-         * ...and connect the rest of 'Pages' controller's URLs.
-         */
-       // $builder->connect('/pages/*', 'Pages::display');
+        $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
+        $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
+        $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
+        $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
 
         /*
          * Connect catchall routes for all controllers.

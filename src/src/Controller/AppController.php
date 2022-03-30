@@ -50,7 +50,8 @@ class AppController extends Controller
     {
 
 
-        //pr($this->request->getAttributes()['params']); exit;
+       // pr($this->request->getAttributes()['params']['prefix']); exit;
+
       //  pr($this->request->getParam('controller'));
        // pr($this->request->getParam('action'));
        // exit;
@@ -64,8 +65,44 @@ class AppController extends Controller
         $this->viewBuilder()->setLayout('a');
         $this->set('webroot', Router::url('/'));
         $this->set('base', Router::url('/modules'));
-        $this->Authentication->addUnauthenticatedActions(['login', 'add']);
 
+
+        //$this->Authentication->addUnauthenticatedActions();
+        $this->Authentication->allowUnauthenticated(['*' => '*']);
+
+        //add to bootstrap later
+        //Configure::write('Users.user_type_id.ajax', 3);
+        $access = [
+            'Admin' => 111,
+            'Staff' => 10
+        ];
+
+        //detect the prefix here
+        //put in a separate function later
+        if (isset($this->request->getAttributes()['params']['prefix'])) {
+            $prefix = $this->request->getAttributes()['params']['prefix'];
+            if (isset($access[ $prefix ])) {
+                //force to this user_type_id
+
+                $result = $this->Authentication->getResult();
+                //pr ($result);
+
+
+                //stop access if they do NOT have the correct user_type_id in their database
+
+                //@latha,
+
+                //@todo
+                //show warning message
+                //$this->Session-> new version ('you are not authorided')
+                //redirect back to referer
+
+
+
+
+            }
+
+        }
         $params = $this->request->getAttributes()['params'];
         //pr($this->request->getAttributes());
         //pr($params);

@@ -31,6 +31,7 @@ class UsersController extends AppController
 {
     public function index() {
 
+        die('here in index ');
     }
     /**
      * Displays a view
