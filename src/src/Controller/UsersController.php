@@ -66,8 +66,7 @@ class UsersController extends AppController
     public function login()
     {
 
-  //echo (new DefaultPasswordHasher())->hash('test123'); exit;
-        //pr($this->Authentication->getResult()); exit;
+        //echo (new DefaultPasswordHasher())->hash(''); exit;
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
@@ -89,7 +88,8 @@ class UsersController extends AppController
         // regardless of POST or GET, redirect if user is logged in
         if ($result->isValid()) {
             $this->Authentication->logout();
-            $this->redirect(['controller' => 'users', 'action' => 'index']);
+            $this->Flash->success('You have been logged out');
+            $this->redirect(['controller' => 'users', 'action' => 'login']);
             //return $this->redirect(['controller' => 'users', 'action' => 'login']);
         }
     }//logout
@@ -116,7 +116,7 @@ class UsersController extends AppController
 //            $type = $attachment->getClientMediaType();
 //            $size = $attachment->getSize();
 //            $tmpName = $attachment->getStream()->getMetadata('uri');
-            pr($attachment); exit;
+            //pr($attachment); exit;
         }
 
     }

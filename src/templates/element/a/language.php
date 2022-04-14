@@ -5,16 +5,28 @@
 }else{
         $switch_to = 'en_US';
     }
-    echo $current_language;
+
+
 
 ?>
+<a href="#" onclick="switchLanguage('<?= $current_language; ?>', '<?= $current_controller; ?>', '<?= $current_action; ?>');"><?= $switch_to; ?></a>
 <?php
-//pr($this->request->here());
-//pr($this->params['controller']);
-//pr($this->request->params());
-//pr($_SERVER["REQUEST_URI"] );
-//pr($_SERVER["QUERY_STRING"]);
+
 ?>
+<script>
+    function switchLanguage(current_language, controller, action) {
+        //alert(action);
+        if(current_language === 'en_US' || current_language === 'en-US'){
+            current_language = 'en_US';
+            var switch_to = 'fr_CA';
+        }else{
+            switch_to = 'en_US';
+            current_language = 'fr_CA';
+        }
+        window.location.href=<?= $webroot;?>+switch_to+"/"+controller+"/"+action+"/";
+
+    }
+</script>
 
 
 

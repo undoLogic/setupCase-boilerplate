@@ -54,12 +54,17 @@ class PagesController extends AppController
 
     }
     public function switchToLanguage($lang, $link){
-        pr($link); exit;
+        //pr($link); exit;
        $this->switchToLanguage($lang);
 
 
     }
     public function dashboard(){
+        $this->set('dashboard', true);
+    }
+
+    public function authentication(){
+        $this->set('authentication', true);
 
     }
     public function display(string ...$path): ?Response

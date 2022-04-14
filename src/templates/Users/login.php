@@ -1,15 +1,20 @@
-<!-- in /templates/Users/login.php -->
-<div class="users form">
-    <?= $this->Flash->render() ?>
-    <h3>Login</h3>
-    <?= $this->Form->create() ?>
-    <fieldset>
-        <legend><?= __('Please enter your username and password') ?></legend>
-        <?= $this->Form->control('email', ['required' => true]) ?>
-        <?= $this->Form->control('password', ['required' => true]) ?>
-    </fieldset>
-    <?= $this->Form->submit(__('Login')); ?>
-    <?= $this->Form->end() ?>
-
-    <?= $this->Html->link("Add User", ['action' => 'add']) ?>
+<?= $this->Form->create(); ?>
+<div class="card">
+    <div class="card-header">
+        <h5>Login</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <?= $this->Form->input('email', ['class' => 'form-control', 'placeholder' => 'Email']); ?>
+            </div>
+            <div class="col-lg-12">
+                <?= $this->Form->input('password', ['class' => 'form-control', 'type' => 'password', 'placeholder' => 'Password']); ?>
+            </div>
+            <div class="col-lg-12 text-left m-t-2">
+                <?= $this->Form->submit('Login', ['class' => 'btn btn-primary']); ?>
+            </div>
+        </div>
+    </div>
 </div>
+<?= $this->Form->end(); ?>

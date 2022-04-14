@@ -23,6 +23,7 @@
 
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
 
 return static function (RouteBuilder $routes) {
     /*
@@ -50,6 +51,7 @@ return static function (RouteBuilder $routes) {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
+
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'dashboard']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
@@ -58,7 +60,7 @@ return static function (RouteBuilder $routes) {
 
         // language prefix
         $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
-        $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
+      //9/  $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
         $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
         $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
 
@@ -76,6 +78,11 @@ return static function (RouteBuilder $routes) {
          * routes you want in your application.
          */
         $builder->fallbacks();
+    });
+
+    $routes->prefix('admin', function (RouteBuilder $routes) {
+        $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
+        $routes->fallbacks(DashedRoute::class);
     });
 
 //    $routes->prefix('Admin', ['path' => '/my_prefix'], function (RouteBuilder $routes) {
