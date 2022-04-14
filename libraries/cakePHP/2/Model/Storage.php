@@ -2,7 +2,24 @@
 App::uses('AppModel', 'Model');
 
 /**
- * Province Model
+ * PUT / SAVE / CREATE
+
+App::import("Vendor","Storage");
+$storage = new Storage;
+
+$key_name = 'nameInDb';
+$file = $this->request->data['Model']['file']['tmp_name'];
+$filename = $this->request->data['Model']['file']['name'];
+
+$addedResponse = $storage->put($key_name,
+        file_get_contents($file),
+        mime_content_type($file),
+        $filename_thumb
+    );
+
+
+
+ *
  *
  * @property Storage $Storage
  */
