@@ -96,15 +96,14 @@ class AppController extends Controller
     }// end of initialize
 
     function convertObjToArray($obj) {
-
         $obj = (array) $obj;
         $obj = json_decode(json_encode($obj), true);
-
         foreach($obj as $key => $value){
             if(is_array($value)){
-                return $value;
+                if(isset($value['user_type_id'])){
+                    return $value;
+                }
             }
-            // pr($value);
         }
 
         return false;
@@ -113,7 +112,7 @@ class AppController extends Controller
 
         $access = $this->fetchTable('UserTypes')->find('list', ['fields' => ['id', 'name']])->toArray();
 
-        // if prefix exists
+        // /if prefix exists
         if (isset($this->request->getAttributes()['params']['prefix'])) {
             $prefix = $this->request->getAttributes()['params']['prefix'];
             if (in_array($prefix, $access)) {
