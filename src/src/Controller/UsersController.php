@@ -93,6 +93,9 @@ class UsersController extends AppController
             //return $this->redirect(['controller' => 'users', 'action' => 'login']);
         }
     }//logout
+    public function dashboard(){
+        $this->set('dashboard', true);
+    }
 
     function export(){
 

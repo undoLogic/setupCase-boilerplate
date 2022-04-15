@@ -46,11 +46,6 @@ return static function (RouteBuilder $routes) {
     $routes->setRouteClass(DashedRoute::class);
 
     $routes->scope('/', function (RouteBuilder $builder) {
-        /*
-         * Here, we are connecting '/' (base path) to a controller called 'Pages',
-         * its action called 'display', and we pass a param to select the view file
-         * to use (in this case, templates/Pages/home.php)...
-         */
 
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'dashboard']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
@@ -59,6 +54,7 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/:language/:prefix/:controller/:action/*');
 
         // language prefix
+        $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
         $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
       //9/  $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
         $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
@@ -81,21 +77,22 @@ return static function (RouteBuilder $routes) {
     });
 
     $routes->prefix('admin', function (RouteBuilder $routes) {
-        $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
+       $routes->connect('/:controller', ['action' => 'index'])->setPatterns(['language' => 'en_US|fr_CA'])->setPersist(['language']) ;
+     //  $routes->connect('/:language/:controller', ['action' => 'index'])->setPatterns(['language' => 'en_US|fr_CA'])->setPersist(['language']) ;
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
         $routes->fallbacks(DashedRoute::class);
     });
 
-//    $routes->prefix('Admin', ['path' => '/my_prefix'], function (RouteBuilder $routes) {
-//        // Routes connected here are prefixed with '/my_prefix'
-//        $routes->connect('/{controller}');
-//    });
 
-//    $routes->prefix('Admin', function (RouteBuilder $routes) {
-//        // All routes here will be prefixed with `/admin`, and
-//        // have the `'prefix' => 'Admin'` route element added that
-//        // will be required when generating URLs for these routes
-//        $routes->fallbacks(DashedRoute::class);
-//    });
+    $routes->prefix('staff', function (RouteBuilder $builder) {
+        $builder->scope('/', function (RouteBuilder $builder) {
+            $builder->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
+        });
+    });
+
+
+
+
 
 
 

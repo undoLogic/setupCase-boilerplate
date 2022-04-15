@@ -47,12 +47,16 @@ class PagesController extends AppController
 
     }
     public function switchToLanguage($lang, $link){
-        pr($link); exit;
+       // pr($link); exit;
        $this->switchToLanguage($lang);
 
 
     }
+    public function index(){
+
+    }
     public function dashboard(){
+        //exit('here in admin page dash');
 
     }
     public function display(string ...$path): ?Response

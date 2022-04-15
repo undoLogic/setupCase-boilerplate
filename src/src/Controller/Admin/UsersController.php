@@ -29,10 +29,7 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
-    public function index() {
 
-        die('here in index ');
-    }
     /**
      * Displays a view
      *
@@ -54,6 +51,27 @@ class UsersController extends AppController
         parent::beforeFilter($event);
 
 
+    }
+
+
+
+        // index
+        public function index(){
+            $this->set('users', true);
+
+            $users = $this->Users->find('all');
+            $users = $users->toArray();
+            $this->set(compact('users'));
+        }
+
+
+    public function edit() {
+
+
+    }
+
+    public function dashboard(){
+        $this->set('dashboard', true);
     }
 
 
