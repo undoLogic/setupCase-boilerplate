@@ -72,12 +72,6 @@ class AppController extends Controller
 
 
 
-
-        $params = $this->request->getAttributes()['params'];
-        $this->set('current_controller', $params['controller']);
-        $this->set('current_action', $params['action']);
-
-
     }// end of beforeFilter
 
 
@@ -89,8 +83,12 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
 
-       // pr ( $this->request->getAttribute('params'));
-        //exit;
+       // pr($this->Authentication->getIdentity()); exit;
+     $params = $this->request->getAttributes()['params'];
+
+        $this->set('current_controller', $params['controller']);
+        $this->set('current_action', $params['action']);
+
 
 
     }// end of initialize
@@ -98,6 +96,8 @@ class AppController extends Controller
     function convertObjToArray($obj) {
         $obj = (array) $obj;
         $obj = json_decode(json_encode($obj), true);
+
+        $obj = array_values($obj);
         foreach($obj as $key => $value){
             if(is_array($value)){
                 if(isset($value['user_type_id'])){
@@ -113,22 +113,33 @@ class AppController extends Controller
         $access = $this->fetchTable('UserTypes')->find('list', ['fields' => ['id', 'name']])->toArray();
 
         // /if prefix exists
-        if (isset($this->request->getAttributes()['params']['prefix'])) {
+         if (isset($this->request->getAttributes()['params']['prefix'])) {
             $prefix = $this->request->getAttributes()['params']['prefix'];
             if (in_array($prefix, $access)) {
-                $result = $this->Authentication->getResult();
-                $userInfo = $this->convertObjToArray($result);
-                if ($access[$userInfo['user_type_id']] !== $prefix) {
-                    $this->Flash->error(__('You are not authirized .... '));
-                    $this->redirect($this->referer());
-                }
+                // identity
+                if (!empty($this->Authentication->getIdentity())) {
+                    $identity = $this->Authentication->getIdentity();
+                    $userInfo = $this->convertObjToArray($identity);
+                    $this->set(compact('userInfo'));
 
+                    if ($access[$userInfo['user_type_id']] !== $prefix) {
+                        $this->Flash->error(__('You are not authirized .... '));
+                        $this->redirect($this->referer());
+                    }else{
+                        // proceed to create access to each usertype
+                    }
+                } else {
+                    $this->Flash->error(__('You are not authirized please login first '));
+                    $this->redirect('/login');
+
+                }
             }
         }
     }// setupAccess()
     var $language;
     function setupLanguage()
     {
+        //$this->session()->write(['current_language' => 'en_US']);
 
        $url_language = $this->request->getParam('language');
         if ($url_language != null && in_array($url_language, ['en_US', 'fr_CA'])) {
@@ -175,16 +186,26 @@ class AppController extends Controller
 
     }
 
-//
-//    function setLocale($lang){
-//        I18n::setLocale($lang);
-//
-//    }
-//
-//    function getLocale(){
-//        $current_locale = I18n::getLocale();
-//        return $current_locale;
-//
-//    }
+    function userInfo()
+    {
+        $userInfo = array();
+        if (!empty($this->Authentication->getIdentity())) {
+            $identity = $this->Authentication->getIdentity();
+            $userInfo = $this->convertObjToArray($identity);
 
-}
+        }
+        return $userInfo;
+
+    }
+
+    function getUserId(){
+        $user_id = 0;
+       $user_info = $this->userInfo();
+       if(!empty($user_info)){
+           $user_id = $user_info['id'];
+       }
+        return $user_id;
+    }// getUserId
+
+
+}// END

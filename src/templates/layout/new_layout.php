@@ -47,7 +47,7 @@ $cakeDescription = 'CakePHP4';
 
 </head>
 <body>
-<?= $base; ?>
+
 <?= $this->element('a/header'); ?>
 
 <div class="container-fluid">

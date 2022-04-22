@@ -16,7 +16,7 @@
                 ), array('class' => 'btn btn-primary')); ?>
 
                 <?= $this->Html->link('Add',[
-                    'language' => $current_language,
+                    //'language' => $current_language,
                   'action' => 'add', 'new'
 ]);
                 ?>

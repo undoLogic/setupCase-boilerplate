@@ -29,8 +29,9 @@ class AppHelper extends Helper
     //started the language stuff
 
     function url($url = null, $full = false) {
+
         if(!isset($url['language']) && isset($this->params['language'])) {
-           // pr('test'); exit;
+
             if (is_array($url)) {
                 $url['language'] = $this->params['language'];
             }

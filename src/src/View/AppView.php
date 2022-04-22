@@ -40,10 +40,10 @@ class AppView extends View
         $this->loadHelper('Authentication.Identity');
         parent::initialize();
 
-        $this->loadHelper('Html');
-        $this->loadHelper('Form');
-        $this->loadHelper('Flash');
-        //$this->loadHelper('Url');
+//        $this->loadHelper('Html');
+//        $this->loadHelper('Form');
+//        $this->loadHelper('Flash');
+       // $this->loadHelper('general');
        // $this->loadHelper('App');
        // $this->loadHelper('Url');
 

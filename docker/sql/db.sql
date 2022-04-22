@@ -1,4 +1,4 @@
-﻿-- MySQL dump 10.13  Distrib 5.6.39, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.39, for Linux (x86_64)
 --
 -- Host: localhost    Database: LIVE_database
 -- ------------------------------------------------------

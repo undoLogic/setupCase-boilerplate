@@ -9,7 +9,7 @@
 
 
 ?>
-<a href="#" onclick="switchLanguage('<?= $current_language; ?>', '<?= $current_controller; ?>', '<?= $current_action; ?>');"><?= $switch_to; ?></a>
+<a href="#" onclick="switchLanguage('<?= $current_language; ?>', '<?= $current_controller; ?>', '<?= $current_action; ?>');"><?= $current_language; ?></a>
 <?php
 
 ?>

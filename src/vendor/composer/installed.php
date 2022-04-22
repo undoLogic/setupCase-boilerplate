@@ -5,11 +5,20 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '636e8d20dd258578239774419d323774d45941a6',
+        'reference' => '47da535c6c9df21865d89c754f3b4df3234eac28',
         'name' => 'cakephp/app',
         'dev' => true,
     ),
     'versions' => array(
+        'admad/cakephp-i18n' => array(
+            'pretty_version' => '2.2.0',
+            'version' => '2.2.0.0',
+            'type' => 'cakephp-plugin',
+            'install_path' => __DIR__ . '/../admad/cakephp-i18n',
+            'aliases' => array(),
+            'reference' => 'fc6732ac464610968fd8df6f2570c7d8d6105375',
+            'dev_requirement' => false,
+        ),
         'brick/varexporter' => array(
             'pretty_version' => '0.3.5',
             'version' => '0.3.5.0',
@@ -25,7 +34,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '636e8d20dd258578239774419d323774d45941a6',
+            'reference' => '47da535c6c9df21865d89c754f3b4df3234eac28',
             'dev_requirement' => false,
         ),
         'cakephp/authentication' => array(

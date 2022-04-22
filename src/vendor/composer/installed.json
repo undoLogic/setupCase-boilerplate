@@ -1,6 +1,61 @@
 {
     "packages": [
         {
+            "name": "admad/cakephp-i18n",
+            "version": "2.2.0",
+            "version_normalized": "2.2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ADmad/cakephp-i18n.git",
+                "reference": "fc6732ac464610968fd8df6f2570c7d8d6105375"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ADmad/cakephp-i18n/zipball/fc6732ac464610968fd8df6f2570c7d8d6105375",
+                "reference": "fc6732ac464610968fd8df6f2570c7d8d6105375",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~8.5.0"
+            },
+            "time": "2021-12-25T14:04:46+00:00",
+            "type": "cakephp-plugin",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ADmad\\I18n\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/ADmad",
+                    "role": "Author"
+                }
+            ],
+            "description": "A CakePHP plugin for I18n related tools.",
+            "homepage": "https://github.com/ADmad/cakephp-i18n",
+            "keywords": [
+                "cakephp",
+                "i18n",
+                "messages",
+                "routing",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/ADmad/cakephp-i18n/issues",
+                "source": "https://github.com/ADmad/cakephp-i18n"
+            },
+            "install-path": "../admad/cakephp-i18n"
+        },
+        {
             "name": "brick/varexporter",
             "version": "0.3.5",
             "version_normalized": "0.3.5.0",
