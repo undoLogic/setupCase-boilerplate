@@ -1,34 +1,14 @@
 <?php
-    if($current_language === 'en_US' || $current_language === 'en-US'){
-        $current_language = 'en_US';
+    if($current_language === 'en_US'){
     $switch_to = 'fr_CA';
 }else{
         $switch_to = 'en_US';
     }
 
-
-
 ?>
-<a href="#" onclick="switchLanguage('<?= $current_language; ?>', '<?= $current_controller; ?>', '<?= $current_action; ?>');"><?= $current_language; ?></a>
-<?php
-
+<?php $link = $_SERVER['REQUEST_URI'];
+$new_link = str_replace($current_language, $switch_to, $link);
 ?>
-<script>
-    function switchLanguage(current_language, controller, action) {
-        //alert(action);
-        if(current_language === 'en_US' || current_language === 'en-US'){
-            current_language = 'en_US';
-            var switch_to = 'fr_CA';
-        }else{
-            switch_to = 'en_US';
-            current_language = 'fr_CA';
-        }
-        window.location.href=<?= $webroot;?>+switch_to+"/"+controller+"/"+action+"/";
-
-    }
-</script>
-
-
-
+<a href="<?= $new_link; ?>"><?= $switch_to; ?></a>
 
 

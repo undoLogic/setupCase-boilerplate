@@ -57,7 +57,7 @@ class UsersController extends AppController
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
-        $this->Authentication->addUnauthenticatedActions(['dashboard']);
+        $this->Authentication->addUnauthenticatedActions(['dashboard', 'index']);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
 

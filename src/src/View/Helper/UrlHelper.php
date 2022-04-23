@@ -21,12 +21,14 @@ use Cake\Core\Exception\CakeException;
 use Cake\Routing\Asset;
 use Cake\Routing\Router;
 use Cake\View\Helper;
+use Cake\I18n\I18n;
 
 /**
  * UrlHelper class for generating URLs.
  */
 class UrlHelper extends Helper
 {
+
     /**
      * Default config for this class
      *
@@ -53,7 +55,6 @@ class UrlHelper extends Helper
     public function initialize(array $config): void
     {
 
-
         parent::initialize($config);
         $engineClassConfig = $this->getConfig('assetUrlClassName');
 
@@ -70,7 +71,7 @@ class UrlHelper extends Helper
     function url($url = null, $full = false) {
 
 
-//pr($url); exit;
+        //pr($url); exit;
         if(!isset($url['language']) && isset($this->params['language'])) {
 
             if (is_array($url)) {
@@ -100,8 +101,9 @@ class UrlHelper extends Helper
      */
     public function build($url = null, array $options = []): string
     {
-       // pr($url);
 
+        $url['language'] = I18n::getLocale();
+       // pr($url);
         $defaults = [
             'fullBase' => false,
             'escape' => true,

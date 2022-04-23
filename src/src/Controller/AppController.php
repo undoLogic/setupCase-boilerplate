@@ -48,6 +48,7 @@ class AppController extends Controller
      */
     public function beforeFilter(EventInterface $event)
     {
+        //pr($this->request->getAttributes()); exit;
 
 
 
@@ -83,15 +84,11 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
 
-       // pr($this->Authentication->getIdentity()); exit;
-     $params = $this->request->getAttributes()['params'];
-
-        $this->set('current_controller', $params['controller']);
-        $this->set('current_action', $params['action']);
-
 
 
     }// end of initialize
+
+
 
     function convertObjToArray($obj) {
         $obj = (array) $obj;
@@ -164,7 +161,7 @@ class AppController extends Controller
             $this->session()->write(['current_language' => $current_language]);
             }
 
-
+        I18n::setLocale($current_language);
         $this->set(compact('current_language'));
 
         return $current_language;

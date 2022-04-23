@@ -48,17 +48,19 @@ return static function (RouteBuilder $routes) {
     $routes->scope('/', function (RouteBuilder $builder) {
 
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'dashboard']);
+       // $builder->connect('/', ['controller' => 'Users', 'action' => 'index']);
+       // $builder->connect('/:language', ['controller' => 'Users', 'action' => 'index'],  array('language' => 'en_US|fr_CA')) ;
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
         //default naming
-        $builder->connect('/:language/:prefix/:controller/:action/*');
+       // $builder->connect('/:language/:prefix/:controller/:action/*');
 
         // language prefix
         $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
         $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
       //9/  $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
         $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
-        $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
+       // $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
 
         /*
          * Connect catchall routes for all controllers.
