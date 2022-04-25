@@ -51,6 +51,8 @@ return static function (RouteBuilder $routes) {
        // $builder->connect('/', ['controller' => 'Users', 'action' => 'index']);
        // $builder->connect('/:language', ['controller' => 'Users', 'action' => 'index'],  array('language' => 'en_US|fr_CA')) ;
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+        //$builder->connect('/users/login', ['controller' => 'Users', 'action' => 'login']);
+        //$builder->connect('/:language/login', ['controller' => 'Users', 'action' => 'login']);
 
         //default naming
        // $builder->connect('/:language/:prefix/:controller/:action/*');

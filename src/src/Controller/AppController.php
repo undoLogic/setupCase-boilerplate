@@ -79,7 +79,8 @@ class AppController extends Controller
     public function initialize(): void
     {
         parent::initialize();
-
+        // Always enable the CSRF component.
+        //$this->loadComponent('Csrf');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');

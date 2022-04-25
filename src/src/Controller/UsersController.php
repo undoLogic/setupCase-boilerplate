@@ -106,21 +106,26 @@ class UsersController extends AppController
     }
 
     function uploadFile(){
+
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
-            $users = $this->Users->patchEntity($user, $this->request->getData());
-            $attachment = $this->request->getData('file_upload');
-            //pr($webroot); exit;
-            //pr($attachment); exit;
-            $targetPath = Router::url('/Files');
-            //pr($targetPath); exit;
-            $attachment->moveTo($targetPath);
-//            $name = $attachment->getClientFilename();
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            $file = $this->request->getData('file_upload');
+            $name = $file->getClientFilename();
+            //pr($name); exit;
+           // $targetPath = Router::url('/Files'.DS. $name);
+           // pr($targetPath); exit;
+           // $attachment->moveTo($targetPath);
+//
 //            $type = $attachment->getClientMediaType();
 //            $size = $attachment->getSize();
 //            $tmpName = $attachment->getStream()->getMetadata('uri');
             //pr($attachment); exit;
+        }else{
+        //
         }
+        $this->set(compact('user'));
 
     }
 
@@ -128,8 +133,6 @@ class UsersController extends AppController
 
     // index
     public function index(){
-
-
         $users = $this->Users->find('all');
         $users = $users->toArray();
         $this->set(compact('users'));

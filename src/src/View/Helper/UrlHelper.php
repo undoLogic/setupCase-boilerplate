@@ -23,6 +23,7 @@ use Cake\Routing\Router;
 use Cake\View\Helper;
 use Cake\I18n\I18n;
 
+
 /**
  * UrlHelper class for generating URLs.
  */
@@ -102,7 +103,25 @@ class UrlHelper extends Helper
     public function build($url = null, array $options = []): string
     {
 
-        $url['language'] = I18n::getLocale();
+       // pr($url);
+if(!is_array($url)) {
+
+   // $url = '/en_US'.$url;
+}else{
+    $url['language'] = I18n::getLocale();
+}
+       // if($url !== '/users/login') {
+//       if( !isset($url['language'])){
+//           $url['language'] = I18n::getLocale();
+//       }
+            //if(is_array($url)){
+
+          //  }
+
+       // }
+
+
+
        // pr($url);
         $defaults = [
             'fullBase' => false,

@@ -4,7 +4,7 @@
             <h5>Upload File</h5>
         </div>
         <div class="card-body">
-            <?= $this->Form->create(); ?>
+            <?= $this->Form->create($user, ['type' => 'file']); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <?= $this->Form->control('file_upload', ['type' => 'file']); ?>
