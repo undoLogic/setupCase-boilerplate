@@ -1,6 +1,7 @@
 <?php
-    if($current_language === 'en_US'){
+    if($current_language === 'en_US' || $current_language === 'en-US'){
     $switch_to = 'fr_CA';
+    $current_language = 'en_US';
 }else{
         $switch_to = 'en_US';
     }

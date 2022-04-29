@@ -103,26 +103,15 @@ class UrlHelper extends Helper
     public function build($url = null, array $options = []): string
     {
 
-       // pr($url);
-if(!is_array($url)) {
+        if(!is_array($url)) {
 
-   // $url = '/en_US'.$url;
-}else{
-    $url['language'] = I18n::getLocale();
-}
-       // if($url !== '/users/login') {
-//       if( !isset($url['language'])){
-//           $url['language'] = I18n::getLocale();
-//       }
-            //if(is_array($url)){
-
-          //  }
-
-       // }
+           // do nothing
+        }else{
+            $url['language'] = I18n::getLocale();
+        }
 
 
 
-       // pr($url);
         $defaults = [
             'fullBase' => false,
             'escape' => true,
@@ -130,17 +119,14 @@ if(!is_array($url)) {
         $options += $defaults;
 
         $url = Router::url($url, $options['fullBase']);
-      //  pr($url);
-      //  pr('test'); exit;
+
         if ($options['escape']) {
+
             /** @var string $url */
             $url = h($url);
-          //  pr($url);
+
         }
-//pr($url); //exit;
-        //pr($this->params['language']);
-       // pr($url); //exit;
-       // pr($options); exit;
+
         return $url;
     }
 

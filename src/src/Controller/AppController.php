@@ -59,6 +59,7 @@ class AppController extends Controller
 
         // language
         $current_language = $this->setupLanguage();
+        //pr($current_language); exit;
         $this->setupAccess();
 
         $this->viewBuilder()->setLayout('new_layout');
@@ -152,17 +153,18 @@ class AppController extends Controller
             $current_language = $this->session()->read('current_language');
             $this->session()->write(['current_language' => $current_language]);
             $this->language = $current_language;
-        }elseif(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-            $current_language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5);
-            $this->session()->write(['current_language' => $current_language]);
-            $this->language = $current_language;
+//        }elseif(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+//            $current_language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5);
+//            $current_language = str_replace('-', '_', $current_language);
+//            $this->session()->write(['current_language' => $current_language]);
+//            $this->language = $current_language;
         }else{// default manual string
             $current_language = 'en_US';
             $this->language = $current_language;
             $this->session()->write(['current_language' => $current_language]);
             }
 
-        I18n::setLocale($current_language);
+       // I18n::setLocale($current_language);
         $this->set(compact('current_language'));
 
         return $current_language;
