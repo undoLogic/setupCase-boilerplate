@@ -36,3 +36,5 @@ Thumbs.db
 /src/logs/debug.log
 /src/logs/error.log
 /src/tmp/cache/models/myapp*
+/src/tmp/cache/persistent/myapp_*
+/src/tmp/cache/persistent/myapp_*
