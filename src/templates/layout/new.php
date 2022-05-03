@@ -14,7 +14,7 @@ $cakeDescription = 'CakePHP4';
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS ---->
     <link href="<?= $webroot; ?>css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
