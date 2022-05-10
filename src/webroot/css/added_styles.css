@@ -1,0 +1,32 @@
+
+.m-l-20{
+    margin-left: 20px;
+}
+.m-l-30{
+    margin-left: 30px;
+}
+.nav-item a{
+    color: #f5f6f8;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+
+}
+.nav-item a:hover{
+
+    color: #b0b2b8;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+
+}
+.red-background{
+    background-color: red;
+}
+.green-background{
+    background-color: green;
+}
+.blue-background{
+    background-color: deepskyblue;
+}
+

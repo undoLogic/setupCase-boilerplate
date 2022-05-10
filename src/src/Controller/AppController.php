@@ -62,7 +62,7 @@ class AppController extends Controller
         //pr($current_language); exit;
         $this->setupAccess();
 
-        $this->viewBuilder()->setLayout('new_layout');
+        $this->viewBuilder()->setLayout('new');
         $this->set('webroot', Router::url('/'));
         $this->set('base', Router::url('/modules'));
 

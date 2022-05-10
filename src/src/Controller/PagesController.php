@@ -53,6 +53,9 @@ class PagesController extends AppController
         // the infinite redirect loop issue
 
     }
+    public function new(){
+
+    }
     public function vueExamples(){
         $this->set('vue', true);
     }
