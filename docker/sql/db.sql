@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.6.39, for Linux (x86_64)
+﻿-- MySQL dump 10.13  Distrib 5.6.39, for Linux (x86_64)
 --
 -- Host: localhost    Database: LIVE_database
 -- ------------------------------------------------------
@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `user_types`
+--
+
+DROP TABLE IF EXISTS `user_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_types`
+--
+
+LOCK TABLES `user_types` WRITE;
+/*!40000 ALTER TABLE `user_types` DISABLE KEYS */;
+INSERT INTO `user_types` VALUES (10,'Client'),(20,'Staff'),(111,'Admin');
+/*!40000 ALTER TABLE `user_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -24,6 +48,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_type_id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(300) NOT NULL,
@@ -39,7 +64,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Latha s','latha@undologic.com','$2y$10$h76MUtTCBXc0HRyDXSKDpOLd1wE948y.QMPbjzrNqwLdI8u0nyCNG','2022-03-10 17:11:35','2022-03-10 17:11:35'),(2,'Sacha D','sacha@undologic.com','$2y$10$biukuHmKF/zN5Y61EU1Nz.7LkSVu5J1WAYxNfbT2/qtKul89MgqDe','2022-03-10 19:46:49','2022-03-10 19:46:49');
+INSERT INTO `users` VALUES (1,111,'Latha s','latha@undologic.com','$2y$10$h76MUtTCBXc0HRyDXSKDpOLd1wE948y.QMPbjzrNqwLdI8u0nyCNG','2022-03-10 17:11:35','2022-03-10 17:11:35'),(2,111,'Sacha D','sacha@undologic.com','$2y$10$biukuHmKF/zN5Y61EU1Nz.7LkSVu5J1WAYxNfbT2/qtKul89MgqDe','2022-03-10 19:46:49','2022-03-10 19:46:49');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-10 19:49:54
+-- Dump completed on 2022-05-10 18:19:00
