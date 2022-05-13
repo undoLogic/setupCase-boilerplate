@@ -62,39 +62,52 @@ class AppController extends Controller
 
     function setupLanguage()
     {
-        //$this->session()->write(['current_language' => 'en_US']);
-
         $url_language = $this->request->getParam('language');
         if ($url_language != null && in_array($url_language, ['en_US', 'fr_CA'])) {
+            //if there is a language in the address bar
             $current_language = $url_language;
-            //add to session
             $this->session()->write(['current_language' => $url_language]);
             $this->language = $current_language;
-
-        }elseif(!empty($this->session()->read('current_language'))) { // session
-
+        }elseif(!empty($this->session()->read('current_language'))) {
+            // if we have a language session
             $current_language = $this->session()->read('current_language');
             $this->session()->write(['current_language' => $current_language]);
             $this->language = $current_language;
-        }elseif(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { //browser set to
+        }elseif(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            // we use what the browser language they are viewing
             $current_language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5);
             $current_language = str_replace('-', '_', $current_language);
             $this->session()->write(['current_language' => $current_language]);
             $this->language = $current_language;
-        }else{// default manual string
+        }else{
+            // default language
             $current_language = 'en_US';
             $this->language = $current_language;
             $this->session()->write(['current_language' => $current_language]);
         }
 
-        // I18n::setLocale($current_language);
-        $this->set(compact('current_language'));
+        //Make sure we always have a language in the address bar
+        $attributes = $this->request->getAttributes();
+        if (!isset($attributes['params']['language'])) {
+            $redirectArray = array();
+            $redirectArray['language'] = $this->language;
+            if (isset($attributes['params']['?'])) {
+                $redirectArray['?'] = $attributes['params']['?'];
+            }
+            if (!empty($attributes['params']['pass'])) {
+                $redirectArray = $redirectArray +$attributes['params']['pass'];
+            }
+            $this->redirect($redirectArray);
+        }
 
+        //in our view we only care about a basic language (eg en / fr) not the extended version of a language
         if (substr($current_language, 0, 2) === 'fr') {
             $this->set('baseLang','fr');
         } else {
             $this->set('baseLang', 'en');
         }
+
+        $this->set(compact('current_language'));
 
         return $current_language;
     }// end of setupLanguage

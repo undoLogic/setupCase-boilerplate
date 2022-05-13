@@ -59,8 +59,6 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
         // $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
 
-
-
         /*
          * Connect catchall routes for all controllers.
          *
@@ -78,10 +76,16 @@ return static function (RouteBuilder $routes) {
     });
 
     $routes->prefix('admin', function (RouteBuilder $routes) {
-        $routes->connect('/:controller', ['action' => 'index']) ;
+       // $routes->connect('/:controller', ['action' => 'index']) ;
         // $routes->connect('/:controller', ['action' => 'index'])->setPatterns(['language' => 'en_US|fr_CA'])->setPersist(['language']) ;
         //  $routes->connect('/:language/:controller', ['action' => 'index'])->setPatterns(['language' => 'en_US|fr_CA'])->setPersist(['language']) ;
-         $routes->connect('/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
+
+        //working
+        //$routes->connect('/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
+
+        //with the lang
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
+
         $routes->fallbacks(DashedRoute::class);
     });
 
