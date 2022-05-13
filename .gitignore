@@ -8,6 +8,12 @@
 /src/app/webroot/updateCase.log
 /src/composer.lock
 
+/src/tmp/cache/models/*
+/src/tmp/cache/persistent/*
+/src/tmp/cache/views/*
+/src/tmp/debug_kit.sqlite
+
+
 /docker/control/composer.phar
 
 ### temp cake download files
