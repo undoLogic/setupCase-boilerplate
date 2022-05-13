@@ -1,7 +1,7 @@
 FROM php:7.4-apache
 
 RUN a2enmod rewrite
-RUN a2enmod ssl
+# RUN a2enmod ssl
 
 RUN apt-get update && apt-get install -y \
         wkhtmltopdf \
