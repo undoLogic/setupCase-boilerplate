@@ -577,3 +577,35 @@ Request URL: /admin//pages/home/one/two
 Client IP: 172.18.0.1
 
 
+2022-06-01 18:42:06 error: [TypeError] Argument 1 passed to Cake\Controller\Controller::log() must be of the type string, array given, called in /var/www/vhosts/website.com/www/src/src/Controller/AppController.php on line 109 in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Log/LogTrait.php on line 35
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/src/Controller/AppController.php:109
+- /var/www/vhosts/website.com/www/src/src/Controller/AppController.php:59
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:309
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:286
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:636
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:130
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /
+Client IP: 172.22.0.1
+
+

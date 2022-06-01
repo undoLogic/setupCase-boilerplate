@@ -29,15 +29,24 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
-class SetupCasesController extends AppController
+class SetupPagesController extends AppController
 {
 
+
     function index() {
+        //get the current lange
+        $current_language = $this->setupLanguage();
 
+        $this->redirect(
+            array(
+                'language' => $current_language,
+                'controller' => 'Pages',
+                'action' => 'home'
+            )
+        );
     }
-
-    function pdf() {
-
+    function home() {
+        //$attributes = $this->request->getAttributes();
+        //pr ( $attributes );exit;
     }
-
 }

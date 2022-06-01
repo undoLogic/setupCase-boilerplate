@@ -24,7 +24,7 @@ use Cake\TestSuite\TestCase;
 /**
  * PagesControllerTest class
  *
- * @uses \App\Controller\PagesController
+ * @uses \App\Controller\SetupPagesController
  */
 class PagesControllerTest extends TestCase
 {
