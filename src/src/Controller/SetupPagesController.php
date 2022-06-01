@@ -40,7 +40,7 @@ class SetupPagesController extends AppController
         $this->redirect(
             array(
                 'language' => $current_language,
-                'controller' => 'Pages',
+                'controller' => 'SetupPages',
                 'action' => 'home'
             )
         );

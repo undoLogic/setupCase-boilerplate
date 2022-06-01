@@ -50,10 +50,10 @@ return static function (RouteBuilder $routes) {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['language' => 'en_US', 'controller' => 'Pages', 'action' => 'index']);
+        $builder->connect('/', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'index']);
 
         // language prefix
-        $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
+        $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
         $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
         //9/  $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
         $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
