@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-echo /var/www/vhosts/website.com/www/
+cd "/var/www/vhosts/website.com/www/"
