@@ -60,6 +60,39 @@ class AppController extends Controller
 
     }
 
+    function setupAuth() {
+        //if they are logged in (does a session exist called $session->read('User')
+            //if they do have this
+                //$this->>set('isLoggedIn', true);
+                //check the user_type_id
+
+        $acl = [
+            'Admin' => 111,
+            'User' => 10,
+            'Staff' => 50
+        ];
+
+        //check our current prefix
+            //$this->isAllowedPrefix($this->getPrefix())
+                //we are allowed
+            //else - NOT ALLOWED THE PREFIX
+                //show message you are not allowed the current  prefix and redirect to referer (so they will go back to the screen
+
+
+        //if isset(prefix
+            //can we loop through prefixes ?
+                //check each Name of the prefix against our list (keep our list in this function for now)
+                if (isset($acl[ $prefix ])) {
+                    if ($user['User']['user_type_id'] == $acl[ $prefix ]) {
+                        //we
+                    }
+                }
+    }
+
+    private function isAllowedPrefix($prefix) {
+
+    }
+
     function setupLanguage()
     {
         $url_language = $this->request->getParam('language');

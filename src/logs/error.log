@@ -811,3 +811,1710 @@ Referer URL: http://localhost/src/fr_CA/setup-pages/home
 Client IP: 172.22.0.1
 
 
+2022-06-02 02:44:44 error: [Error] Call to a member function write() on null in /var/www/vhosts/website.com/www/src/src/Controller/SetupPagesController.php on line 52
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:44:45 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php line=988 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:44:45 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:44:45 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:44:45 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:45:39 error: [Cake\Http\Exception\InvalidCsrfTokenException] CSRF token from either the request body or request headers did not match or is missing. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 417
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:46:20 error: [Error] Call to a member function read() on null in /var/www/vhosts/website.com/www/src/src/Controller/SetupPagesController.php on line 52
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:46:21 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php line=988 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:46:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:46:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:46:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:47:39 error: [Cake\Http\Exception\InvalidCsrfTokenException] CSRF token from either the request body or request headers did not match or is missing. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 417
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:49:39 error: [Cake\Http\Exception\InvalidCsrfTokenException] CSRF token from either the request body or request headers did not match or is missing. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 417
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:49:39 error: [Error] Call to a member function read() on null in /var/www/vhosts/website.com/www/src/src/Controller/SetupPagesController.php on line 53
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:49:40 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php line=988 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:49:40 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:49:40 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:49:40 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:50:00 error: [Error] Call to a member function read() on null in /var/www/vhosts/website.com/www/src/src/Controller/SetupPagesController.php on line 53
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:50:01 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php line=988 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:50:01 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:50:01 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:50:01 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Client IP: 172.21.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 02:51:39 error: [Cake\Http\Exception\InvalidCsrfTokenException] CSRF token from either the request body or request headers did not match or is missing. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 417
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:53:39 error: [Cake\Http\Exception\InvalidCsrfTokenException] CSRF token from either the request body or request headers did not match or is missing. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 417
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:55:38 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:57:39 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 02:59:39 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 03:01:39 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 03:03:38 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:08:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:10:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:12:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:14:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:16:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:18:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:20:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:22:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:24:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:26:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:28:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:30:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:32:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:34:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:36:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:38:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:40:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:42:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:44:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:46:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:48:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:50:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:52:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:54:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:56:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 09:58:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 10:00:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 10:02:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 10:04:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 10:06:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 10:08:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 10:10:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 10:12:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 10:14:52 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 11:56:03 error: [Cake\Http\Exception\InvalidCsrfTokenException] Missing or incorrect CSRF cookie type. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php on line 390
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:170
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /ajax/ProjectHours/hoursToday/
+Referer URL: http://localhost/src/client/Invoices/index/index
+Client IP: 172.21.0.1
+
+
+2022-06-02 12:03:12 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:12 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:12 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:12 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:12 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 236]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+setcookie - [internal], line ??
+Cake\Http\ResponseEmitter::setCookie() - CORE/src/Http/ResponseEmitter.php, line 236
+Cake\Http\ResponseEmitter::emitCookies() - CORE/src/Http/ResponseEmitter.php, line 218
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 206
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:47 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:47 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:47 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:47 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:58 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:58 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:58 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:03:58 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:08 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php line=988 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:08 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:08 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:08 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:08 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 236]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.18.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+setcookie - [internal], line ??
+Cake\Http\ResponseEmitter::setCookie() - CORE/src/Http/ResponseEmitter.php, line 236
+Cake\Http\ResponseEmitter::emitCookies() - CORE/src/Http/ResponseEmitter.php, line 218
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 206
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:40 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:40 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:40 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:04:40 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:07:21 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:07:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:07:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:07:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:07:46 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php line=988 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:07:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:07:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-02 12:07:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:988) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.19.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
