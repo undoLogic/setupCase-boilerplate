@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+./composer.phar require cakedc/users -d/var/www/vhosts/website.com/www/src/
