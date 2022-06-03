@@ -51,6 +51,7 @@ return static function (RouteBuilder $routes) {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'index']);
+        $builder->connect('/login', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'login']);
 
         // language prefix
         $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;

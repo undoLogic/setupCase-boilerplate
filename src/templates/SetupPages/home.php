@@ -29,3 +29,10 @@ current lang: <?php echo $baseLang; ?>
 <?php echo $this->Html->link('Admin page', array(
     'prefix' => 'Admin',
 )); ?>
+
+
+
+
+<hr/>
+
+<?php echo $this->Html->link('Login', '/login'); ?>
