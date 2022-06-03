@@ -53,13 +53,16 @@ class SetupPagesController extends AppController
 
     function login() {
         //if not empty post
-            //verify that the password and email match the database
+            //verify that the password and email match the database ($this->User->verifyPassword($email, $password);
                 //if success
                     //store the whole user object including the relations. there are many times that it will help that we can have that data within the session to verify against
                     //only use the session build into cakePHP
                     $session = $this->request->getSession();
                     $session->write('User.name', 'Ralph 88888');
                     $name = $session->read('User.name');
+                    $user = $this->User->find('first');
+                    $session->write('User', $user);
+
 
         //else
             //show error with the new session set flash module for cakephp 4 that there was an error logging in

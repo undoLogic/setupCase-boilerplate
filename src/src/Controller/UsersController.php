@@ -55,21 +55,25 @@ class UsersController extends AppController
                     //store the whole user object including the relations. there are many times that it will help that we can have that data within the session to verify against
                     //only use the session build into cakePHP
 
-
         //else
             //show error with the new session set flash module for cakephp 4 that there was an error logging in
     }
 
     function logout() {
         //remove the session which was holding the user object
-        //show a message they were logged out
+        $session = $this->request->getSession();
+        $session->write('User', false);
+
         //redirect to the home page
     }
 
     function startReset() {
         //accept an email from a post form
             //if the email exists -> there should be a new column in the users table 'reset_token' get a random text string 8 alpha characters and add that into the users database
+                //create the token with Text::uuid()
+                    //https://book.cakephp.org/4/en/core-libraries/text.html
                 //email that token to the users email on file
+                $this->send('email@email.com', 'Reset Password');
     }
     function reset($email, $token) {
        //this will be clicked from a link in a email
