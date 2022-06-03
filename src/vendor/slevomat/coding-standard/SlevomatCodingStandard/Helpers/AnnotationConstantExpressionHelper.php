@@ -15,6 +15,7 @@ class AnnotationConstantExpressionHelper
 {
 
 	/**
+	 * @param ConstExprNode $contantExpressionNode
 	 * @return array<int, ConstFetchNode>
 	 */
 	public static function getConstantFetchNodes(ConstExprNode $contantExpressionNode): array

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -58,7 +58,7 @@ class ProxyManager
     /**
      * @return ProxyManager
      */
-    public static function getInstance(): ProxyManager
+    public static function getInstance()
     {
         if (!self::$instance) {
             self::$instance = new self();
@@ -72,7 +72,7 @@ class ProxyManager
      *
      * @return void
      */
-    public static function reset(): void
+    public static function reset()
     {
         self::$instance = null;
     }
@@ -83,7 +83,7 @@ class ProxyManager
      * @param  string       $requestUrl
      * @return RequestProxy
      */
-    public function getProxyForRequest(string $requestUrl): RequestProxy
+    public function getProxyForRequest($requestUrl)
     {
         if ($this->error) {
             throw new TransportException('Unable to use a proxy: '.$this->error);
@@ -113,7 +113,7 @@ class ProxyManager
      *
      * @return bool If false any error will be in $message
      */
-    public function isProxying(): bool
+    public function isProxying()
     {
         return $this->hasProxy;
     }
@@ -123,7 +123,7 @@ class ProxyManager
      *
      * @return string|null Safe proxy URL or an error message if setting up proxy failed or null if no proxy was configured
      */
-    public function getFormattedProxy(): ?string
+    public function getFormattedProxy()
     {
         return $this->hasProxy ? $this->info : $this->error;
     }
@@ -133,7 +133,7 @@ class ProxyManager
      *
      * @return void
      */
-    private function initProxyData(): void
+    private function initProxyData()
     {
         try {
             list($httpProxy, $httpsProxy, $noProxy) = ProxyHelper::getProxyData();
@@ -167,7 +167,7 @@ class ProxyManager
      *
      * @return non-empty-string
      */
-    private function setData($url, $scheme): string
+    private function setData($url, $scheme)
     {
         $safeProxy = Url::sanitize($url);
         $this->fullProxy[$scheme] = $url;
@@ -184,7 +184,7 @@ class ProxyManager
      * @param  string $requestUrl
      * @return bool
      */
-    private function noProxy(string $requestUrl): bool
+    private function noProxy($requestUrl)
     {
         return $this->noProxyHandler && $this->noProxyHandler->test($requestUrl);
     }

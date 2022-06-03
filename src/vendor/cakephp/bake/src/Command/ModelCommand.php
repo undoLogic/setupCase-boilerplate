@@ -127,11 +127,10 @@ class ModelCommand extends BakeCommand
     public function validateNames(TableSchemaInterface $schema, ConsoleIo $io): void
     {
         foreach ($schema->columns() as $column) {
-            if (!$this->isValidColumnName($column)) {
+            if (!is_string($column) || (!ctype_alpha($column[0]) && $column[0] !== '_')) {
                 $io->abort(sprintf(
-                    'Unable to bake model. Table column name must start with a letter or underscore and
-                    cannot contain special characters. Found `%s`.',
-                    $column
+                    'Unable to bake model. Table column names must start with a letter or underscore. Found `%s`.',
+                    (string)$column
                 ));
             }
         }
@@ -683,9 +682,14 @@ class ModelCommand extends BakeCommand
 
         $validate = [];
         $primaryKey = $schema->getPrimaryKey();
+        $foreignKeys = [];
+        if (isset($associations['belongsTo'])) {
+            foreach ($associations['belongsTo'] as $assoc) {
+                $foreignKeys[] = $assoc['foreignKey'];
+            }
+        }
         foreach ($fields as $fieldName) {
-            // Skip primary key
-            if (in_array($fieldName, $primaryKey, true)) {
+            if (in_array($fieldName, $foreignKeys, true)) {
                 continue;
             }
             $field = $schema->getColumn($fieldName);
@@ -704,7 +708,7 @@ class ModelCommand extends BakeCommand
      * @param \Cake\Database\Schema\TableSchemaInterface $schema The table schema for the current field.
      * @param string $fieldName Name of field to be validated.
      * @param array $metaData metadata for field
-     * @param array<string> $primaryKey The primary key field. Unused because PK validation is skipped
+     * @param array $primaryKey The primary key field
      * @return array Array of validation for the field.
      */
     public function fieldValidation(
@@ -770,7 +774,12 @@ class ModelCommand extends BakeCommand
             ];
         }
 
-        if ($metaData['null'] === true) {
+        if (in_array($fieldName, $primaryKey, true)) {
+            $validation['allowEmpty'] = [
+                'rule' => $this->getEmptyMethod($fieldName, $metaData),
+                'args' => [null, 'create'],
+            ];
+        } elseif ($metaData['null'] === true) {
             $validation['allowEmpty'] = [
                 'rule' => $this->getEmptyMethod($fieldName, $metaData),
                 'args' => [],
@@ -1008,7 +1017,7 @@ class ModelCommand extends BakeCommand
 
         $path = $this->getPath($args);
         $filename = $path . 'Entity' . DS . $name . '.php';
-        $io->out("\n" . sprintf('Baking entity class for %s...', $name), 1, ConsoleIo::NORMAL);
+        $io->out("\n" . sprintf('Baking entity class for %s...', $name), 1, ConsoleIo::QUIET);
         $io->createFile($filename, $out, $args->getOption('force'));
 
         $emptyFile = $path . 'Entity' . DS . '.gitkeep';
@@ -1060,7 +1069,7 @@ class ModelCommand extends BakeCommand
 
         $path = $this->getPath($args);
         $filename = $path . 'Table' . DS . $name . 'Table.php';
-        $io->out("\n" . sprintf('Baking table class for %s...', $name), 1, ConsoleIo::NORMAL);
+        $io->out("\n" . sprintf('Baking table class for %s...', $name), 1, ConsoleIo::QUIET);
         $io->createFile($filename, $out, $args->getOption('force'));
 
         // Work around composer caching that classes/files do not exist.

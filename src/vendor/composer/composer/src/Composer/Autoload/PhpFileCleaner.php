@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -51,7 +51,7 @@ class PhpFileCleaner
      * @param string[] $types
      * @return void
      */
-    public static function setTypeConfig(array $types): void
+    public static function setTypeConfig($types)
     {
         foreach ($types as $type) {
             self::$typeConfig[$type[0]] = array(
@@ -68,7 +68,7 @@ class PhpFileCleaner
      * @param string $contents
      * @param int $maxMatches
      */
-    public function __construct(string $contents, int $maxMatches)
+    public function __construct($contents, $maxMatches)
     {
         $this->contents = $contents;
         $this->len = \strlen($this->contents);
@@ -78,7 +78,7 @@ class PhpFileCleaner
     /**
      * @return string
      */
-    public function clean(): string
+    public function clean()
     {
         $clean = '';
 
@@ -152,7 +152,7 @@ class PhpFileCleaner
     /**
      * @return void
      */
-    private function skipToPhp(): void
+    private function skipToPhp()
     {
         while ($this->index < $this->len) {
             if ($this->contents[$this->index] === '<' && $this->peek('?')) {
@@ -168,7 +168,7 @@ class PhpFileCleaner
      * @param string $delimiter
      * @return void
      */
-    private function skipString(string $delimiter): void
+    private function skipString($delimiter)
     {
         $this->index += 1;
         while ($this->index < $this->len) {
@@ -187,7 +187,7 @@ class PhpFileCleaner
     /**
      * @return void
      */
-    private function skipComment(): void
+    private function skipComment()
     {
         $this->index += 2;
         while ($this->index < $this->len) {
@@ -203,7 +203,7 @@ class PhpFileCleaner
     /**
      * @return void
      */
-    private function skipToNewline(): void
+    private function skipToNewline()
     {
         while ($this->index < $this->len) {
             if ($this->contents[$this->index] === "\r" || $this->contents[$this->index] === "\n") {
@@ -217,7 +217,7 @@ class PhpFileCleaner
      * @param string $delimiter
      * @return void
      */
-    private function skipHeredoc(string $delimiter): void
+    private function skipHeredoc($delimiter)
     {
         $firstDelimiterChar = $delimiter[0];
         $delimiterLength = \strlen($delimiter);
@@ -260,17 +260,17 @@ class PhpFileCleaner
      * @param string $char
      * @return bool
      */
-    private function peek(string $char): bool
+    private function peek($char)
     {
         return $this->index + 1 < $this->len && $this->contents[$this->index + 1] === $char;
     }
 
     /**
      * @param non-empty-string $regex
-     * @param null|array<int, string> $match
+     * @param ?array<int, string> $match
      * @return bool
      */
-    private function match($regex, array &$match = null): bool
+    private function match($regex, array &$match = null)
     {
         return Preg::isMatch($regex, $this->contents, $match, 0, $this->index);
     }

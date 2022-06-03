@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -42,7 +42,7 @@ class MultiConflictRule extends Rule
     /**
      * @return int[]
      */
-    public function getLiterals(): array
+    public function getLiterals()
     {
         return $this->literals;
     }
@@ -65,7 +65,7 @@ class MultiConflictRule extends Rule
      * @param  Rule $rule The rule to check against
      * @return bool Whether the rules are equal
      */
-    public function equals(Rule $rule): bool
+    public function equals(Rule $rule)
     {
         if ($rule instanceof MultiConflictRule) {
             return $this->literals === $rule->getLiterals();
@@ -77,7 +77,7 @@ class MultiConflictRule extends Rule
     /**
      * @return bool
      */
-    public function isAssertion(): bool
+    public function isAssertion()
     {
         return false;
     }
@@ -86,7 +86,7 @@ class MultiConflictRule extends Rule
      * @return never
      * @throws \RuntimeException
      */
-    public function disable(): void
+    public function disable()
     {
         throw new \RuntimeException("Disabling multi conflict rules is not possible. Please contact composer at https://github.com/composer/composer to let us debug what lead to this situation.");
     }
@@ -96,7 +96,7 @@ class MultiConflictRule extends Rule
      *
      * @return string
      */
-    public function __toString(): string
+    public function __toString()
     {
         // TODO multi conflict?
         $result = $this->isDisabled() ? 'disabled(multi(' : '(multi(';

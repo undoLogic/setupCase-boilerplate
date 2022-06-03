@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -69,7 +69,7 @@ abstract class BaseIO implements IOInterface
     /**
      * @inheritDoc
      */
-    public function writeRaw($messages, bool $newline = true, int $verbosity = self::NORMAL)
+    public function writeRaw($messages, $newline = true, $verbosity = self::NORMAL)
     {
         $this->write($messages, $newline, $verbosity);
     }
@@ -77,7 +77,7 @@ abstract class BaseIO implements IOInterface
     /**
      * @inheritDoc
      */
-    public function writeErrorRaw($messages, bool $newline = true, int $verbosity = self::NORMAL)
+    public function writeErrorRaw($messages, $newline = true, $verbosity = self::NORMAL)
     {
         $this->writeError($messages, $newline, $verbosity);
     }
@@ -91,7 +91,7 @@ abstract class BaseIO implements IOInterface
      *
      * @return void
      */
-    protected function checkAndSetAuthentication(string $repositoryName, string $username, string $password = null)
+    protected function checkAndSetAuthentication($repositoryName, $username, $password = null)
     {
         if ($this->hasAuthentication($repositoryName)) {
             $auth = $this->getAuthentication($repositoryName);
@@ -159,50 +159,75 @@ abstract class BaseIO implements IOInterface
         ProcessExecutor::setTimeout((int) $config->get('process-timeout'));
     }
 
-    public function emergency($message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function emergency($message, array $context = array())
     {
         $this->log(LogLevel::EMERGENCY, $message, $context);
     }
 
-    public function alert($message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function alert($message, array $context = array())
     {
         $this->log(LogLevel::ALERT, $message, $context);
     }
 
-    public function critical($message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function critical($message, array $context = array())
     {
         $this->log(LogLevel::CRITICAL, $message, $context);
     }
 
-    public function error($message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function error($message, array $context = array())
     {
         $this->log(LogLevel::ERROR, $message, $context);
     }
 
-    public function warning($message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function warning($message, array $context = array())
     {
         $this->log(LogLevel::WARNING, $message, $context);
     }
 
-    public function notice($message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function notice($message, array $context = array())
     {
         $this->log(LogLevel::NOTICE, $message, $context);
     }
 
-    public function info($message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function info($message, array $context = array())
     {
         $this->log(LogLevel::INFO, $message, $context);
     }
 
-    public function debug($message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function debug($message, array $context = array())
     {
         $this->log(LogLevel::DEBUG, $message, $context);
     }
 
-    public function log($level, $message, array $context = array()): void
+    /**
+     * @return void
+     */
+    public function log($level, $message, array $context = array())
     {
-        $message = (string) $message;
-
         if (in_array($level, array(LogLevel::EMERGENCY, LogLevel::ALERT, LogLevel::CRITICAL, LogLevel::ERROR))) {
             $this->writeError('<error>'.$message.'</error>');
         } elseif ($level === LogLevel::WARNING) {

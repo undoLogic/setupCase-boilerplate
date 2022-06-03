@@ -31,6 +31,7 @@ class DisallowMixedTypeHintSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $docCommentOpenPointer
 	 */
 	public function process(File $phpcsFile, $docCommentOpenPointer): void

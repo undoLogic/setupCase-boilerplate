@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -73,7 +73,7 @@ class ArtifactRepository extends ArrayRepository implements ConfigurableReposito
      *
      * @return void
      */
-    private function scanDirectory(string $path): void
+    private function scanDirectory($path)
     {
         $io = $this->io;
 
@@ -102,7 +102,7 @@ class ArtifactRepository extends ArrayRepository implements ConfigurableReposito
     /**
      * @return ?BasePackage
      */
-    private function getComposerInformation(\SplFileInfo $file): ?BasePackage
+    private function getComposerInformation(\SplFileInfo $file)
     {
         $json = null;
         $fileType = null;

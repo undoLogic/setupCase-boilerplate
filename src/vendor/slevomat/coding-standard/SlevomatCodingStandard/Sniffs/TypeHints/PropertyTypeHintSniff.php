@@ -92,6 +92,7 @@ class PropertyTypeHintSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $visibilityPointer
 	 */
 	public function process(File $phpcsFile, $visibilityPointer): void
@@ -148,6 +149,10 @@ class PropertyTypeHintSniff implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $propertyPointer
+	 * @param TypeHint|null $propertyTypeHint
+	 * @param VariableAnnotation|null $propertyAnnotation
 	 * @param VariableAnnotation[] $prefixedPropertyAnnotations
 	 */
 	private function checkTypeHint(
@@ -380,6 +385,10 @@ class PropertyTypeHintSniff implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $propertyPointer
+	 * @param TypeHint|null $propertyTypeHint
+	 * @param VariableAnnotation|null $propertyAnnotation
 	 * @param VariableAnnotation[] $prefixedPropertyAnnotations
 	 */
 	private function checkTraversableTypeHintSpecification(
@@ -419,6 +428,10 @@ class PropertyTypeHintSniff implements Sniff
 		}
 
 		$typeNode = $propertyAnnotation->getType();
+
+		if (TypeHintHelper::isTypeDefinedInAnnotation($phpcsFile, $propertyPointer, (string) $typeNode)) {
+			return;
+		}
 
 		if (
 			!$hasTraversableTypeHint
@@ -614,6 +627,8 @@ class PropertyTypeHintSniff implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $propertyPointer
 	 * @return VariableAnnotation[]
 	 */
 	private function getValidPrefixedAnnotations(File $phpcsFile, int $propertyPointer): array

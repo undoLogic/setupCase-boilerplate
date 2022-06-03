@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -22,7 +22,7 @@ class Tar
      *
      * @return string|null
      */
-    public static function getComposerJson(string $pathToArchive): ?string
+    public static function getComposerJson($pathToArchive)
     {
         $phar = new \PharData($pathToArchive);
 
@@ -40,7 +40,7 @@ class Tar
      *
      * @return string
      */
-    private static function extractComposerJsonFromFolder(\PharData $phar): string
+    private static function extractComposerJsonFromFolder(\PharData $phar)
     {
         if (isset($phar['composer.json'])) {
             return $phar['composer.json']->getContent();

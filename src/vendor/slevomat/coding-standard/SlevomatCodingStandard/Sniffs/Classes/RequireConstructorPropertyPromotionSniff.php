@@ -60,6 +60,7 @@ class RequireConstructorPropertyPromotionSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $functionPointer
 	 */
 	public function process(File $phpcsFile, $functionPointer): void
@@ -271,6 +272,8 @@ class RequireConstructorPropertyPromotionSniff implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $functionPointer
 	 * @return int[]
 	 */
 	private function getParameterPointers(File $phpcsFile, int $functionPointer): array
@@ -285,6 +288,8 @@ class RequireConstructorPropertyPromotionSniff implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $classPointer
 	 * @return int[]
 	 */
 	private function getPropertyPointers(File $phpcsFile, int $classPointer): array

@@ -39,6 +39,7 @@ class ClassConstantVisibilitySniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $constantPointer
 	 */
 	public function process(File $phpcsFile, $constantPointer): void

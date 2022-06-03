@@ -38,6 +38,7 @@ class UselessIfConditionWithReturnSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $ifPointer
 	 */
 	public function process(File $phpcsFile, $ifPointer): void
@@ -108,12 +109,8 @@ class UselessIfConditionWithReturnSniff implements Sniff
 			}
 			$phpcsFile->fixer->endChangeset();
 		} else {
+			/** @var int $returnPointer */
 			$returnPointer = TokenHelper::findNextEffective($phpcsFile, $tokens[$ifPointer]['scope_closer'] + 1);
-
-			if ($returnPointer === null) {
-				return;
-			}
-
 			if ($tokens[$returnPointer]['code'] !== T_RETURN) {
 				return;
 			}

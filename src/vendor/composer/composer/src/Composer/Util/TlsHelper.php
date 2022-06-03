@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -17,7 +17,6 @@ use Composer\Pcre\Preg;
 
 /**
  * @author Chris Smith <chris@cs278.org>
- * @deprecated Use composer/ca-bundle and composer/composer 2.2 if you still need PHP 5 compatibility, this class will be removed in Composer 3.0
  */
 final class TlsHelper
 {
@@ -30,7 +29,7 @@ final class TlsHelper
      *
      * @return bool
      */
-    public static function checkCertificateHost($certificate, string $hostname, string &$cn = null): bool
+    public static function checkCertificateHost($certificate, $hostname, &$cn = null)
     {
         $names = self::getCertificateNames($certificate);
 
@@ -61,7 +60,7 @@ final class TlsHelper
      *
      * @return array{cn: string, san: string[]}|null
      */
-    public static function getCertificateNames($certificate): ?array
+    public static function getCertificateNames($certificate)
     {
         if (is_array($certificate)) {
             $info = $certificate;
@@ -78,7 +77,7 @@ final class TlsHelper
 
         if (isset($info['extensions']['subjectAltName'])) {
             $subjectAltNames = Preg::split('{\s*,\s*}', $info['extensions']['subjectAltName']);
-            $subjectAltNames = array_filter(array_map(function ($name): ?string {
+            $subjectAltNames = array_filter(array_map(function ($name) {
                 if (0 === strpos($name, 'DNS:')) {
                     return strtolower(ltrim(substr($name, 4)));
                 }
@@ -136,13 +135,9 @@ final class TlsHelper
      * @param string $certificate
      * @return string
      */
-    public static function getCertificateFingerprint(string $certificate): string
+    public static function getCertificateFingerprint($certificate)
     {
-        $pubkey = openssl_get_publickey($certificate);
-        if ($pubkey === false) {
-            throw new \RuntimeException('Failed to retrieve the public key from certificate');
-        }
-        $pubkeydetails = openssl_pkey_get_details($pubkey);
+        $pubkeydetails = openssl_pkey_get_details(openssl_get_publickey($certificate));
         $pubkeypem = $pubkeydetails['key'];
         //Convert PEM to DER before SHA1'ing
         $start = '-----BEGIN PUBLIC KEY-----';
@@ -161,7 +156,7 @@ final class TlsHelper
      *
      * @return bool
      */
-    public static function isOpensslParseSafe(): bool
+    public static function isOpensslParseSafe()
     {
         return CaBundle::isOpensslParseSafe();
     }
@@ -173,13 +168,13 @@ final class TlsHelper
      *
      * @return callable|null
      */
-    private static function certNameMatcher(string $certName): ?callable
+    private static function certNameMatcher($certName)
     {
         $wildcards = substr_count($certName, '*');
 
         if (0 === $wildcards) {
             // Literal match.
-            return function ($hostname) use ($certName): bool {
+            return function ($hostname) use ($certName) {
                 return $hostname === $certName;
             };
         }
@@ -203,7 +198,7 @@ final class TlsHelper
             $wildcardRegex = str_replace('\\*', '[a-z0-9-]+', $wildcardRegex);
             $wildcardRegex = "{^{$wildcardRegex}$}";
 
-            return function ($hostname) use ($wildcardRegex): bool {
+            return function ($hostname) use ($wildcardRegex) {
                 return Preg::isMatch($wildcardRegex, $hostname);
             };
         }

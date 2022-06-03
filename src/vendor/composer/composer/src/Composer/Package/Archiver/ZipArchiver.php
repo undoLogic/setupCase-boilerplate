@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -28,7 +28,7 @@ class ZipArchiver implements ArchiverInterface
     /**
      * @inheritDoc
      */
-    public function archive(string $sources, string $target, string $format, array $excludes = array(), bool $ignoreFilters = false): string
+    public function archive($sources, $target, $format, array $excludes = array(), $ignoreFilters = false)
     {
         $fs = new Filesystem();
         $sources = $fs->normalizePath($sources);
@@ -51,9 +51,10 @@ class ZipArchiver implements ArchiverInterface
                 }
 
                 /**
+                 * ZipArchive::setExternalAttributesName is available from >= PHP 5.6
                  * setExternalAttributesName() is only available with libzip 0.11.2 or above
                  */
-                if (method_exists($zip, 'setExternalAttributesName')) {
+                if (PHP_VERSION_ID >= 50600 && method_exists($zip, 'setExternalAttributesName')) {
                     $perms = fileperms($filepath);
 
                     /**
@@ -78,7 +79,7 @@ class ZipArchiver implements ArchiverInterface
     /**
      * @inheritDoc
      */
-    public function supports(string $format, ?string $sourceType): bool
+    public function supports($format, $sourceType)
     {
         return isset(static::$formats[$format]) && $this->compressionAvailable();
     }
@@ -86,7 +87,7 @@ class ZipArchiver implements ArchiverInterface
     /**
      * @return bool
      */
-    private function compressionAvailable(): bool
+    private function compressionAvailable()
     {
         return class_exists('ZipArchive');
     }

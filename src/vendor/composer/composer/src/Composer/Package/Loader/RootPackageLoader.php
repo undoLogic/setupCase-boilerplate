@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -61,13 +61,15 @@ class RootPackageLoader extends ArrayLoader
     /**
      * @inheritDoc
      *
+     * @template PackageClass of RootPackage
+     *
      * @param string|null $cwd
      *
      * @return RootPackage|RootAliasPackage
      *
-     * @phpstan-param class-string<RootPackage> $class
+     * @phpstan-param class-string<PackageClass> $class
      */
-    public function load(array $config, string $class = 'Composer\Package\RootPackage', ?string $cwd = null): BasePackage
+    public function load(array $config, $class = 'Composer\Package\RootPackage', $cwd = null)
     {
         if ($class !== 'Composer\Package\RootPackage') {
             trigger_error('The $class arg is deprecated, please reach out to Composer maintainers ASAP if you still need this.', E_USER_DEPRECATED);
@@ -86,7 +88,7 @@ class RootPackageLoader extends ArrayLoader
             if (Platform::getEnv('COMPOSER_ROOT_VERSION')) {
                 $config['version'] = Platform::getEnv('COMPOSER_ROOT_VERSION');
             } else {
-                $versionData = $this->versionGuesser->guessVersion($config, $cwd ?? Platform::getCwd(true));
+                $versionData = $this->versionGuesser->guessVersion($config, $cwd ?: getcwd());
                 if ($versionData) {
                     $config['version'] = $versionData['pretty_version'];
                     $config['version_normalized'] = $versionData['version'];
@@ -192,7 +194,7 @@ class RootPackageLoader extends ArrayLoader
      *
      * @return list<array{package: string, version: string, alias: string, alias_normalized: string}>
      */
-    private function extractAliases(array $requires, array $aliases): array
+    private function extractAliases(array $requires, array $aliases)
     {
         foreach ($requires as $reqName => $reqVersion) {
             if (Preg::isMatch('{^([^,\s#]+)(?:#[^ ]+)? +as +([^,\s]+)$}', $reqVersion, $match)) {
@@ -222,7 +224,7 @@ class RootPackageLoader extends ArrayLoader
      * @phpstan-param array<string, BasePackage::STABILITY_*> $stabilityFlags
      * @phpstan-return array<string, BasePackage::STABILITY_*>
      */
-    public static function extractStabilityFlags(array $requires, string $minimumStability, array $stabilityFlags): array
+    public static function extractStabilityFlags(array $requires, $minimumStability, array $stabilityFlags)
     {
         $stabilities = BasePackage::$stabilities;
         /** @var int $minimumStability */
@@ -240,7 +242,7 @@ class RootPackageLoader extends ArrayLoader
             }
 
             // parse explicit stability flags to the most unstable
-            $matched = false;
+            $match = false;
             foreach ($constraints as $constraint) {
                 if (Preg::isMatch('{^[^@]*?@('.implode('|', array_keys($stabilities)).')$}i', $constraint, $match)) {
                     $name = strtolower($reqName);
@@ -250,11 +252,11 @@ class RootPackageLoader extends ArrayLoader
                         continue;
                     }
                     $stabilityFlags[$name] = $stability;
-                    $matched = true;
+                    $match = true;
                 }
             }
 
-            if ($matched) {
+            if ($match) {
                 continue;
             }
 
@@ -284,7 +286,7 @@ class RootPackageLoader extends ArrayLoader
      *
      * @return array<string, string>
      */
-    public static function extractReferences(array $requires, array $references): array
+    public static function extractReferences(array $requires, array $references)
     {
         foreach ($requires as $reqName => $reqVersion) {
             $reqVersion = Preg::replace('{^([^,\s@]+) as .+$}', '$1', $reqVersion);

@@ -49,6 +49,7 @@ class EmptyLinesAroundClassBracesSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $stackPointer
 	 */
 	public function process(File $phpcsFile, $stackPointer): void

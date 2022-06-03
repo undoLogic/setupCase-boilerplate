@@ -47,6 +47,7 @@ abstract class AbstractPropertyAndConstantSpacing implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $pointer
 	 */
 	public function process(File $phpcsFile, $pointer): int

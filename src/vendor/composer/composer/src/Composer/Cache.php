@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -48,7 +48,7 @@ class Cache
      * @param Filesystem  $filesystem optional filesystem instance
      * @param bool        $readOnly   whether the cache is in readOnly mode
      */
-    public function __construct(IOInterface $io, string $cacheDir, string $allowlist = 'a-z0-9.', Filesystem $filesystem = null, bool $readOnly = false)
+    public function __construct(IOInterface $io, $cacheDir, $allowlist = 'a-z0-9.', Filesystem $filesystem = null, $readOnly = false)
     {
         $this->io = $io;
         $this->root = rtrim($cacheDir, '/\\') . '/';
@@ -66,7 +66,7 @@ class Cache
      *
      * @return void
      */
-    public function setReadOnly(bool $readOnly)
+    public function setReadOnly($readOnly)
     {
         $this->readOnly = (bool) $readOnly;
     }
@@ -84,7 +84,7 @@ class Cache
      *
      * @return bool
      */
-    public static function isUsable(string $path)
+    public static function isUsable($path)
     {
         return !Preg::isMatch('{(^|[\\\\/])(\$null|nul|NUL|/dev/null)([\\\\/]|$)}', $path);
     }
@@ -122,7 +122,7 @@ class Cache
      *
      * @return string|false
      */
-    public function read(string $file)
+    public function read($file)
     {
         if ($this->isEnabled()) {
             $file = Preg::replace('{[^'.$this->allowlist.']}i', '-', $file);
@@ -142,7 +142,7 @@ class Cache
      *
      * @return bool
      */
-    public function write(string $file, string $contents)
+    public function write($file, $contents)
     {
         if ($this->isEnabled() && !$this->readOnly) {
             $file = Preg::replace('{[^'.$this->allowlist.']}i', '-', $file);
@@ -186,7 +186,7 @@ class Cache
      *
      * @return bool
      */
-    public function copyFrom(string $file, string $source)
+    public function copyFrom($file, $source)
     {
         if ($this->isEnabled() && !$this->readOnly) {
             $file = Preg::replace('{[^'.$this->allowlist.']}i', '-', $file);
@@ -212,13 +212,13 @@ class Cache
      *
      * @return bool
      */
-    public function copyTo(string $file, string $target)
+    public function copyTo($file, $target)
     {
         if ($this->isEnabled()) {
             $file = Preg::replace('{[^'.$this->allowlist.']}i', '-', $file);
             if (file_exists($this->root . $file)) {
                 try {
-                    touch($this->root . $file, (int) filemtime($this->root . $file), time());
+                    touch($this->root . $file, filemtime($this->root . $file), time());
                 } catch (\ErrorException $e) {
                     // fallback in case the above failed due to incorrect ownership
                     // see https://github.com/composer/composer/issues/4070
@@ -248,7 +248,11 @@ class Cache
             return false;
         }
 
-        return !random_int(0, 50);
+        if (PHP_VERSION_ID > 70000) {
+            return !random_int(0, 50);
+        }
+
+        return !mt_rand(0, 50);
     }
 
     /**
@@ -256,7 +260,7 @@ class Cache
      *
      * @return bool
      */
-    public function remove(string $file)
+    public function remove($file)
     {
         if ($this->isEnabled()) {
             $file = Preg::replace('{[^'.$this->allowlist.']}i', '-', $file);
@@ -287,7 +291,7 @@ class Cache
      * @return int|false
      * @phpstan-return int<0, max>|false
      */
-    public function getAge(string $file)
+    public function getAge($file)
     {
         if ($this->isEnabled()) {
             $file = Preg::replace('{[^'.$this->allowlist.']}i', '-', $file);
@@ -305,7 +309,7 @@ class Cache
      *
      * @return bool
      */
-    public function gc(int $ttl, int $maxSize)
+    public function gc($ttl, $maxSize)
     {
         if ($this->isEnabled()) {
             $expire = new \DateTime();
@@ -340,7 +344,7 @@ class Cache
      *
      * @return string|false
      */
-    public function sha1(string $file)
+    public function sha1($file)
     {
         if ($this->isEnabled()) {
             $file = Preg::replace('{[^'.$this->allowlist.']}i', '-', $file);
@@ -357,7 +361,7 @@ class Cache
      *
      * @return string|false
      */
-    public function sha256(string $file)
+    public function sha256($file)
     {
         if ($this->isEnabled()) {
             $file = Preg::replace('{[^'.$this->allowlist.']}i', '-', $file);

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -48,7 +48,7 @@ class CommandEvent extends Event
      * @param mixed[]         $args        Arguments passed by the user
      * @param mixed[]         $flags       Optional flags to pass data not as argument
      */
-    public function __construct(string $name, string $commandName, InputInterface $input, OutputInterface $output, array $args = array(), array $flags = array())
+    public function __construct($name, $commandName, $input, $output, array $args = array(), array $flags = array())
     {
         parent::__construct($name, $args, $flags);
         $this->commandName = $commandName;
@@ -61,7 +61,7 @@ class CommandEvent extends Event
      *
      * @return InputInterface
      */
-    public function getInput(): InputInterface
+    public function getInput()
     {
         return $this->input;
     }
@@ -71,7 +71,7 @@ class CommandEvent extends Event
      *
      * @return OutputInterface
      */
-    public function getOutput(): OutputInterface
+    public function getOutput()
     {
         return $this->output;
     }
@@ -81,7 +81,7 @@ class CommandEvent extends Event
      *
      * @return string
      */
-    public function getCommandName(): string
+    public function getCommandName()
     {
         return $this->commandName;
     }

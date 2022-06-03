@@ -82,6 +82,7 @@ class TypeHintHelper
 	}
 
 	/**
+	 * @param string $typeHint
 	 * @return string[]
 	 */
 	public static function convertUnofficialUnionTypeHintToOfficialTypeHints(string $typeHint): array
@@ -178,7 +179,9 @@ class TypeHintHelper
 	}
 
 	/**
+	 * @param string $type
 	 * @param string[] $traversableTypeHints
+	 * @return bool
 	 */
 	public static function isTraversableType(string $type, array $traversableTypeHints): bool
 	{

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -27,7 +27,7 @@ class ProhibitsCommand extends BaseDependencyCommand
      *
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('prohibits')
@@ -51,7 +51,12 @@ EOT
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    /**
+     * Execute the function.
+     *
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         return parent::doExecute($input, $output, true);
     }

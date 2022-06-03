@@ -426,7 +426,6 @@ class BelongsToMany extends Association
 
         if (!$junction->hasAssociation($sAlias)) {
             $junction->belongsTo($sAlias, [
-                'bindingKey' => $this->getBindingKey(),
                 'foreignKey' => $this->getForeignKey(),
                 'targetTable' => $source,
             ]);

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -54,7 +54,7 @@ class GitHub
      * @param  string $originUrl The host this GitHub instance is located at
      * @return bool   true on success
      */
-    public function authorizeOAuth(string $originUrl): bool
+    public function authorizeOAuth($originUrl)
     {
         if (!in_array($originUrl, $this->config->get('github-domains'))) {
             return false;
@@ -79,7 +79,7 @@ class GitHub
      * @throws TransportException|\Exception
      * @return bool                          true on success
      */
-    public function authorizeOAuthInteractively(string $originUrl, string $message = null): bool
+    public function authorizeOAuthInteractively($originUrl, $message = null)
     {
         if ($message) {
             $this->io->writeError($message);
@@ -145,7 +145,7 @@ class GitHub
      *
      * @return array{limit: int|'?', reset: string}
      */
-    public function getRateLimit(array $headers): array
+    public function getRateLimit(array $headers)
     {
         $rateLimit = array(
             'limit' => '?',
@@ -178,7 +178,7 @@ class GitHub
      *
      * @return string|null
      */
-    public function getSsoUrl(array $headers): ?string
+    public function getSsoUrl(array $headers)
     {
         foreach ($headers as $header) {
             $header = trim($header);
@@ -200,7 +200,7 @@ class GitHub
      *
      * @return bool
      */
-    public function isRateLimited(array $headers): bool
+    public function isRateLimited(array $headers)
     {
         foreach ($headers as $header) {
             if (Preg::isMatch('{^X-RateLimit-Remaining: *0$}i', trim($header))) {
@@ -220,7 +220,7 @@ class GitHub
      *
      * @return bool
      */
-    public function requiresSso(array $headers): bool
+    public function requiresSso(array $headers)
     {
         foreach ($headers as $header) {
             if (Preg::isMatch('{^X-GitHub-SSO: required}i', trim($header))) {

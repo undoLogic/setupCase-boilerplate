@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -11,8 +11,6 @@
  */
 
 namespace Composer\Package\Comparer;
-
-use Composer\Util\Platform;
 
 /**
  * class Comparer
@@ -33,7 +31,7 @@ class Comparer
      *
      * @return void
      */
-    public function setSource(string $source): void
+    public function setSource($source)
     {
         $this->source = $source;
     }
@@ -43,17 +41,18 @@ class Comparer
      *
      * @return void
      */
-    public function setUpdate(string $update): void
+    public function setUpdate($update)
     {
         $this->update = $update;
     }
 
     /**
+     * @param bool $toString
      * @param bool $explicated
      *
-     * @return array{changed?: string[], removed?: string[], added?: string[]}|false false if no change
+     * @return array{changed?: string[], removed?: string[], added?: string[]}|string|false false if no change, string only if $toString is true
      */
-    public function getChanged(bool $explicated = false)
+    public function getChanged($toString = false, $explicated = false)
     {
         $changed = $this->changed;
         if (!count($changed)) {
@@ -67,40 +66,28 @@ class Comparer
             }
         }
 
-        return $changed;
-    }
-
-    /**
-     * @param bool $explicated
-     *
-     * @return string empty string if no changes
-     */
-    public function getChangedAsString(bool $toString = false, bool $explicated = false): string
-    {
-        $changed = $this->getChanged($explicated);
-        if (false === $changed) {
-            return '';
-        }
-
-        $strings = array();
-        foreach ($changed as $sectionKey => $itemSection) {
-            foreach ($itemSection as $itemKey => $item) {
-                $strings[] = $item."\r\n";
+        if ($toString) {
+            $strings = array();
+            foreach ($changed as $sectionKey => $itemSection) {
+                foreach ($itemSection as $itemKey => $item) {
+                    $strings[] = $item."\r\n";
+                }
             }
+            $changed = implode("\r\n", $strings);
         }
 
-        return trim(implode("\r\n", $strings));
+        return $changed;
     }
 
     /**
      * @return void
      */
-    public function doCompare(): void
+    public function doCompare()
     {
         $source = array();
         $destination = array();
         $this->changed = array();
-        $currentDirectory = Platform::getCwd();
+        $currentDirectory = getcwd();
         chdir($this->source);
         $source = $this->doTree('.', $source);
         if (!is_array($source)) {
@@ -135,11 +122,11 @@ class Comparer
 
     /**
      * @param string $dir
-     * @param mixed[] $array
+     * @param mixed $array
      *
      * @return array<string, array<string, string|false>>|false
      */
-    private function doTree(string $dir, array &$array)
+    private function doTree($dir, &$array)
     {
         if ($dh = opendir($dir)) {
             while ($file = readdir($dh)) {

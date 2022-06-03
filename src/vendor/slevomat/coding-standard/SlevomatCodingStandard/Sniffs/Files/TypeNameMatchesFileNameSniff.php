@@ -71,6 +71,7 @@ class TypeNameMatchesFileNameSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $typePointer
 	 */
 	public function process(File $phpcsFile, $typePointer): void

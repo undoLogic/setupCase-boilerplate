@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -29,7 +29,7 @@ class GlobalCommand extends BaseCommand
     /**
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('global')
@@ -62,9 +62,10 @@ EOT
     }
 
     /**
+     * @return int|void
      * @throws \Symfony\Component\Console\Exception\ExceptionInterface
      */
-    public function run(InputInterface $input, OutputInterface $output): int
+    public function run(InputInterface $input, OutputInterface $output)
     {
         if (!method_exists($input, '__toString')) {
             throw new \LogicException('Expected an Input instance that is stringable, got '.get_class($input));
@@ -121,7 +122,7 @@ EOT
     /**
      * @inheritDoc
      */
-    public function isProxyCommand(): bool
+    public function isProxyCommand()
     {
         return true;
     }

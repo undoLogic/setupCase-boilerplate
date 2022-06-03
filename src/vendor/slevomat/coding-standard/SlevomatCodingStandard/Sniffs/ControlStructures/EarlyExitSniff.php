@@ -61,6 +61,7 @@ class EarlyExitSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $pointer
 	 */
 	public function process(File $phpcsFile, $pointer): void
@@ -398,6 +399,8 @@ class EarlyExitSniff implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $scopePointer
 	 * @return int[]
 	 */
 	private function getScopeCodePointers(File $phpcsFile, int $scopePointer): array
@@ -408,6 +411,7 @@ class EarlyExitSniff implements Sniff
 
 	/**
 	 * @param string|int $code
+	 * @return string
 	 */
 	private function getEarlyExitCode($code): string
 	{
@@ -452,6 +456,8 @@ class EarlyExitSniff implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $conditionPointer
 	 * @return int[]
 	 */
 	private function getAllConditionsPointers(File $phpcsFile, int $conditionPointer): array

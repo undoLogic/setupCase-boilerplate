@@ -56,6 +56,8 @@ class ReferencedNameHelper
 {
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $openTagPointer
 	 * @return ReferencedName[]
 	 */
 	public static function getAllReferencedNames(File $phpcsFile, int $openTagPointer): array
@@ -68,6 +70,8 @@ class ReferencedNameHelper
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $openTagPointer
 	 * @return ReferencedName[]
 	 */
 	public static function getAllReferencedNamesInAttributes(File $phpcsFile, int $openTagPointer): array
@@ -120,6 +124,8 @@ class ReferencedNameHelper
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $openTagPointer
 	 * @return ReferencedName[]
 	 */
 	private static function createAllReferencedNames(File $phpcsFile, int $openTagPointer): array
@@ -384,6 +390,8 @@ class ReferencedNameHelper
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $openTagPointer
 	 * @return ReferencedName[]
 	 */
 	private static function createAllReferencedNamesInAttributes(File $phpcsFile, int $openTagPointer): array
@@ -454,6 +462,7 @@ class ReferencedNameHelper
 
 	/**
 	 * @param int|string $code
+	 * @return bool
 	 */
 	private static function isNeedParsedContent($code): bool
 	{
@@ -461,6 +470,7 @@ class ReferencedNameHelper
 	}
 
 	/**
+	 * @param string $content
 	 * @return string[]
 	 */
 	private static function getReferencedNamesFromString(string $content): array

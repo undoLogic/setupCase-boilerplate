@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -76,7 +76,7 @@ class PrePoolCreateEvent extends Event
      * @phpstan-param array<string, array<string, array{alias: string, alias_normalized: string}>> $rootAliases
      * @phpstan-param array<string, string> $rootReferences
      */
-    public function __construct(string $name, array $repositories, Request $request, array $acceptableStabilities, array $stabilityFlags, array $rootAliases, array $rootReferences, array $packages, array $unacceptableFixedPackages)
+    public function __construct($name, array $repositories, Request $request, array $acceptableStabilities, array $stabilityFlags, array $rootAliases, array $rootReferences, array $packages, array $unacceptableFixedPackages)
     {
         parent::__construct($name);
 
@@ -93,7 +93,7 @@ class PrePoolCreateEvent extends Event
     /**
      * @return RepositoryInterface[]
      */
-    public function getRepositories(): array
+    public function getRepositories()
     {
         return $this->repositories;
     }
@@ -101,7 +101,7 @@ class PrePoolCreateEvent extends Event
     /**
      * @return Request
      */
-    public function getRequest(): Request
+    public function getRequest()
     {
         return $this->request;
     }
@@ -110,7 +110,7 @@ class PrePoolCreateEvent extends Event
      * @return int[] array of stability => BasePackage::STABILITY_* value
      * @phpstan-return array<string, BasePackage::STABILITY_*>
      */
-    public function getAcceptableStabilities(): array
+    public function getAcceptableStabilities()
     {
         return $this->acceptableStabilities;
     }
@@ -119,7 +119,7 @@ class PrePoolCreateEvent extends Event
      * @return int[] array of package name => BasePackage::STABILITY_* value
      * @phpstan-return array<string, BasePackage::STABILITY_*>
      */
-    public function getStabilityFlags(): array
+    public function getStabilityFlags()
     {
         return $this->stabilityFlags;
     }
@@ -128,7 +128,7 @@ class PrePoolCreateEvent extends Event
      * @return array[] of package => version => [alias, alias_normalized]
      * @phpstan-return array<string, array<string, array{alias: string, alias_normalized: string}>>
      */
-    public function getRootAliases(): array
+    public function getRootAliases()
     {
         return $this->rootAliases;
     }
@@ -137,7 +137,7 @@ class PrePoolCreateEvent extends Event
      * @return string[]
      * @phpstan-return array<string, string>
      */
-    public function getRootReferences(): array
+    public function getRootReferences()
     {
         return $this->rootReferences;
     }
@@ -145,7 +145,7 @@ class PrePoolCreateEvent extends Event
     /**
      * @return BasePackage[]
      */
-    public function getPackages(): array
+    public function getPackages()
     {
         return $this->packages;
     }
@@ -153,7 +153,7 @@ class PrePoolCreateEvent extends Event
     /**
      * @return BasePackage[]
      */
-    public function getUnacceptableFixedPackages(): array
+    public function getUnacceptableFixedPackages()
     {
         return $this->unacceptableFixedPackages;
     }
@@ -163,7 +163,7 @@ class PrePoolCreateEvent extends Event
      *
      * @return void
      */
-    public function setPackages(array $packages): void
+    public function setPackages(array $packages)
     {
         $this->packages = $packages;
     }
@@ -173,7 +173,7 @@ class PrePoolCreateEvent extends Event
      *
      * @return void
      */
-    public function setUnacceptableFixedPackages(array $packages): void
+    public function setUnacceptableFixedPackages(array $packages)
     {
         $this->unacceptableFixedPackages = $packages;
     }

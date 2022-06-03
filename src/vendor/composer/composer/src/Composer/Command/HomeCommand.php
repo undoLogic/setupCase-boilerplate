@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -33,7 +33,7 @@ class HomeCommand extends BaseCommand
      *
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('browse')
@@ -57,16 +57,19 @@ EOT
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    /**
+     * @inheritDoc
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $repos = $this->initializeRepos();
         $io = $this->getIO();
         $return = 0;
 
         $packages = $input->getArgument('packages');
-        if (count($packages) === 0) {
+        if (!$packages) {
             $io->writeError('No package specified, opening homepage for the root package');
-            $packages = array($this->requireComposer()->getPackage()->getName());
+            $packages = array($this->getComposer()->getPackage()->getName());
         }
 
         foreach ($packages as $packageName) {
@@ -101,10 +104,10 @@ EOT
      * @param bool $showOnly
      * @return bool
      */
-    private function handlePackage(CompletePackageInterface $package, bool $showHomepage, bool $showOnly): bool
+    private function handlePackage(CompletePackageInterface $package, $showHomepage, $showOnly)
     {
         $support = $package->getSupport();
-        $url = $support['source'] ?? $package->getSourceUrl();
+        $url = isset($support['source']) ? $support['source'] : $package->getSourceUrl();
         if (!$url || $showHomepage) {
             $url = $package->getHomepage();
         }
@@ -128,7 +131,7 @@ EOT
      * @param string $url
      * @return void
      */
-    private function openBrowser(string $url): void
+    private function openBrowser($url)
     {
         $url = ProcessExecutor::escape($url);
 
@@ -158,9 +161,9 @@ EOT
      *
      * @return RepositoryInterface[]
      */
-    private function initializeRepos(): array
+    private function initializeRepos()
     {
-        $composer = $this->tryComposer();
+        $composer = $this->getComposer(false);
 
         if ($composer) {
             return array_merge(

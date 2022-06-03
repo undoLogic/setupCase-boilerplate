@@ -40,6 +40,7 @@ class RequireTrailingCommaInCallSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $parenthesisOpenerPointer
 	 */
 	public function process(File $phpcsFile, $parenthesisOpenerPointer): void

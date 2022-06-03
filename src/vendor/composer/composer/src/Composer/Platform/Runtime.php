@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -20,7 +20,7 @@ class Runtime
      *
      * @return bool
      */
-    public function hasConstant(string $constant, ?string $class = null): bool
+    public function hasConstant($constant, $class = null)
     {
         return defined(ltrim($class.'::'.$constant, ':'));
     }
@@ -31,7 +31,7 @@ class Runtime
      *
      * @return mixed
      */
-    public function getConstant(string $constant, ?string $class = null)
+    public function getConstant($constant, $class = null)
     {
         return constant(ltrim($class.'::'.$constant, ':'));
     }
@@ -41,7 +41,7 @@ class Runtime
      *
      * @return bool
      */
-    public function hasFunction(string $fn): bool
+    public function hasFunction($fn)
     {
         return function_exists($fn);
     }
@@ -52,7 +52,7 @@ class Runtime
      *
      * @return mixed
      */
-    public function invoke(callable $callable, array $arguments = array())
+    public function invoke($callable, array $arguments = array())
     {
         return call_user_func_array($callable, $arguments);
     }
@@ -62,7 +62,7 @@ class Runtime
      *
      * @return bool
      */
-    public function hasClass(string $class): bool
+    public function hasClass($class)
     {
         return class_exists($class, false);
     }
@@ -74,7 +74,7 @@ class Runtime
      * @return object
      * @throws \ReflectionException
      */
-    public function construct(string $class, array $arguments = array()): object
+    public function construct($class, array $arguments = array())
     {
         if (empty($arguments)) {
             return new $class;
@@ -86,7 +86,7 @@ class Runtime
     }
 
     /** @return string[] */
-    public function getExtensions(): array
+    public function getExtensions()
     {
         return get_loaded_extensions();
     }
@@ -96,14 +96,9 @@ class Runtime
      *
      * @return string
      */
-    public function getExtensionVersion(string $extension): string
+    public function getExtensionVersion($extension)
     {
-        $version = phpversion($extension);
-        if ($version === false) {
-            $version = '0';
-        }
-
-        return $version;
+        return phpversion($extension);
     }
 
     /**
@@ -112,7 +107,7 @@ class Runtime
      * @return string
      * @throws \ReflectionException
      */
-    public function getExtensionInfo(string $extension): string
+    public function getExtensionInfo($extension)
     {
         $reflector = new \ReflectionExtension($extension);
 

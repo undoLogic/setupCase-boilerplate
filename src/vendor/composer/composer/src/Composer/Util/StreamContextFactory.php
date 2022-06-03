@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -37,7 +37,7 @@ final class StreamContextFactory
      * @throws \RuntimeException if https proxy required and OpenSSL uninstalled
      * @return resource          Default context
      */
-    public static function getContext(string $url, array $defaultOptions = array(), array $defaultParams = array())
+    public static function getContext($url, array $defaultOptions = array(), array $defaultParams = array())
     {
         $options = array('http' => array(
             // specify defaults again to try and work better with curlwrappers enabled
@@ -63,7 +63,7 @@ final class StreamContextFactory
      * @phpstan-return array{http: array{header: string[], proxy?: string, request_fulluri: bool}, ssl?: mixed[]}
      * @return array formatted as a stream context array
      */
-    public static function initOptions(string $url, array $options, bool $forCurl = false): array
+    public static function initOptions($url, array $options, $forCurl = false)
     {
         // Make sure the headers are in an array form
         if (!isset($options['http']['header'])) {
@@ -134,7 +134,7 @@ final class StreamContextFactory
      *
      * @return mixed[]
      */
-    public static function getTlsDefaults(array $options, LoggerInterface $logger = null): array
+    public static function getTlsDefaults(array $options, LoggerInterface $logger = null)
     {
         $ciphers = implode(':', array(
             'ECDHE-RSA-AES128-GCM-SHA256',
@@ -225,7 +225,9 @@ final class StreamContextFactory
         /**
          * Disable TLS compression to prevent CRIME attacks where supported.
          */
-        $defaults['ssl']['disable_compression'] = true;
+        if (PHP_VERSION_ID >= 50413) {
+            $defaults['ssl']['disable_compression'] = true;
+        }
 
         return $defaults;
     }
@@ -240,12 +242,12 @@ final class StreamContextFactory
      * @param  string|string[] $header
      * @return string[]
      */
-    private static function fixHttpHeaderField($header): array
+    private static function fixHttpHeaderField($header)
     {
         if (!is_array($header)) {
             $header = explode("\r\n", $header);
         }
-        uasort($header, function ($el): int {
+        uasort($header, function ($el) {
             return stripos($el, 'content-type') === 0 ? 1 : -1;
         });
 

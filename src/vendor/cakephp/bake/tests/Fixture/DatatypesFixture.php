@@ -24,7 +24,7 @@ class DatatypesFixture extends TestFixture
     /**
      * Fields property
      *
-     * @var array<string, mixed>
+     * @var array
      */
     public $fields = [
         'id' => ['type' => 'integer', 'null' => false],

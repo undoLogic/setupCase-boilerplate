@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -31,7 +31,7 @@ class TransportException extends \RuntimeException
      *
      * @return void
      */
-    public function setHeaders(array $headers): void
+    public function setHeaders($headers)
     {
         $this->headers = $headers;
     }
@@ -39,17 +39,17 @@ class TransportException extends \RuntimeException
     /**
      * @return ?array<string>
      */
-    public function getHeaders(): ?array
+    public function getHeaders()
     {
         return $this->headers;
     }
 
     /**
-     * @param null|string $response
+     * @param ?string $response
      *
      * @return void
      */
-    public function setResponse(?string $response): void
+    public function setResponse($response)
     {
         $this->response = $response;
     }
@@ -57,7 +57,7 @@ class TransportException extends \RuntimeException
     /**
      * @return ?string
      */
-    public function getResponse(): ?string
+    public function getResponse()
     {
         return $this->response;
     }
@@ -67,7 +67,7 @@ class TransportException extends \RuntimeException
      *
      * @return void
      */
-    public function setStatusCode($statusCode): void
+    public function setStatusCode($statusCode)
     {
         $this->statusCode = $statusCode;
     }
@@ -75,7 +75,7 @@ class TransportException extends \RuntimeException
     /**
      * @return ?int
      */
-    public function getStatusCode(): ?int
+    public function getStatusCode()
     {
         return $this->statusCode;
     }
@@ -83,7 +83,7 @@ class TransportException extends \RuntimeException
     /**
      * @return array<mixed>
      */
-    public function getResponseInfo(): array
+    public function getResponseInfo()
     {
         return $this->responseInfo;
     }
@@ -93,7 +93,7 @@ class TransportException extends \RuntimeException
      *
      * @return void
      */
-    public function setResponseInfo(array $responseInfo): void
+    public function setResponseInfo(array $responseInfo)
     {
         $this->responseInfo = $responseInfo;
     }

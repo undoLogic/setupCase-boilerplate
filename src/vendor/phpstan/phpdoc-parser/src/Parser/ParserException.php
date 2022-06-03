@@ -2,15 +2,9 @@
 
 namespace PHPStan\PhpDocParser\Parser;
 
-use Exception;
 use PHPStan\PhpDocParser\Lexer\Lexer;
-use function assert;
-use function json_encode;
-use function sprintf;
-use const JSON_UNESCAPED_SLASHES;
-use const JSON_UNESCAPED_UNICODE;
 
-class ParserException extends Exception
+class ParserException extends \Exception
 {
 
 	/** @var string */
@@ -25,28 +19,25 @@ class ParserException extends Exception
 	/** @var int */
 	private $expectedTokenType;
 
-	/** @var string|null */
-	private $expectedTokenValue;
-
 	public function __construct(
 		string $currentTokenValue,
 		int $currentTokenType,
 		int $currentOffset,
-		int $expectedTokenType,
-		?string $expectedTokenValue = null
+		int $expectedTokenType
 	)
 	{
 		$this->currentTokenValue = $currentTokenValue;
 		$this->currentTokenType = $currentTokenType;
 		$this->currentOffset = $currentOffset;
 		$this->expectedTokenType = $expectedTokenType;
-		$this->expectedTokenValue = $expectedTokenValue;
+
+		$json = json_encode($currentTokenValue, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+		assert($json !== false);
 
 		parent::__construct(sprintf(
-			'Unexpected token %s, expected %s%s at offset %d',
-			$this->formatValue($currentTokenValue),
+			'Unexpected token %s, expected %s at offset %d',
+			$json,
 			Lexer::TOKEN_LABELS[$expectedTokenType],
-			$expectedTokenValue !== null ? sprintf(' (%s)', $this->formatValue($expectedTokenValue)) : '',
 			$currentOffset
 		));
 	}
@@ -73,21 +64,6 @@ class ParserException extends Exception
 	public function getExpectedTokenType(): int
 	{
 		return $this->expectedTokenType;
-	}
-
-
-	public function getExpectedTokenValue(): ?string
-	{
-		return $this->expectedTokenValue;
-	}
-
-
-	private function formatValue(string $value): string
-	{
-		$json = json_encode($value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-		assert($json !== false);
-
-		return $json;
 	}
 
 }

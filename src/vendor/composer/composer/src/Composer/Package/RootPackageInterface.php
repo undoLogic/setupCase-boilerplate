@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -15,8 +15,6 @@ namespace Composer\Package;
 /**
  * Defines additional fields that are only needed for the root package
  *
- * PackageInterface & derivatives are considered internal, you may use them in type hints but extending/implementing them is not recommended and not supported. Things may change without notice.
- *
  * @author Jordi Boggiano <j.boggiano@seld.be>
  *
  * @phpstan-import-type AutoloadRules from PackageInterface
@@ -29,14 +27,14 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return array<array{package: string, version: string, alias: string, alias_normalized: string}>
      */
-    public function getAliases(): array;
+    public function getAliases();
 
     /**
      * Returns the minimum stability of the package
      *
      * @return string
      */
-    public function getMinimumStability(): string;
+    public function getMinimumStability();
 
     /**
      * Returns the stability flags to apply to dependencies
@@ -45,7 +43,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return array<string, BasePackage::STABILITY_*>
      */
-    public function getStabilityFlags(): array;
+    public function getStabilityFlags();
 
     /**
      * Returns a set of package names and source references that must be enforced on them
@@ -54,21 +52,21 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return array<string, string>
      */
-    public function getReferences(): array;
+    public function getReferences();
 
     /**
      * Returns true if the root package prefers picking stable packages over unstable ones
      *
      * @return bool
      */
-    public function getPreferStable(): bool;
+    public function getPreferStable();
 
     /**
      * Returns the root package's configuration
      *
      * @return mixed[]
      */
-    public function getConfig(): array;
+    public function getConfig();
 
     /**
      * Set the required packages
@@ -77,7 +75,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setRequires(array $requires): void;
+    public function setRequires(array $requires);
 
     /**
      * Set the recommended packages
@@ -86,7 +84,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setDevRequires(array $devRequires): void;
+    public function setDevRequires(array $devRequires);
 
     /**
      * Set the conflicting packages
@@ -95,7 +93,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setConflicts(array $conflicts): void;
+    public function setConflicts(array $conflicts);
 
     /**
      * Set the provided virtual packages
@@ -104,7 +102,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setProvides(array $provides): void;
+    public function setProvides(array $provides);
 
     /**
      * Set the packages this one replaces
@@ -113,7 +111,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setReplaces(array $replaces): void;
+    public function setReplaces(array $replaces);
 
     /**
      * Set the repositories
@@ -122,7 +120,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setRepositories(array $repositories): void;
+    public function setRepositories(array $repositories);
 
     /**
      * Set the autoload mapping
@@ -132,7 +130,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setAutoload(array $autoload): void;
+    public function setAutoload(array $autoload);
 
     /**
      * Set the dev autoload mapping
@@ -142,7 +140,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setDevAutoload(array $devAutoload): void;
+    public function setDevAutoload(array $devAutoload);
 
     /**
      * Set the stabilityFlags
@@ -151,7 +149,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setStabilityFlags(array $stabilityFlags): void;
+    public function setStabilityFlags(array $stabilityFlags);
 
     /**
      * Set the minimumStability
@@ -160,7 +158,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setMinimumStability(string $minimumStability): void;
+    public function setMinimumStability($minimumStability);
 
     /**
      * Set the preferStable
@@ -169,7 +167,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setPreferStable(bool $preferStable): void;
+    public function setPreferStable($preferStable);
 
     /**
      * Set the config
@@ -178,7 +176,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setConfig(array $config): void;
+    public function setConfig(array $config);
 
     /**
      * Set the references
@@ -187,7 +185,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setReferences(array $references): void;
+    public function setReferences(array $references);
 
     /**
      * Set the aliases
@@ -196,7 +194,7 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setAliases(array $aliases): void;
+    public function setAliases(array $aliases);
 
     /**
      * Set the suggested packages
@@ -205,12 +203,12 @@ interface RootPackageInterface extends CompletePackageInterface
      *
      * @return void
      */
-    public function setSuggests(array $suggests): void;
+    public function setSuggests(array $suggests);
 
     /**
      * @param mixed[] $extra
      *
      * @return void
      */
-    public function setExtra(array $extra): void;
+    public function setExtra(array $extra);
 }

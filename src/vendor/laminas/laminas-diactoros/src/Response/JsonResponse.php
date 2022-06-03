@@ -37,7 +37,7 @@ class JsonResponse extends Response
      *
      * @const int
      */
-    public const DEFAULT_JSON_FLAGS = 79;
+    const DEFAULT_JSON_FLAGS = 79;
 
     /**
      * @var mixed

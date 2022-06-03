@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -22,7 +22,7 @@ use Composer\Package\Version\VersionParser;
  */
 class UpdateOperation extends SolverOperation implements OperationInterface
 {
-    protected const TYPE = 'update';
+    const TYPE = 'update';
 
     /**
      * @var PackageInterface
@@ -49,7 +49,7 @@ class UpdateOperation extends SolverOperation implements OperationInterface
      *
      * @return PackageInterface
      */
-    public function getInitialPackage(): PackageInterface
+    public function getInitialPackage()
     {
         return $this->initialPackage;
     }
@@ -59,7 +59,7 @@ class UpdateOperation extends SolverOperation implements OperationInterface
      *
      * @return PackageInterface
      */
-    public function getTargetPackage(): PackageInterface
+    public function getTargetPackage()
     {
         return $this->targetPackage;
     }
@@ -67,7 +67,7 @@ class UpdateOperation extends SolverOperation implements OperationInterface
     /**
      * @inheritDoc
      */
-    public function show($lock): string
+    public function show($lock)
     {
         return self::format($this->initialPackage, $this->targetPackage, $lock);
     }
@@ -76,7 +76,7 @@ class UpdateOperation extends SolverOperation implements OperationInterface
      * @param bool $lock
      * @return string
      */
-    public static function format(PackageInterface $initialPackage, PackageInterface $targetPackage, bool $lock = false): string
+    public static function format(PackageInterface $initialPackage, PackageInterface $targetPackage, $lock = false)
     {
         $fromVersion = $initialPackage->getFullPrettyVersion();
         $toVersion = $targetPackage->getFullPrettyVersion();

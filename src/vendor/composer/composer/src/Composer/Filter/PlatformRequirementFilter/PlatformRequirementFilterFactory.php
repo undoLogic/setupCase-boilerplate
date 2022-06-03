@@ -1,14 +1,4 @@
-<?php declare(strict_types=1);
-
-/*
- * This file is part of Composer.
- *
- * (c) Nils Adermann <naderman@naderman.de>
- *     Jordi Boggiano <j.boggiano@seld.be>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+<?php
 
 namespace Composer\Filter\PlatformRequirementFilter;
 
@@ -19,7 +9,7 @@ final class PlatformRequirementFilterFactory
      *
      * @return PlatformRequirementFilterInterface
      */
-    public static function fromBoolOrList($boolOrList): PlatformRequirementFilterInterface
+    public static function fromBoolOrList($boolOrList)
     {
         if (is_bool($boolOrList)) {
             return $boolOrList ? self::ignoreAll() : self::ignoreNothing();
@@ -40,7 +30,7 @@ final class PlatformRequirementFilterFactory
     /**
      * @return PlatformRequirementFilterInterface
      */
-    public static function ignoreAll(): PlatformRequirementFilterInterface
+    public static function ignoreAll()
     {
         return new IgnoreAllPlatformRequirementFilter();
     }
@@ -48,7 +38,7 @@ final class PlatformRequirementFilterFactory
     /**
      * @return PlatformRequirementFilterInterface
      */
-    public static function ignoreNothing(): PlatformRequirementFilterInterface
+    public static function ignoreNothing()
     {
         return new IgnoreNothingPlatformRequirementFilter();
     }

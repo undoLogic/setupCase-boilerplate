@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -24,11 +24,11 @@ use Composer\Util\ProcessExecutor;
  */
 class Config
 {
-    public const SOURCE_DEFAULT = 'default';
-    public const SOURCE_COMMAND = 'command';
-    public const SOURCE_UNKNOWN = 'unknown';
+    const SOURCE_DEFAULT = 'default';
+    const SOURCE_COMMAND = 'command';
+    const SOURCE_UNKNOWN = 'unknown';
 
-    public const RELATIVE_PATHS = 1;
+    const RELATIVE_PATHS = 1;
 
     /** @var array<string, mixed> */
     public static $defaultConfig = array(
@@ -107,16 +107,14 @@ class Config
     private $useEnvironment;
     /** @var array<string, true> */
     private $warnedHosts = array();
-    /** @var array<string, true> */
-    private $sslVerifyWarnedHosts = array();
     /** @var array<string, string> */
     private $sourceOfConfigValue = array();
 
     /**
-     * @param bool    $useEnvironment Use COMPOSER_ environment variables to replace config settings
-     * @param ?string $baseDir        Optional base directory of the config
+     * @param bool   $useEnvironment Use COMPOSER_ environment variables to replace config settings
+     * @param string $baseDir        Optional base directory of the config
      */
-    public function __construct(bool $useEnvironment = true, ?string $baseDir = null)
+    public function __construct($useEnvironment = true, $baseDir = null)
     {
         // load defaults
         $this->config = static::$defaultConfig;
@@ -128,7 +126,7 @@ class Config
 
         $this->repositories = static::$defaultRepositories;
         $this->useEnvironment = (bool) $useEnvironment;
-        $this->baseDir = is_string($baseDir) && '' !== $baseDir ? $baseDir : null;
+        $this->baseDir = $baseDir;
 
         foreach ($this->config as $configKey => $configValue) {
             $this->setSourceOfConfigValue($configValue, $configKey, self::SOURCE_DEFAULT);
@@ -142,7 +140,7 @@ class Config
     /**
      * @return void
      */
-    public function setConfigSource(ConfigSourceInterface $source): void
+    public function setConfigSource(ConfigSourceInterface $source)
     {
         $this->configSource = $source;
     }
@@ -150,7 +148,7 @@ class Config
     /**
      * @return ConfigSourceInterface
      */
-    public function getConfigSource(): ConfigSourceInterface
+    public function getConfigSource()
     {
         return $this->configSource;
     }
@@ -158,7 +156,7 @@ class Config
     /**
      * @return void
      */
-    public function setAuthConfigSource(ConfigSourceInterface $source): void
+    public function setAuthConfigSource(ConfigSourceInterface $source)
     {
         $this->authConfigSource = $source;
     }
@@ -166,7 +164,7 @@ class Config
     /**
      * @return ConfigSourceInterface
      */
-    public function getAuthConfigSource(): ConfigSourceInterface
+    public function getAuthConfigSource()
     {
         return $this->authConfigSource;
     }
@@ -179,7 +177,7 @@ class Config
      *
      * @return void
      */
-    public function merge(array $config, string $source = self::SOURCE_UNKNOWN): void
+    public function merge($config, $source = self::SOURCE_UNKNOWN)
     {
         // override defaults with given config
         if (!empty($config['config']) && is_array($config['config'])) {
@@ -265,7 +263,7 @@ class Config
     /**
      * @return array<int|string, mixed>
      */
-    public function getRepositories(): array
+    public function getRepositories()
     {
         return $this->repositories;
     }
@@ -279,7 +277,7 @@ class Config
      *
      * @return mixed
      */
-    public function get(string $key, int $flags = 0)
+    public function get($key, $flags = 0)
     {
         switch ($key) {
             // strings/paths with env var and {$refs} support
@@ -343,7 +341,7 @@ class Config
 
             // numbers with kb/mb/gb support, without env var support
             case 'cache-files-maxsize':
-                if (!Preg::isMatch('/^\s*([0-9.]+)\s*(?:([kmg])(?:i?b)?)?\s*$/i', (string) $this->config[$key], $matches)) {
+                if (!Preg::isMatch('/^\s*([0-9.]+)\s*(?:([kmg])(?:i?b)?)?\s*$/i', $this->config[$key], $matches)) {
                     throw new \RuntimeException(
                         "Could not parse the value of '$key': {$this->config[$key]}"
                     );
@@ -376,7 +374,9 @@ class Config
                 return (int) $this->config['cache-ttl'];
 
             case 'home':
-                return rtrim($this->process(Platform::expandPath($this->config[$key]), $flags), '/\\');
+                $val = Preg::replace('#^(\$HOME|~)(/|$)#', rtrim(Platform::getEnv('HOME') ?: Platform::getEnv('USERPROFILE'), '/\\') . '/', $this->config[$key]);
+
+                return rtrim($this->process($val, $flags), '/\\');
 
             case 'bin-compat':
                 $value = $this->getComposerEnv('COMPOSER_BIN_COMPAT') ?: $this->config[$key];
@@ -427,13 +427,6 @@ class Config
 
                 return $protos;
 
-            case 'autoloader-suffix':
-                if ($this->config[$key] === '') { // we need to guarantee null or non-empty-string
-                    return null;
-                }
-
-                return $this->process($this->config[$key], $flags);
-
             default:
                 if (!isset($this->config[$key])) {
                     return null;
@@ -448,7 +441,7 @@ class Config
      *
      * @return array<string, mixed[]>
      */
-    public function all(int $flags = 0): array
+    public function all($flags = 0)
     {
         $all = array(
             'repositories' => $this->getRepositories(),
@@ -464,11 +457,11 @@ class Config
      * @param string $key
      * @return string
      */
-    public function getSourceOfValue(string $key): string
+    public function getSourceOfValue($key)
     {
         $this->get($key);
 
-        return $this->sourceOfConfigValue[$key] ?? self::SOURCE_UNKNOWN;
+        return isset($this->sourceOfConfigValue[$key]) ? $this->sourceOfConfigValue[$key] : self::SOURCE_UNKNOWN;
     }
 
     /**
@@ -478,7 +471,7 @@ class Config
      *
      * @return void
      */
-    private function setSourceOfConfigValue($configValue, string $path, string $source): void
+    private function setSourceOfConfigValue($configValue, $path, $source)
     {
         $this->sourceOfConfigValue[$path] = $source;
 
@@ -492,7 +485,7 @@ class Config
     /**
      * @return array<string, mixed[]>
      */
-    public function raw(): array
+    public function raw()
     {
         return array(
             'repositories' => $this->getRepositories(),
@@ -506,7 +499,7 @@ class Config
      * @param  string $key
      * @return bool
      */
-    public function has(string $key): bool
+    public function has($key)
     {
         return array_key_exists($key, $this->config);
     }
@@ -514,19 +507,21 @@ class Config
     /**
      * Replaces {$refs} inside a config string
      *
-     * @param  string|mixed $value a config string that can contain {$refs-to-other-config}
-     * @param  int          $flags Options (see class constants)
+     * @param  string|int|null $value a config string that can contain {$refs-to-other-config}
+     * @param  int             $flags Options (see class constants)
      *
-     * @return string|mixed
+     * @return string|int|null
      */
-    private function process($value, int $flags)
+    private function process($value, $flags)
     {
+        $config = $this;
+
         if (!is_string($value)) {
             return $value;
         }
 
-        return Preg::replaceCallback('#\{\$(.+)\}#', function ($match) use ($flags) {
-            return $this->get($match[1], $flags);
+        return Preg::replaceCallback('#\{\$(.+)\}#', function ($match) use ($config, $flags) {
+            return $config->get($match[1], $flags);
         }, $value);
     }
 
@@ -538,9 +533,9 @@ class Config
      * @param  string $path
      * @return string
      */
-    private function realpath(string $path): string
+    private function realpath($path)
     {
-        if (Preg::isMatch('{^(?:/|[a-z]:|[a-z0-9.]+://|\\\\\\\\)}i', $path)) {
+        if (Preg::isMatch('{^(?:/|[a-z]:|[a-z0-9.]+://)}i', $path)) {
             return $path;
         }
 
@@ -556,7 +551,7 @@ class Config
      * @param  string      $var
      * @return string|bool
      */
-    private function getComposerEnv(string $var)
+    private function getComposerEnv($var)
     {
         if ($this->useEnvironment) {
             return Platform::getEnv($var);
@@ -570,7 +565,7 @@ class Config
      *
      * @return void
      */
-    private function disableRepoByName(string $name): void
+    private function disableRepoByName($name)
     {
         if (isset($this->repositories[$name])) {
             unset($this->repositories[$name]);
@@ -584,11 +579,10 @@ class Config
      *
      * @param string      $url
      * @param IOInterface $io
-     * @param mixed[]     $repoOptions
      *
      * @return void
      */
-    public function prohibitUrlByConfig(string $url, IOInterface $io = null, array $repoOptions = []): void
+    public function prohibitUrlByConfig($url, IOInterface $io = null)
     {
         // Return right away if the URL is malformed or custom (see issue #5173)
         if (false === filter_var($url, FILTER_VALIDATE_URL)) {
@@ -610,29 +604,14 @@ class Config
 
                 throw new TransportException("Your configuration does not allow connections to $url. See https://getcomposer.org/doc/06-config.md#secure-http for details.");
             }
-            if ($io  !== null) {
-                if (is_string($hostname)) {
-                    if (!isset($this->warnedHosts[$hostname])) {
-                        $io->writeError("<warning>Warning: Accessing $hostname over $scheme which is an insecure protocol.</warning>");
+            if ($io) {
+                $host = parse_url($url, PHP_URL_HOST);
+                if (is_string($host)) {
+                    if (!isset($this->warnedHosts[$host])) {
+                        $io->writeError("<warning>Warning: Accessing $host over $scheme which is an insecure protocol.</warning>");
                     }
-                    $this->warnedHosts[$hostname] = true;
+                    $this->warnedHosts[$host] = true;
                 }
-            }
-        }
-
-        if ($io !== null && is_string($hostname) && !isset($this->sslVerifyWarnedHosts[$hostname])) {
-            $warning = null;
-            if (isset($repoOptions['ssl']['verify_peer']) && !(bool) $repoOptions['ssl']['verify_peer']) {
-                $warning = 'verify_peer';
-            }
-
-            if (isset($repoOptions['ssl']['verify_peer_name']) && !(bool) $repoOptions['ssl']['verify_peer_name']) {
-                $warning = $warning === null ? 'verify_peer_name' : $warning . ' and verify_peer_name';
-            }
-
-            if ($warning !== null) {
-                $io->writeError("<warning>Warning: Accessing $hostname with $warning disabled.</warning>");
-                $this->sslVerifyWarnedHosts[$hostname] = true;
             }
         }
     }
@@ -649,7 +628,7 @@ class Config
      *
      * @return void
      */
-    public static function disableProcessTimeout(): void
+    public static function disableProcessTimeout()
     {
         // Override global timeout set earlier by environment or config
         ProcessExecutor::setTimeout(0);

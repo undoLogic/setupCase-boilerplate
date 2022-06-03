@@ -1,14 +1,4 @@
-<?php declare(strict_types=1);
-
-/*
- * This file is part of Composer.
- *
- * (c) Nils Adermann <naderman@naderman.de>
- *     Jordi Boggiano <j.boggiano@seld.be>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+<?php
 
 namespace Composer\Filter\PlatformRequirementFilter;
 
@@ -55,7 +45,7 @@ final class IgnoreListPlatformRequirementFilter implements PlatformRequirementFi
      * @param string $req
      * @return bool
      */
-    public function isIgnored(string $req): bool
+    public function isIgnored($req)
     {
         if (!PlatformRepository::isPlatformPackage($req)) {
             return false;
@@ -68,7 +58,7 @@ final class IgnoreListPlatformRequirementFilter implements PlatformRequirementFi
      * @param string $req
      * @return ConstraintInterface
      */
-    public function filterConstraint(string $req, ConstraintInterface $constraint): ConstraintInterface
+    public function filterConstraint($req, ConstraintInterface $constraint)
     {
         if (!PlatformRepository::isPlatformPackage($req)) {
             return $constraint;

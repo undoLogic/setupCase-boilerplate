@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -36,7 +36,7 @@ class GenericRule extends Rule
     /**
      * @return int[]
      */
-    public function getLiterals(): array
+    public function getLiterals()
     {
         return $this->literals;
     }
@@ -59,7 +59,7 @@ class GenericRule extends Rule
      * @param  Rule $rule The rule to check against
      * @return bool Whether the rules are equal
      */
-    public function equals(Rule $rule): bool
+    public function equals(Rule $rule)
     {
         return $this->literals === $rule->getLiterals();
     }
@@ -67,7 +67,7 @@ class GenericRule extends Rule
     /**
      * @return bool
      */
-    public function isAssertion(): bool
+    public function isAssertion()
     {
         return 1 === \count($this->literals);
     }
@@ -77,7 +77,7 @@ class GenericRule extends Rule
      *
      * @return string
      */
-    public function __toString(): string
+    public function __toString()
     {
         $result = $this->isDisabled() ? 'disabled(' : '(';
 

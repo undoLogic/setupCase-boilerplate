@@ -24,7 +24,7 @@ class BakeArticlesBakeTagsFixture extends TestFixture
     /**
      * fields property
      *
-     * @var array<string, mixed>
+     * @var array
      */
     public $fields = [
         'bake_article_id' => ['type' => 'integer', 'null' => false],

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -21,8 +21,6 @@ use Composer\Pcre\Preg;
  *
  * @author Konstantin Kudryashiv <ever.zet@gmail.com>
  * @author Jordi Boggiano <j.boggiano@seld.be>
- *
- * @deprecated Use json_encode or JsonFile::encode() with modern JSON_* flags to configure formatting - this class will be removed in 3.0
  */
 class JsonFormatter
 {
@@ -38,7 +36,7 @@ class JsonFormatter
      * @param  bool   $unescapeSlashes Un escape slashes
      * @return string
      */
-    public static function format(string $json, bool $unescapeUnicode, bool $unescapeSlashes): string
+    public static function format($json, $unescapeUnicode, $unescapeSlashes)
     {
         $result = '';
         $pos = 0;

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -66,7 +66,7 @@ class PackageEvent extends Event
      * @param OperationInterface[] $operations
      * @param OperationInterface   $operation
      */
-    public function __construct(string $eventName, Composer $composer, IOInterface $io, bool $devMode, RepositoryInterface $localRepo, array $operations, OperationInterface $operation)
+    public function __construct($eventName, Composer $composer, IOInterface $io, $devMode, RepositoryInterface $localRepo, array $operations, OperationInterface $operation)
     {
         parent::__construct($eventName);
 
@@ -81,7 +81,7 @@ class PackageEvent extends Event
     /**
      * @return Composer
      */
-    public function getComposer(): Composer
+    public function getComposer()
     {
         return $this->composer;
     }
@@ -89,7 +89,7 @@ class PackageEvent extends Event
     /**
      * @return IOInterface
      */
-    public function getIO(): IOInterface
+    public function getIO()
     {
         return $this->io;
     }
@@ -97,7 +97,7 @@ class PackageEvent extends Event
     /**
      * @return bool
      */
-    public function isDevMode(): bool
+    public function isDevMode()
     {
         return $this->devMode;
     }
@@ -105,7 +105,7 @@ class PackageEvent extends Event
     /**
      * @return RepositoryInterface
      */
-    public function getLocalRepo(): RepositoryInterface
+    public function getLocalRepo()
     {
         return $this->localRepo;
     }
@@ -113,7 +113,7 @@ class PackageEvent extends Event
     /**
      * @return OperationInterface[]
      */
-    public function getOperations(): array
+    public function getOperations()
     {
         return $this->operations;
     }
@@ -123,7 +123,7 @@ class PackageEvent extends Event
      *
      * @return OperationInterface
      */
-    public function getOperation(): OperationInterface
+    public function getOperation()
     {
         return $this->operation;
     }

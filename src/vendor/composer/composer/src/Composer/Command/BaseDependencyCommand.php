@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -34,12 +34,12 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author Niels Keurentjes <niels.keurentjes@omines.com>
  */
-abstract class BaseDependencyCommand extends BaseCommand
+class BaseDependencyCommand extends BaseCommand
 {
-    protected const ARGUMENT_PACKAGE = 'package';
-    protected const ARGUMENT_CONSTRAINT = 'version';
-    protected const OPTION_RECURSIVE = 'recursive';
-    protected const OPTION_TREE = 'tree';
+    const ARGUMENT_PACKAGE = 'package';
+    const ARGUMENT_CONSTRAINT = 'version';
+    const OPTION_RECURSIVE = 'recursive';
+    const OPTION_TREE = 'tree';
 
     /** @var ?string[] */
     protected $colors;
@@ -50,10 +50,10 @@ abstract class BaseDependencyCommand extends BaseCommand
      * @param  bool            $inverted Whether to invert matching process (why-not vs why behaviour)
      * @return int             Exit code of the operation.
      */
-    protected function doExecute(InputInterface $input, OutputInterface $output, bool $inverted = false): int
+    protected function doExecute(InputInterface $input, OutputInterface $output, $inverted = false)
     {
         // Emit command event on startup
-        $composer = $this->requireComposer();
+        $composer = $this->getComposer();
         $commandEvent = new CommandEvent(PluginEvents::COMMAND, $this->getName(), $input, $output);
         $composer->getEventDispatcher()->dispatch($commandEvent->getName(), $commandEvent);
 
@@ -90,7 +90,7 @@ abstract class BaseDependencyCommand extends BaseCommand
         $needles = array($needle);
         if ($inverted) {
             foreach ($packages as $package) {
-                $needles = array_merge($needles, array_map(function (Link $link): string {
+                $needles = array_merge($needles, array_map(function (Link $link) {
                     return $link->getTarget();
                 }, $package->getReplaces()));
             }
@@ -136,7 +136,7 @@ abstract class BaseDependencyCommand extends BaseCommand
      *
      * @return void
      */
-    protected function printTable(OutputInterface $output, $results): void
+    protected function printTable(OutputInterface $output, $results)
     {
         $table = array();
         $doubles = array();
@@ -172,7 +172,7 @@ abstract class BaseDependencyCommand extends BaseCommand
      *
      * @return void
      */
-    protected function initStyles(OutputInterface $output): void
+    protected function initStyles(OutputInterface $output)
     {
         $this->colors = array(
             'green',
@@ -197,7 +197,7 @@ abstract class BaseDependencyCommand extends BaseCommand
      *
      * @return void
      */
-    protected function printTree(array $results, string $prefix = '', int $level = 1): void
+    protected function printTree($results, $prefix = '', $level = 1)
     {
         $count = count($results);
         $idx = 0;
@@ -223,7 +223,7 @@ abstract class BaseDependencyCommand extends BaseCommand
      *
      * @return void
      */
-    private function writeTreeLine(string $line): void
+    private function writeTreeLine($line)
     {
         $io = $this->getIO();
         if (!$io->isDecorated()) {

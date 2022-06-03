@@ -5,10 +5,6 @@ namespace PHPStan\PhpDocParser\Parser;
 use PHPStan\PhpDocParser\Ast;
 use PHPStan\PhpDocParser\Ast\Type\IdentifierTypeNode;
 use PHPStan\PhpDocParser\Lexer\Lexer;
-use PHPStan\ShouldNotHappenException;
-use function array_values;
-use function count;
-use function trim;
 
 class PhpDocParser
 {
@@ -47,7 +43,7 @@ class PhpDocParser
 
 		try {
 			$tokens->consumeTokenType(Lexer::TOKEN_CLOSE_PHPDOC);
-		} catch (ParserException $e) {
+		} catch (\PHPStan\PhpDocParser\Parser\ParserException $e) {
 			$name = '';
 			if (count($children) > 0) {
 				$lastChild = $children[count($children) - 1];
@@ -205,15 +201,6 @@ class PhpDocParser
 					$tagValue = $this->parseTypeAliasImportTagValue($tokens);
 					break;
 
-				case '@phpstan-assert':
-				case '@phpstan-assert-if-true':
-				case '@phpstan-assert-if-false':
-				case '@psalm-assert':
-				case '@psalm-assert-if-true':
-				case '@psalm-assert-if-false':
-					$tagValue = $this->parseAssertTagValue($tokens);
-					break;
-
 				default:
 					$tagValue = new Ast\PhpDoc\GenericTagValueNode($this->parseOptionalDescription($tokens));
 					break;
@@ -221,7 +208,7 @@ class PhpDocParser
 
 			$tokens->dropSavePoint();
 
-		} catch (ParserException $e) {
+		} catch (\PHPStan\PhpDocParser\Parser\ParserException $e) {
 			$tokens->rollback();
 			$tagValue = new Ast\PhpDoc\InvalidTagValueNode($this->parseOptionalDescription($tokens), $e);
 		}
@@ -387,7 +374,7 @@ class PhpDocParser
 				return new Ast\PhpDoc\UsesTagValueNode($type, $description);
 		}
 
-		throw new ShouldNotHappenException();
+		throw new \PHPStan\ShouldNotHappenException();
 	}
 
 	private function parseTypeAliasTagValue(TokenIterator $tokens): Ast\PhpDoc\TypeAliasTagValueNode
@@ -409,7 +396,7 @@ class PhpDocParser
 		$tokens->consumeTokenType(Lexer::TOKEN_IDENTIFIER);
 
 		if (!$tokens->tryConsumeTokenValue('from')) {
-			throw new ParserException(
+			throw new \PHPStan\PhpDocParser\Parser\ParserException(
 				$tokens->currentTokenValue(),
 				$tokens->currentTokenType(),
 				$tokens->currentTokenOffset(),
@@ -427,15 +414,6 @@ class PhpDocParser
 		}
 
 		return new Ast\PhpDoc\TypeAliasImportTagValueNode($importedAlias, new IdentifierTypeNode($importedFrom), $importedAs);
-	}
-
-	private function parseAssertTagValue(TokenIterator $tokens): Ast\PhpDoc\AssertTagValueNode
-	{
-		$isNegated = $tokens->tryConsumeTokenType(Lexer::TOKEN_NEGATED);
-		$type = $this->typeParser->parse($tokens);
-		$parameter = $this->parseRequiredVariableName($tokens);
-		$description = $this->parseOptionalDescription($tokens);
-		return new Ast\PhpDoc\AssertTagValueNode($type, $parameter, $isNegated, $description);
 	}
 
 	private function parseOptionalVariableName(TokenIterator $tokens): string

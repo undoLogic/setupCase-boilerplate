@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -26,7 +26,7 @@ class CheckPlatformReqsCommand extends BaseCommand
     /**
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this->setName('check-platform-reqs')
             ->setDescription('Check that platform requirements are satisfied.')
@@ -46,9 +46,12 @@ EOT
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    /**
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $composer = $this->requireComposer();
+        $composer = $this->getComposer();
 
         $requires = array();
         $removePackages = array();
@@ -174,7 +177,7 @@ EOT
      *
      * @return void
      */
-    protected function printTable(OutputInterface $output, array $results): void
+    protected function printTable(OutputInterface $output, $results)
     {
         $rows = array();
         foreach ($results as $result) {

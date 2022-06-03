@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -24,7 +24,7 @@ class AboutCommand extends BaseCommand
     /**
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('about')
@@ -37,7 +37,7 @@ EOT
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $composerVersion = Composer::getVersion();
 

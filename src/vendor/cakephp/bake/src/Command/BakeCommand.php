@@ -161,22 +161,7 @@ abstract class BakeCommand extends Command
     {
         if (file_exists($path)) {
             unlink($path);
-            $io->out(sprintf('<success>Deleted</success> `%s`', $path), 1, ConsoleIo::NORMAL);
+            $io->out(sprintf('<success>Deleted</success> `%s`', $path), 1, ConsoleIo::QUIET);
         }
-    }
-
-    /**
-     * Check if a column name is valid.
-     *
-     * The Regex used here basically states that:
-     * - the column name has to start with an ASCII character (lower or upper case) or an underscore and
-     * - further characters are allowed to be either lower or upper case ASCII characters, numbers or underscores.
-     *
-     * @param string $name The name of the column.
-     * @return bool
-     */
-    protected function isValidColumnName(string $name): bool
-    {
-        return (bool)preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $name);
     }
 }

@@ -50,6 +50,7 @@ class AlphabeticallySortedUsesSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $openTagPointer
 	 */
 	public function process(File $phpcsFile, $openTagPointer): void
@@ -89,6 +90,7 @@ class AlphabeticallySortedUsesSniff implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
 	 * @param UseStatement[] $useStatements
 	 */
 	private function fixAlphabeticalOrder(File $phpcsFile, array $useStatements): void

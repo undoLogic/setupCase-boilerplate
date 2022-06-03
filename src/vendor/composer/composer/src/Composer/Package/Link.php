@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -21,19 +21,22 @@ use Composer\Semver\Constraint\ConstraintInterface;
  */
 class Link
 {
-    public const TYPE_REQUIRE = 'requires';
-    public const TYPE_DEV_REQUIRE = 'devRequires';
-    public const TYPE_PROVIDE = 'provides';
-    public const TYPE_CONFLICT = 'conflicts';
-    public const TYPE_REPLACE = 'replaces';
+    const TYPE_REQUIRE = 'requires';
+    const TYPE_DEV_REQUIRE = 'devRequires';
+    const TYPE_PROVIDE = 'provides';
+    const TYPE_CONFLICT = 'conflicts';
+    const TYPE_REPLACE = 'replaces';
 
     /**
      * Special type
      * @internal
      */
-    public const TYPE_DOES_NOT_REQUIRE = 'does not require';
-
-    private const TYPE_UNKNOWN = 'relates to';
+    const TYPE_DOES_NOT_REQUIRE = 'does not require';
+    /**
+     * TODO should be marked private once 5.3 is dropped
+     * @private
+     */
+    const TYPE_UNKNOWN = 'relates to';
 
     /**
      * Will be converted into a constant once the min PHP version allows this
@@ -86,11 +89,11 @@ class Link
      * @param string|null         $prettyConstraint
      */
     public function __construct(
-        string $source,
-        string $target,
+        $source,
+        $target,
         ConstraintInterface $constraint,
         $description = self::TYPE_UNKNOWN,
-        ?string $prettyConstraint = null
+        $prettyConstraint = null
     ) {
         $this->source = strtolower($source);
         $this->target = strtolower($target);
@@ -102,7 +105,7 @@ class Link
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -110,7 +113,7 @@ class Link
     /**
      * @return string
      */
-    public function getSource(): string
+    public function getSource()
     {
         return $this->source;
     }
@@ -118,7 +121,7 @@ class Link
     /**
      * @return string
      */
-    public function getTarget(): string
+    public function getTarget()
     {
         return $this->target;
     }
@@ -126,7 +129,7 @@ class Link
     /**
      * @return ConstraintInterface
      */
-    public function getConstraint(): ConstraintInterface
+    public function getConstraint()
     {
         return $this->constraint;
     }
@@ -135,7 +138,7 @@ class Link
      * @throws \UnexpectedValueException If no pretty constraint was provided
      * @return string
      */
-    public function getPrettyConstraint(): string
+    public function getPrettyConstraint()
     {
         if (null === $this->prettyConstraint) {
             throw new \UnexpectedValueException(sprintf('Link %s has been misconfigured and had no prettyConstraint given.', $this));
@@ -147,7 +150,7 @@ class Link
     /**
      * @return string
      */
-    public function __toString(): string
+    public function __toString()
     {
         return $this->source.' '.$this->description.' '.$this->target.' ('.$this->constraint.')';
     }
@@ -156,7 +159,7 @@ class Link
      * @param  PackageInterface $sourcePackage
      * @return string
      */
-    public function getPrettyString(PackageInterface $sourcePackage): string
+    public function getPrettyString(PackageInterface $sourcePackage)
     {
         return $sourcePackage->getPrettyString().' '.$this->description.' '.$this->target.' '.$this->constraint->getPrettyString();
     }

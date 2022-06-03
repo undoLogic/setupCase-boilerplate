@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -25,7 +25,7 @@ class ClearCacheCommand extends BaseCommand
     /**
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('clear-cache')
@@ -42,7 +42,10 @@ EOT
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    /**
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $config = Factory::createConfig();
         $io = $this->getIO();

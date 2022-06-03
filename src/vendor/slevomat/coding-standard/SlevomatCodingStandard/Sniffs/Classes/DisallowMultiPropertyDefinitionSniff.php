@@ -37,6 +37,7 @@ class DisallowMultiPropertyDefinitionSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $visibilityPointer
 	 */
 	public function process(File $phpcsFile, $visibilityPointer): void

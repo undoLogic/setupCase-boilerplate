@@ -54,6 +54,7 @@ class JumpStatementsSpacingSniff extends AbstractControlStructureSpacing
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $jumpStatementPointer
 	 */
 	public function process(File $phpcsFile, $jumpStatementPointer): void
@@ -113,6 +114,10 @@ class JumpStatementsSpacingSniff extends AbstractControlStructureSpacing
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+	 * @param File $phpcsFile
+	 * @param int $jumpStatementPointer
+	 * @param int $jumpStatementEndPointer
+	 * @return int
 	 */
 	protected function getLinesCountAfterLast(File $phpcsFile, int $jumpStatementPointer, int $jumpStatementEndPointer): int
 	{

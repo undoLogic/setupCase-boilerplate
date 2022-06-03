@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -54,7 +54,7 @@ class InstallerEvent extends Event
      * @param bool        $executeOperations
      * @param Transaction $transaction
      */
-    public function __construct(string $eventName, Composer $composer, IOInterface $io, bool $devMode, bool $executeOperations, Transaction $transaction)
+    public function __construct($eventName, Composer $composer, IOInterface $io, $devMode, $executeOperations, Transaction $transaction)
     {
         parent::__construct($eventName);
 
@@ -68,7 +68,7 @@ class InstallerEvent extends Event
     /**
      * @return Composer
      */
-    public function getComposer(): Composer
+    public function getComposer()
     {
         return $this->composer;
     }
@@ -76,7 +76,7 @@ class InstallerEvent extends Event
     /**
      * @return IOInterface
      */
-    public function getIO(): IOInterface
+    public function getIO()
     {
         return $this->io;
     }
@@ -84,7 +84,7 @@ class InstallerEvent extends Event
     /**
      * @return bool
      */
-    public function isDevMode(): bool
+    public function isDevMode()
     {
         return $this->devMode;
     }
@@ -92,7 +92,7 @@ class InstallerEvent extends Event
     /**
      * @return bool
      */
-    public function isExecutingOperations(): bool
+    public function isExecutingOperations()
     {
         return $this->executeOperations;
     }
@@ -100,7 +100,7 @@ class InstallerEvent extends Event
     /**
      * @return Transaction|null
      */
-    public function getTransaction(): ?Transaction
+    public function getTransaction()
     {
         return $this->transaction;
     }

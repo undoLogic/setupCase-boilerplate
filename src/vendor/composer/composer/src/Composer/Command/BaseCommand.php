@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -16,8 +16,6 @@ use Composer\Composer;
 use Composer\Config;
 use Composer\Console\Application;
 use Composer\Factory;
-use Composer\Filter\PlatformRequirementFilter\PlatformRequirementFilterFactory;
-use Composer\Filter\PlatformRequirementFilter\PlatformRequirementFilterInterface;
 use Composer\IO\IOInterface;
 use Composer\IO\NullIO;
 use Composer\Plugin\PreCommandRunEvent;
@@ -33,6 +31,8 @@ use Symfony\Component\Console\Terminal;
 
 /**
  * Base class for Composer commands
+ *
+ * @method Application getApplication()
  *
  * @author Ryan Weaver <ryan@knplabs.com>
  * @author Konstantin Kudryashov <ever.zet@gmail.com>
@@ -50,76 +50,25 @@ abstract class BaseCommand extends Command
     private $io;
 
     /**
-     * Gets the application instance for this command.
-     */
-    public function getApplication(): Application
-    {
-        $application = parent::getApplication();
-        if (!$application instanceof Application) {
-            throw new \RuntimeException('Composer commands can only work with an '.Application::class.' instance set');
-        }
-
-        return $application;
-    }
-
-    /**
-     * @param  bool              $required       Should be set to false, or use `requireComposer` instead
-     * @param  bool|null         $disablePlugins If null, reads --no-plugins as default
-     * @param  bool|null         $disableScripts If null, reads --no-scripts as default
+     * @param  bool              $required
+     * @param  bool|null         $disablePlugins
+     * @param  bool|null         $disableScripts
      * @throws \RuntimeException
      * @return Composer|null
-     * @deprecated since Composer 2.3.0 use requireComposer or tryComposer depending on whether you have $required set to true or false
      */
-    public function getComposer(bool $required = true, ?bool $disablePlugins = null, ?bool $disableScripts = null)
-    {
-        if ($required) {
-            return $this->requireComposer($disablePlugins, $disableScripts);
-        }
-
-        return $this->tryComposer($disablePlugins, $disableScripts);
-    }
-
-    /**
-     * Retrieves the default Composer\Composer instance or throws
-     *
-     * Use this instead of getComposer if you absolutely need an instance
-     *
-     * @param bool|null $disablePlugins If null, reads --no-plugins as default
-     * @param bool|null $disableScripts If null, reads --no-scripts as default
-     * @throws \RuntimeException
-     */
-    public function requireComposer(bool $disablePlugins = null, bool $disableScripts = null): Composer
+    public function getComposer($required = true, $disablePlugins = null, $disableScripts = null)
     {
         if (null === $this->composer) {
-            $application = parent::getApplication();
+            $application = $this->getApplication();
             if ($application instanceof Application) {
-                $this->composer = $application->getComposer(true, $disablePlugins, $disableScripts);
-                assert($this->composer instanceof Composer);
-            } else {
+                /* @var $application    Application */
+                $this->composer = $application->getComposer($required, $disablePlugins, $disableScripts);
+            /** @phpstan-ignore-next-line */
+            } elseif ($required) {
                 throw new \RuntimeException(
                     'Could not create a Composer\Composer instance, you must inject '.
                     'one if this command is not used with a Composer\Console\Application instance'
                 );
-            }
-        }
-
-        return $this->composer;
-    }
-
-    /**
-     * Retrieves the default Composer\Composer instance or null
-     *
-     * Use this instead of getComposer(false)
-     *
-     * @param bool|null $disablePlugins If null, reads --no-plugins as default
-     * @param bool|null $disableScripts If null, reads --no-scripts as default
-     */
-    public function tryComposer(bool $disablePlugins = null, bool $disableScripts = null): ?Composer
-    {
-        if (null === $this->composer) {
-            $application = parent::getApplication();
-            if ($application instanceof Application) {
-                $this->composer = $application->getComposer(false, $disablePlugins, $disableScripts);
             }
         }
 
@@ -163,9 +112,10 @@ abstract class BaseCommand extends Command
     public function getIO()
     {
         if (null === $this->io) {
-            $application = parent::getApplication();
+            $application = $this->getApplication();
             if ($application instanceof Application) {
                 $this->io = $application->getIO();
+            /** @phpstan-ignore-next-line */
             } else {
                 $this->io = new NullIO();
             }
@@ -197,9 +147,7 @@ abstract class BaseCommand extends Command
             $disableScripts = true;
         }
 
-        $composer = $this->tryComposer($disablePlugins, $disableScripts);
-        $io = $this->getIO();
-
+        $composer = $this->getComposer(false, $disablePlugins, $disableScripts);
         if (null === $composer) {
             $composer = Factory::createGlobal($this->getIO(), $disablePlugins, $disableScripts);
         }
@@ -212,26 +160,9 @@ abstract class BaseCommand extends Command
             $input->setOption('no-progress', true);
         }
 
-        if (true === $input->hasOption('no-dev')) {
+        if (true == $input->hasOption('no-dev')) {
             if (!$input->getOption('no-dev') && true == Platform::getEnv('COMPOSER_NO_DEV')) {
                 $input->setOption('no-dev', true);
-            }
-        }
-
-        if (true === $input->hasOption('ignore-platform-reqs')) {
-            if (!$input->getOption('ignore-platform-reqs') && true == Platform::getEnv('COMPOSER_IGNORE_PLATFORM_REQS')) {
-                $input->setOption('ignore-platform-reqs', true);
-
-                $io->writeError('<warning>COMPOSER_IGNORE_PLATFORM_REQS is set. You may experience unexpected errors.</warning>');
-            }
-        }
-
-        if (true === $input->hasOption('ignore-platform-req') && (!$input->hasOption('ignore-platform-reqs') || !$input->getOption('ignore-platform-reqs'))) {
-            $ignorePlatformReqEnv = Platform::getEnv('COMPOSER_IGNORE_PLATFORM_REQ');
-            if (0 === count($input->getOption('ignore-platform-req')) && is_string($ignorePlatformReqEnv) && '' !== $ignorePlatformReqEnv) {
-                $input->setOption('ignore-platform-req', explode(',', $ignorePlatformReqEnv));
-
-                $io->writeError('<warning>COMPOSER_IGNORE_PLATFORM_REQ is set to ignore '.$ignorePlatformReqEnv.'. You may experience unexpected errors.</warning>');
             }
         }
 
@@ -245,7 +176,7 @@ abstract class BaseCommand extends Command
      *
      * @return bool[] An array composed of the preferSource and preferDist values
      */
-    protected function getPreferredInstallOptions(Config $config, InputInterface $input, bool $keepVcsRequiresPreferSource = false)
+    protected function getPreferredInstallOptions(Config $config, InputInterface $input, $keepVcsRequiresPreferSource = false)
     {
         $preferSource = false;
         $preferDist = false;
@@ -263,11 +194,7 @@ abstract class BaseCommand extends Command
                 break;
         }
 
-        if (!$input->hasOption('prefer-dist') || !$input->hasOption('prefer-source')) {
-            return [$preferSource, $preferDist];
-        }
-
-        if ($input->hasOption('prefer-install') && is_string($input->getOption('prefer-install'))) {
+        if ($input->hasOption('prefer-install') && $input->getOption('prefer-install')) {
             if ($input->getOption('prefer-source')) {
                 throw new \InvalidArgumentException('--prefer-source can not be used together with --prefer-install');
             }
@@ -292,32 +219,14 @@ abstract class BaseCommand extends Command
 
         if ($input->getOption('prefer-source') || $input->getOption('prefer-dist') || ($keepVcsRequiresPreferSource && $input->hasOption('keep-vcs') && $input->getOption('keep-vcs'))) {
             $preferSource = $input->getOption('prefer-source') || ($keepVcsRequiresPreferSource && $input->hasOption('keep-vcs') && $input->getOption('keep-vcs'));
-            $preferDist = $input->getOption('prefer-dist');
+            $preferDist = (bool) $input->getOption('prefer-dist');
         }
 
         return array($preferSource, $preferDist);
     }
 
-    protected function getPlatformRequirementFilter(InputInterface $input): PlatformRequirementFilterInterface
-    {
-        if (!$input->hasOption('ignore-platform-reqs') || !$input->hasOption('ignore-platform-req')) {
-            throw new \LogicException('Calling getPlatformRequirementFilter from a command which does not define the --ignore-platform-req[s] flags is not permitted.');
-        }
-
-        if (true === $input->getOption('ignore-platform-reqs')) {
-            return PlatformRequirementFilterFactory::ignoreAll();
-        }
-
-        $ignores = $input->getOption('ignore-platform-req');
-        if (count($ignores) > 0) {
-            return PlatformRequirementFilterFactory::fromBoolOrList($ignores);
-        }
-
-        return PlatformRequirementFilterFactory::ignoreNothing();
-    }
-
     /**
-     * @param array<string> $requirements
+     * @param array<string, string> $requirements
      *
      * @return array<string, string>
      */
@@ -357,7 +266,13 @@ abstract class BaseCommand extends Command
         $renderer = new Table($output);
         $renderer->setStyle('compact');
         $rendererStyle = $renderer->getStyle();
-        $rendererStyle->setVerticalBorderChars('');
+        if (method_exists($rendererStyle, 'setVerticalBorderChars')) {
+            $rendererStyle->setVerticalBorderChars('');
+        } else {
+            // TODO remove in composer 2.2
+            // @phpstan-ignore-next-line
+            $rendererStyle->setVerticalBorderChar('');
+        }
         $rendererStyle->setCellRowContentFormat('%s  ');
         $renderer->setRows($table)->render();
     }
@@ -367,9 +282,20 @@ abstract class BaseCommand extends Command
      */
     protected function getTerminalWidth()
     {
-        $terminal = new Terminal();
-        $width = $terminal->getWidth();
-
+        if (class_exists('Symfony\Component\Console\Terminal')) {
+            $terminal = new Terminal();
+            $width = $terminal->getWidth();
+        } else {
+            // For versions of Symfony console before 3.2
+            // TODO remove in composer 2.2
+            // @phpstan-ignore-next-line
+            list($width) = $this->getApplication()->getTerminalDimensions();
+        }
+        if (null === $width) {
+            // In case the width is not detected, we're probably running the command
+            // outside of a real terminal, use space without a limit
+            $width = PHP_INT_MAX;
+        }
         if (Platform::isWindows()) {
             $width--;
         } else {

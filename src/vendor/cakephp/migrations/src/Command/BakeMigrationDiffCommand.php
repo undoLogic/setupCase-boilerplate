@@ -574,11 +574,7 @@ class BakeMigrationDiffCommand extends BakeSimpleMigrationCommand
     {
         $parser = parent::getOptionParser();
 
-        $parser->setDescription(
-            'Create a migration that captures the difference between ' .
-            'the migration state is expected to be and what the schema ' .
-            'reflection contains.'
-        )->addArgument('name', [
+        $parser->addArgument('name', [
             'help' => 'Name of the migration to bake. Can use Plugin.name to bake migration files into plugins.',
             'required' => true,
         ]);

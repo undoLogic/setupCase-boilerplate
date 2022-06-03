@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -25,7 +25,7 @@ class Response
     private $request;
     /** @var int */
     private $code;
-    /** @var list<string> */
+    /** @var string[] */
     private $headers;
     /** @var ?string */
     private $body;
@@ -33,10 +33,10 @@ class Response
     /**
      * @param Request  $request
      * @param int      $code
-     * @param list<string> $headers
-     * @param null|string  $body
+     * @param string[] $headers
+     * @param ?string  $body
      */
-    public function __construct(array $request, ?int $code, array $headers, ?string $body)
+    public function __construct(array $request, $code, array $headers, $body)
     {
         if (!isset($request['url'])) { // @phpstan-ignore-line
             throw new \LogicException('url key missing from request array');
@@ -50,7 +50,7 @@ class Response
     /**
      * @return int
      */
-    public function getStatusCode(): int
+    public function getStatusCode()
     {
         return $this->code;
     }
@@ -58,7 +58,7 @@ class Response
     /**
      * @return string|null
      */
-    public function getStatusMessage(): ?string
+    public function getStatusMessage()
     {
         $value = null;
         foreach ($this->headers as $header) {
@@ -75,7 +75,7 @@ class Response
     /**
      * @return string[]
      */
-    public function getHeaders(): array
+    public function getHeaders()
     {
         return $this->headers;
     }
@@ -84,7 +84,7 @@ class Response
      * @param  string  $name
      * @return ?string
      */
-    public function getHeader(string $name): ?string
+    public function getHeader($name)
     {
         return self::findHeaderValue($this->headers, $name);
     }
@@ -92,7 +92,7 @@ class Response
     /**
      * @return ?string
      */
-    public function getBody(): ?string
+    public function getBody()
     {
         return $this->body;
     }
@@ -109,7 +109,7 @@ class Response
      * @return void
      * @phpstan-impure
      */
-    public function collect(): void
+    public function collect()
     {
         /** @phpstan-ignore-next-line */
         $this->request = $this->code = $this->headers = $this->body = null;
@@ -120,7 +120,7 @@ class Response
      * @param  string      $name    header name (case insensitive)
      * @return string|null
      */
-    public static function findHeaderValue(array $headers, string $name): ?string
+    public static function findHeaderValue(array $headers, $name)
     {
         $value = null;
         foreach ($headers as $header) {

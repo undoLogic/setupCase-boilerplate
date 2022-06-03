@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -27,7 +27,7 @@ class ProxyHelper
      *
      * @throws \RuntimeException on malformed url
      */
-    public static function getProxyData(): array
+    public static function getProxyData()
     {
         $httpProxy = null;
         $httpsProxy = null;
@@ -64,7 +64,7 @@ class ProxyHelper
      *
      * @return array{http: array{proxy: string, header?: string}}
      */
-    public static function getContextOptions(string $proxyUrl): array
+    public static function getContextOptions($proxyUrl)
     {
         $proxy = parse_url($proxyUrl);
 
@@ -97,7 +97,7 @@ class ProxyHelper
      *
      * @return void
      */
-    public static function setRequestFullUri(string $requestUrl, array &$options): void
+    public static function setRequestFullUri($requestUrl, array &$options)
     {
         if ('http' === parse_url($requestUrl, PHP_URL_SCHEME)) {
             $options['http']['request_fulluri'] = true;
@@ -114,7 +114,7 @@ class ProxyHelper
      *
      * @return string|null The found value
      */
-    private static function getProxyEnv(array $names, ?string &$name): ?string
+    private static function getProxyEnv(array $names, &$name)
     {
         foreach ($names as $name) {
             if (!empty($_SERVER[$name])) {
@@ -133,7 +133,7 @@ class ProxyHelper
      * @throws \RuntimeException on malformed url
      * @return string            The formatted proxy url
      */
-    private static function checkProxy(string $proxyUrl, string $envName): string
+    private static function checkProxy($proxyUrl, $envName)
     {
         $error = sprintf('malformed %s url', $envName);
         $proxy = parse_url($proxyUrl);
@@ -161,7 +161,7 @@ class ProxyHelper
      *
      * @return string The formatted value
      */
-    private static function formatParsedUrl(array $proxy, bool $includeAuth): string
+    private static function formatParsedUrl(array $proxy, $includeAuth)
     {
         $proxyUrl = isset($proxy['scheme']) ? strtolower($proxy['scheme']) . '://' : '';
 

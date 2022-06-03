@@ -42,7 +42,7 @@ class {{ name }}Fixture extends TestFixture
     /**
      * Import
      *
-     * @var array<string, mixed>
+     * @var array
      */
     public $import = {{ import|raw }};
 
@@ -52,7 +52,7 @@ class {{ name }}Fixture extends TestFixture
     /**
      * Fields
      *
-     * @var array<string, mixed>
+     * @var array
      */
     // phpcs:disable
     public $fields = {{ schema|raw }};

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -57,7 +57,7 @@ class WritableArrayRepository extends ArrayRepository implements WritableReposit
     /**
      * @inheritDoc
      */
-    public function write(bool $devMode, InstallationManager $installationManager)
+    public function write($devMode, InstallationManager $installationManager)
     {
         $this->devMode = $devMode;
     }

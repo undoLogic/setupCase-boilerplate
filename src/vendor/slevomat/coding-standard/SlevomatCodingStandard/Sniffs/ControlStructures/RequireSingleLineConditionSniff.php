@@ -22,6 +22,7 @@ class RequireSingleLineConditionSniff extends AbstractLineCondition
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $controlStructurePointer
 	 */
 	public function process(File $phpcsFile, $controlStructurePointer): void

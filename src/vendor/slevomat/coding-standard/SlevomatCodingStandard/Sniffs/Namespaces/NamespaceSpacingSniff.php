@@ -42,6 +42,7 @@ class NamespaceSpacingSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $namespacePointer
 	 */
 	public function process(File $phpcsFile, $namespacePointer): void

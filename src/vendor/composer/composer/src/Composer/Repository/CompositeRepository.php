@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -12,7 +12,6 @@
 
 namespace Composer\Repository;
 
-use Composer\Package\BasePackage;
 use Composer\Package\PackageInterface;
 
 /**
@@ -40,9 +39,9 @@ class CompositeRepository implements RepositoryInterface
         }
     }
 
-    public function getRepoName(): string
+    public function getRepoName()
     {
-        return 'composite repo ('.implode(', ', array_map(function ($repo): string {
+        return 'composite repo ('.implode(', ', array_map(function ($repo) {
             return $repo->getRepoName();
         }, $this->repositories)).')';
     }
@@ -52,7 +51,7 @@ class CompositeRepository implements RepositoryInterface
      *
      * @return RepositoryInterface[]
      */
-    public function getRepositories(): array
+    public function getRepositories()
     {
         return $this->repositories;
     }
@@ -60,7 +59,7 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function hasPackage(PackageInterface $package): bool
+    public function hasPackage(PackageInterface $package)
     {
         foreach ($this->repositories as $repository) {
             /* @var $repository RepositoryInterface */
@@ -75,7 +74,7 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function findPackage($name, $constraint): ?BasePackage
+    public function findPackage($name, $constraint)
     {
         foreach ($this->repositories as $repository) {
             /* @var $repository RepositoryInterface */
@@ -91,7 +90,7 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function findPackages($name, $constraint = null): array
+    public function findPackages($name, $constraint = null)
     {
         $packages = array();
         foreach ($this->repositories as $repository) {
@@ -105,13 +104,13 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function loadPackages(array $packageNameMap, array $acceptableStabilities, array $stabilityFlags, array $alreadyLoaded = array()): array
+    public function loadPackages(array $packageMap, array $acceptableStabilities, array $stabilityFlags, array $alreadyLoaded = array())
     {
         $packages = array();
         $namesFound = array();
         foreach ($this->repositories as $repository) {
             /* @var $repository RepositoryInterface */
-            $result = $repository->loadPackages($packageNameMap, $acceptableStabilities, $stabilityFlags, $alreadyLoaded);
+            $result = $repository->loadPackages($packageMap, $acceptableStabilities, $stabilityFlags, $alreadyLoaded);
             $packages[] = $result['packages'];
             $namesFound[] = $result['namesFound'];
         }
@@ -125,7 +124,7 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function search(string $query, int $mode = 0, ?string $type = null): array
+    public function search($query, $mode = 0, $type = null)
     {
         $matches = array();
         foreach ($this->repositories as $repository) {
@@ -139,7 +138,7 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getPackages(): array
+    public function getPackages()
     {
         $packages = array();
         foreach ($this->repositories as $repository) {
@@ -153,7 +152,7 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getProviders($packageName): array
+    public function getProviders($packageName)
     {
         $results = array();
         foreach ($this->repositories as $repository) {
@@ -167,7 +166,7 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @return void
      */
-    public function removePackage(PackageInterface $package): void
+    public function removePackage(PackageInterface $package)
     {
         foreach ($this->repositories as $repository) {
             if ($repository instanceof WritableRepositoryInterface) {
@@ -179,7 +178,8 @@ class CompositeRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function count(): int
+    #[\ReturnTypeWillChange]
+    public function count()
     {
         $total = 0;
         foreach ($this->repositories as $repository) {
@@ -196,7 +196,7 @@ class CompositeRepository implements RepositoryInterface
      *
      * @return void
      */
-    public function addRepository(RepositoryInterface $repository): void
+    public function addRepository(RepositoryInterface $repository)
     {
         if ($repository instanceof self) {
             foreach ($repository->getRepositories() as $repo) {

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -34,11 +34,11 @@ abstract class BasePackage implements PackageInterface
         'require-dev' => array('description' => 'requires (for development)', 'method' => Link::TYPE_DEV_REQUIRE),
     );
 
-    public const STABILITY_STABLE = 0;
-    public const STABILITY_RC = 5;
-    public const STABILITY_BETA = 10;
-    public const STABILITY_ALPHA = 15;
-    public const STABILITY_DEV = 20;
+    const STABILITY_STABLE = 0;
+    const STABILITY_RC = 5;
+    const STABILITY_BETA = 10;
+    const STABILITY_ALPHA = 15;
+    const STABILITY_DEV = 20;
 
     /** @var array<string, self::STABILITY_*> */
     public static $stabilities = array(
@@ -68,7 +68,7 @@ abstract class BasePackage implements PackageInterface
      *
      * @param string $name The package's name
      */
-    public function __construct(string $name)
+    public function __construct($name)
     {
         $this->prettyName = $name;
         $this->name = strtolower($name);
@@ -78,7 +78,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @inheritDoc
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -86,7 +86,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @inheritDoc
      */
-    public function getPrettyName(): string
+    public function getPrettyName()
     {
         return $this->prettyName;
     }
@@ -94,7 +94,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @inheritDoc
      */
-    public function getNames($provides = true): array
+    public function getNames($provides = true)
     {
         $names = array(
             $this->getName() => true,
@@ -116,7 +116,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @inheritDoc
      */
-    public function setId(int $id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -124,7 +124,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @inheritDoc
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -132,7 +132,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @inheritDoc
      */
-    public function setRepository(RepositoryInterface $repository): void
+    public function setRepository(RepositoryInterface $repository)
     {
         if ($this->repository && $repository !== $this->repository) {
             throw new \LogicException('A package can only be added to one repository');
@@ -143,7 +143,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @inheritDoc
      */
-    public function getRepository(): ?RepositoryInterface
+    public function getRepository()
     {
         return $this->repository;
     }
@@ -153,7 +153,7 @@ abstract class BasePackage implements PackageInterface
      *
      * @return bool
      */
-    public function isPlatform(): bool
+    public function isPlatform()
     {
         return $this->getRepository() instanceof PlatformRepository;
     }
@@ -163,7 +163,7 @@ abstract class BasePackage implements PackageInterface
      *
      * @return string
      */
-    public function getUniqueName(): string
+    public function getUniqueName()
     {
         return $this->getName().'-'.$this->getVersion();
     }
@@ -171,7 +171,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @return bool
      */
-    public function equals(PackageInterface $package): bool
+    public function equals(PackageInterface $package)
     {
         $self = $this;
         if ($this instanceof AliasPackage) {
@@ -189,12 +189,12 @@ abstract class BasePackage implements PackageInterface
      *
      * @return string
      */
-    public function __toString(): string
+    public function __toString()
     {
         return $this->getUniqueName();
     }
 
-    public function getPrettyString(): string
+    public function getPrettyString()
     {
         return $this->getPrettyName().' '.$this->getPrettyVersion();
     }
@@ -202,7 +202,7 @@ abstract class BasePackage implements PackageInterface
     /**
      * @inheritDoc
      */
-    public function getFullPrettyVersion(bool $truncate = true, int $displayMode = PackageInterface::DISPLAY_SOURCE_REF_IF_DEV): string
+    public function getFullPrettyVersion($truncate = true, $displayMode = PackageInterface::DISPLAY_SOURCE_REF_IF_DEV)
     {
         if ($displayMode === PackageInterface::DISPLAY_SOURCE_REF_IF_DEV &&
             (!$this->isDev() || !\in_array($this->getSourceType(), array('hg', 'git')))
@@ -239,7 +239,7 @@ abstract class BasePackage implements PackageInterface
      *
      * @phpstan-return self::STABILITY_*
      */
-    public function getStabilityPriority(): int
+    public function getStabilityPriority()
     {
         return self::$stabilities[$this->getStability()];
     }
@@ -257,7 +257,7 @@ abstract class BasePackage implements PackageInterface
      * @param  non-empty-string $wrap         Wrap the cleaned string by the given string
      * @return non-empty-string
      */
-    public static function packageNameToRegexp(string $allowPattern, string $wrap = '{^%s$}i'): string
+    public static function packageNameToRegexp($allowPattern, $wrap = '{^%s$}i')
     {
         $cleanedAllowPattern = str_replace('\\*', '.*', preg_quote($allowPattern));
 
@@ -271,10 +271,10 @@ abstract class BasePackage implements PackageInterface
      * @param non-empty-string $wrap
      * @return non-empty-string
      */
-    public static function packageNamesToRegexp(array $packageNames, string $wrap = '{^(?:%s)$}iD'): string
+    public static function packageNamesToRegexp(array $packageNames, $wrap = '{^(?:%s)$}iD')
     {
         $packageNames = array_map(
-            function ($packageName): string {
+            function ($packageName) {
                 return BasePackage::packageNameToRegexp($packageName, '%s');
             },
             $packageNames

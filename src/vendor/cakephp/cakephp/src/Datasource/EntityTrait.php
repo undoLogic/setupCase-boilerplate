@@ -405,7 +405,7 @@ trait EntityTrait
     }
 
     /**
-     * Checks that a field has a value.
+     * Checks tha a field has a value.
      *
      * This method will return true for
      *

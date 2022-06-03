@@ -364,10 +364,7 @@ will generate::
         {
             $table = $this->table('products');
             $table->addColumn('name', 'string')
-                  ->addColumn('email', 'string')
                   ->addIndex(['name'])
-                  // add a unique index:
-                  ->addIndex('email', ['unique' => true])
                   ->update();
         }
     }
@@ -876,7 +873,7 @@ If your database also contains tables that are not managed by your application
 like those created by PostGIS, then you can exclude those tables from the drop
 & truncate behavior using the ``skip`` option::
 
-    $migrator->run(['connection' => 'test', 'skip' => ['postgis*']]);
+    $migrator->run(['connection' => 'test', 'skip' => 'postgis*']);
 
 The ``skip`` option accepts a ``fnmatch()`` compatible pattern to exclude tables
 from drop & truncate operations.

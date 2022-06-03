@@ -2,8 +2,6 @@
 
 namespace PHPStan\PhpDocParser\Ast;
 
-use function array_key_exists;
-
 trait NodeAttributes
 {
 
@@ -11,6 +9,7 @@ trait NodeAttributes
 	private $attributes = [];
 
 	/**
+	 * @param string $key
 	 * @param mixed $value
 	 */
 	public function setAttribute(string $key, $value): void
@@ -24,6 +23,7 @@ trait NodeAttributes
 	}
 
 	/**
+	 * @param string $key
 	 * @return mixed
 	 */
 	public function getAttribute(string $key)

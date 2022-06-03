@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -158,7 +158,7 @@ class PoolBuilder
      * @param RepositoryInterface[] $repositories
      * @return Pool
      */
-    public function buildPool(array $repositories, Request $request): Pool
+    public function buildPool(array $repositories, Request $request)
     {
         if ($request->getUpdateAllowList()) {
             $this->updateAllowList = $request->getUpdateAllowList();
@@ -287,8 +287,6 @@ class PoolBuilder
         $this->skippedLoad = array();
         $this->indexCounter = 0;
 
-        $this->io->debug('Built pool.');
-
         $pool = $this->runOptimizer($request, $pool);
 
         Intervals::clear();
@@ -300,7 +298,7 @@ class PoolBuilder
      * @param string $name
      * @return void
      */
-    private function markPackageNameForLoading(Request $request, string $name, ConstraintInterface $constraint): void
+    private function markPackageNameForLoading(Request $request, $name, ConstraintInterface $constraint)
     {
         // Skip platform requires at this stage
         if (PlatformRepository::isPlatformPackage($name)) {
@@ -359,7 +357,7 @@ class PoolBuilder
      * @param RepositoryInterface[] $repositories
      * @return void
      */
-    private function loadPackagesMarkedForLoading(Request $request, array $repositories): void
+    private function loadPackagesMarkedForLoading(Request $request, array $repositories)
     {
         foreach ($this->packagesToLoad as $name => $constraint) {
             $this->loadedPackages[$name] = $constraint;
@@ -378,7 +376,7 @@ class PoolBuilder
             if ($repository instanceof PlatformRepository || $repository === $request->getLockedRepository()) {
                 continue;
             }
-            $result = $repository->loadPackages($packageBatch, $this->acceptableStabilities, $this->stabilityFlags, $this->loadedPerRepo[$repoIndex] ?? array());
+            $result = $repository->loadPackages($packageBatch, $this->acceptableStabilities, $this->stabilityFlags, isset($this->loadedPerRepo[$repoIndex]) ? $this->loadedPerRepo[$repoIndex] : array());
 
             foreach ($result['namesFound'] as $name) {
                 // avoid loading the same package again from other repositories once it has been found
@@ -396,7 +394,7 @@ class PoolBuilder
      * @param RepositoryInterface[] $repositories
      * @return void
      */
-    private function loadPackage(Request $request, array $repositories, BasePackage $package, bool $propagateUpdate): void
+    private function loadPackage(Request $request, array $repositories, BasePackage $package, $propagateUpdate)
     {
         $index = $this->indexCounter++;
         $this->packages[$index] = $package;
@@ -501,7 +499,7 @@ class PoolBuilder
      * @param string $name packageName
      * @return bool
      */
-    private function isRootRequire(Request $request, string $name): bool
+    private function isRootRequire(Request $request, $name)
     {
         $rootRequires = $request->getRequires();
 
@@ -512,7 +510,7 @@ class PoolBuilder
      * @param  string $name
      * @return string[]
      */
-    private function getSkippedRootRequires(Request $request, string $name): array
+    private function getSkippedRootRequires(Request $request, $name)
     {
         if (!isset($this->skippedLoad[$name])) {
             return array();
@@ -522,7 +520,7 @@ class PoolBuilder
         $matches = array();
 
         if (isset($rootRequires[$name])) {
-            return array_map(function (PackageInterface $package) use ($name): string {
+            return array_map(function (PackageInterface $package) use ($name) {
                 if ($name !== $package->getName()) {
                     return $package->getName() .' (via replace of '.$name.')';
                 }
@@ -555,7 +553,7 @@ class PoolBuilder
      *
      * @return bool
      */
-    private function isUpdateAllowed(BasePackage $package): bool
+    private function isUpdateAllowed(BasePackage $package)
     {
         foreach ($this->updateAllowList as $pattern => $void) {
             $patternRegexp = BasePackage::packageNameToRegexp($pattern);
@@ -570,7 +568,7 @@ class PoolBuilder
     /**
      * @return void
      */
-    private function warnAboutNonMatchingUpdateAllowList(Request $request): void
+    private function warnAboutNonMatchingUpdateAllowList(Request $request)
     {
         foreach ($this->updateAllowList as $pattern => $void) {
             $patternRegexp = BasePackage::packageNameToRegexp($pattern);
@@ -602,7 +600,7 @@ class PoolBuilder
      * @param string $name
      * @return void
      */
-    private function unlockPackage(Request $request, array $repositories, string $name): void
+    private function unlockPackage(Request $request, array $repositories, $name)
     {
         foreach ($this->skippedLoad[$name] as $packageOrReplacer) {
             // if we unfixed a replaced package name, we also need to unfix the replacer itself
@@ -668,7 +666,7 @@ class PoolBuilder
      * @param int $index
      * @return void
      */
-    private function removeLoadedPackage(Request $request, array $repositories, BasePackage $package, int $index): void
+    private function removeLoadedPackage(Request $request, array $repositories, BasePackage $package, $index)
     {
         $repoIndex = array_search($package->getRepository(), $repositories, true);
 
@@ -686,15 +684,12 @@ class PoolBuilder
     /**
      * @return Pool
      */
-    private function runOptimizer(Request $request, Pool $pool): Pool
+    private function runOptimizer(Request $request, Pool $pool)
     {
         if (null === $this->poolOptimizer) {
             return $pool;
         }
 
-        $this->io->debug('Running pool optimizer.');
-
-        $before = microtime(true);
         $total = \count($pool->getPackages());
 
         $pool = $this->poolOptimizer->optimize($request, $pool);
@@ -705,12 +700,11 @@ class PoolBuilder
             return $pool;
         }
 
-        $this->io->write(sprintf('Pool optimizer completed in %.3f seconds', microtime(true) - $before), true, IOInterface::VERY_VERBOSE);
         $this->io->write(sprintf(
             '<info>Found %s package versions referenced in your dependency graph. %s (%d%%) were optimized away.</info>',
             number_format($total),
             number_format($filtered),
-            round(100 / $total * $filtered)
+            round(100/$total*$filtered)
         ), true, IOInterface::VERY_VERBOSE);
 
         return $pool;

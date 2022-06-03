@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -16,7 +16,6 @@ use Composer\DependencyResolver\Transaction;
 use Composer\Installer\InstallerEvent;
 use Composer\IO\IOInterface;
 use Composer\Composer;
-use Composer\PartialComposer;
 use Composer\Pcre\Preg;
 use Composer\Util\Platform;
 use Composer\DependencyResolver\Operation\OperationInterface;
@@ -34,7 +33,7 @@ use Symfony\Component\Process\ExecutableFinder;
  * The Event Dispatcher.
  *
  * Example in command:
- *     $dispatcher = new EventDispatcher($this->requireComposer(), $this->getApplication()->getIO());
+ *     $dispatcher = new EventDispatcher($this->getComposer(), $this->getApplication()->getIO());
  *     // ...
  *     $dispatcher->dispatch(ScriptEvents::POST_INSTALL_CMD);
  *     // ...
@@ -45,7 +44,7 @@ use Symfony\Component\Process\ExecutableFinder;
  */
 class EventDispatcher
 {
-    /** @var PartialComposer */
+    /** @var Composer */
     protected $composer;
     /** @var IOInterface */
     protected $io;
@@ -63,15 +62,15 @@ class EventDispatcher
     /**
      * Constructor.
      *
-     * @param PartialComposer $composer The composer instance
+     * @param Composer        $composer The composer instance
      * @param IOInterface     $io       The IOInterface instance
      * @param ProcessExecutor $process
      */
-    public function __construct(PartialComposer $composer, IOInterface $io, ProcessExecutor $process = null)
+    public function __construct(Composer $composer, IOInterface $io, ProcessExecutor $process = null)
     {
         $this->composer = $composer;
         $this->io = $io;
-        $this->process = $process ?? new ProcessExecutor($io);
+        $this->process = $process ?: new ProcessExecutor($io);
         $this->eventStack = array();
     }
 
@@ -81,7 +80,7 @@ class EventDispatcher
      * @param bool $runScripts
      * @return $this
      */
-    public function setRunScripts(bool $runScripts = true): self
+    public function setRunScripts($runScripts = true)
     {
         $this->runScripts = (bool) $runScripts;
 
@@ -91,17 +90,14 @@ class EventDispatcher
     /**
      * Dispatch an event
      *
-     * @param  string|null $eventName The event name, required if no $event is provided
-     * @param  Event       $event An event instance, required if no $eventName is provided
-     * @return int         return code of the executed script if any, for php scripts a false return
+     * @param  string $eventName An event name
+     * @param  Event  $event
+     * @return int    return code of the executed script if any, for php scripts a false return
      *                          value is changed to 1, anything else to 0
      */
-    public function dispatch(?string $eventName, Event $event = null): int
+    public function dispatch($eventName, Event $event = null)
     {
         if (null === $event) {
-            if (null === $eventName) {
-                throw new \InvalidArgumentException('If no $event is passed in to '.__METHOD__.' you have to pass in an $eventName, got null.');
-            }
             $event = new Event($eventName);
         }
 
@@ -118,10 +114,8 @@ class EventDispatcher
      * @return int                                  return code of the executed script if any, for php scripts a false return
      *                                              value is changed to 1, anything else to 0
      */
-    public function dispatchScript(string $eventName, bool $devMode = false, array $additionalArgs = array(), array $flags = array()): int
+    public function dispatchScript($eventName, $devMode = false, $additionalArgs = array(), $flags = array())
     {
-        assert($this->composer instanceof Composer, new \LogicException('This should only be reached with a fully loaded Composer'));
-
         return $this->doDispatch(new Script\Event($eventName, $this->composer, $this->io, $devMode, $additionalArgs, $flags));
     }
 
@@ -137,10 +131,8 @@ class EventDispatcher
      * @return int return code of the executed script if any, for php scripts a false return
      *             value is changed to 1, anything else to 0
      */
-    public function dispatchPackageEvent(string $eventName, bool $devMode, RepositoryInterface $localRepo, array $operations, OperationInterface $operation): int
+    public function dispatchPackageEvent($eventName, $devMode, RepositoryInterface $localRepo, array $operations, OperationInterface $operation)
     {
-        assert($this->composer instanceof Composer, new \LogicException('This should only be reached with a fully loaded Composer'));
-
         return $this->doDispatch(new PackageEvent($eventName, $this->composer, $this->io, $devMode, $localRepo, $operations, $operation));
     }
 
@@ -155,10 +147,8 @@ class EventDispatcher
      * @return int return code of the executed script if any, for php scripts a false return
      *             value is changed to 1, anything else to 0
      */
-    public function dispatchInstallerEvent(string $eventName, bool $devMode, bool $executeOperations, Transaction $transaction): int
+    public function dispatchInstallerEvent($eventName, $devMode, $executeOperations, Transaction $transaction)
     {
-        assert($this->composer instanceof Composer, new \LogicException('This should only be reached with a fully loaded Composer'));
-
         return $this->doDispatch(new InstallerEvent($eventName, $this->composer, $this->io, $devMode, $executeOperations, $transaction));
     }
 
@@ -333,9 +323,17 @@ class EventDispatcher
                     break;
                 }
             }
-        } finally {
+        } catch (\Exception $e) { // TODO Composer 2.2 turn all this into a finally
             $this->popEvent();
+
+            throw $e;
+        } catch (\Throwable $e) {
+            $this->popEvent();
+
+            throw $e;
         }
+
+        $this->popEvent();
 
         return $returnMax;
     }
@@ -345,7 +343,7 @@ class EventDispatcher
      *
      * @return int
      */
-    protected function executeTty(string $exec): int
+    protected function executeTty($exec)
     {
         if ($this->io->isInteractive()) {
             return $this->process->executeTty($exec);
@@ -357,7 +355,7 @@ class EventDispatcher
     /**
      * @return string
      */
-    protected function getPhpExecCommand(): string
+    protected function getPhpExecCommand()
     {
         $finder = new PhpExecutableFinder();
         $phpPath = $finder->find(false);
@@ -380,7 +378,7 @@ class EventDispatcher
      *
      * @return mixed
      */
-    protected function executeEventPhpScript(string $className, string $methodName, Event $event)
+    protected function executeEventPhpScript($className, $methodName, Event $event)
     {
         if ($this->io->isVerbose()) {
             $this->io->writeError(sprintf('> %s: %s::%s', $event->getName(), $className, $methodName));
@@ -394,13 +392,13 @@ class EventDispatcher
     /**
      * Add a listener for a particular event
      *
-     * @param string          $eventName The event name - typically a constant
-     * @param callable|string $listener  A callable expecting an event argument, or a command string to be executed (same as a composer.json "scripts" entry)
-     * @param int             $priority  A higher value represents a higher priority
+     * @param string   $eventName The event name - typically a constant
+     * @param callable $listener  A callable expecting an event argument
+     * @param int      $priority  A higher value represents a higher priority
      *
      * @return void
      */
-    public function addListener(string $eventName, $listener, int $priority = 0): void
+    public function addListener($eventName, $listener, $priority = 0)
     {
         $this->listeners[$eventName][$priority][] = $listener;
     }
@@ -410,7 +408,7 @@ class EventDispatcher
      *
      * @return void
      */
-    public function removeListener($listener): void
+    public function removeListener($listener)
     {
         foreach ($this->listeners as $eventName => $priorities) {
             foreach ($priorities as $priority => $listeners) {
@@ -432,16 +430,16 @@ class EventDispatcher
      *
      * @return void
      */
-    public function addSubscriber(EventSubscriberInterface $subscriber): void
+    public function addSubscriber(EventSubscriberInterface $subscriber)
     {
         foreach ($subscriber->getSubscribedEvents() as $eventName => $params) {
             if (is_string($params)) {
                 $this->addListener($eventName, array($subscriber, $params));
             } elseif (is_string($params[0])) {
-                $this->addListener($eventName, array($subscriber, $params[0]), $params[1] ?? 0);
+                $this->addListener($eventName, array($subscriber, $params[0]), isset($params[1]) ? $params[1] : 0);
             } else {
                 foreach ($params as $listener) {
-                    $this->addListener($eventName, array($subscriber, $listener[0]), $listener[1] ?? 0);
+                    $this->addListener($eventName, array($subscriber, $listener[0]), isset($listener[1]) ? $listener[1] : 0);
                 }
             }
         }
@@ -453,7 +451,7 @@ class EventDispatcher
      * @param  Event $event
      * @return array<callable|string> All listeners: callables and scripts
      */
-    protected function getListeners(Event $event): array
+    protected function getListeners(Event $event)
     {
         $scriptListeners = $this->runScripts ? $this->getScriptListeners($event) : array();
 
@@ -474,7 +472,7 @@ class EventDispatcher
      * @param  Event $event
      * @return bool
      */
-    public function hasEventListeners(Event $event): bool
+    public function hasEventListeners(Event $event)
     {
         $listeners = $this->getListeners($event);
 
@@ -487,7 +485,7 @@ class EventDispatcher
      * @param  Event $event Event object
      * @return string[] Listeners
      */
-    protected function getScriptListeners(Event $event): array
+    protected function getScriptListeners(Event $event)
     {
         $package = $this->composer->getPackage();
         $scripts = $package->getScripts();
@@ -495,8 +493,6 @@ class EventDispatcher
         if (empty($scripts[$event->getName()])) {
             return array();
         }
-
-        assert($this->composer instanceof Composer, new \LogicException('This should only be reached with a fully loaded Composer'));
 
         if ($this->loader) {
             $this->loader->unregister();
@@ -522,7 +518,7 @@ class EventDispatcher
      * @param  string $callable
      * @return bool
      */
-    protected function isPhpScript(string $callable): bool
+    protected function isPhpScript($callable)
     {
         return false === strpos($callable, ' ') && false !== strpos($callable, '::');
     }
@@ -533,7 +529,7 @@ class EventDispatcher
      * @param  string $callable
      * @return bool
      */
-    protected function isComposerScript(string $callable): bool
+    protected function isComposerScript($callable)
     {
         return strpos($callable, '@') === 0 && strpos($callable, '@php ') !== 0 && strpos($callable, '@putenv ') !== 0;
     }
@@ -545,7 +541,7 @@ class EventDispatcher
      * @throws \RuntimeException
      * @return int
      */
-    protected function pushEvent(Event $event): int
+    protected function pushEvent(Event $event)
     {
         $eventName = $event->getName();
         if (in_array($eventName, $this->eventStack)) {
@@ -560,7 +556,7 @@ class EventDispatcher
      *
      * @return string|null
      */
-    protected function popEvent(): ?string
+    protected function popEvent()
     {
         return array_pop($this->eventStack);
     }
@@ -568,14 +564,10 @@ class EventDispatcher
     /**
      * @return void
      */
-    private function ensureBinDirIsInPath(): void
+    private function ensureBinDirIsInPath()
     {
         $pathEnv = 'PATH';
-
-        // checking if only Path and not PATH is set then we probably need to update the Path env
-        // on Windows getenv is case-insensitive so we cannot check it via Platform::getEnv and
-        // we need to check in $_SERVER directly
-        if (!isset($_SERVER[$pathEnv]) && isset($_SERVER['Path'])) {
+        if (false === Platform::getEnv('PATH') && false !== Platform::getEnv('Path')) {
             $pathEnv = 'Path';
         }
 
@@ -583,7 +575,7 @@ class EventDispatcher
         $binDir = $this->composer->getConfig()->get('bin-dir');
         if (is_dir($binDir)) {
             $binDir = realpath($binDir);
-            $pathValue = (string) Platform::getEnv($pathEnv);
+            $pathValue = Platform::getEnv($pathEnv);
             if (!Preg::isMatch('{(^|'.PATH_SEPARATOR.')'.preg_quote($binDir).'($|'.PATH_SEPARATOR.')}', $pathValue)) {
                 Platform::putEnv($pathEnv, $binDir.PATH_SEPARATOR.$pathValue);
             }

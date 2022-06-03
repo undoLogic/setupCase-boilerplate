@@ -27,7 +27,7 @@ class TodoItemsFixture extends TestFixture
     /**
      * fields property
      *
-     * @var array<string, mixed>
+     * @var array
      */
     public $fields = [
         'id' => ['type' => 'integer', 'null' => false],

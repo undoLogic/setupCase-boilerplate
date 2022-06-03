@@ -220,11 +220,10 @@ class FixtureCommand extends BakeCommand
     public function validateNames(TableSchemaInterface $schema, ConsoleIo $io): void
     {
         foreach ($schema->columns() as $column) {
-            if (!$this->isValidColumnName($column)) {
+            if (!is_string($column) || (!ctype_alpha($column[0]) && $column[0] !== '_')) {
                 $io->abort(sprintf(
-                    'Unable to bake model. Table column name must start with a letter or underscore and
-                    cannot contain special characters. Found `%s`.',
-                    $column
+                    'Unable to bake model. Table column names must start with a letter or underscore. Found `%s`.',
+                    (string)$column
                 ));
             }
         }
@@ -236,7 +235,7 @@ class FixtureCommand extends BakeCommand
      * @param \Cake\Console\Arguments $args The CLI arguments.
      * @param \Cake\Console\ConsoleIo $io The console io instance.
      * @param string $model name of the model being generated
-     * @param array<string, mixed> $otherVars Contents of the fixture file.
+     * @param array $otherVars Contents of the fixture file.
      * @return void
      */
     public function generateFixtureFile(Arguments $args, ConsoleIo $io, string $model, array $otherVars): void
@@ -266,7 +265,7 @@ class FixtureCommand extends BakeCommand
         $renderer->set($vars);
         $content = $renderer->generate('Bake.tests/fixture');
 
-        $io->out("\n" . sprintf('Baking test fixture for %s...', $model), 1, ConsoleIo::NORMAL);
+        $io->out("\n" . sprintf('Baking test fixture for %s...', $model), 1, ConsoleIo::QUIET);
         $io->createFile($path . $filename, $content, $args->getOption('force'));
         $emptyFile = $path . '.gitkeep';
         $this->deleteEmptyFile($emptyFile, $io);
@@ -431,7 +430,6 @@ class FixtureCommand extends BakeCommand
      *
      * @param array $records Array of records to be converted to string
      * @return string A string value of the $records array.
-     * @throws \Brick\VarExporter\ExportException
      */
     protected function _makeRecordString(array $records): string
     {

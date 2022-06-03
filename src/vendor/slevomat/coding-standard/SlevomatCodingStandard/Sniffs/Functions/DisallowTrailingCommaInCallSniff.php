@@ -23,9 +23,6 @@ class DisallowTrailingCommaInCallSniff implements Sniff
 
 	public const CODE_DISALLOWED_TRAILING_COMMA = 'DisallowedTrailingComma';
 
-	/** @var bool */
-	public $onlySingleLine = false;
-
 	/**
 	 * @return array<int, (int|string)>
 	 */
@@ -38,6 +35,7 @@ class DisallowTrailingCommaInCallSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $parenthesisOpenerPointer
 	 */
 	public function process(File $phpcsFile, $parenthesisOpenerPointer): void
@@ -67,10 +65,6 @@ class DisallowTrailingCommaInCallSniff implements Sniff
 			return;
 		}
 
-		if ($this->onlySingleLine && $tokens[$parenthesisOpenerPointer]['line'] !== $tokens[$parenthesisCloserPointer]['line']) {
-			return;
-		}
-
 		$fix = $phpcsFile->addFixableError(
 			'Trailing comma after the last parameter in function call is disallowed.',
 			$pointerBeforeParenthesisCloser,
@@ -83,13 +77,6 @@ class DisallowTrailingCommaInCallSniff implements Sniff
 
 		$phpcsFile->fixer->beginChangeset();
 		$phpcsFile->fixer->replaceToken($pointerBeforeParenthesisCloser, '');
-
-		if ($tokens[$pointerBeforeParenthesisCloser]['line'] === $tokens[$parenthesisCloserPointer]['line']) {
-			for ($i = $pointerBeforeParenthesisCloser + 1; $i < $parenthesisCloserPointer; $i++) {
-				$phpcsFile->fixer->replaceToken($i, '');
-			}
-		}
-
 		$phpcsFile->fixer->endChangeset();
 	}
 

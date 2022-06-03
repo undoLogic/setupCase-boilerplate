@@ -24,7 +24,7 @@ class BakeCommentsFixture extends TestFixture
     /**
      * fields property
      *
-     * @var array<string, mixed>
+     * @var array
      */
     public $fields = [
         'otherid' => ['type' => 'integer'],

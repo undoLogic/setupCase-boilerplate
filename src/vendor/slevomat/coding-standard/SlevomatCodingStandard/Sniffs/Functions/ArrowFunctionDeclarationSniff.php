@@ -46,6 +46,7 @@ class ArrowFunctionDeclarationSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $arrowFunctionPointer
 	 */
 	public function process(File $phpcsFile, $arrowFunctionPointer): void

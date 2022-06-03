@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -53,7 +53,7 @@ class Hg
      *
      * @return void
      */
-    public function runCommand(callable $commandCallable, string $url, ?string $cwd): void
+    public function runCommand($commandCallable, $url, $cwd)
     {
         $this->config->prohibitUrlByConfig($url, $this->io);
 
@@ -89,7 +89,7 @@ class Hg
      *
      * @return never
      */
-    private function throwException($message, string $url): void
+    private function throwException($message, $url)
     {
         if (null === self::getVersion($this->process)) {
             throw new \RuntimeException(Url::sanitize('Failed to clone ' . $url . ', hg was not found, check that it is installed and in your PATH env.' . "\n\n" . $this->process->getErrorOutput()));
@@ -103,7 +103,7 @@ class Hg
      *
      * @return string|null The hg version number, if present.
      */
-    public static function getVersion(ProcessExecutor $process): ?string
+    public static function getVersion(ProcessExecutor $process)
     {
         if (false === self::$version) {
             self::$version = null;

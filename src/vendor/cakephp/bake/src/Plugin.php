@@ -142,7 +142,6 @@ class Plugin extends BasePlugin
             if (!$hasSubfolder) {
                 try {
                     $reflection = new ReflectionClass($class);
-                /** @phpstan-ignore-next-line */
                 } catch (ReflectionException $e) {
                     continue;
                 }

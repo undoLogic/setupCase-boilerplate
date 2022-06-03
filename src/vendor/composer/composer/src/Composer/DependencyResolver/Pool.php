@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -60,7 +60,7 @@ class Pool implements \Countable
      * @param  string $name
      * @return array<string, string>
      */
-    public function getRemovedVersions(string $name, ConstraintInterface $constraint): array
+    public function getRemovedVersions($name, ConstraintInterface $constraint)
     {
         if (!isset($this->removedVersions[$name])) {
             return array();
@@ -80,7 +80,7 @@ class Pool implements \Countable
      * @param  string $objectHash
      * @return array<string, string>
      */
-    public function getRemovedVersionsByPackage(string $objectHash): array
+    public function getRemovedVersionsByPackage($objectHash)
     {
         if (!isset($this->removedVersionsByPackage[$objectHash])) {
             return array();
@@ -93,7 +93,7 @@ class Pool implements \Countable
      * @param BasePackage[] $packages
      * @return void
      */
-    private function setPackages(array $packages): void
+    private function setPackages(array $packages)
     {
         $id = 1;
 
@@ -111,7 +111,7 @@ class Pool implements \Countable
     /**
      * @return BasePackage[]
      */
-    public function getPackages(): array
+    public function getPackages()
     {
         return $this->packages;
     }
@@ -122,15 +122,17 @@ class Pool implements \Countable
      * @param  int         $id
      * @return BasePackage
      */
-    public function packageById(int $id): BasePackage
+    public function packageById($id)
     {
         return $this->packages[$id - 1];
     }
 
     /**
      * Returns how many packages have been loaded into the pool
+     * @return int
      */
-    public function count(): int
+    #[\ReturnTypeWillChange]
+    public function count()
     {
         return \count($this->packages);
     }
@@ -143,7 +145,7 @@ class Pool implements \Countable
      *                                         packages must match or null to return all
      * @return BasePackage[] A set of packages
      */
-    public function whatProvides(string $name, ConstraintInterface $constraint = null): array
+    public function whatProvides($name, ConstraintInterface $constraint = null)
     {
         $key = (string) $constraint;
         if (isset($this->providerCache[$name][$key])) {
@@ -159,7 +161,7 @@ class Pool implements \Countable
      *                                          packages must match or null to return all
      * @return BasePackage[]
      */
-    private function computeWhatProvides(string $name, ConstraintInterface $constraint = null): array
+    private function computeWhatProvides($name, ConstraintInterface $constraint = null)
     {
         if (!isset($this->packageByName[$name])) {
             return array();
@@ -180,7 +182,7 @@ class Pool implements \Countable
      * @param int $literal
      * @return BasePackage
      */
-    public function literalToPackage(int $literal): BasePackage
+    public function literalToPackage($literal)
     {
         $packageId = abs($literal);
 
@@ -192,7 +194,7 @@ class Pool implements \Countable
      * @param array<int, BasePackage> $installedMap
      * @return string
      */
-    public function literalToPrettyString(int $literal, array $installedMap): string
+    public function literalToPrettyString($literal, $installedMap)
     {
         $package = $this->literalToPackage($literal);
 
@@ -212,7 +214,7 @@ class Pool implements \Countable
      * @param  string              $name       Name of the package to be matched
      * @return bool
      */
-    public function match(BasePackage $candidate, string $name, ConstraintInterface $constraint = null): bool
+    public function match(BasePackage $candidate, $name, ConstraintInterface $constraint = null)
     {
         $candidateName = $candidate->getName();
         $candidateVersion = $candidate->getVersion();
@@ -255,7 +257,7 @@ class Pool implements \Countable
     /**
      * @return bool
      */
-    public function isUnacceptableFixedOrLockedPackage(BasePackage $package): bool
+    public function isUnacceptableFixedOrLockedPackage(BasePackage $package)
     {
         return \in_array($package, $this->unacceptableFixedOrLockedPackages, true);
     }
@@ -263,12 +265,12 @@ class Pool implements \Countable
     /**
      * @return BasePackage[]
      */
-    public function getUnacceptableFixedOrLockedPackages(): array
+    public function getUnacceptableFixedOrLockedPackages()
     {
         return $this->unacceptableFixedOrLockedPackages;
     }
 
-    public function __toString(): string
+    public function __toString()
     {
         $str = "Pool:\n";
 

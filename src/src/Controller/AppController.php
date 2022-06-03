@@ -44,6 +44,8 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Authentication.Authentication');
+
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
@@ -60,7 +62,7 @@ class AppController extends Controller
         $this->setupAuth();
     }
 
-    private var $rbac = [
+     var $rbac = [
         'user_type_id' => 'prefix',
         111 => ['Admin' => [], 'Manager' => [], 'User' => []],
         30 => ['Manager' => [],'User' => []],

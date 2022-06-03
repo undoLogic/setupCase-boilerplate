@@ -17,11 +17,15 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
-use Cake\Http\Session;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\Datasource\ConnectionManager;
+use Cake\Routing\Router;
+
+
 
 /**
  * Static content controller
@@ -32,6 +36,12 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class UsersController extends AppController
 {
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+
+
+    }
 
     function login() {
 

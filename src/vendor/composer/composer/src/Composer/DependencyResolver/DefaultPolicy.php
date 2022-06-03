@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -27,16 +27,12 @@ class DefaultPolicy implements PolicyInterface
     private $preferStable;
     /** @var bool */
     private $preferLowest;
-    /** @var array<int, array<string, array<int, int>>> */
-    private $preferredPackageResultCachePerPool;
-    /** @var array<int, array<string, int>> */
-    private $sortingCachePerPool;
 
     /**
      * @param bool $preferStable
      * @param bool $preferLowest
      */
-    public function __construct(bool $preferStable = false, bool $preferLowest = false)
+    public function __construct($preferStable = false, $preferLowest = false)
     {
         $this->preferStable = $preferStable;
         $this->preferLowest = $preferLowest;
@@ -48,7 +44,7 @@ class DefaultPolicy implements PolicyInterface
      *
      * @phpstan-param Constraint::STR_OP_* $operator
      */
-    public function versionCompare(PackageInterface $a, PackageInterface $b, string $operator): bool
+    public function versionCompare(PackageInterface $a, PackageInterface $b, $operator)
     {
         if ($this->preferStable && ($stabA = $a->getStability()) !== ($stabB = $b->getStability())) {
             return BasePackage::$stabilities[$stabA] < BasePackage::$stabilities[$stabB];
@@ -65,27 +61,14 @@ class DefaultPolicy implements PolicyInterface
      * @param  string $requiredPackage
      * @return int[]
      */
-    public function selectPreferredPackages(Pool $pool, array $literals, string $requiredPackage = null): array
+    public function selectPreferredPackages(Pool $pool, array $literals, $requiredPackage = null)
     {
-        sort($literals);
-        $resultCacheKey = implode(',', $literals).$requiredPackage;
-        $poolId = spl_object_id($pool);
-
-        if (isset($this->preferredPackageResultCachePerPool[$poolId][$resultCacheKey])) {
-            return $this->preferredPackageResultCachePerPool[$poolId][$resultCacheKey];
-        }
-
         $packages = $this->groupLiteralsByName($pool, $literals);
+        $policy = $this;
 
         foreach ($packages as &$nameLiterals) {
-            usort($nameLiterals, function ($a, $b) use ($pool, $requiredPackage, $poolId): int {
-                $cacheKey = 'i'.$a.'.'.$b.$requiredPackage; // i prefix -> ignoreReplace = true
-
-                if (isset($this->sortingCachePerPool[$poolId][$cacheKey])) {
-                    return $this->sortingCachePerPool[$poolId][$cacheKey];
-                }
-
-                return $this->sortingCachePerPool[$poolId][$cacheKey] = $this->compareByPriority($pool, $pool->literalToPackage($a), $pool->literalToPackage($b), $requiredPackage, true);
+            usort($nameLiterals, function ($a, $b) use ($policy, $pool, $requiredPackage) {
+                return $policy->compareByPriority($pool, $pool->literalToPackage($a), $pool->literalToPackage($b), $requiredPackage, true);
             });
         }
 
@@ -97,24 +80,18 @@ class DefaultPolicy implements PolicyInterface
         $selected = \call_user_func_array('array_merge', array_values($packages));
 
         // now sort the result across all packages to respect replaces across packages
-        usort($selected, function ($a, $b) use ($pool, $requiredPackage, $poolId): int {
-            $cacheKey = $a.'.'.$b.$requiredPackage; // no i prefix -> ignoreReplace = false
-
-            if (isset($this->sortingCachePerPool[$poolId][$cacheKey])) {
-                return $this->sortingCachePerPool[$poolId][$cacheKey];
-            }
-
-            return $this->sortingCachePerPool[$poolId][$cacheKey] = $this->compareByPriority($pool, $pool->literalToPackage($a), $pool->literalToPackage($b), $requiredPackage);
+        usort($selected, function ($a, $b) use ($policy, $pool, $requiredPackage) {
+            return $policy->compareByPriority($pool, $pool->literalToPackage($a), $pool->literalToPackage($b), $requiredPackage);
         });
 
-        return $this->preferredPackageResultCachePerPool[$poolId][$resultCacheKey] = $selected;
+        return $selected;
     }
 
     /**
      * @param  int[] $literals
      * @return array<string, int[]>
      */
-    protected function groupLiteralsByName(Pool $pool, array $literals): array
+    protected function groupLiteralsByName(Pool $pool, $literals)
     {
         $packages = array();
         foreach ($literals as $literal) {
@@ -131,11 +108,11 @@ class DefaultPolicy implements PolicyInterface
 
     /**
      * @protected
-     * @param null|string $requiredPackage
+     * @param ?string $requiredPackage
      * @param bool $ignoreReplace
      * @return int
      */
-    public function compareByPriority(Pool $pool, BasePackage $a, BasePackage $b, ?string $requiredPackage = null, bool $ignoreReplace = false): int
+    public function compareByPriority(Pool $pool, BasePackage $a, BasePackage $b, $requiredPackage = null, $ignoreReplace = false)
     {
         // prefer aliases to the original package
         if ($a->getName() === $b->getName()) {
@@ -188,7 +165,7 @@ class DefaultPolicy implements PolicyInterface
      *
      * @return bool
      */
-    protected function replaces(BasePackage $source, BasePackage $target): bool
+    protected function replaces(BasePackage $source, BasePackage $target)
     {
         foreach ($source->getReplaces() as $link) {
             if ($link->getTarget() === $target->getName()
@@ -206,7 +183,7 @@ class DefaultPolicy implements PolicyInterface
      * @param  int[] $literals
      * @return int[]
      */
-    protected function pruneToBestVersion(Pool $pool, array $literals): array
+    protected function pruneToBestVersion(Pool $pool, $literals)
     {
         $operator = $this->preferLowest ? '<' : '>';
         $bestLiterals = array($literals[0]);
@@ -237,7 +214,7 @@ class DefaultPolicy implements PolicyInterface
      * @param  int[] $literals
      * @return int[]
      */
-    protected function pruneRemoteAliases(Pool $pool, array $literals): array
+    protected function pruneRemoteAliases(Pool $pool, array $literals)
     {
         $hasLocalAlias = false;
 

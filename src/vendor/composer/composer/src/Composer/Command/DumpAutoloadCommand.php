@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -12,6 +12,7 @@
 
 namespace Composer\Command;
 
+use Composer\Filter\PlatformRequirementFilter\PlatformRequirementFilterFactory;
 use Composer\Plugin\CommandEvent;
 use Composer\Plugin\PluginEvents;
 use Symfony\Component\Console\Input\InputInterface;
@@ -52,9 +53,12 @@ EOT
         ;
     }
 
+    /**
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $composer = $this->requireComposer();
+        $composer = $this->getComposer();
 
         $commandEvent = new CommandEvent(PluginEvents::COMMAND, 'dump-autoload', $input, $output);
         $composer->getEventDispatcher()->dispatch($commandEvent->getName(), $commandEvent);
@@ -77,6 +81,8 @@ EOT
             $this->getIO()->write('<info>Generating autoload files</info>');
         }
 
+        $ignorePlatformReqs = $input->getOption('ignore-platform-reqs') ?: ($input->getOption('ignore-platform-req') ?: false);
+
         $generator = $composer->getAutoloadGenerator();
         if ($input->getOption('no-dev')) {
             $generator->setDevMode(false);
@@ -90,7 +96,7 @@ EOT
         $generator->setClassMapAuthoritative($authoritative);
         $generator->setRunScripts(true);
         $generator->setApcu($apcu, $apcuPrefix);
-        $generator->setPlatformRequirementFilter($this->getPlatformRequirementFilter($input));
+        $generator->setPlatformRequirementFilter(PlatformRequirementFilterFactory::fromBoolOrList($ignorePlatformReqs));
         $numberOfClasses = $generator->dump($config, $localRepo, $package, $installationManager, 'composer', $optimize);
 
         if ($authoritative) {

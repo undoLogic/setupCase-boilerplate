@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -62,7 +62,7 @@ class ConfigCommand extends BaseCommand
     /**
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('config')
@@ -154,7 +154,7 @@ EOT
      * @return void
      * @throws \Exception
      */
-    protected function initialize(InputInterface $input, OutputInterface $output): void
+    protected function initialize(InputInterface $input, OutputInterface $output)
     {
         parent::initialize($input, $output);
 
@@ -175,7 +175,7 @@ EOT
         if (
             ($configFile === 'composer.json' || $configFile === './composer.json')
             && !file_exists($configFile)
-            && realpath(Platform::getCwd()) === realpath($this->config->get('home'))
+            && realpath(getcwd()) === realpath($this->config->get('home'))
         ) {
             file_put_contents($configFile, "{\n}\n");
         }
@@ -185,7 +185,7 @@ EOT
 
         $authConfigFile = $input->getOption('global')
             ? ($this->config->get('home') . '/auth.json')
-            : dirname($configFile) . '/auth.json';
+            : dirname(realpath($configFile)) . '/auth.json';
 
         $this->authConfigFile = new JsonFile($authConfigFile, null, $io);
         $this->authConfigSource = new JsonConfigSource($this->authConfigFile, true);
@@ -208,9 +208,10 @@ EOT
     }
 
     /**
+     * @return int
      * @throws \Seld\JsonLint\ParsingException
      */
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Open file in editor
         if (true === $input->getOption('editor')) {
@@ -241,7 +242,7 @@ EOT
 
         // List the configuration of the file settings
         if (true === $input->getOption('list')) {
-            $this->listConfiguration($this->config->all(), $this->config->raw(), $output, null, $input->getOption('source'));
+            $this->listConfiguration($this->config->all(), $this->config->raw(), $output, null, (bool) $input->getOption('source'));
 
             return 0;
         }
@@ -263,7 +264,7 @@ EOT
             $data = $this->config->all();
             if (Preg::isMatch('/^repos?(?:itories)?(?:\.(.+))?/', $settingKey, $matches)) {
                 if (!isset($matches[1]) || $matches[1] === '') {
-                    $value = $data['repositories'] ?? array();
+                    $value = isset($data['repositories']) ? $data['repositories'] : array();
                 } else {
                     if (!isset($data['repositories'][$matches[1]])) {
                         throw new \InvalidArgumentException('There is no '.$matches[1].' repository defined');
@@ -318,10 +319,10 @@ EOT
 
         $values = $input->getArgument('setting-value'); // what the user is trying to add/change
 
-        $booleanValidator = function ($val): bool {
+        $booleanValidator = function ($val) {
             return in_array($val, array('true', 'false', '1', '0'), true);
         };
-        $booleanNormalizer = function ($val): bool {
+        $booleanNormalizer = function ($val) {
             return $val !== 'false' && (bool) $val;
         };
 
@@ -331,7 +332,7 @@ EOT
             'use-include-path' => array($booleanValidator, $booleanNormalizer),
             'use-github-api' => array($booleanValidator, $booleanNormalizer),
             'preferred-install' => array(
-                function ($val): bool {
+                function ($val) {
                     return in_array($val, array('auto', 'source', 'dist'), true);
                 },
                 function ($val) {
@@ -339,7 +340,7 @@ EOT
                 },
             ),
             'gitlab-protocol' => array(
-                function ($val): bool {
+                function ($val) {
                     return in_array($val, array('git', 'http', 'https'), true);
                 },
                 function ($val) {
@@ -347,7 +348,7 @@ EOT
                 },
             ),
             'store-auths' => array(
-                function ($val): bool {
+                function ($val) {
                     return in_array($val, array('true', 'false', 'prompt'), true);
                 },
                 function ($val) {
@@ -389,7 +390,7 @@ EOT
             'cache-ttl' => array('is_numeric', 'intval'),
             'cache-files-ttl' => array('is_numeric', 'intval'),
             'cache-files-maxsize' => array(
-                function ($val): bool {
+                function ($val) {
                     return Preg::isMatch('/^\s*([0-9.]+)\s*(?:([kmg])(?:i?b)?)?\s*$/i', $val);
                 },
                 function ($val) {
@@ -397,7 +398,7 @@ EOT
                 },
             ),
             'bin-compat' => array(
-                function ($val): bool {
+                function ($val) {
                     return in_array($val, array('auto', 'full', 'symlink'));
                 },
                 function ($val) {
@@ -405,7 +406,7 @@ EOT
                 },
             ),
             'discard-changes' => array(
-                function ($val): bool {
+                function ($val) {
                     return in_array($val, array('stash', 'true', 'false', '1', '0'), true);
                 },
                 function ($val) {
@@ -427,7 +428,7 @@ EOT
             'disable-tls' => array($booleanValidator, $booleanNormalizer),
             'secure-http' => array($booleanValidator, $booleanNormalizer),
             'cafile' => array(
-                function ($val): bool {
+                function ($val) {
                     return file_exists($val) && Filesystem::isReadable($val);
                 },
                 function ($val) {
@@ -435,7 +436,7 @@ EOT
                 },
             ),
             'capath' => array(
-                function ($val): bool {
+                function ($val) {
                     return is_dir($val) && Filesystem::isReadable($val);
                 },
                 function ($val) {
@@ -447,7 +448,7 @@ EOT
             'lock' => array($booleanValidator, $booleanNormalizer),
             'allow-plugins' => array($booleanValidator, $booleanNormalizer),
             'platform-check' => array(
-                function ($val): bool {
+                function ($val) {
                     return in_array($val, array('php-only', 'true', 'false', '1', '0'), true);
                 },
                 function ($val) {
@@ -455,11 +456,11 @@ EOT
                         return 'php-only';
                     }
 
-                    return $val !== 'false' && (bool) $val;
+                    return $val !== 'false' && (bool)$val;
                 },
             ),
             'use-parent-dir' => array(
-                function ($val): bool {
+                function ($val) {
                     return in_array($val, array('true', 'false', 'prompt'), true);
                 },
                 function ($val) {
@@ -593,10 +594,10 @@ EOT
                 return $val;
             }),
             'minimum-stability' => array(
-                function ($val): bool {
+                function ($val) {
                     return isset(BasePackage::$stabilities[VersionParser::normalizeStability($val)]);
                 },
-                function ($val): string {
+                function ($val) {
                     return VersionParser::normalizeStability($val);
                 },
             ),
@@ -699,7 +700,7 @@ EOT
                     $currentValue = $this->configFile->read();
                     $bits = explode('.', $settingKey);
                     foreach ($bits as $bit) {
-                        $currentValue = $currentValue[$bit] ?? null;
+                        $currentValue = isset($currentValue[$bit]) ? $currentValue[$bit] : null;
                     }
                     if (is_array($currentValue)) {
                         $value = array_merge($currentValue, $value);
@@ -739,7 +740,7 @@ EOT
                 return 0;
             }
 
-            $this->configSource->addConfigSetting($settingKey, $values[0] === 'false' ? false : $values[0]);
+            $this->configSource->addConfigSetting($settingKey, $values[0] === 'false' ?  false : $values[0]);
 
             return 0;
         }
@@ -810,7 +811,7 @@ EOT
      *
      * @return void
      */
-    protected function handleSingleValue(string $key, array $callbacks, array $values, string $method): void
+    protected function handleSingleValue($key, array $callbacks, array $values, $method)
     {
         list($validator, $normalizer) = $callbacks;
         if (1 !== count($values)) {
@@ -845,7 +846,7 @@ EOT
      *
      * @return void
      */
-    protected function handleMultiValue(string $key, array $callbacks, array $values, string $method): void
+    protected function handleMultiValue($key, array $callbacks, array $values, $method)
     {
         list($validator, $normalizer) = $callbacks;
         if (true !== $validation = $validator($values)) {
@@ -868,7 +869,7 @@ EOT
      *
      * @return void
      */
-    protected function listConfiguration(array $contents, array $rawContents, OutputInterface $output, ?string $k = null, bool $showSource = false): void
+    protected function listConfiguration(array $contents, array $rawContents, OutputInterface $output, $k = null, $showSource = false)
     {
         $origK = $k;
         $io = $this->getIO();
@@ -877,7 +878,7 @@ EOT
                 continue;
             }
 
-            $rawVal = $rawContents[$key] ?? null;
+            $rawVal = isset($rawContents[$key]) ? $rawContents[$key] : null;
 
             if (is_array($value) && (!is_numeric(key($value)) || ($key === 'repositories' && null === $k))) {
                 $k .= Preg::replace('{^config\.}', '', $key . '.');
@@ -903,19 +904,10 @@ EOT
             if ($showSource) {
                 $source = ' (' . $this->config->getSourceOfValue($k . $key) . ')';
             }
-
-            if (null !== $k && 0 === strpos($k, 'repositories')) {
-                $link = 'https://getcomposer.org/doc/05-repositories.md';
-            } else {
-                $id = Preg::replace('{\..*$}', '', $k === '' || $k === null ? (string) $key : $k);
-                $id = Preg::replace('{[^a-z0-9]}i', '-', strtolower(trim($id)));
-                $id = Preg::replace('{-+}', '-', $id);
-                $link = 'https://getcomposer.org/doc/06-config.md#' . $id;
-            }
             if (is_string($rawVal) && $rawVal != $value) {
-                $io->write('[<fg=yellow;href=' . $link .'>' . $k . $key . '</>] <info>' . $rawVal . ' (' . $value . ')</info>' . $source, true, IOInterface::QUIET);
+                $io->write('[<comment>' . $k . $key . '</comment>] <info>' . $rawVal . ' (' . $value . ')</info>' . $source, true, IOInterface::QUIET);
             } else {
-                $io->write('[<fg=yellow;href=' . $link .'>' . $k . $key . '</>] <info>' . $value . '</info>' . $source, true, IOInterface::QUIET);
+                $io->write('[<comment>' . $k . $key . '</comment>] <info>' . $value . '</info>' . $source, true, IOInterface::QUIET);
             }
         }
     }

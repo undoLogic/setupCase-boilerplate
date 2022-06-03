@@ -27,6 +27,7 @@ class DisallowNumericLiteralSeparatorSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $numberPointer
 	 */
 	public function process(File $phpcsFile, $numberPointer): void

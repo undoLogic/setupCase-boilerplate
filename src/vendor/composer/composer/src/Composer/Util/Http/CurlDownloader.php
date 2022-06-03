@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -28,7 +28,7 @@ use React\Promise\Promise;
  * @author Jordi Boggiano <j.boggiano@seld.be>
  * @author Nicolas Grekas <p@tchwork.com>
  * @phpstan-type Attributes array{retryAuthFailure: bool, redirects: int, retries: int, storeAuth: bool}
- * @phpstan-type Job array{url: string, origin: string, attributes: Attributes, options: mixed[], progress: mixed[], curlHandle: resource, filename: string|null, headerHandle: resource, bodyHandle: resource, resolve: callable, reject: callable}
+ * @phpstan-type Job array{url: string, origin: string, attributes: Attributes, options: mixed[], progress: mixed[], curlHandle: resource, filename: string|false, headerHandle: resource, bodyHandle: resource, resolve: callable, reject: callable}
  */
 class CurlDownloader
 {
@@ -95,7 +95,7 @@ class CurlDownloader
      * @param mixed[] $options
      * @param bool    $disableTls
      */
-    public function __construct(IOInterface $io, Config $config, array $options = array(), bool $disableTls = false)
+    public function __construct(IOInterface $io, Config $config, array $options = array(), $disableTls = false)
     {
         $this->io = $io;
         $this->config = $config;
@@ -129,11 +129,11 @@ class CurlDownloader
      * @param string   $origin
      * @param string   $url
      * @param mixed[]  $options
-     * @param null|string  $copyTo
+     * @param ?string  $copyTo
      *
      * @return int internal job id
      */
-    public function download(callable $resolve, callable $reject, string $origin, string $url, array $options, ?string $copyTo = null): int
+    public function download($resolve, $reject, $origin, $url, $options, $copyTo = null)
     {
         $attributes = array();
         if (isset($options['retry-auth-failure'])) {
@@ -150,25 +150,26 @@ class CurlDownloader
      * @param string   $origin
      * @param string   $url
      * @param mixed[]  $options
-     * @param null|string  $copyTo
+     * @param ?string  $copyTo
      *
      * @param array{retryAuthFailure?: bool, redirects?: int, retries?: int, storeAuth?: bool} $attributes
      *
      * @return int internal job id
      */
-    private function initDownload(callable $resolve, callable $reject, string $origin, string $url, array $options, ?string $copyTo = null, array $attributes = array()): int
+    private function initDownload($resolve, $reject, $origin, $url, $options, $copyTo = null, array $attributes = array())
     {
-        // set defaults in a PHPStan-happy way (array_merge is not well supported)
-        $attributes['retryAuthFailure'] = $attributes['retryAuthFailure'] ?? true;
-        $attributes['redirects'] = $attributes['redirects'] ?? 0;
-        $attributes['retries'] = $attributes['retries'] ?? 0;
-        $attributes['storeAuth'] = $attributes['storeAuth'] ?? false;
+        $attributes = array_merge(array(
+            'retryAuthFailure' => true,
+            'redirects' => 0,
+            'retries' => 0,
+            'storeAuth' => false,
+        ), $attributes);
 
         $originalOptions = $options;
 
         // check URL can be accessed (i.e. is not insecure), but allow insecure Packagist calls to $hashed providers as file integrity is verified with sha256
         if (!Preg::isMatch('{^http://(repo\.)?packagist\.org/p/}', $url) || (false === strpos($url, '$') && false === strpos($url, '%24'))) {
-            $this->config->prohibitUrlByConfig($url, $this->io, $options);
+            $this->config->prohibitUrlByConfig($url, $this->io);
         }
 
         $curlHandle = curl_init();
@@ -180,7 +181,7 @@ class CurlDownloader
         if ($copyTo) {
             $errorMessage = '';
             // @phpstan-ignore-next-line
-            set_error_handler(function ($code, $msg) use (&$errorMessage): void {
+            set_error_handler(function ($code, $msg) use (&$errorMessage) {
                 if ($errorMessage) {
                     $errorMessage .= "\n";
                 }
@@ -287,7 +288,7 @@ class CurlDownloader
      * @param  int  $id
      * @return void
      */
-    public function abortRequest(int $id): void
+    public function abortRequest($id)
     {
         if (isset($this->jobs[$id], $this->jobs[$id]['curlHandle'])) {
             $job = $this->jobs[$id];
@@ -299,7 +300,7 @@ class CurlDownloader
             if (is_resource($job['bodyHandle'])) {
                 fclose($job['bodyHandle']);
             }
-            if (null !== $job['filename']) {
+            if ($job['filename']) {
                 @unlink($job['filename'].'~');
             }
             unset($this->jobs[$id]);
@@ -309,11 +310,11 @@ class CurlDownloader
     /**
      * @return void
      */
-    public function tick(): void
+    public function tick()
     {
         static $timeoutWarning = false;
 
-        if (count($this->jobs) === 0) {
+        if (!$this->jobs) {
             return;
         }
 
@@ -333,9 +334,6 @@ class CurlDownloader
             }
 
             $progress = curl_getinfo($curlHandle);
-            if (false === $progress) {
-                throw new \RuntimeException('Failed getting info from curl handle '.$i.' ('.$this->jobs[$i]['url'].')');
-            }
             $job = $this->jobs[$i];
             unset($this->jobs[$i]);
             $error = curl_error($curlHandle);
@@ -358,7 +356,7 @@ class CurlDownloader
                     if (
                         (!isset($job['options']['http']['method']) || $job['options']['http']['method'] === 'GET')
                         && (
-                            in_array($errno, array(7 /* CURLE_COULDNT_CONNECT */, 16 /* CURLE_HTTP2 */, 92 /* CURLE_HTTP2_STREAM */, 6 /* CURLE_COULDNT_RESOLVE_HOST */), true)
+                            in_array($errno, array(7 /* CURLE_COULDNT_CONNECT */, 16 /* CURLE_HTTP2 */, 92 /* CURLE_HTTP2_STREAM */), true)
                             || ($errno === 35 /* CURLE_SSL_CONNECT_ERROR */ && false !== strpos($error, 'Connection reset by peer'))
                         ) && $job['attributes']['retries'] < $this->maxRetries
                     ) {
@@ -367,7 +365,7 @@ class CurlDownloader
                         continue;
                     }
 
-                    if ($errno === 28 /* CURLE_OPERATION_TIMEDOUT */ && PHP_VERSION_ID >= 70300 && $progress['namelookup_time'] == 0 && !$timeoutWarning) {
+                    if ($errno === 28 /* CURLE_OPERATION_TIMEDOUT */ && isset($progress['namelookup_time']) && $progress['namelookup_time'] == 0 && !$timeoutWarning) {
                         $timeoutWarning = true;
                         $this->io->writeError('<warning>A connection timeout was encountered. If you intend to run Composer without connecting to the internet, run the command again prefixed with COMPOSER_DISABLE_NETWORK=1 to make Composer run in offline mode.</warning>');
                     }
@@ -384,7 +382,7 @@ class CurlDownloader
                 }
 
                 // prepare response object
-                if (null !== $job['filename']) {
+                if ($job['filename']) {
                     $contents = $job['filename'].'~';
                     if ($statusCode >= 300) {
                         rewind($job['bodyHandle']);
@@ -439,21 +437,21 @@ class CurlDownloader
                 }
 
                 // resolve promise
-                if (null !== $job['filename']) {
+                if ($job['filename']) {
                     rename($job['filename'].'~', $job['filename']);
                     call_user_func($job['resolve'], $response);
                 } else {
                     call_user_func($job['resolve'], $response);
                 }
             } catch (\Exception $e) {
-                if ($e instanceof TransportException) {
-                    if (null !== $headers) {
-                        $e->setHeaders($headers);
-                        $e->setStatusCode($statusCode);
-                    }
-                    if (null !== $response) {
-                        $e->setResponse($response->getBody());
-                    }
+                if ($e instanceof TransportException && $headers) {
+                    $e->setHeaders($headers);
+                    $e->setStatusCode($statusCode);
+                }
+                if ($e instanceof TransportException && $response) {
+                    $e->setResponse($response->getBody());
+                }
+                if ($e instanceof TransportException && $progress) {
                     $e->setResponseInfo($progress);
                 }
 
@@ -492,7 +490,7 @@ class CurlDownloader
      * @param  Job    $job
      * @return string
      */
-    private function handleRedirect(array $job, Response $response): string
+    private function handleRedirect(array $job, Response $response)
     {
         if ($locationHeader = $response->getHeader('location')) {
             if (parse_url($locationHeader, PHP_URL_SCHEME)) {
@@ -527,7 +525,7 @@ class CurlDownloader
      * @param  Job                                        $job
      * @return array{retry: bool, storeAuth: string|bool}
      */
-    private function isAuthenticatedRetryNeeded(array $job, Response $response): array
+    private function isAuthenticatedRetryNeeded(array $job, Response $response)
     {
         if (in_array($response->getStatusCode(), array(401, 403)) && $job['attributes']['retryAuthFailure']) {
             $result = $this->authHelper->promptAuthIfNeeded($job['url'], $job['origin'], $response->getStatusCode(), $response->getStatusMessage(), $response->getHeaders());
@@ -582,9 +580,9 @@ class CurlDownloader
      *
      * @return void
      */
-    private function restartJob(array $job, string $url, array $attributes = array()): void
+    private function restartJob(array $job, $url, array $attributes = array())
     {
-        if (null !== $job['filename']) {
+        if ($job['filename']) {
             @unlink($job['filename'].'~');
         }
 
@@ -599,9 +597,9 @@ class CurlDownloader
      * @param  string             $errorMessage
      * @return TransportException
      */
-    private function failResponse(array $job, Response $response, string $errorMessage): TransportException
+    private function failResponse(array $job, Response $response, $errorMessage)
     {
-        if (null !== $job['filename']) {
+        if ($job['filename']) {
             @unlink($job['filename'].'~');
         }
 
@@ -617,7 +615,7 @@ class CurlDownloader
      * @param  Job                $job
      * @return void
      */
-    private function rejectJob(array $job, \Exception $e): void
+    private function rejectJob(array $job, \Exception $e)
     {
         if (is_resource($job['headerHandle'])) {
             fclose($job['headerHandle']);
@@ -625,7 +623,7 @@ class CurlDownloader
         if (is_resource($job['bodyHandle'])) {
             fclose($job['bodyHandle']);
         }
-        if (null !== $job['filename']) {
+        if ($job['filename']) {
             @unlink($job['filename'].'~');
         }
         call_user_func($job['reject'], $e);
@@ -635,7 +633,7 @@ class CurlDownloader
      * @param  int  $code
      * @return void
      */
-    private function checkCurlResult(int $code): void
+    private function checkCurlResult($code)
     {
         if ($code != CURLM_OK && $code != CURLM_CALL_MULTI_PERFORM) {
             throw new \RuntimeException(

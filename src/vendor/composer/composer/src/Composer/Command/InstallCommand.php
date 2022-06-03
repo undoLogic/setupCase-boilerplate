@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -12,6 +12,7 @@
 
 namespace Composer\Command;
 
+use Composer\Filter\PlatformRequirementFilter\PlatformRequirementFilterFactory;
 use Composer\Installer;
 use Composer\Plugin\CommandEvent;
 use Composer\Plugin\PluginEvents;
@@ -83,8 +84,7 @@ EOT
             $io->writeError('<warning>You are using the deprecated option "--no-suggest". It has no effect and will break in Composer 3.</warning>');
         }
 
-        $args = $input->getArgument('packages');
-        if (count($args) > 0) {
+        if ($args = $input->getArgument('packages')) {
             $io->writeError('<error>Invalid argument '.implode(' ', $args).'. Use "composer require '.implode(' ', $args).'" instead to add packages to your composer.json.</error>');
 
             return 1;
@@ -96,9 +96,9 @@ EOT
             return 1;
         }
 
-        $composer = $this->requireComposer();
+        $composer = $this->getComposer(true, $input->getOption('no-plugins'), $input->getOption('no-scripts'));
 
-        if (!$composer->getLocker()->isLocked() && !HttpDownloader::isCurlEnabled()) {
+        if ((!$composer->getLocker() || !$composer->getLocker()->isLocked()) && !HttpDownloader::isCurlEnabled()) {
             $io->writeError('<warning>Composer is operating significantly slower than normal because you do not have the PHP curl extension enabled.</warning>');
         }
 
@@ -115,6 +115,8 @@ EOT
         $apcuPrefix = $input->getOption('apcu-autoloader-prefix');
         $apcu = $apcuPrefix !== null || $input->getOption('apcu-autoloader') || $config->get('apcu-autoloader');
 
+        $ignorePlatformReqs = $input->getOption('ignore-platform-reqs') ?: ($input->getOption('ignore-platform-req') ?: false);
+
         $composer->getInstallationManager()->setOutputProgress(!$input->getOption('no-progress'));
 
         $install
@@ -127,7 +129,7 @@ EOT
             ->setOptimizeAutoloader($optimize)
             ->setClassMapAuthoritative($authoritative)
             ->setApcuAutoloader($apcu, $apcuPrefix)
-            ->setPlatformRequirementFilter($this->getPlatformRequirementFilter($input))
+            ->setPlatformRequirementFilter(PlatformRequirementFilterFactory::fromBoolOrList($ignorePlatformReqs))
         ;
 
         if ($input->getOption('no-plugins')) {

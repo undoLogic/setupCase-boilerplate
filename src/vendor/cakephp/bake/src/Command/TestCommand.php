@@ -416,7 +416,6 @@ class TestCommand extends BakeCommand
      *
      * @param string $className Name of class to look at.
      * @return string[] Array of method names.
-     * @throws \ReflectionException
      */
     public function getTestableMethods(string $className): array
     {
@@ -451,7 +450,6 @@ class TestCommand extends BakeCommand
             $this->_processController($subject);
         }
 
-        /** @psalm-suppress RedundantFunctionCall */
         return array_values($this->_fixtures);
     }
 

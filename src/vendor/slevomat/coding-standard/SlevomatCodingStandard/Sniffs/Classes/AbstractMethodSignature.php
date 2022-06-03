@@ -31,6 +31,8 @@ abstract class AbstractMethodSignature implements Sniff
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $methodPointer
 	 * @return array<int, int>
 	 */
 	protected function getSignatureStartAndEndPointers(File $phpcsFile, int $methodPointer): array

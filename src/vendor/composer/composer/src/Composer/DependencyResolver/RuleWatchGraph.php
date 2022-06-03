@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -40,7 +40,7 @@ class RuleWatchGraph
      * @param RuleWatchNode $node The rule node to be inserted into the graph
      * @return void
      */
-    public function insert(RuleWatchNode $node): void
+    public function insert(RuleWatchNode $node)
     {
         if ($node->getRule()->isAssertion()) {
             return;
@@ -88,7 +88,7 @@ class RuleWatchGraph
      *                                   register decisions resulting from propagation
      * @return Rule|null If a conflict is found the conflicting rule is returned
      */
-    public function propagateLiteral(int $decidedLiteral, int $level, Decisions $decisions): ?Rule
+    public function propagateLiteral($decidedLiteral, $level, Decisions $decisions)
     {
         // we invert the decided literal here, example:
         // A was decided => (-A|B) now requires B to be true, so we look for
@@ -110,7 +110,7 @@ class RuleWatchGraph
                 if (!$node->getRule()->isDisabled() && !$decisions->satisfy($otherWatch)) {
                     $ruleLiterals = $node->getRule()->getLiterals();
 
-                    $alternativeLiterals = array_filter($ruleLiterals, function ($ruleLiteral) use ($literal, $otherWatch, $decisions): bool {
+                    $alternativeLiterals = array_filter($ruleLiterals, function ($ruleLiteral) use ($literal, $otherWatch, $decisions) {
                         return $literal !== $ruleLiteral &&
                             $otherWatch !== $ruleLiteral &&
                             !$decisions->conflict($ruleLiteral);
@@ -156,7 +156,7 @@ class RuleWatchGraph
      * @param RuleWatchNode $node        The rule node to be moved
      * @return void
      */
-    protected function moveWatch(int $fromLiteral, int $toLiteral, RuleWatchNode $node): void
+    protected function moveWatch($fromLiteral, $toLiteral, RuleWatchNode $node)
     {
         if (!isset($this->watchChains[$toLiteral])) {
             $this->watchChains[$toLiteral] = new RuleWatchChain;

@@ -3,19 +3,14 @@
 namespace SlevomatCodingStandard\Sniffs\Functions;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 use SlevomatCodingStandard\Helpers\SniffSettingsHelper;
 use SlevomatCodingStandard\Helpers\TokenHelper;
-use function array_key_exists;
-use function array_merge;
 use function array_reverse;
 use function in_array;
 use function ltrim;
 use function sprintf;
 use function strlen;
-use function strpos;
 use const T_CLOSURE;
-use const T_CONSTANT_ENCAPSED_STRING;
 use const T_DOUBLE_COLON;
 use const T_FN;
 use const T_FUNCTION;
@@ -38,6 +33,7 @@ class RequireSingleLineCallSniff extends AbstractLineCall
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $stringPointer
 	 */
 	public function process(File $phpcsFile, $stringPointer): void
@@ -61,21 +57,11 @@ class RequireSingleLineCallSniff extends AbstractLineCall
 
 		if (TokenHelper::findNext(
 			$phpcsFile,
-			array_merge(TokenHelper::$inlineCommentTokenCodes, Tokens::$heredocTokens),
+			TokenHelper::$inlineCommentTokenCodes,
 			$parenthesisOpenerPointer + 1,
 			$parenthesisCloserPointer
 		) !== null) {
 			return;
-		}
-
-		for ($i = $parenthesisOpenerPointer + 1; $i < $parenthesisCloserPointer; $i++) {
-			if ($tokens[$i]['code'] !== T_CONSTANT_ENCAPSED_STRING) {
-				continue;
-			}
-
-			if (strpos($tokens[$i]['content'], $phpcsFile->eolChar) !== false) {
-				return;
-			}
 		}
 
 		if ($this->ignoreWithComplexParameter) {
@@ -161,7 +147,7 @@ class RequireSingleLineCallSniff extends AbstractLineCall
 
 		foreach (array_reverse(TokenHelper::findNextAll($phpcsFile, [T_OPEN_PARENTHESIS, T_FUNCTION], 0, $stringPointer)) as $pointer) {
 			if ($tokens[$pointer]['code'] === T_FUNCTION) {
-				if (array_key_exists('scope_closer', $tokens[$pointer]) && $tokens[$pointer]['scope_closer'] > $stringPointer) {
+				if ($tokens[$pointer]['scope_closer'] > $stringPointer) {
 					return false;
 				}
 

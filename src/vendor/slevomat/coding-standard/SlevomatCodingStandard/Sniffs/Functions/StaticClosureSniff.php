@@ -33,6 +33,7 @@ class StaticClosureSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $closurePointer
 	 */
 	public function process(File $phpcsFile, $closurePointer): void

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -21,9 +21,9 @@ use Composer\Repository\RepositorySet;
 class RuleSet implements \IteratorAggregate, \Countable
 {
     // highest priority => lowest number
-    public const TYPE_PACKAGE = 0;
-    public const TYPE_REQUEST = 1;
-    public const TYPE_LEARNED = 4;
+    const TYPE_PACKAGE = 0;
+    const TYPE_REQUEST = 1;
+    const TYPE_LEARNED = 4;
 
     /**
      * READ-ONLY: Lookup table for rule id to rule object
@@ -59,7 +59,7 @@ class RuleSet implements \IteratorAggregate, \Countable
      * @param self::TYPE_* $type
      * @return void
      */
-    public function add(Rule $rule, $type): void
+    public function add(Rule $rule, $type)
     {
         if (!isset(self::$types[$type])) {
             throw new \OutOfBoundsException('Unknown rule type: ' . $type);
@@ -103,7 +103,11 @@ class RuleSet implements \IteratorAggregate, \Countable
         }
     }
 
-    public function count(): int
+    /**
+     * @return int
+     */
+    #[\ReturnTypeWillChange]
+    public function count()
     {
         return $this->nextRuleId;
     }
@@ -112,18 +116,22 @@ class RuleSet implements \IteratorAggregate, \Countable
      * @param int $id
      * @return Rule
      */
-    public function ruleById(int $id): Rule
+    public function ruleById($id)
     {
         return $this->ruleById[$id];
     }
 
     /** @return array<self::TYPE_*, Rule[]> */
-    public function getRules(): array
+    public function getRules()
     {
         return $this->rules;
     }
 
-    public function getIterator(): RuleSetIterator
+    /**
+     * @return RuleSetIterator
+     */
+    #[\ReturnTypeWillChange]
+    public function getIterator()
     {
         return new RuleSetIterator($this->getRules());
     }
@@ -132,7 +140,7 @@ class RuleSet implements \IteratorAggregate, \Countable
      * @param  self::TYPE_*|array<self::TYPE_*> $types
      * @return RuleSetIterator
      */
-    public function getIteratorFor($types): RuleSetIterator
+    public function getIteratorFor($types)
     {
         if (!\is_array($types)) {
             $types = array($types);
@@ -154,7 +162,7 @@ class RuleSet implements \IteratorAggregate, \Countable
      * @param array<self::TYPE_*>|self::TYPE_* $types
      * @return RuleSetIterator
      */
-    public function getIteratorWithout($types): RuleSetIterator
+    public function getIteratorWithout($types)
     {
         if (!\is_array($types)) {
             $types = array($types);
@@ -170,7 +178,7 @@ class RuleSet implements \IteratorAggregate, \Countable
     }
 
     /** @return array{0: 0, 1: 1, 2: 4} */
-    public function getTypes(): array
+    public function getTypes()
     {
         $types = self::$types;
 
@@ -181,7 +189,7 @@ class RuleSet implements \IteratorAggregate, \Countable
      * @param bool $isVerbose
      * @return string
      */
-    public function getPrettyString(RepositorySet $repositorySet = null, Request $request = null, Pool $pool = null, bool $isVerbose = false): string
+    public function getPrettyString(RepositorySet $repositorySet = null, Request $request = null, Pool $pool = null, $isVerbose = false)
     {
         $string = "\n";
         foreach ($this->rules as $type => $rules) {
@@ -195,7 +203,7 @@ class RuleSet implements \IteratorAggregate, \Countable
         return $string;
     }
 
-    public function __toString(): string
+    public function __toString()
     {
         return $this->getPrettyString();
     }

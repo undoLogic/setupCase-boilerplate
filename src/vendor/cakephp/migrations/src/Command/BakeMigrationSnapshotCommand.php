@@ -147,10 +147,7 @@ class BakeMigrationSnapshotCommand extends BakeSimpleMigrationCommand
         $parser = parent::getOptionParser();
 
         $parser->setDescription(
-            "Bake migration snapshot class\n" .
-            "\n" .
-            'Migration snapshots capture the current schema of an application into a ' .
-            'migration that will reproduce the current state as accurately as possible.'
+            'Bake migration snapshot class.'
         )->addArgument('name', [
             'help' => 'Name of the migration to bake. Can use Plugin.name to bake migration files into plugins.',
             'required' => true,

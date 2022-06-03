@@ -334,7 +334,7 @@ class TemplateCommand extends BakeCommand
      * @param \Cake\Console\ConsoleIo $io Console io
      * @param string $template Template file to use.
      * @param string|true $content Content to write.
-     * @param ?string $outputFile The output file to create. If null will use `$template`
+     * @param string $outputFile The output file to create. If null will use `$template`
      * @return void
      */
     public function bake(
@@ -358,7 +358,7 @@ class TemplateCommand extends BakeCommand
         $path = $this->getTemplatePath($args);
         $filename = $path . Inflector::underscore($outputFile) . '.php';
 
-        $io->out("\n" . sprintf('Baking `%s` view template file...', $outputFile), 1, ConsoleIo::NORMAL);
+        $io->out("\n" . sprintf('Baking `%s` view template file...', $outputFile), 1, ConsoleIo::QUIET);
         $io->createFile($filename, $content, $args->getOption('force'));
     }
 
@@ -369,9 +369,9 @@ class TemplateCommand extends BakeCommand
      * @param \Cake\Console\ConsoleIo $io The console io
      * @param string $action name to generate content to
      * @param array|null $vars passed for use in templates
-     * @return string Content from template
+     * @return string|false Content from template
      */
-    public function getContent(Arguments $args, ConsoleIo $io, string $action, ?array $vars = null): string
+    public function getContent(Arguments $args, ConsoleIo $io, string $action, ?array $vars = null)
     {
         if (!$vars) {
             $vars = $this->_loadController($io);

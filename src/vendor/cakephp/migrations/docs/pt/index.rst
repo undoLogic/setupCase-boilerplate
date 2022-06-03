@@ -30,8 +30,7 @@ diretório **ROOT** da sua aplicação
 
 Para usar o plugin você precisa carregá-lo no arquivo **config/bootstrap.php**
 da sua aplicação. Você pode usar o
-`shell de plugins do CakePHP
-<https://book.cakephp.org/3.0/pt/console-and-shells/plugin-shell.html>`__ para carregar e descarregar
+:ref:`shell de plugins do CakePHP <https://book.cakephp.org/3.0/pt/console-and-shells/plugin-shell.html>` para carregar e descarregar
 plugins do seu arquivo **config/bootstrap.php**::
 
     $ bin/cake plugin load Migrations
@@ -43,7 +42,7 @@ adicionando a linha::
 
 Adicionalmente, você precisará configurar o banco de dados padrão da sua
 aplicação, no arquivo **config/app.php** como explicado na seção
-`Configuração de banco de dados <https://book.cakephp.org/3.0/pt/orm/database-basics.html#database-configuration>`__.
+:ref:`Configuração de banco de dados <https://book.cakephp.org/3.0/pt/orm/database-basics.html#database-configuration>`.
 
 Visão Geral
 ===========
@@ -134,7 +133,7 @@ estão exemplos de arquivos de migração:
 * 20160210133047_AddRatingToProducts.php
 
 A maneira mais fácil de criar um arquivo de migrações é usando o
-``bin/cake bake migration`` a linha de comando.
+:doc:`/bake/usage` a linha de comando.
 
 Por favor, leia a `documentação do Phinx <https://book.cakephp.org/phinx/0/en/migrations.html>`
 a fim de conhecer a lista completa dos métodos que você pode usar para escrever
@@ -932,12 +931,10 @@ Se você usa o plugin ao fazer o **deploy** de sua aplicação, garanta que o ca
 ORM seja limpo para renovar os metadados das colunas de suas tabelas.
 Caso contrário, você pode acabar recebendo erros relativos a colunas
 inexistentes ao criar operações nessas mesmas colunas.
-O **core** do CakePHP possui uma
-`Schema Cache Shell <https://book.cakephp.org/3.0/en/console-and-shells/schema-cache.html>`__
+O **core** do CakePHP possui uma :doc:`Schema Cache Shell <https://book.cakephp.org/3.0/en/console-and-shells/schema-cache.html>`
 que você pode usar para realizar essas operação::
 
     $ bin/cake schema_cache clear
 
-Leia a seção `Schema Cache Shell
-<https://book.cakephp.org/3.0/en/console-and-shells/schema-cache.html>`__ do cookbook
+Leia a seção :doc:`Schema Cache Shell <https://book.cakephp.org/3.0/en/console-and-shells/schema-cache.html>` do cookbook
 se você quiser conhecer mais sobre essa **shell**.

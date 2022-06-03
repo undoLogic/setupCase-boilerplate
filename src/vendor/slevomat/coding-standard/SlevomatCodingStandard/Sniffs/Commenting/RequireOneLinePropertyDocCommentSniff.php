@@ -16,6 +16,7 @@ class RequireOneLinePropertyDocCommentSniff extends AbstractRequireOneLineDocCom
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $docCommentStartPointer
 	 */
 	public function process(File $phpcsFile, $docCommentStartPointer): void

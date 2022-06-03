@@ -19,6 +19,7 @@ class SniffSettingsHelper
 
 	/**
 	 * @param string|int $settings
+	 * @return int
 	 */
 	public static function normalizeInteger($settings): int
 	{

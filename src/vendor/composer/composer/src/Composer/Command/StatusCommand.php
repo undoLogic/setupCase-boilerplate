@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -32,15 +32,15 @@ use Composer\Util\ProcessExecutor;
  */
 class StatusCommand extends BaseCommand
 {
-    private const EXIT_CODE_ERRORS = 1;
-    private const EXIT_CODE_UNPUSHED_CHANGES = 2;
-    private const EXIT_CODE_VERSION_CHANGES = 4;
+    const EXIT_CODE_ERRORS = 1;
+    const EXIT_CODE_UNPUSHED_CHANGES = 2;
+    const EXIT_CODE_VERSION_CHANGES = 4;
 
     /**
      * @return void
      * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('status')
@@ -59,9 +59,12 @@ EOT
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    /**
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $composer = $this->requireComposer();
+        $composer = $this->getComposer();
 
         $commandEvent = new CommandEvent(PluginEvents::COMMAND, 'status', $input, $output);
         $composer->getEventDispatcher()->dispatch($commandEvent->getName(), $commandEvent);
@@ -80,10 +83,10 @@ EOT
     /**
      * @return int
      */
-    private function doExecute(InputInterface $input): int
+    private function doExecute(InputInterface $input)
     {
         // init repos
-        $composer = $this->requireComposer();
+        $composer = $this->getComposer();
 
         $installedRepo = $composer->getRepositoryManager()->getLocalRepository();
 
@@ -96,7 +99,7 @@ EOT
         $vcsVersionChanges = array();
 
         $parser = new VersionParser;
-        $guesser = new VersionGuesser($composer->getConfig(), $composer->getLoop()->getProcessExecutor() ?? new ProcessExecutor($io), $parser);
+        $guesser = new VersionGuesser($composer->getConfig(), new ProcessExecutor($io), $parser);
         $dumper = new ArrayDumper;
 
         // list packages
@@ -109,7 +112,7 @@ EOT
                     $errors[$targetDir] = $targetDir . ' is a symbolic link.';
                 }
 
-                if (null !== ($changes = $downloader->getLocalChanges($package, $targetDir))) {
+                if ($changes = $downloader->getLocalChanges($package, $targetDir)) {
                     $errors[$targetDir] = $changes;
                 }
             }
@@ -163,7 +166,7 @@ EOT
 
             foreach ($errors as $path => $changes) {
                 if ($input->getOption('verbose')) {
-                    $indentedChanges = implode("\n", array_map(function ($line): string {
+                    $indentedChanges = implode("\n", array_map(function ($line) {
                         return '    ' . ltrim($line);
                     }, explode("\n", $changes)));
                     $io->write('<info>'.$path.'</info>:');
@@ -179,7 +182,7 @@ EOT
 
             foreach ($unpushedChanges as $path => $changes) {
                 if ($input->getOption('verbose')) {
-                    $indentedChanges = implode("\n", array_map(function ($line): string {
+                    $indentedChanges = implode("\n", array_map(function ($line) {
                         return '    ' . ltrim($line);
                     }, explode("\n", $changes)));
                     $io->write('<info>'.$path.'</info>:');

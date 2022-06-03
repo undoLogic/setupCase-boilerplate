@@ -3,7 +3,6 @@
 namespace PHPStan\PhpDocParser\Ast\Type;
 
 use PHPStan\PhpDocParser\Ast\NodeAttributes;
-use function implode;
 
 class CallableTypeNode implements TypeNode
 {

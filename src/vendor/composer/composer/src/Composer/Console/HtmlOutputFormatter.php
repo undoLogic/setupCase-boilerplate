@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -12,7 +12,6 @@
 
 namespace Composer\Console;
 
-use Closure;
 use Composer\Pcre\Preg;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
@@ -61,23 +60,27 @@ class HtmlOutputFormatter extends OutputFormatter
         parent::__construct(true, $styles);
     }
 
-    public function format(?string $message): ?string
+    /**
+     * @param ?string $message
+     *
+     * @return string
+     */
+    public function format($message)
     {
         $formatted = parent::format($message);
 
-        if ($formatted === null) {
-            return null;
-        }
-
         $clearEscapeCodes = '(?:39|49|0|22|24|25|27|28)';
 
-        return Preg::replaceCallback("{\033\[([0-9;]+)m(.*?)\033\[(?:".$clearEscapeCodes.";)*?".$clearEscapeCodes."m}s", Closure::fromCallable([$this, 'formatHtml']), $formatted);
+        // TODO in 2.3 replace with Closure::fromCallable and then use Preg::replaceCallback
+        return preg_replace_callback("{\033\[([0-9;]+)m(.*?)\033\[(?:".$clearEscapeCodes.";)*?".$clearEscapeCodes."m}s", array($this, 'formatHtml'), $formatted);
     }
 
     /**
      * @param string[] $matches
+     *
+     * @return string
      */
-    private function formatHtml(array $matches): string
+    private function formatHtml($matches)
     {
         $out = '<span style="';
         foreach (explode(';', $matches[1]) as $code) {

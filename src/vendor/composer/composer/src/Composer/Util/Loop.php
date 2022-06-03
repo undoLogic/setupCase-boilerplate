@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -44,7 +44,7 @@ class Loop
     /**
      * @return HttpDownloader
      */
-    public function getHttpDownloader(): HttpDownloader
+    public function getHttpDownloader()
     {
         return $this->httpDownloader;
     }
@@ -52,7 +52,7 @@ class Loop
     /**
      * @return ProcessExecutor|null
      */
-    public function getProcessExecutor(): ?ProcessExecutor
+    public function getProcessExecutor()
     {
         return $this->processExecutor;
     }
@@ -62,15 +62,15 @@ class Loop
      * @param  ?ProgressBar       $progress
      * @return void
      */
-    public function wait(array $promises, ProgressBar $progress = null): void
+    public function wait(array $promises, ProgressBar $progress = null)
     {
         /** @var \Exception|null */
         $uncaught = null;
 
         \React\Promise\all($promises)->then(
-            function (): void {
+            function () {
             },
-            function ($e) use (&$uncaught): void {
+            function ($e) use (&$uncaught) {
                 $uncaught = $e;
             }
         );
@@ -122,7 +122,7 @@ class Loop
     /**
      * @return void
      */
-    public function abortJobs(): void
+    public function abortJobs()
     {
         foreach ($this->currentPromises as $promiseGroup) {
             foreach ($promiseGroup as $promise) {

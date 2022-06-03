@@ -40,6 +40,7 @@ class RequireOnlyStandaloneIncrementAndDecrementOperatorsSniff implements Sniff
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+	 * @param File $phpcsFile
 	 * @param int $operatorPointer
 	 */
 	public function process(File $phpcsFile, $operatorPointer): void

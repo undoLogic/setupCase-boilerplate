@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -46,7 +46,7 @@ class DownloadManager
      * @param bool            $preferSource prefer downloading from source
      * @param Filesystem|null $filesystem   custom Filesystem object
      */
-    public function __construct(IOInterface $io, bool $preferSource = false, Filesystem $filesystem = null)
+    public function __construct(IOInterface $io, $preferSource = false, Filesystem $filesystem = null)
     {
         $this->io = $io;
         $this->preferSource = $preferSource;
@@ -59,7 +59,7 @@ class DownloadManager
      * @param  bool            $preferSource prefer downloading from source
      * @return DownloadManager
      */
-    public function setPreferSource(bool $preferSource): self
+    public function setPreferSource($preferSource)
     {
         $this->preferSource = $preferSource;
 
@@ -72,7 +72,7 @@ class DownloadManager
      * @param  bool            $preferDist prefer downloading from dist
      * @return DownloadManager
      */
-    public function setPreferDist(bool $preferDist): self
+    public function setPreferDist($preferDist)
     {
         $this->preferDist = $preferDist;
 
@@ -86,7 +86,7 @@ class DownloadManager
      *
      * @return DownloadManager
      */
-    public function setPreferences(array $preferences): self
+    public function setPreferences(array $preferences)
     {
         $this->packagePreferences = $preferences;
 
@@ -100,7 +100,7 @@ class DownloadManager
      * @param  DownloaderInterface $downloader downloader instance
      * @return DownloadManager
      */
-    public function setDownloader(string $type, DownloaderInterface $downloader): self
+    public function setDownloader($type, DownloaderInterface $downloader)
     {
         $type = strtolower($type);
         $this->downloaders[$type] = $downloader;
@@ -115,7 +115,7 @@ class DownloadManager
      * @throws \InvalidArgumentException if downloader for provided type is not registered
      * @return DownloaderInterface
      */
-    public function getDownloader(string $type): DownloaderInterface
+    public function getDownloader($type)
     {
         $type = strtolower($type);
         if (!isset($this->downloaders[$type])) {
@@ -134,7 +134,7 @@ class DownloadManager
      *                                           wrong type
      * @return DownloaderInterface|null
      */
-    public function getDownloaderForPackage(PackageInterface $package): ?DownloaderInterface
+    public function getDownloaderForPackage(PackageInterface $package)
     {
         $installationSource = $package->getInstallationSource();
 
@@ -168,7 +168,7 @@ class DownloadManager
     /**
      * @return string
      */
-    public function getDownloaderType(DownloaderInterface $downloader): string
+    public function getDownloaderType(DownloaderInterface $downloader)
     {
         return array_search($downloader, $this->downloaders);
     }
@@ -184,7 +184,7 @@ class DownloadManager
      * @throws \RuntimeException
      * @return PromiseInterface
      */
-    public function download(PackageInterface $package, string $targetDir, PackageInterface $prevPackage = null): PromiseInterface
+    public function download(PackageInterface $package, $targetDir, PackageInterface $prevPackage = null)
     {
         $targetDir = $this->normalizeTargetDir($targetDir);
         $this->filesystem->ensureDirectoryExists(dirname($targetDir));
@@ -192,17 +192,18 @@ class DownloadManager
         $sources = $this->getAvailableSources($package, $prevPackage);
 
         $io = $this->io;
+        $self = $this;
 
-        $download = function ($retry = false) use (&$sources, $io, $package, $targetDir, &$download, $prevPackage) {
+        $download = function ($retry = false) use (&$sources, $io, $package, $self, $targetDir, &$download, $prevPackage) {
             $source = array_shift($sources);
             if ($retry) {
                 $io->writeError('    <warning>Now trying to download from ' . $source . '</warning>');
             }
             $package->setInstallationSource($source);
 
-            $downloader = $this->getDownloaderForPackage($package);
+            $downloader = $self->getDownloaderForPackage($package);
             if (!$downloader) {
-                return \React\Promise\resolve(null);
+                return \React\Promise\resolve();
             }
 
             $handleError = function ($e) use ($sources, $source, $package, $io, $download) {
@@ -229,6 +230,9 @@ class DownloadManager
             } catch (\Exception $e) {
                 return $handleError($e);
             }
+            if (!$result instanceof PromiseInterface) {
+                return \React\Promise\resolve($result);
+            }
 
             $res = $result->then(function ($res) {
                 return $res;
@@ -248,9 +252,9 @@ class DownloadManager
      * @param string                $targetDir   target dir
      * @param PackageInterface|null $prevPackage previous package instance in case of updates
      *
-     * @return PromiseInterface
+     * @return PromiseInterface|null
      */
-    public function prepare(string $type, PackageInterface $package, string $targetDir, PackageInterface $prevPackage = null): PromiseInterface
+    public function prepare($type, PackageInterface $package, $targetDir, PackageInterface $prevPackage = null)
     {
         $targetDir = $this->normalizeTargetDir($targetDir);
         $downloader = $this->getDownloaderForPackage($package);
@@ -258,7 +262,7 @@ class DownloadManager
             return $downloader->prepare($type, $package, $targetDir, $prevPackage);
         }
 
-        return \React\Promise\resolve(null);
+        return \React\Promise\resolve();
     }
 
     /**
@@ -269,9 +273,9 @@ class DownloadManager
      *
      * @throws \InvalidArgumentException if package have no urls to download from
      * @throws \RuntimeException
-     * @return PromiseInterface
+     * @return PromiseInterface|null
      */
-    public function install(PackageInterface $package, string $targetDir): PromiseInterface
+    public function install(PackageInterface $package, $targetDir)
     {
         $targetDir = $this->normalizeTargetDir($targetDir);
         $downloader = $this->getDownloaderForPackage($package);
@@ -279,7 +283,7 @@ class DownloadManager
             return $downloader->install($package, $targetDir);
         }
 
-        return \React\Promise\resolve(null);
+        return \React\Promise\resolve();
     }
 
     /**
@@ -290,9 +294,9 @@ class DownloadManager
      * @param string           $targetDir target dir
      *
      * @throws \InvalidArgumentException if initial package is not installed
-     * @return PromiseInterface
+     * @return PromiseInterface|null
      */
-    public function update(PackageInterface $initial, PackageInterface $target, string $targetDir): PromiseInterface
+    public function update(PackageInterface $initial, PackageInterface $target, $targetDir)
     {
         $targetDir = $this->normalizeTargetDir($targetDir);
         $downloader = $this->getDownloaderForPackage($target);
@@ -300,7 +304,7 @@ class DownloadManager
 
         // no downloaders present means update from metapackage to metapackage, nothing to do
         if (!$initialDownloader && !$downloader) {
-            return \React\Promise\resolve(null);
+            return \React\Promise\resolve();
         }
 
         // if we have a downloader present before, but not after, the package became a metapackage and its files should be removed
@@ -327,10 +331,15 @@ class DownloadManager
         // if downloader type changed, or update failed and user asks for reinstall,
         // we wipe the dir and do a new install instead of updating it
         $promise = $initialDownloader->remove($initial, $targetDir);
+        if ($promise) {
+            $self = $this;
 
-        return $promise->then(function ($res) use ($target, $targetDir): PromiseInterface {
-            return $this->install($target, $targetDir);
-        });
+            return $promise->then(function ($res) use ($self, $target, $targetDir) {
+                return $self->install($target, $targetDir);
+            });
+        }
+
+        return $this->install($target, $targetDir);
     }
 
     /**
@@ -339,9 +348,9 @@ class DownloadManager
      * @param PackageInterface $package   package instance
      * @param string           $targetDir target dir
      *
-     * @return PromiseInterface
+     * @return PromiseInterface|null
      */
-    public function remove(PackageInterface $package, string $targetDir): PromiseInterface
+    public function remove(PackageInterface $package, $targetDir)
     {
         $targetDir = $this->normalizeTargetDir($targetDir);
         $downloader = $this->getDownloaderForPackage($package);
@@ -349,7 +358,7 @@ class DownloadManager
             return $downloader->remove($package, $targetDir);
         }
 
-        return \React\Promise\resolve(null);
+        return \React\Promise\resolve();
     }
 
     /**
@@ -360,9 +369,9 @@ class DownloadManager
      * @param string                $targetDir   target dir
      * @param PackageInterface|null $prevPackage previous package instance in case of updates
      *
-     * @return PromiseInterface
+     * @return PromiseInterface|null
      */
-    public function cleanup(string $type, PackageInterface $package, string $targetDir, PackageInterface $prevPackage = null): PromiseInterface
+    public function cleanup($type, PackageInterface $package, $targetDir, PackageInterface $prevPackage = null)
     {
         $targetDir = $this->normalizeTargetDir($targetDir);
         $downloader = $this->getDownloaderForPackage($package);
@@ -370,7 +379,7 @@ class DownloadManager
             return $downloader->cleanup($type, $package, $targetDir, $prevPackage);
         }
 
-        return \React\Promise\resolve(null);
+        return \React\Promise\resolve();
     }
 
     /**
@@ -380,7 +389,7 @@ class DownloadManager
      *
      * @return string
      */
-    protected function resolvePackageInstallPreference(PackageInterface $package): string
+    protected function resolvePackageInstallPreference(PackageInterface $package)
     {
         foreach ($this->packagePreferences as $pattern => $preference) {
             $pattern = '{^'.str_replace('\\*', '.*', preg_quote($pattern)).'$}i';
@@ -400,7 +409,7 @@ class DownloadManager
      * @return string[]
      * @phpstan-return array<'dist'|'source'>&non-empty-array
      */
-    private function getAvailableSources(PackageInterface $package, PackageInterface $prevPackage = null): array
+    private function getAvailableSources(PackageInterface $package, PackageInterface $prevPackage = null)
     {
         $sourceType = $package->getSourceType();
         $distType = $package->getDistType();
@@ -426,7 +435,7 @@ class DownloadManager
             && !(!$prevPackage->isDev() && $prevPackage->getInstallationSource() === 'dist' && $package->isDev())
         ) {
             $prevSource = $prevPackage->getInstallationSource();
-            usort($sources, function ($a, $b) use ($prevSource): int {
+            usort($sources, function ($a, $b) use ($prevSource) {
                 return $a === $prevSource ? -1 : 1;
             });
 
@@ -450,7 +459,7 @@ class DownloadManager
      *
      * @return string
      */
-    private function normalizeTargetDir(string $dir): string
+    private function normalizeTargetDir($dir)
     {
         if ($dir === '\\' || $dir === '/') {
             return $dir;

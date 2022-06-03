@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -62,7 +62,7 @@ class FilterRepository implements RepositoryInterface
         $this->repo = $repo;
     }
 
-    public function getRepoName(): string
+    public function getRepoName()
     {
         return $this->repo->getRepoName();
     }
@@ -72,7 +72,7 @@ class FilterRepository implements RepositoryInterface
      *
      * @return RepositoryInterface
      */
-    public function getRepository(): RepositoryInterface
+    public function getRepository()
     {
         return $this->repo;
     }
@@ -80,7 +80,7 @@ class FilterRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function hasPackage(PackageInterface $package): bool
+    public function hasPackage(PackageInterface $package)
     {
         return $this->repo->hasPackage($package);
     }
@@ -88,7 +88,7 @@ class FilterRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function findPackage($name, $constraint): ?BasePackage
+    public function findPackage($name, $constraint)
     {
         if (!$this->isAllowed($name)) {
             return null;
@@ -100,7 +100,7 @@ class FilterRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function findPackages($name, $constraint = null): array
+    public function findPackages($name, $constraint = null)
     {
         if (!$this->isAllowed($name)) {
             return array();
@@ -112,19 +112,19 @@ class FilterRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function loadPackages(array $packageNameMap, array $acceptableStabilities, array $stabilityFlags, array $alreadyLoaded = array()): array
+    public function loadPackages(array $packageMap, array $acceptableStabilities, array $stabilityFlags, array $alreadyLoaded = array())
     {
-        foreach ($packageNameMap as $name => $constraint) {
+        foreach ($packageMap as $name => $constraint) {
             if (!$this->isAllowed($name)) {
-                unset($packageNameMap[$name]);
+                unset($packageMap[$name]);
             }
         }
 
-        if (!$packageNameMap) {
+        if (!$packageMap) {
             return array('namesFound' => array(), 'packages' => array());
         }
 
-        $result = $this->repo->loadPackages($packageNameMap, $acceptableStabilities, $stabilityFlags, $alreadyLoaded);
+        $result = $this->repo->loadPackages($packageMap, $acceptableStabilities, $stabilityFlags, $alreadyLoaded);
         if (!$this->canonical) {
             $result['namesFound'] = array();
         }
@@ -135,7 +135,7 @@ class FilterRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function search(string $query, int $mode = 0, ?string $type = null): array
+    public function search($query, $mode = 0, $type = null)
     {
         $result = array();
 
@@ -151,7 +151,7 @@ class FilterRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getPackages(): array
+    public function getPackages()
     {
         $result = array();
         foreach ($this->repo->getPackages() as $package) {
@@ -166,7 +166,7 @@ class FilterRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getProviders($packageName): array
+    public function getProviders($packageName)
     {
         $result = array();
         foreach ($this->repo->getProviders($packageName) as $name => $provider) {
@@ -181,7 +181,8 @@ class FilterRepository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function count(): int
+    #[\ReturnTypeWillChange]
+    public function count()
     {
         if ($this->repo->count() > 0) {
             return count($this->getPackages());
@@ -195,7 +196,7 @@ class FilterRepository implements RepositoryInterface
      *
      * @return bool
      */
-    private function isAllowed(string $name): bool
+    private function isAllowed($name)
     {
         if (!$this->only && !$this->exclude) {
             return true;

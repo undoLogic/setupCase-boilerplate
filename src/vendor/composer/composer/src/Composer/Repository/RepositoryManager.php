@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -51,7 +51,7 @@ class RepositoryManager
         $this->config = $config;
         $this->httpDownloader = $httpDownloader;
         $this->eventDispatcher = $eventDispatcher;
-        $this->process = $process ?? new ProcessExecutor($io);
+        $this->process = $process ?: new ProcessExecutor($io);
     }
 
     /**
@@ -62,7 +62,7 @@ class RepositoryManager
      *
      * @return PackageInterface|null
      */
-    public function findPackage(string $name, $constraint): ?PackageInterface
+    public function findPackage($name, $constraint)
     {
         foreach ($this->repositories as $repository) {
             /** @var RepositoryInterface $repository */
@@ -82,7 +82,7 @@ class RepositoryManager
      *
      * @return PackageInterface[]
      */
-    public function findPackages(string $name, $constraint): array
+    public function findPackages($name, $constraint)
     {
         $packages = array();
 
@@ -100,7 +100,7 @@ class RepositoryManager
      *
      * @return void
      */
-    public function addRepository(RepositoryInterface $repository): void
+    public function addRepository(RepositoryInterface $repository)
     {
         $this->repositories[] = $repository;
     }
@@ -114,7 +114,7 @@ class RepositoryManager
      *
      * @return void
      */
-    public function prependRepository(RepositoryInterface $repository): void
+    public function prependRepository(RepositoryInterface $repository)
     {
         array_unshift($this->repositories, $repository);
     }
@@ -128,7 +128,7 @@ class RepositoryManager
      * @throws \InvalidArgumentException if repository for provided type is not registered
      * @return RepositoryInterface
      */
-    public function createRepository(string $type, array $config, string $name = null): RepositoryInterface
+    public function createRepository($type, $config, $name = null)
     {
         if (!isset($this->repositoryClasses[$type])) {
             throw new \InvalidArgumentException('Repository type is not registered: '.$type);
@@ -162,7 +162,7 @@ class RepositoryManager
      *
      * @return void
      */
-    public function setRepositoryClass(string $type, $class): void
+    public function setRepositoryClass($type, $class)
     {
         $this->repositoryClasses[$type] = $class;
     }
@@ -172,7 +172,7 @@ class RepositoryManager
      *
      * @return RepositoryInterface[]
      */
-    public function getRepositories(): array
+    public function getRepositories()
     {
         return $this->repositories;
     }
@@ -184,7 +184,7 @@ class RepositoryManager
      *
      * @return void
      */
-    public function setLocalRepository(InstalledRepositoryInterface $repository): void
+    public function setLocalRepository(InstalledRepositoryInterface $repository)
     {
         $this->localRepository = $repository;
     }
@@ -194,7 +194,7 @@ class RepositoryManager
      *
      * @return InstalledRepositoryInterface
      */
-    public function getLocalRepository(): InstalledRepositoryInterface
+    public function getLocalRepository()
     {
         return $this->localRepository;
     }

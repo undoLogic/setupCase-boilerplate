@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -15,6 +15,7 @@ namespace Composer\Command;
 use Composer\DependencyResolver\Operation\InstallOperation;
 use Composer\DependencyResolver\Operation\UninstallOperation;
 use Composer\DependencyResolver\Transaction;
+use Composer\Filter\PlatformRequirementFilter\PlatformRequirementFilterFactory;
 use Composer\Package\AliasPackage;
 use Composer\Package\BasePackage;
 use Composer\Pcre\Preg;
@@ -35,7 +36,7 @@ class ReinstallCommand extends BaseCommand
     /**
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('reinstall')
@@ -69,11 +70,11 @@ EOT
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = $this->getIO();
 
-        $composer = $this->requireComposer();
+        $composer = $this->getComposer(true, $input->getOption('no-plugins'), $input->getOption('no-scripts'));
 
         $localRepo = $composer->getRepositoryManager()->getLocalRepository();
         $packagesToReinstall = array();
@@ -123,7 +124,7 @@ EOT
                 $installOrder[$op->getPackage()->getName()] = $index;
             }
         }
-        usort($uninstallOperations, function ($a, $b) use ($installOrder): int {
+        usort($uninstallOperations, function ($a, $b) use ($installOrder) {
             return $installOrder[$b->getPackage()->getName()] - $installOrder[$a->getPackage()->getName()];
         });
 
@@ -137,6 +138,8 @@ EOT
         $installationManager = $composer->getInstallationManager();
         $downloadManager = $composer->getDownloadManager();
         $package = $composer->getPackage();
+
+        $ignorePlatformReqs = $input->getOption('ignore-platform-reqs') ?: ($input->getOption('ignore-platform-req') ?: false);
 
         $installationManager->setOutputProgress(!$input->getOption('no-progress'));
         if ($input->getOption('no-plugins')) {
@@ -163,7 +166,7 @@ EOT
             $generator = $composer->getAutoloadGenerator();
             $generator->setClassMapAuthoritative($authoritative);
             $generator->setApcu($apcu, $apcuPrefix);
-            $generator->setPlatformRequirementFilter($this->getPlatformRequirementFilter($input));
+            $generator->setPlatformRequirementFilter(PlatformRequirementFilterFactory::fromBoolOrList($ignorePlatformReqs));
             $generator->dump($config, $localRepo, $package, $installationManager, 'composer', $optimize);
         }
 

@@ -3,14 +3,7 @@
 namespace PHPStan\PhpDocParser\Ast\PhpDoc;
 
 use PHPStan\PhpDocParser\Ast\NodeAttributes;
-use PHPStan\PhpDocParser\Parser\ParserException;
-use function sprintf;
-use function trigger_error;
-use const E_USER_WARNING;
 
-/**
- * @property ParserException $exception
- */
 class InvalidTagValueNode implements PhpDocTagValueNode
 {
 
@@ -19,30 +12,15 @@ class InvalidTagValueNode implements PhpDocTagValueNode
 	/** @var string (may be empty) */
 	public $value;
 
-	/** @var mixed[] */
-	private $exceptionArgs;
+	/** @var \PHPStan\PhpDocParser\Parser\ParserException */
+	public $exception;
 
-	public function __construct(string $value, ParserException $exception)
+	public function __construct(string $value, \PHPStan\PhpDocParser\Parser\ParserException $exception)
 	{
 		$this->value = $value;
-		$this->exceptionArgs = [
-			$exception->getCurrentTokenValue(),
-			$exception->getCurrentTokenType(),
-			$exception->getCurrentOffset(),
-			$exception->getExpectedTokenType(),
-			$exception->getExpectedTokenValue(),
-		];
+		$this->exception = $exception;
 	}
 
-	public function __get(string $name)
-	{
-		if ($name !== 'exception') {
-			trigger_error(sprintf('Undefined property: %s::$%s', self::class, $name), E_USER_WARNING);
-			return null;
-		}
-
-		return new ParserException(...$this->exceptionArgs);
-	}
 
 	public function __toString(): string
 	{

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -26,7 +26,7 @@ class SuggestsCommand extends BaseCommand
     /**
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('suggests')
@@ -50,9 +50,12 @@ EOT
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    /**
+     * @inheritDoc
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $composer = $this->requireComposer();
+        $composer = $this->getComposer();
 
         $installedRepos = array(
             new RootPackageRepository(clone $composer->getPackage()),

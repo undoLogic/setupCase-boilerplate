@@ -28,8 +28,7 @@
 
 Чтобы использовать плагин, вам нужно загрузить его в файле **config/bootstrap.php**
 вашего приложения. Вы можете использовать
-`CakePHP's Plugin shell
-<https://book.cakephp.org/3.0/ru/console-and-shells/plugin-shell.html>`__ для загрузки и выгрузки плагинов из
+:ref:`CakePHP's Plugin shell <https://book.cakephp.org/3.0/ru/console-and-shells/plugin-shell.html>` для загрузки и выгрузки плагинов из
 вашего **config/bootstrap.php**::
 
     $ bin/cake plugin load Migrations
@@ -41,8 +40,7 @@
 
 Кроме того, вам нужно будет настроить конфигурацию базы данных по умолчанию для вашего
 приложения в файле **config/app.php**, как описано в
-`Раздел о конфигурации БД
-<https://book.cakephp.org/3.0/ru/orm/database-basics.html#database-configuration>`__.
+:ref:`Раздел о конфигурации БД <https://book.cakephp.org/3.0/ru/orm/database-basics.html#database-configuration>`.
 
 Обзор
 =====
@@ -133,7 +131,7 @@
 * 20160210133047_AddRatingToProducts.php
 
 Самый простой способ создать файл миграции - это использовать команду CLI
-``bin/cake bake migration``.
+:doc:`/bake/usage`.
 
 Пожалуйста, убедитесь, что вы читали официальную
 `Phinx documentation <https://book.cakephp.org/phinx/0/en/migrations.html>`_
@@ -979,14 +977,12 @@ unsigned или not, limit, comment и т.д.
 кэш ORM, чтобы он обновил метаданные столбца ваших таблиц. В противном случае
 вы можете столкнуться с ошибками в отношении столбцов, которые не существуют
 при выполнении операций над этими новыми столбцами.
-Ядро CakePHP включает `Schema Cache Shell
-<https://book.cakephp.org/3.0/ru/console-and-shells/schema-cache.html>`__
+Ядро CakePHP включает :doc:`Schema Cache Shell <https://book.cakephp.org/3.0/ru/console-and-shells/schema-cache.html>`
 который вы можете использовать для выполнения этой операции::
 
     $ bin/cake schema_cache clear
 
-Обязательно прочитайте раздел `Schema Cache Shell
-<https://book.cakephp.org/3.0/ru/console-and-shells/schema-cache.html>`__,
+Обязательно прочитайте раздел :doc:`Schema Cache Shell <https://book.cakephp.org/3.0/ru/console-and-shells/schema-cache.html>`,
 если вы хотите узнать больше об этой оболочке.
 
 Переименование таблицы

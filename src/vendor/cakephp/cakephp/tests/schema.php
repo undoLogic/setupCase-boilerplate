@@ -900,28 +900,6 @@ return [
         ],
     ],
     [
-        'table' => 'articles_tags_binding_keys',
-        'columns' => [
-            'article_id' => [
-                'type' => 'integer',
-                'null' => false,
-            ],
-            'tagname' => [
-                'type' => 'string',
-                'null' => false,
-            ],
-        ],
-        'constraints' => [
-            'unique_tag' => [
-                'type' => 'primary',
-                'columns' => [
-                    'article_id',
-                    'tagname',
-                ],
-            ],
-        ],
-    ],
-    [
         'table' => 'profiles',
         'columns' => [
             'id' => [

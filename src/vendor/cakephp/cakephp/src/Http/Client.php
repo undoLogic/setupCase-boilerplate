@@ -628,6 +628,7 @@ class Client implements ClientInterface
             $headers['Content-Type'] = 'application/x-www-form-urlencoded';
         }
 
+        /** @phpstan-ignore-next-line */
         $request = new Request($url, $method, $headers, $data);
         $request = $request->withProtocolVersion($this->getConfig('protocolVersion'));
         $cookies = $options['cookies'] ?? [];

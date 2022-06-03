@@ -2588,3 +2588,104 @@ Referer URL: http://localhost/src/en_US/setup-pages/home
 Client IP: 172.20.0.1
 
 
+2022-06-03 13:49:31 error: [ParseError] syntax error, unexpected 'var' (T_VAR), expecting variable (T_VARIABLE) in /var/www/vhosts/website.com/www/src/src/Controller/AppController.php on line 63
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/composer/ClassLoader.php:428
+- spl_autoload_call - [internal], line ??- /var/www/vhosts/website.com/www/src/src/Controller/SetupPagesController.php:33
+- /var/www/vhosts/website.com/www/src/vendor/composer/ClassLoader.php:571
+- /var/www/vhosts/website.com/www/src/vendor/composer/ClassLoader.php:428
+- spl_autoload_call - [internal], line ??- class_exists - [internal], line ??- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/App.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/App.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:338
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:72
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:315
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 172.24.0.1
+
+
+2022-06-03 14:10:50 error: [Cake\Controller\Exception\MissingComponentException] Component class AuthenticationComponent could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 111
+Exception Attributes: array (
+  'class' => 'AuthenticationComponent',
+  'plugin' => 'Authentication',
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/ObjectRegistry.php:102
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:296
+- /var/www/vhosts/website.com/www/src/src/Controller/AppController.php:47
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:221
+- ReflectionClass::newInstance() - [internal], line ??- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:88
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:315
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.24.0.1
+
+
+2022-06-03 14:11:45 error: [Cake\Controller\Exception\MissingComponentException] Component class AuthenticationComponent could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 111
+Exception Attributes: array (
+  'class' => 'AuthenticationComponent',
+  'plugin' => 'Authentication',
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/ObjectRegistry.php:102
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:296
+- /var/www/vhosts/website.com/www/src/src/Controller/AppController.php:47
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:221
+- ReflectionClass::newInstance() - [internal], line ??- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:88
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:315
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.24.0.1
+
+

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*
  * This file is part of Composer.
@@ -63,7 +63,7 @@ class CreateProjectCommand extends BaseCommand
     /**
      * @return void
      */
-    protected function configure(): void
+    protected function configure()
     {
         $this
             ->setName('create-project')
@@ -122,7 +122,10 @@ EOT
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    /**
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $config = Factory::createConfig();
         $io = $this->getIO();
@@ -138,13 +141,11 @@ EOT
         }
 
         if ($input->isInteractive() && $input->getOption('ask')) {
-            $package = $input->getArgument('package');
-            if (null === $package) {
-                throw new \RuntimeException('Not enough arguments (missing: "package").');
-            }
-            $parts = explode("/", strtolower($package), 2);
+            $parts = explode("/", strtolower($input->getArgument('package')), 2);
             $input->setArgument('directory', $io->ask('New project directory [<comment>'.array_pop($parts).'</comment>]: '));
         }
+
+        $ignorePlatformReqs = $input->getOption('ignore-platform-reqs') ?: ($input->getOption('ignore-platform-req') ?: false);
 
         return $this->installProject(
             $io,
@@ -162,7 +163,7 @@ EOT
             $input->getOption('no-scripts'),
             $input->getOption('no-progress'),
             $input->getOption('no-install'),
-            $this->getPlatformRequirementFilter($input),
+            PlatformRequirementFilterFactory::fromBoolOrList($ignorePlatformReqs),
             !$input->getOption('no-secure-http'),
             $input->getOption('add-repository')
         );
@@ -172,7 +173,7 @@ EOT
      * @param string|null               $packageName
      * @param string|null               $directory
      * @param string|null               $packageVersion
-     * @param string|null               $stability
+     * @param string                    $stability
      * @param bool                      $preferSource
      * @param bool                      $preferDist
      * @param bool                      $installDevPackages
@@ -187,9 +188,9 @@ EOT
      * @return int
      * @throws \Exception
      */
-    public function installProject(IOInterface $io, Config $config, InputInterface $input, ?string $packageName = null, ?string $directory = null, ?string $packageVersion = null, ?string $stability = 'stable', bool $preferSource = false, bool $preferDist = false, bool $installDevPackages = false, $repositories = null, bool $disablePlugins = false, bool $disableScripts = false, bool $noProgress = false, bool $noInstall = false, PlatformRequirementFilterInterface $platformRequirementFilter = null, bool $secureHttp = true, bool $addRepository = false): int
+    public function installProject(IOInterface $io, Config $config, InputInterface $input, $packageName = null, $directory = null, $packageVersion = null, $stability = 'stable', $preferSource = false, $preferDist = false, $installDevPackages = false, $repositories = null, $disablePlugins = false, $disableScripts = false, $noProgress = false, $noInstall = false, PlatformRequirementFilterInterface $platformRequirementFilter = null, $secureHttp = true, $addRepository = false)
     {
-        $oldCwd = Platform::getCwd();
+        $oldCwd = getcwd();
 
         if ($repositories !== null && !is_array($repositories)) {
             $repositories = (array) $repositories;
@@ -235,7 +236,7 @@ EOT
             }
         }
 
-        $process = $composer->getLoop()->getProcessExecutor();
+        $process = new ProcessExecutor($io);
         $fs = new Filesystem($process);
 
         // dispatch event
@@ -284,7 +285,7 @@ EOT
             )
         ) {
             $finder = new Finder();
-            $finder->depth(0)->directories()->in(Platform::getCwd())->ignoreVCS(false)->ignoreDotFiles(false);
+            $finder->depth(0)->directories()->in(getcwd())->ignoreVCS(false)->ignoreDotFiles(false);
             foreach (array('.svn', '_svn', 'CVS', '_darcs', '.arch-params', '.monotone', '.bzr', '.git', '.hg', '.fslckout', '_FOSSIL_') as $vcsName) {
                 $finder->name($vcsName);
             }
@@ -293,7 +294,7 @@ EOT
                 $dirs = iterator_to_array($finder);
                 unset($finder);
                 foreach ($dirs as $dir) {
-                    if (!$fs->removeDirectory((string) $dir)) {
+                    if (!$fs->removeDirectory($dir)) {
                         throw new \RuntimeException('Could not remove '.$dir);
                     }
                 }
@@ -350,7 +351,7 @@ EOT
      * @return bool
      * @throws \Exception
      */
-    protected function installRootPackage(IOInterface $io, Config $config, string $packageName, PlatformRequirementFilterInterface $platformRequirementFilter, ?string $directory = null, ?string $packageVersion = null, ?string $stability = 'stable', bool $preferSource = false, bool $preferDist = false, bool $installDevPackages = false, array $repositories = null, bool $disablePlugins = false, bool $disableScripts = false, bool $noProgress = false, bool $secureHttp = true): bool
+    protected function installRootPackage(IOInterface $io, Config $config, $packageName, PlatformRequirementFilterInterface $platformRequirementFilter, $directory = null, $packageVersion = null, $stability = 'stable', $preferSource = false, $preferDist = false, $installDevPackages = false, array $repositories = null, $disablePlugins = false, $disableScripts = false, $noProgress = false, $secureHttp = true)
     {
         if (!$secureHttp) {
             $config->merge(array('config' => array('secure-http' => false)), Config::SOURCE_COMMAND);
@@ -366,16 +367,16 @@ EOT
         // if no directory was specified, use the 2nd part of the package name
         if (null === $directory) {
             $parts = explode("/", $name, 2);
-            $directory = Platform::getCwd() . DIRECTORY_SEPARATOR . array_pop($parts);
+            $directory = getcwd() . DIRECTORY_SEPARATOR . array_pop($parts);
         }
 
         $process = new ProcessExecutor($io);
         $fs = new Filesystem($process);
         if (!$fs->isAbsolutePath($directory)) {
-            $directory = Platform::getCwd() . DIRECTORY_SEPARATOR . $directory;
+            $directory = getcwd() . DIRECTORY_SEPARATOR . $directory;
         }
 
-        $io->writeError('<info>Creating a "' . $packageName . '" project at "' . $fs->findShortestPath(Platform::getCwd(), $directory, true) . '"</info>');
+        $io->writeError('<info>Creating a "' . $packageName . '" project at "' . $fs->findShortestPath(getcwd(), $directory, true) . '"</info>');
 
         if (file_exists($directory)) {
             if (!is_dir($directory)) {
@@ -443,7 +444,7 @@ EOT
             @mkdir($directory, 0777, true);
             if ($realDir = realpath($directory)) {
                 pcntl_async_signals(true);
-                pcntl_signal(SIGINT, function () use ($realDir): void {
+                pcntl_signal(SIGINT, function () use ($realDir) {
                     $fs = new Filesystem();
                     $fs->removeDirectory($realDir);
                     exit(130);
@@ -454,7 +455,7 @@ EOT
         if (function_exists('sapi_windows_set_ctrl_handler') && PHP_SAPI === 'cli') {
             @mkdir($directory, 0777, true);
             if ($realDir = realpath($directory)) {
-                sapi_windows_set_ctrl_handler(function () use ($realDir): void {
+                sapi_windows_set_ctrl_handler(function () use ($realDir) {
                     $fs = new Filesystem();
                     $fs->removeDirectory($realDir);
                     exit(130);

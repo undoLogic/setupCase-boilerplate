@@ -3,11 +3,6 @@
 namespace PHPStan\PhpDocParser\Parser;
 
 use PHPStan\PhpDocParser\Lexer\Lexer;
-use function array_pop;
-use function assert;
-use function count;
-use function in_array;
-use function strlen;
 
 class TokenIterator
 {
@@ -76,31 +71,13 @@ class TokenIterator
 
 
 	/**
-	 * @throws ParserException
+	 * @param  int $tokenType
+	 * @throws \PHPStan\PhpDocParser\Parser\ParserException
 	 */
 	public function consumeTokenType(int $tokenType): void
 	{
 		if ($this->tokens[$this->index][Lexer::TYPE_OFFSET] !== $tokenType) {
 			$this->throwError($tokenType);
-		}
-
-		$this->index++;
-
-		if (($this->tokens[$this->index][Lexer::TYPE_OFFSET] ?? -1) !== Lexer::TOKEN_HORIZONTAL_WS) {
-			return;
-		}
-
-		$this->index++;
-	}
-
-
-	/**
-	 * @throws ParserException
-	 */
-	public function consumeTokenValue(int $tokenType, string $tokenValue): void
-	{
-		if ($this->tokens[$this->index][Lexer::TYPE_OFFSET] !== $tokenType || $this->tokens[$this->index][Lexer::VALUE_OFFSET] !== $tokenValue) {
-			$this->throwError($tokenType, $tokenValue);
 		}
 
 		$this->index++;
@@ -208,16 +185,16 @@ class TokenIterator
 
 
 	/**
-	 * @throws ParserException
+	 * @param  int $expectedTokenType
+	 * @throws \PHPStan\PhpDocParser\Parser\ParserException
 	 */
-	private function throwError(int $expectedTokenType, ?string $expectedTokenValue = null): void
+	private function throwError(int $expectedTokenType): void
 	{
-		throw new ParserException(
+		throw new \PHPStan\PhpDocParser\Parser\ParserException(
 			$this->currentTokenValue(),
 			$this->currentTokenType(),
 			$this->currentTokenOffset(),
-			$expectedTokenType,
-			$expectedTokenValue
+			$expectedTokenType
 		);
 	}
 

@@ -57,6 +57,8 @@ class DocCommentHelper
 	}
 
 	/**
+	 * @param File $phpcsFile
+	 * @param int $pointer
 	 * @return Comment[]|null
 	 */
 	public static function getDocCommentDescription(File $phpcsFile, int $pointer): ?array
