@@ -51,7 +51,9 @@ return static function (RouteBuilder $routes) {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'index']);
+        $builder->connect('/dashboard', ['prefix' => 'Admin', 'language' => 'en_US', 'controller' => 'setupPages', 'action' => 'dashboard']);
         $builder->connect('/login', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/logout', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'logout']);
 
         // language prefix
         $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
@@ -85,6 +87,7 @@ return static function (RouteBuilder $routes) {
         //$routes->connect('/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
 
         //with the lang
+        //$routes->connect('/dashboard', ['language' => 'en_US', 'controller' => 'setupPages', 'action' => 'dashboard']);
         $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
 
         $routes->fallbacks(DashedRoute::class);

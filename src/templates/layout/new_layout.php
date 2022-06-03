@@ -14,9 +14,13 @@ $cakeDescription = 'CakePHP4';
     <?= $this->Html->meta('icon') ?>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake',
-        "https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css",
+    <?= $this->Html->css([
+        'normalize.min',
+       // 'milligram.min',
+        'cake',
+
     ]) ?>
 
     <?= $this->fetch('meta') ?>

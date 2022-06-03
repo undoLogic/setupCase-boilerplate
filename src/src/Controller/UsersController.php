@@ -24,6 +24,8 @@ use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Datasource\ConnectionManager;
 use Cake\Routing\Router;
+use Authentication\PasswordHasher\DefaultPasswordHasher; // Add this line
+
 
 
 
@@ -45,28 +47,59 @@ class UsersController extends AppController
 
     function login() {
 
+//        // pr( $this->_matchToken($hashed_password, $user['password']));
+//        exit;
+//        //pr (new DefaultPasswordHasher())->hash('433logic'); //exit;
+        $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
-            pr ($_POST);
-            $userObject = $this->User->getUser($email, $password);
+       $user = $this->Users->patchEntity($user, $this->request->getData());
+
+          // pr($user); exit;
+//         $password1 = "433logic";
+//
+//        $hasher = new DefaultPasswordHasher();
+//        $hashed_password1 = $hasher->hash($password1);
+//        $hashed_password2 = $hasher->hash($user['password']);
+//       // $userpass = $hasher->hash($user['test']);
+//        pr($hashed_password1);
+//        pr($hashed_password2);
+//        // pr($userpass);
+//        exit;
+            $email = $user['email'];
+            $password = $user['password'];
+
+            $userObject = $this->Users->getUser($email, $password);
+           // pr($userObject); exit;
 
             if (!empty($userObject)) {
                 //login
                 $session = $this->request->getSession();
                 $session->write('User', $userObject);
-                //$name = $session->read('User.name');
+                //pr($session->read('User')); exit;
+                $this->Flash->success(__('Login Success'));
+                return $this->redirect('/dashboard');
+            }else{
+                $this->Flash->error(__('Problem logging you in. Please check your email and password and try again'));
+
             }
             //check against the User Model and see if any users are allowed to login
-            die('logging in');
+            //die('logging in');
         }
 
-        //if not empty post
-            //verify that the password and email match the database
-                //if success
-                    //store the whole user object including the relations. there are many times that it will help that we can have that data within the session to verify against
-                    //only use the session build into cakePHP
+    }//login
 
-        //else
-            //show error with the new session set flash module for cakephp 4 that there was an error logging in
+    protected static function _matchToken($key, string $token): bool
+    {
+        switch ($token) {
+            case '{n}':
+                return is_numeric($key);
+            case '{s}':
+                return is_string($key);
+            case '{*}':
+                return true;
+            default:
+                return is_numeric($token) ? ($key == $token) : $key === $token;
+        }
     }
 
     function logout() {

@@ -32,6 +32,10 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class SetupPagesController extends AppController
 {
+    function dashboard(){
+        pr('in NOT admin pages dashboard'); exit;
+    }
+
 
 
     function index() {

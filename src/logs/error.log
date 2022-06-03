@@ -285,7 +285,7 @@ The following paths were searched:
  in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php on line 1359
 Exception Attributes: array (
   'file' => 'Admin/Pages/home.php',
-  'paths' => 
+  'paths' =>
   array (
     0 => '/var/www/vhosts/website.com/www/src/templates/',
     1 => '/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/',
@@ -334,17 +334,17 @@ Exception Attributes: array (
   \'controller\' => \'Pages\',
   \'_ext\' => NULL,
 )',
-  'context' => 
+  'context' =>
   array (
     '_scheme' => 'http',
     '_host' => 'localhost',
     '_port' => NULL,
     '_base' => '/src',
-    'params' => 
+    'params' =>
     array (
       'controller' => 'Pages',
       'action' => 'home',
-      'pass' => 
+      'pass' =>
       array (
       ),
       'prefix' => 'Admin',
@@ -776,7 +776,7 @@ The following paths were searched:
  in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php on line 1359
 Exception Attributes: array (
   'file' => 'Admin/SetupPages/home.php',
-  'paths' => 
+  'paths' =>
   array (
     0 => '/var/www/vhosts/website.com/www/src/templates/',
     1 => '/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/',
@@ -2687,5 +2687,1428 @@ Stack Trace:
 Request URL: /en_US/setup-pages/home
 Referer URL: http://localhost/
 Client IP: 172.24.0.1
+
+
+2022-06-03 14:23:16 error: [Exception] The request object does not contain the required `authentication` attribute in /var/www/vhosts/website.com/www/src/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 142
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:93
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:309
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:286
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:634
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:130
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.24.0.1
+
+
+2022-06-03 14:34:50 error: [Cake\View\Exception\MissingLayoutException] Layout file `new.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/vhosts/website.com/www/src/templates/layout/new.php`
+- `/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/layout/new.php`
+ in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php on line 1454
+Exception Attributes: array (
+  'file' => 'new.php',
+  'paths' =>
+  array (
+    0 => '/var/www/vhosts/website.com/www/src/templates/layout/',
+    1 => '/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/layout/',
+  ),
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:806
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:780
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:762
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:548
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.24.0.1
+
+
+2022-06-03 14:36:28 error: [Cake\View\Exception\MissingElementException] Element file `a/header.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/vhosts/website.com/www/src/templates/element/a/header.php`
+- `/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/element/a/header.php`
+ in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php on line 669
+Exception Attributes: array (
+  'file' => 'a/header.php',
+  'paths' =>
+  array (
+    0 => '/var/www/vhosts/website.com/www/src/templates/element/',
+    1 => '/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/element/',
+  ),
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/templates/layout/new.php:40
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1181
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1138
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:821
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:780
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:762
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:548
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/setup-pages/home
+Referer URL: http://localhost/
+Client IP: 172.24.0.1
+
+
+2022-06-03 15:06:43 error: [TypeError] Argument 2 passed to Cake\View\Helper\FormHelper::label() must be of the type string or null, bool given, called in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/Helper/FormHelper.php on line 1473 in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/Helper/FormHelper.php on line 833
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/Helper/FormHelper.php:1473
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/Helper/FormHelper.php:1416
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/Helper/FormHelper.php:1128
+- /var/www/vhosts/website.com/www/src/templates/Users/login.php:12
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1181
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1138
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:769
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:762
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:548
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+
+
+2022-06-03 15:12:28 error: [Cake\ORM\Exception\MissingTableClassException] Table class for alias `Users` could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Locator/TableLocator.php on line 245
+Exception Attributes: array (
+  0 => 'for alias `Users`',
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Datasource/Locator/AbstractLocator.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Locator/TableLocator.php:205
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Datasource/ModelAwareTrait.php:128
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:315
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:50
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+
+
+2022-06-03 15:12:38 error: [Cake\ORM\Exception\MissingTableClassException] Table class for alias `Users` could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Locator/TableLocator.php on line 245
+Exception Attributes: array (
+  0 => 'for alias `Users`',
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Datasource/Locator/AbstractLocator.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Locator/TableLocator.php:205
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Datasource/ModelAwareTrait.php:128
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:315
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:50
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Client IP: 172.24.0.1
+
+
+2022-06-03 15:12:50 error: [Cake\ORM\Exception\MissingTableClassException] Table class for alias `Users` could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Locator/TableLocator.php on line 245
+Exception Attributes: array (
+  0 => 'for alias `Users`',
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Datasource/Locator/AbstractLocator.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Locator/TableLocator.php:205
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Datasource/ModelAwareTrait.php:128
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:315
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:50
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Client IP: 172.24.0.1
+
+
+2022-06-03 15:13:08 error: [Cake\ORM\Exception\MissingTableClassException] Table class for alias `Users` could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Locator/TableLocator.php on line 245
+Exception Attributes: array (
+  0 => 'for alias `Users`',
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Datasource/Locator/AbstractLocator.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Locator/TableLocator.php:205
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Datasource/ModelAwareTrait.php:128
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:315
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:50
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+
+
+2022-06-03 15:22:46 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:22:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:22:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:22:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:22:59 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:22:59 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:22:59 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:22:59 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:09 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:09 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:09 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:09 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:21 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:21 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:28 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:28 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:28 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 15:25:28 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/en_US/setup-pages/home
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:23:27 error: [TypeError] password_hash() expects parameter 1 to be string, null given in /var/www/vhosts/website.com/www/src/vendor/cakephp/authentication/src/PasswordHasher/DefaultPasswordHasher.php on line 51
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/authentication/src/PasswordHasher/DefaultPasswordHasher.php:51
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:70
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 16:23:29 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:23:29 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:23:29 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:23:29 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:26:20 error: [ParseError] syntax error, unexpected '}', expecting end of file in /var/www/vhosts/website.com/www/src/src/Model/Entity/User.php on line 31
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/composer/ClassLoader.php:428
+- spl_autoload_call - [internal], line ??- class_exists - [internal], line ??- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:716
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:2673
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:62
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 16:26:20 error: [ParseError] syntax error, unexpected '}', expecting end of file in /var/www/vhosts/website.com/www/src/src/Model/Entity/User.php on line 31
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/composer/ClassLoader.php:428
+- spl_autoload_call - [internal], line ??- class_exists - [internal], line ??- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:716
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:3080
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:761
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:688
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:779
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:688
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Debugger.php:628
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/element/exception_stack_trace.php:38
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1181
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1138
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1673
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:660
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/layout/dev_error.php:291
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1181
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:1138
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:821
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:780
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:762
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/ExceptionRenderer.php:392
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/ExceptionRenderer.php:404
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/ExceptionRenderer.php:281
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:148
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:130
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 16:29:44 error: [Error] Call to a member function getUser() on null in /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php on line 69
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 16:29:45 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:29:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:29:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:29:46 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 16:45:11 error: [BadMethodCallException] Unknown finder method "first" on App\Model\Table\UsersTable. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php on line 2521
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:1263
+- /var/www/vhosts/website.com/www/src/src/Model/Table/UsersTable.php:27
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:71
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 17:54:41 error: [Error] Call to a member function first() on array in /var/www/vhosts/website.com/www/src/src/Model/Table/UsersTable.php on line 43
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:71
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:04:31 error: [Cake\Http\Exception\MissingControllerException] Controller class Logout could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 349
+Exception Attributes: array (
+  'class' => 'Logout',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:315
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /logout
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:24:58 error: [Cake\Controller\Exception\MissingActionException] Action UsersController::index() could not be found, or is not accessible. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php on line 518
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'index',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:135
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /users
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:26:21 error: [Cake\Controller\Exception\MissingActionException] Action UsersController::index() could not be found, or is not accessible. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php on line 518
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'index',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:135
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /users
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:26:37 error: [Cake\View\Exception\MissingTemplateException] Template file `Users/logout.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/vhosts/website.com/www/src/templates/Users/logout.php`
+- `/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/Users/logout.php`
+ in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php on line 1359
+Exception Attributes: array (
+  'file' => 'Users/logout.php',
+  'paths' =>
+  array (
+    0 => '/var/www/vhosts/website.com/www/src/templates/',
+    1 => '/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/View/View.php:766
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:762
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:548
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /logout
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:26:52 error: [Cake\Http\Exception\MissingControllerException] Controller class Dashboard could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 349
+Exception Attributes: array (
+  'class' => 'Dashboard',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:315
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /dashboard
+Referer URL: http://localhost/src/login
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:51:29 error: [Error] Cannot use object of type Cake\Http\Response as array in /var/www/vhosts/website.com/www/src/src/Controller/AppController.php on line 124
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/src/Controller/AppController.php:57
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:309
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:286
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:634
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:130
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /dashboard
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:51:31 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:51:31 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:51:31 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:51:31 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:51:47 error: [Error] Cannot use object of type Cake\Http\Response as array in /var/www/vhosts/website.com/www/src/src/Controller/AppController.php on line 124
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/src/Controller/AppController.php:57
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:309
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:286
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:634
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:130
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /dashboard
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:51:50 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:51:50 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:51:50 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:51:50 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:52:48 error: [Cake\Routing\Exception\MissingRouteException] A route matching "array (
+  'prefix' => '',
+  'controller' => 'users',
+  'action' => 'login',
+  'plugin' => NULL,
+  '_ext' => NULL,
+)" could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/RouteCollection.php on line 326
+Exception Attributes: array (
+  'url' => 'array (
+  \'prefix\' => \'\',
+  \'controller\' => \'users\',
+  \'action\' => \'login\',
+  \'plugin\' => NULL,
+  \'_ext\' => NULL,
+)',
+  'context' =>
+  array (
+    '_scheme' => 'http',
+    '_host' => 'localhost',
+    '_port' => NULL,
+    '_base' => '/src',
+    'params' =>
+    array (
+      'pass' =>
+      array (
+      ),
+      'prefix' => 'Admin',
+      'language' => 'en_US',
+      'controller' => 'SetupPages',
+      'action' => 'dashboard',
+      'plugin' => NULL,
+      '_matchedRoute' => '/dashboard',
+      '_ext' => NULL,
+    ),
+  ),
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Router.php:497
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:691
+- /var/www/vhosts/website.com/www/src/src/Controller/AppController.php:125
+- /var/www/vhosts/website.com/www/src/src/Controller/AppController.php:57
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:309
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventManager.php:286
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:634
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:130
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /dashboard
+Client IP: 172.24.0.1
+
+
+2022-06-03 18:52:50 warning: Warning (512): Unable to emit headers. Headers sent in file=/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php line=148 in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 71]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 71
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:52:51 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 168]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 168
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 74
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:52:51 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 18:52:51 warning: Warning (2): Cannot modify header information - headers already sent by (output started at /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/functions.php:148) in [/var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 197]
+Request URL: /dashboard
+Client IP: 172.24.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 185
+DebugKit\Plugin::DebugKit\{closure}() - ROOT/vendor/cakephp/debug_kit/src/Plugin.php, line 123
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 197
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
+[main] - ROOT/webroot/index.php, line 40
+
+2022-06-03 19:06:04 error: [Cake\Controller\Exception\MissingActionException] Action SetupPagesController::dashboard() could not be found, or is not accessible. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php on line 518
+Exception Attributes: array (
+  'controller' => 'SetupPagesController',
+  'action' => 'dashboard',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:135
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /dashboard
+Client IP: 172.24.0.1
+
+
+2022-06-03 20:44:33 error: [Cake\Database\Exception\DatabaseException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'LIVE_database.user_types' doesn't exist in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/Collection.php on line 160
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/Collection.php:118
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:513
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:653
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:507
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:462
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:848
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:2510
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:1263
+- /var/www/vhosts/website.com/www/src/src/Model/Table/UsersTable.php:28
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:71
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Caused by: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'LIVE_database.user_types' doesn't exist in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Statement/MysqlStatement.php on line 39
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Statement/MysqlStatement.php:39
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Statement/StatementDecorator.php:180
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Log/LoggingStatement.php:75
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Connection.php:306
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/Retry/CommandRetry.php:70
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Connection.php:309
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/Collection.php:158
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/Collection.php:118
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:513
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:653
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:507
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:462
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:848
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:2510
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:1263
+- /var/www/vhosts/website.com/www/src/src/Model/Table/UsersTable.php:28
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:71
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.27.0.1
+
+
+2022-06-03 20:45:26 error: [Error] Call to a member function toArray() on null in /var/www/vhosts/website.com/www/src/src/Model/Table/UsersTable.php on line 36
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:71
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /login
+Referer URL: http://localhost/src/login
+Client IP: 172.27.0.1
 
 

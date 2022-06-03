@@ -39,4 +39,7 @@ class SetupPagesController extends AppController
     function home() {
 
     }
+    function dashboard(){
+        pr('in admin pages dashboard'); exit;
+    }
 }
