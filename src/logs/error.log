@@ -5243,3 +5243,214 @@ Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 75
 Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 128
 [main] - ROOT/webroot/index.php, line 40
 
+2022-06-06 18:06:17 error: [Cake\Http\Exception\MissingControllerException] Controller class Users could not be found. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 349
+Exception Attributes: array (
+  'class' => 'Users',
+  'plugin' => NULL,
+  'prefix' => 'Admin',
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:315
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /admin/users/login/action
+Referer URL: http://localhost/src/fr_CA/users/login
+Client IP: 172.18.0.1
+
+
+2022-06-06 18:20:28 error: [Cake\Controller\Exception\MissingActionException] Action UsersController::signup() could not be found, or is not accessible. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php on line 518
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'signup',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:135
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /users/signup
+Referer URL: http://localhost/src/en_US
+Client IP: 172.18.0.1
+
+
+2022-06-06 18:31:55 error: [Cake\Database\Exception\DatabaseException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'LIVE_database.user_types' doesn't exist in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/Collection.php on line 160
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/Collection.php:118
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:513
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:653
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:507
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:462
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:848
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:2510
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:1263
+- /var/www/vhosts/website.com/www/src/src/Model/Table/UsersTable.php:39
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:97
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Caused by: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'LIVE_database.user_types' doesn't exist in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Statement/MysqlStatement.php on line 39
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Statement/MysqlStatement.php:39
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Statement/StatementDecorator.php:180
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Log/LoggingStatement.php:75
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Connection.php:306
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Core/Retry/CommandRetry.php:70
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Connection.php:309
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/Collection.php:158
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/Collection.php:118
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php:92
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:513
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:653
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:507
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:462
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Query.php:848
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:2510
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/ORM/Table.php:1263
+- /var/www/vhosts/website.com/www/src/src/Model/Table/UsersTable.php:39
+- /var/www/vhosts/website.com/www/src/src/Controller/UsersController.php:97
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php:539
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:140
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:162
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /en_US/users/signup
+Referer URL: http://localhost/src/en_US/users/signup
+Client IP: 172.18.0.1
+
+
+2022-06-06 18:37:25 error: [Cake\Controller\Exception\MissingActionException] Action SetupPagesController::index() could not be found, or is not accessible. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php on line 518
+Exception Attributes: array (
+  'controller' => 'SetupPagesController',
+  'action' => 'index',
+  'prefix' => 'Admin',
+  'plugin' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:135
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /admin/setup-pages/index/action
+Referer URL: http://localhost/src/en_US/users/signup
+Client IP: 172.18.0.1
+
+
+2022-06-06 18:42:52 error: [Cake\Controller\Exception\MissingActionException] Action SetupPagesController::index() could not be found, or is not accessible. in /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/Controller.php on line 518
+Exception Attributes: array (
+  'controller' => 'SetupPagesController',
+  'action' => 'index',
+  'prefix' => 'Admin',
+  'plugin' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:135
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:115
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/BaseApplication.php:317
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:161
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:126
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/src/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/src/webroot/index.php:40
+
+Request URL: /admin/setup-pages/index/action
+Referer URL: http://localhost/src/login
+Client IP: 172.18.0.1
+
+

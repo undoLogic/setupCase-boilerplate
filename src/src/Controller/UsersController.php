@@ -46,39 +46,68 @@ class UsersController extends AppController
 
     }
 
-    function testing()
-    {
+//    function testing()
+//    {
+//
+//        $email = 'sachalewis@undologic.com';
+//        $pass = '1234';
+//
+//        $passObj = new DefaultPasswordHasher;
+//
+//        $hash = ($passObj)->hash($pass);
+//
+//        $this->writeToLog('debug', 'pass is: ' . $pass, true);
+//        $this->writeToLog('debug', 'hash is: ' . $hash, true);
+//        $isCorrect = $passObj->check($pass, $hash);
+//        $this->writeToLog('debug', 'isCorrect: ' . $isCorrect, true);
+//
+//
+//        $didSave = $this->Users->saveUserPassword($email, $hash);
+//        $this->writeToLog('debug', 'didSave: '.$didSave, true);
+//
+//
+//        $userArray = $this->Users->getUserByEmail($email);
+//        pr ($userArray);
+//
+//
+//        $session = $this->request->getSession();
+//        $session->write('User', $userArray);
+//
+//        $sessionUser = $session->read('User');
+//
+//        pr ($sessionUser);
+//
+//
+//        exit;
+//
+//    }
 
-        $email = 'sachalewis@undologic.com';
-        $pass = '1234';
 
-        $passObj = new DefaultPasswordHasher;
+    function signup() {
 
-        $hash = ($passObj)->hash($pass);
+        if ($this->request->is('post')) {
 
-        $this->writeToLog('debug', 'pass is: ' . $pass, true);
-        $this->writeToLog('debug', 'hash is: ' . $hash, true);
-        $isCorrect = $passObj->check($pass, $hash);
-        $this->writeToLog('debug', 'isCorrect: ' . $isCorrect, true);
+            $this->writeToLog('debug', 'Signup', true);
 
+            $emailSubmitted = $this->request->getData()['email'];
+            $passSubmitted = $this->request->getData()['password'];
 
-        $didSave = $this->Users->saveUserPassword($email, $hash);
-        $this->writeToLog('debug', 'didSave: '.$didSave, true);
+            $passObj = new DefaultPasswordHasher;
+            $didCreateUser = $this->Users->createUser(
+                $emailSubmitted,
+                $passObj->hash($passSubmitted)
+            );
 
+            if ($didCreateUser) {
+                $this->writeToLog('debug', 'User created user_id: '.$didCreateUser, false);
+                $this->Flash->success('User has been CREATED');
+                return $this->redirect(array('prefix' => false, 'controller' => 'SetupPages', 'action' => 'home'));
+            } else {
+                $this->Flash->error('Could NOT create user');
+                return $this->redirect('/');
+            }
 
-        $userArray = $this->Users->getUserByEmail($email);
-        pr ($userArray);
-
-
-        $session = $this->request->getSession();
-        $session->write('User', $userArray);
-
-        $sessionUser = $session->read('User');
-
-        pr ($sessionUser);
-
-
-        exit;
+        }
 
     }
 
@@ -105,7 +134,7 @@ class UsersController extends AppController
                     //pr($session->read('User')); exit;
                     $this->writeToLog('debug', ' - Password is correct');
                     $this->Flash->success('Login Success');
-                    return $this->redirect('/dashboard');
+                    return $this->redirect(array('prefix' => 'Admin', 'controller' => 'SetupPages', 'action' => 'home'));
 
                 } else {
                     $this->writeToLog('debug', ' - WRONG Password');

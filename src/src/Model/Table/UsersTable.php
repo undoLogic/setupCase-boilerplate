@@ -19,9 +19,21 @@ class UsersTable extends Table
     function getUsers(){
         $users = $this->find('all');
         return($users->toArray());
-
     }
 
+    function createUser($email, $password) {
+        $user = $this->newEmptyEntity();
+
+        $user->email = $email;
+        $user->password = $password;
+        $user->user_type_id = 111;
+
+        if ($this->save($user)) {
+            return $user->id;
+        } else {
+            return false;
+        }
+    }
     function getUserByEmail($email){
         $user = $this->find('all',['conditions' => [
             'AND' => [
@@ -45,26 +57,26 @@ class UsersTable extends Table
         return $this->save($user);
     }
 
-    function getUser($email, $password){
-        $user = $this->find('all',['conditions' => [
-            'AND' => [
-                [ 'Users.email' => $email],
-                [ 'Users.password' => $password],
-            ]
-
-
-        ],
-            'recursive' => -1,
-            'contain' => ['UserTypes']
-        ])->first();
-
-        if(!empty($user)){
-
-            return $user->toArray();
-        }
-        return false;
-
-    }
+//    function getUser($email, $password){
+//        $user = $this->find('all',['conditions' => [
+//            'AND' => [
+//                [ 'Users.email' => $email],
+//                [ 'Users.password' => $password],
+//            ]
+//
+//
+//        ],
+//            'recursive' => -1,
+//            'contain' => ['UserTypes']
+//        ])->first();
+//
+//        if(!empty($user)){
+//
+//            return $user->toArray();
+//        }
+//        return false;
+//
+//    }
 
 //    function exportUsers()
 //    {

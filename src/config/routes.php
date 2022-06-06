@@ -45,22 +45,15 @@ return static function (RouteBuilder $routes) {
     $routes->setRouteClass(DashedRoute::class);
 
     $routes->scope('/', function (RouteBuilder $builder) {
-        /*
-         * Here, we are connecting '/' (base path) to a controller called 'Pages',
-         * its action called 'display', and we pass a param to select the view file
-         * to use (in this case, templates/Pages/home.php)...
-         */
+
         $builder->connect('/', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'index']);
-        $builder->connect('/dashboard', ['language' => 'en_US', 'controller' => 'setupPages', 'action' => 'dashboard']);
         $builder->connect('/login', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'login']);
         $builder->connect('/logout', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'logout']);
 
-        // language prefix
-        $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
+        // language
+        $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'home'), array('language' => 'en_US|fr_CA')) ;
         $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
-        //9/  $builder->connect('/:language/:plugin/', array('controller' => 'Users', 'action' => 'index'), array('language' => 'en_US|fr_CA', 'plugin' => 'admin'));
         $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
-        // $builder->connect('/:language', array('controller' => 'Pages', 'action' => 'dashboard'), array('language' => 'en_US|fr_CA')) ;
 
         /*
          * Connect catchall routes for all controllers.
@@ -79,10 +72,11 @@ return static function (RouteBuilder $routes) {
     });
 
     $routes->prefix('admin', function (RouteBuilder $routes) {
+
        // $routes->connect('/:controller', ['action' => 'index']) ;
         // $routes->connect('/:controller', ['action' => 'index'])->setPatterns(['language' => 'en_US|fr_CA'])->setPersist(['language']) ;
         //  $routes->connect('/:language/:controller', ['action' => 'index'])->setPatterns(['language' => 'en_US|fr_CA'])->setPersist(['language']) ;
-        $routes->connect('/login', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'login']);
+        //$routes->connect('/login', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'login']);
 
         //working
         //$routes->connect('/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
