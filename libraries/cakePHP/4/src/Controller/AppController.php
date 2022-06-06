@@ -79,6 +79,10 @@ class AppController extends Controller
 
     function setupAuth()
     {
+        if ($this->request->getAttributes()['params']['action'] == 'logout') {
+            return false; //in cause of bad sessions ensure the user can always logout
+        };
+
         $this->writeToLog('debug', 'SetupAuth: '.json_encode( $this->request->getAttributes()['here']), true);
 
         $loggedUser = $this->getLoggedInUser();
