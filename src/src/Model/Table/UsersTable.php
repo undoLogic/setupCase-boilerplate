@@ -22,6 +22,29 @@ class UsersTable extends Table
 
     }
 
+    function getUserByEmail($email){
+        $user = $this->find('all',['conditions' => [
+            'AND' => [
+                [ 'Users.email' => $email]
+            ]
+        ],
+            'recursive' => -1,
+            'contain' => ['UserTypes']
+        ])->first();
+
+        if(!empty($user)){
+
+            return $user->toArray();
+        }
+        return false;
+    }
+
+    function saveUserPassword($email, $password) {
+        $user = $this->find('all')->first();
+        $user->password = $password;
+        return $this->save($user);
+    }
+
     function getUser($email, $password){
         $user = $this->find('all',['conditions' => [
             'AND' => [
