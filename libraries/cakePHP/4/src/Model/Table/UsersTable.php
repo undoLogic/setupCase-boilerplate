@@ -30,7 +30,7 @@ class UsersTable extends Table
         $user->user_type_id = 111;
 
         if ($this->save($user)) {
-            return $user->id;
+            return $user->toArray();
         } else {
             return false;
         }
