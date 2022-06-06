@@ -99,7 +99,7 @@ class UsersController extends AppController
             );
 
             if ($didCreateUser) {
-                $this->writeToLog('debug', 'User created user_id: '.$didCreateUser, false);
+                $this->writeToLog('debug', 'User created user_id: '.$didCreateUser['id'], false);
                 $this->Flash->success('User has been CREATED');
 
                 $session = $this->request->getSession();
