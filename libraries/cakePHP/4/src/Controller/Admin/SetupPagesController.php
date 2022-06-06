@@ -32,11 +32,21 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
-class PagesController extends AppController
+class SetupPagesController extends AppController
 {
 
 
     function home() {
 
+    }
+    function dashboard(){
+
+        $this->writeToLog('debug' ,'Admin: dashboard', true);
+
+        // pr('in admin pages dashboard');
+
+       // pr ( $this->getLoggedInUser() );
+
+        //pr ( $this->request->getAttributes());
     }
 }
