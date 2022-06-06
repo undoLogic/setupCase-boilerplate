@@ -1,19 +1,10 @@
 # CakePHP #
 #################################################
-/src/app/tmp/cache/*
-/src/app/tmp/logs/*
-/src/app/webroot/images/182/*.jpg
-/src/app/webroot/images/182/*.png
-/src/app/Config/Schema/182/*.json
-/src/app/webroot/updateCase.log
-/src/composer.lock
 
 /docker/control/composer.phar
 
 ### temp cake download files
 /4.x/*
-
-
 
 # IDE and editor specific files #
 #################################
