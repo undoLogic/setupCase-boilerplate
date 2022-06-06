@@ -101,7 +101,11 @@ class UsersController extends AppController
             if ($didCreateUser) {
                 $this->writeToLog('debug', 'User created user_id: '.$didCreateUser, false);
                 $this->Flash->success('User has been CREATED');
-                return $this->redirect(array('prefix' => false, 'controller' => 'SetupPages', 'action' => 'home'));
+
+                $session = $this->request->getSession();
+                $session->write('User', $didCreateUser);
+
+                return $this->redirect(array('prefix' => 'Admin', 'controller' => 'SetupPages', 'action' => 'home'));
             } else {
                 $this->Flash->error('Could NOT create user');
                 return $this->redirect('/');
