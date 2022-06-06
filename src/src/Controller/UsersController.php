@@ -84,39 +84,45 @@ class UsersController extends AppController
 
     function login()
     {
-
-//        // pr( $this->_matchToken($hashed_password, $user['password']));
-//        exit;
-//        //pr (new DefaultPasswordHasher())->hash('433logic'); //exit;
-        $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
 
-            $email = $user['email'];
-            $password = $user['password'];
+            $this->writeToLog('debug', 'Login', true);
 
-            $userObject = $this->Users->getUser($email, $password);
-            // pr($userObject); exit;
+            $emailSubmitted = $this->request->getData()['email'];
+            $passObj = new DefaultPasswordHasher;
+            $userArray = $this->Users->getUserByEmail(
+                $emailSubmitted
+            );
 
-            if (!empty($userObject)) {
-                //login
-                $session = $this->request->getSession();
-                $session->write('User', $userObject);
-                //pr($session->read('User')); exit;
-                $this->Flash->success(__('Login Success'));
-                return $this->redirect('/dashboard');
+            if (!empty($userArray)) {
+                $this->writeToLog('debug', 'Found user: '.$userArray['email'], false);
+                $passSubmitted =  $this->request->getData()['password'];
+                $isCorrect = $passObj->check($passSubmitted, $userArray['password']);
+                if ($isCorrect) {
+                    //password is correct
+                    $session = $this->request->getSession();
+                    $session->write('User', $userArray);
+                    //pr($session->read('User')); exit;
+                    $this->writeToLog('debug', ' - Password is correct');
+                    $this->Flash->success('Login Success');
+                    return $this->redirect('/dashboard');
+
+                } else {
+                    $this->writeToLog('debug', ' - WRONG Password');
+                    $this->Flash->error('Password is INCORRECT');
+                }
             } else {
-                $this->Flash->error(__('Problem logging you in. Please check your email and password and try again'));
-
+                $this->writeToLog('debug', ' - '.$emailSubmitted.' does NOT exist');
+                $this->Flash->error('Problem logging you in. Please check your email and password and try again');
             }
-            //check against the User Model and see if any users are allowed to login
-            //die('logging in');
         }
 
     }//login
 
     function logout()
     {
+        $this->writeToLog('debug', 'Logout');
+
         //remove the session which was holding the user object
         $session = $this->request->getSession();
         $session->write('User', false);
