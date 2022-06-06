@@ -51,7 +51,7 @@ return static function (RouteBuilder $routes) {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'index']);
-        $builder->connect('/dashboard', ['prefix' => 'Admin', 'language' => 'en_US', 'controller' => 'setupPages', 'action' => 'dashboard']);
+        $builder->connect('/dashboard', ['language' => 'en_US', 'controller' => 'setupPages', 'action' => 'dashboard']);
         $builder->connect('/login', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'login']);
         $builder->connect('/logout', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'logout']);
 
@@ -82,6 +82,7 @@ return static function (RouteBuilder $routes) {
        // $routes->connect('/:controller', ['action' => 'index']) ;
         // $routes->connect('/:controller', ['action' => 'index'])->setPatterns(['language' => 'en_US|fr_CA'])->setPersist(['language']) ;
         //  $routes->connect('/:language/:controller', ['action' => 'index'])->setPatterns(['language' => 'en_US|fr_CA'])->setPersist(['language']) ;
+        $routes->connect('/login', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'login']);
 
         //working
         //$routes->connect('/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;

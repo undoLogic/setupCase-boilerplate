@@ -108,6 +108,7 @@ class UsersController extends AppController
         $session->write('User', false);
 
         //redirect to the home page
+        $this->redirect('/');
     }
 
     function startReset() {

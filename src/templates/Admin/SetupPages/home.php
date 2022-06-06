@@ -32,6 +32,10 @@ ADMIN - current lang: <?php echo $baseLang; ?>
 
 <?php echo $this->Html->link('Admin lang NOT SET', array('prefix' => 'Admin')); ?>
 
+<hr/>
+
+<?php echo $this->Html->link('LOGOUT','/logout'); ?>
+
 
 
 

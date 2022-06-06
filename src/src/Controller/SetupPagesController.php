@@ -33,10 +33,16 @@ use Cake\View\Exception\MissingTemplateException;
 class SetupPagesController extends AppController
 {
     function dashboard(){
-        pr('in NOT admin pages dashboard'); exit;
+        //let's redirect to the prefix admin (I was not able to do this in the prefix not sure why)
+
+        $this->redirect(array(
+            'prefix' => 'Admin',
+            'controller' => 'SetupPages',
+            'action' => 'dashboard'
+        ));
+
+        //pr('in NOT admin pages dashboard'); exit;
     }
-
-
 
     function index() {
         //get the current lange

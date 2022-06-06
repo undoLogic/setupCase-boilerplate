@@ -40,6 +40,13 @@ class SetupPagesController extends AppController
 
     }
     function dashboard(){
-        pr('in admin pages dashboard'); exit;
+
+        $this->writeToLog('debug' ,'Admin: dashboard', true);
+
+        // pr('in admin pages dashboard');
+
+       // pr ( $this->getLoggedInUser() );
+
+        //pr ( $this->request->getAttributes());
     }
 }
