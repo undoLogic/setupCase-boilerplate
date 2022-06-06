@@ -160,28 +160,77 @@ class UsersController extends AppController
         $this->redirect('/');
     }
 
-    function startReset()
+    function beginReset()
     {
+        $this->writeToLog('debug', 'BeginReset', true);
+
         //accept an email from a post form
-        //if the email exists -> there should be a new column in the users table 'reset_token' get a random text string 8 alpha characters and add that into the users database
-        //create the token with Text::uuid()
-        //https://book.cakephp.org/4/en/core-libraries/text.html
-        //email that token to the users email on file
-        $this->send('email@email.com', 'Reset Password');
+        if ($this->request->is('post')) {
+            //if the email exists -> there should be a new column in the users table 'reset_token' get a random text string 8 alpha characters and add that into the users database
+            $emailSubmitted = $this->request->getData()['email'];
+            $userExists = $this->Users->getUserByEmail($emailSubmitted);
+            if ($userExists) {
+                //that user does exist
+                $userToken = $this->Users->resetAddToken($emailSubmitted);
+                //pr ($userToken);
+                $this->writeToLog('debug', '- token: '.$userToken['reset_token'], false);
+
+                echo 'This link will be sent in an email | '.Router::url('/').'Users'.DS.'reset'.DS.$emailSubmitted.DS.$userToken['reset_token'];
+                exit;
+
+            } else {
+                //does not exist
+                $this->writeToLog('debug', 'That email does NOT exist: '.$emailSubmitted, false);
+            }
+        } else {
+            //start
+        }
     }
 
-    function reset($email, $token)
+    function reset($email = false, $resetToken = false)
     {
-        //this will be clicked from a link in a email
-        //check that the email and token do match
-        //if they do show a screen to enter a NEW password (with a verify password)
+        $this->writeToLog('debug', 'Reset', true);
+        if ($this->request->is('post')) {
+            $this->writeToLog('debug', 'POST');
+            $user = $this->Users->getUserByEmailAndResetToken($email, $resetToken);
+            if (!empty($user)) {
+                //email and token are still ok
+                $newPassword = $this->request->getData()['new_password'];
+                $passObj = new DefaultPasswordHasher;
+                $userUpdatedArray = $this->Users->saveUserPassword($email, $passObj->hash($newPassword));
 
-        //if not empty this->request->data
-        //they are entering a new password
-        //once again verify the email and token do exist
-        //if they do exist using the cakePHP create hash get a new password hash and update the database password
-        //if the password was successfully changed REMOVE the token in the users table so they cannot use it again as a 'replay attack'
-        //get the user Object and auto log them in and redirect to the /dashboard page (which will require a login prefix)
+                if ($userUpdatedArray) {
+                    $session = $this->request->getSession();
+                    $session->write('User', $userUpdatedArray);
 
+                    $this->Users->resetRemoveToken($email); //prevent phishing / replay attack
+
+                    $this->Flash->success('New password has been updated and you are logged in');
+                    $this->redirect('/');
+                } else {
+                    $this->Flash->error('Password could NOT be updated');
+                }
+            } else {
+                $this->Flash->error('Email and/or token is not correct - could NOT reset the password');
+            }
+        } elseif (!$email || !$resetToken) {
+            $this->writeToLog('debug', 'Email and/or token are missing', true);
+            $this->Flash->error('Email and/or token are missing');
+            $this->redirect('/');
+        } else {
+            //show a form so they can manually reset the password
+            $user = $this->Users->getUserByEmailAndResetToken($email, $resetToken);
+            if (!empty($user)) {
+                //correct token
+                $this->writeToLog('debug', 'Correct token, showing form');
+                $this->set('email', $email);
+            } else {
+                //token is not correct
+                $this->writeToLog('debug', 'Email and/or token is NOT correct');
+
+                $this->Flash->error('Email and/or token is not correct');
+                $this->redirect('/');
+            }
+        }
     }
 }

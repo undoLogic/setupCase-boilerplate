@@ -4,6 +4,8 @@
     NOT logged in (<?php echo $this->Html->link('Login', '/login'); ?>)
 <?php endif; ?>
 
+- <?php echo $this->Html->link('Reset', array('prefix' => false, 'controller' => 'Users', 'action' => 'beginReset')); ?>
+
 - <?php echo $this->Html->link('Signup', array('prefix' => false, 'controller' => 'Users', 'action' => 'signup')); ?>
 
 <hr/>

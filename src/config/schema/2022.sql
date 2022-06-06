@@ -5,3 +5,9 @@ INSERT INTO `user_types` (`id`, `name`) VALUES ('111', 'Admin'), ('30', 'Manager
 
 UPDATE `users` SET `user_type_id` = '111' WHERE `users`.`id` = 1;
 UPDATE `users` SET `user_type_id` = '111' WHERE `users`.`id` = 2;
+
+
+ALTER TABLE `users` ADD `reset_token` VARCHAR(1000) NOT NULL AFTER `password`;
+
+
+
