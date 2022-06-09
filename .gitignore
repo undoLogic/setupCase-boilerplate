@@ -1,10 +1,15 @@
 # CakePHP #
 #################################################
-
-/docker/control/composer.phar
+/src/logs/debug.log
+/src/tmp/cache/models/myapp*
+/src/tmp/cache/persistent/myapp*
+/src/tmp/debug*
 
 ### temp cake download files
 /4.x/*
+
+### composer is downloaded with command line script
+/docker/control/composer.phar
 
 # IDE and editor specific files #
 #################################
