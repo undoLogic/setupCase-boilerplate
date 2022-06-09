@@ -21,3 +21,10 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+
+/src/logs/debug.log
+/src/tmp/cache/models/myapp*
+/src/tmp/cache/persistent/myapp*
+/src/tmp/debug*
+
