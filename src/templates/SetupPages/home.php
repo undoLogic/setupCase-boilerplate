@@ -49,4 +49,21 @@
     Object Storage
 </h2>
 
+<div class="row">
+    <div class="col-4">
+        test
+    </div>
+    <div class="col-4">
+        <?php echo $this->Form->create(null, ['type' => 'file']); ?>
+
+        <?php echo $this->Form->file('test', ['type' => 'button']); ?>
+
+        <?php echo $this->Form->end(); ?>
+    </div>
+    <div class="col-4">
+        test
+    </div>
+</div>
+
+
 

@@ -1,5 +1,5 @@
-CREATE DATABASE if not exists storage;
-USE storage;
+CREATE DATABASE if not exists object_storage;
+USE object_storage;
 SET GLOBAL sql_mode = '';
 
 --
