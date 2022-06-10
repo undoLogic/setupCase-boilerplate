@@ -69,10 +69,14 @@
 </div>
 
 <?php foreach ($objects as $object) : ?>
+<div class="row">
+    <div class="col-lg-3"><?= $this->Html->link($object['key_name'], ['action' => 'objDownload', $object['key_name']]); ?></div>
+    <div class="col-lg-3" style="margin-left: 5px;"><a style="color: red; font-weight: bold;" href="<?= $webroot;?>SetupPages/objRemoveCache/<?= $object['id']; ?>">X</a></div>
 
-    <?php echo $this->Html->link($object['key_name'], ['action' => 'objDownload', $object['key_name']]); ?>
 
- <br/>
+</div>
+
+
 <?php endforeach; ?>
 
 

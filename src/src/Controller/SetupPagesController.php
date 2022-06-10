@@ -98,7 +98,7 @@ class SetupPagesController extends AppController
             $encoded = $objectStorage->putObject($key_name,
                 file_get_contents($uploadedFile),
                 $mime,
-                $filename,
+                $filename
             );
 
             exit;
@@ -125,8 +125,18 @@ class SetupPagesController extends AppController
 
     }
 
-    function objRemoveCache($keyName) {
-        $objectStorage = TableRegistry::getTableLocator()->get('ObjectStorages');
-        $objectStorage->removeCache($keyName);
+    function objRemoveCache($id) {
+        //$objectStorage = TableRegistry::getTableLocator('ObjectStorages');
+        $this->loadModel('ObjectStorages');
+        $entity = $this->ObjectStorages->get($id);
+       if($this->ObjectStorages->delete($entity)){
+           pr('deleted'); exit;
+           $this->redirect('/');
+           $this->Flash->success('Deleted');
+
+       }else{
+           $this->Flash->error('NOT Deleted');
+       }
+        $this->redirect('/');
     }
 }
