@@ -65,38 +65,68 @@ class SetupPagesController extends AppController
     function home() {
         //pr ($name);
         //exit;
+
+
+        //pr (APP);exit;
+        //get the storageObjects
+        $objectStorage = TableRegistry::getTableLocator()->get('ObjectStorages');
+
+        $this->set('objects', $objectStorage->getObjects());
+
+
     }
 
     function objAdd() {
 
-    }
-
-    function objView() {
-
         $objectStorage = TableRegistry::getTableLocator()->get('ObjectStorages');
 
-        pr ($objectStorage->getObjects());
+        if ($this->request->is('post')) {
 
-        //pr ($articles);
+            //pr ($this->request->getData());
+            $attachment = $this->request->getData('fileToUpload');
 
+            $filename = $attachment->getClientFilename();
+            $typeOfUpload = $attachment->getClientMediaType();
+            $size = $attachment->getSize();
+            $uploadedFile = $attachment->getStream()->getMetadata('uri');
+            $error = $attachment->getError();
 
-        //$articles = $this->getTableLocator()->get('users');
+            $mime = mime_content_type($uploadedFile);
 
-// Start a new query.
-       // $query = $articles->find('all');
+            $key_name = 'file_'.date('YmdHis');
 
-       // pr ($query);
-       // exit;
+            $encoded = $objectStorage->putObject($key_name,
+                file_get_contents($uploadedFile),
+                $mime,
+                $filename,
+            );
 
+            exit;
+//            $emailSubmitted = $this->request->getData()['email'];
 
+        }
 
-        //$connection = ConnectionManager::get('object_storage');
-
-       // $found = $connection->find('all');
-
-      //  pr ($found);
-
-        die('hello');
     }
 
+    function objDownload($keyName) {
+
+        $objectStorage = TableRegistry::getTableLocator()->get('ObjectStorages');
+        $res = $objectStorage->getFileFromCache($keyName);
+
+        $downloadName = 'downloadname.'.$res['extension'];
+        if ($res['STATUS'] == 200) {
+            header('Content-Type: '.$res['mime'].'; charset=utf-8');
+            header('Content-Disposition: attachment; filename='.$downloadName);
+            echo file_get_contents($res['path']);
+            exit;
+        } else {
+            die('found found');
+        }
+
+    }
+
+    function objRemoveCache($keyName) {
+        $objectStorage = TableRegistry::getTableLocator()->get('ObjectStorages');
+        $objectStorage->removeCache($keyName);
+    }
 }

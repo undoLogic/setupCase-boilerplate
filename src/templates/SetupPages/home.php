@@ -54,9 +54,12 @@
         test
     </div>
     <div class="col-4">
-        <?php echo $this->Form->create(null, ['type' => 'file']); ?>
+        <?php echo $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'SetupPages', 'action' => 'objAdd']]); ?>
 
-        <?php echo $this->Form->file('test', ['type' => 'button']); ?>
+
+        <?php echo $this->Form->file('fileToUpload', ['type' => 'button']); ?>
+
+        <?= $this->Form->button('Upload'); ?>
 
         <?php echo $this->Form->end(); ?>
     </div>
@@ -64,6 +67,14 @@
         test
     </div>
 </div>
+
+<?php foreach ($objects as $object) : ?>
+
+    <?php echo $this->Html->link($object['key_name'], ['action' => 'objDownload', $object['key_name']]); ?>
+
+ <br/>
+<?php endforeach; ?>
+
 
 
 
