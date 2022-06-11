@@ -40,9 +40,6 @@
     'prefix' => 'Admin',
 )); ?>
 
-
-
-
 <hr/>
 
 <h2>
@@ -51,11 +48,7 @@
 
 <div class="row">
     <div class="col-4">
-        test
-    </div>
-    <div class="col-4">
         <?php echo $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'SetupPages', 'action' => 'objAdd']]); ?>
-
 
         <?php echo $this->Form->file('fileToUpload', ['type' => 'button']); ?>
 
@@ -63,22 +56,16 @@
 
         <?php echo $this->Form->end(); ?>
     </div>
-    <div class="col-4">
-        test
-    </div>
 </div>
 
 <?php foreach ($objects as $object) : ?>
-<div class="row">
-    <div class="col-lg-3"><?= $this->Html->link($object['key_name'], ['action' => 'objDownload', $object['key_name']]); ?></div>
-    <div class="col-lg-3" style="margin-left: 5px;"><a style="color: red; font-weight: bold;" href="<?= $webroot;?>SetupPages/objRemoveCache/<?= $object['id']; ?>">X</a></div>
-
-
-</div>
-
-
+    <div class="row">
+        <div class="col-lg-3"><?= $object['filename']; ?></div>
+        <div class="col-lg-3" style="margin-left: 5px;">
+            <?= $object['current']; ?>
+            <?= $this->Html->link($object['key_name'], ['action' => 'objDownload', $object['key_name']]); ?>
+            <a style="color: #000000; font-weight: bold;" href="<?= $webroot;?>SetupPages/objRemoveCache/<?= $object['key_name']; ?>">Remove Cache</a>
+            <a style="color: red; font-weight: bold;" href="<?= $webroot;?>SetupPages/objDelete/<?= $object['key_name']; ?>">X</a>
+        </div>
+    </div>
 <?php endforeach; ?>
-
-
-
-

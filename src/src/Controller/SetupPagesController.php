@@ -14,9 +14,11 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
@@ -28,7 +30,6 @@ use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
 
 
-
 /**
  * Static content controller
  *
@@ -38,19 +39,26 @@ use Cake\ORM\TableRegistry;
  */
 class SetupPagesController extends AppController
 {
-    function dashboard(){
-        //let's redirect to the prefix admin (I was not able to do this in the prefix not sure why)
+    function beforeFilter(EventInterface $setupPages)
+    {
+        parent::beforeFilter($setupPages);
+        $this->objectStorages = TableRegistry::getTableLocator()->get('ObjectStorages');
+    }
 
+    var $objectStorages;
+
+    function dashboard()
+    {
+        //let's redirect to the prefix admin (I was not able to do this in the prefix not sure why)
         $this->redirect(array(
             'prefix' => 'Admin',
             'controller' => 'SetupPages',
             'action' => 'dashboard'
         ));
-
-        //pr('in NOT admin pages dashboard'); exit;
     }
 
-    function index() {
+    function index()
+    {
         //get the current lange
         $current_language = $this->setupLanguage();
 
@@ -62,29 +70,16 @@ class SetupPagesController extends AppController
             )
         );
     }
-    function home() {
-        //pr ($name);
-        //exit;
 
-
-        //pr (APP);exit;
-        //get the storageObjects
-        $objectStorage = TableRegistry::getTableLocator()->get('ObjectStorages');
-
-        $this->set('objects', $objectStorage->getObjects());
-
-
+    function home()
+    {
+        $this->set('objects', $this->objectStorages->getObjects());
     }
 
-    function objAdd() {
-
-        $objectStorage = TableRegistry::getTableLocator()->get('ObjectStorages');
-
+    function objAdd()
+    {
         if ($this->request->is('post')) {
-
-            //pr ($this->request->getData());
             $attachment = $this->request->getData('fileToUpload');
-
             $filename = $attachment->getClientFilename();
             $typeOfUpload = $attachment->getClientMediaType();
             $size = $attachment->getSize();
@@ -93,50 +88,48 @@ class SetupPagesController extends AppController
 
             $mime = mime_content_type($uploadedFile);
 
-            $key_name = 'file_'.date('YmdHis');
-
-            $encoded = $objectStorage->putObject($key_name,
-                file_get_contents($uploadedFile),
-                $mime,
-                $filename
-            );
-
-            exit;
-//            $emailSubmitted = $this->request->getData()['email'];
-
+            $key_name = 'file_' . date('YmdHis');
+            $encoded = $this->objectStorages->putObject($key_name, file_get_contents($uploadedFile), $mime, $filename);
+            if ($encoded['status'] == 200) {
+                $this->Flash->success('File added to object storage');
+            } else {
+                $this->Flash->error('Problem adding to object storage');
+            }
         }
-
+        $this->redirect($this->referer());
     }
 
-    function objDownload($keyName) {
-
-        $objectStorage = TableRegistry::getTableLocator()->get('ObjectStorages');
-        $res = $objectStorage->getFileFromCache($keyName);
-
-        $downloadName = 'downloadname.'.$res['extension'];
+    function objDownload($keyName)
+    {
+        $res = $this->objectStorages->getFileFromCache($keyName);
+        $downloadName = 'downloadname.' . $res['extension'];
         if ($res['STATUS'] == 200) {
-            header('Content-Type: '.$res['mime'].'; charset=utf-8');
-            header('Content-Disposition: attachment; filename='.$downloadName);
+            header('Content-Type: ' . $res['mime'] . '; charset=utf-8');
+            header('Content-Disposition: attachment; filename=' . $downloadName);
             echo file_get_contents($res['path']);
             exit;
         } else {
             die('found found');
         }
-
     }
 
-    function objRemoveCache($id) {
-        //$objectStorage = TableRegistry::getTableLocator('ObjectStorages');
-        $this->loadModel('ObjectStorages');
-        $entity = $this->ObjectStorages->get($id);
-       if($this->ObjectStorages->delete($entity)){
-           pr('deleted'); exit;
-           $this->redirect('/');
-           $this->Flash->success('Deleted');
+    function objRemoveCache($keyName)
+    {
+        if ($this->objectStorages->removeCache($keyName)) {
+            $this->Flash->success('Deleted');
+        } else {
+            $this->Flash->error('NOT Deleted');
+        }
+        $this->redirect($this->referer());
+    }
 
-       }else{
-           $this->Flash->error('NOT Deleted');
-       }
-        $this->redirect('/');
+    function objDelete($keyName)
+    {
+        if ($this->objectStorages->deleteObject($keyName)) {
+            $this->Flash->success('Deleted Object');
+        } else {
+            $this->Flash->error('ERROR: NOT Deleted');
+        }
+        $this->redirect($this->referer());
     }
 }

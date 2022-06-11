@@ -26,7 +26,6 @@ class ObjectStoragesTable extends Table
 
     }
 
-
     var $cacheLocation = '';
 
     function setupPaths()
@@ -51,17 +50,12 @@ class ObjectStoragesTable extends Table
 //
     function removeCache($key_name)
     {
-
         $this->setupPaths();
 
-        exec('rm ' . $this->cacheLocation_data . $key_name . '*');
+        $cmd = 'rm ' . $this->cacheLocation_data . $key_name . '*';
+        // pr ($cmd);
 
-//		if (file_exists($this->cacheLocation_image.$key_name)) {
-//			unlink($this->cacheLocation_image.$key_name);
-//		}
-//		if (file_exists($this->cacheLocation_data.$key_name)) {
-//			unlink($this->cacheLocation_data.$key_name);
-//		}
+        return exec($cmd, $out);
     }
 
     function getFileFromCache($key_name)
@@ -139,8 +133,7 @@ class ObjectStoragesTable extends Table
         return $res;
     }
 
-
-    function doesKeyNameExist($key_name)
+    private function doesKeyNameExist($key_name)
     {
         $this->setDataSource('storage');
 
@@ -267,12 +260,8 @@ class ObjectStoragesTable extends Table
 
     }
 
-
     function deleteObject($key_name)
     {
-
-        $this->setDataSource('storage');
-
         return $this->deleteAll(
             array('Storage.key_name' => $key_name), false
         );
