@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-php composer.phar create-project --prefer-dist cakephp/app /var/www/vhosts/website.com/www/src
+#master (i believe)
+#php composer.phar create-project --prefer-dist cakephp/app /var/www/vhosts/website.com/www/src
+
+#release 4.3.x
+php composer.phar require --update-with-dependencies "cakephp/cakephp:4.3.*" -d/var/www/vhosts/website.com/www/src
 
 #we need Authentication for our hashing algorithm
 ./composer.phar require "cakephp/authentication:^2.0" -d/var/www/vhosts/website.com/www/src
