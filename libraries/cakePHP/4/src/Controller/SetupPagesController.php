@@ -14,14 +14,21 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\Http\Session;
 use Cake\View\Exception\MissingTemplateException;
+
+use Cake\Datasource\ConnectionManager;
+
+use Cake\ORM\TableRegistry;
+
 
 /**
  * Static content controller
@@ -32,19 +39,26 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class SetupPagesController extends AppController
 {
-    function dashboard(){
-        //let's redirect to the prefix admin (I was not able to do this in the prefix not sure why)
+    function beforeFilter(EventInterface $setupPages)
+    {
+        parent::beforeFilter($setupPages);
+        $this->objectStorages = TableRegistry::getTableLocator()->get('ObjectStorages');
+    }
 
+    var $objectStorages;
+
+    function dashboard()
+    {
+        //let's redirect to the prefix admin (I was not able to do this in the prefix not sure why)
         $this->redirect(array(
             'prefix' => 'Admin',
             'controller' => 'SetupPages',
             'action' => 'dashboard'
         ));
-
-        //pr('in NOT admin pages dashboard'); exit;
     }
 
-    function index() {
+    function index()
+    {
         //get the current lange
         $current_language = $this->setupLanguage();
 
@@ -56,50 +70,62 @@ class SetupPagesController extends AppController
             )
         );
     }
-    function home() {
-        //pr ($name);
-        //exit;
+
+    function home()
+    {
+        $this->set('objects', $this->objectStorages->getObjects());
     }
 
-    function login() {
-        //if not empty post
-            //verify that the password and email match the database ($this->User->verifyPassword($email, $password);
-                //if success
-                    //store the whole user object including the relations. there are many times that it will help that we can have that data within the session to verify against
-                    //only use the session build into cakePHP
-                    $session = $this->request->getSession();
-                    $session->write('User.name', 'Ralph 88888');
-                    $name = $session->read('User.name');
-                    $user = $this->User->find('first');
-                    $session->write('User', $user);
+    function objAdd()
+    {
+        if ($this->request->is('post')) {
+            $attachment = $this->request->getData('fileToUpload');
+            $filename = $attachment->getClientFilename();
+            $typeOfUpload = $attachment->getClientMediaType();
+            $size = $attachment->getSize();
+            $uploadedFile = $attachment->getStream()->getMetadata('uri');
+            $error = $attachment->getError();
 
+            $mime = mime_content_type($uploadedFile);
 
-        //else
-            //show error with the new session set flash module for cakephp 4 that there was an error logging in
+            $key_name = 'key_name_' .$filename;
+            $res = $this->objectStorages->putObject($key_name, file_get_contents($uploadedFile), $mime, $filename);
+            if ($res['status'] == 200) {
+                $this->Flash->success('File added to object storage');
+            } else {
+                $this->Flash->error('Problem adding to object storage');
+            }
+        }
+        $this->redirect($this->referer());
     }
 
-    function logout() {
-        //remove the session which was holding the user object
-        //show a message they were logged out
-        //redirect to the home page
+    function objDownload($keyName)
+    {
+        $res = $this->objectStorages->getFileFromCache($keyName);
+        $downloadName = 'downloadname.' . $res['extension'];
+        if ($res['STATUS'] == 200) {
+            header('Content-Type: ' . $res['mime'] . '; charset=utf-8');
+            header('Content-Disposition: attachment; filename=' . $downloadName);
+            echo file_get_contents($res['path']);
+            exit;
+        } else {
+            die('found found');
+        }
     }
 
-    function startReset() {
-        //accept an email from a post form
-            //if the email exists -> there should be a new column in the users table 'reset_token' get a random text string 8 alpha characters and add that into the users database
-                //email that token to the users email on file
+    function objRemoveCache($keyName)
+    {
+        if ($this->objectStorages->removeCache($keyName)) {
+            $this->Flash->success('Deleted');
+        }
+        $this->redirect($this->referer());
     }
-    function reset($email, $token) {
-       //this will be clicked from a link in a email
-            //check that the email and token do match
-                //if they do show a screen to enter a NEW password (with a verify password)
 
-        //if not empty this->request->data
-            //they are entering a new password
-                //once again verify the email and token do exist
-                    //if they do exist using the cakePHP create hash get a new password hash and update the database password
-                        //if the password was successfully changed REMOVE the token in the users table so they cannot use it again as a 'replay attack'
-                            //get the user Object and auto log them in and redirect to the /dashboard page (which will require a login prefix)
-
+    function objDelete($keyName)
+    {
+        if ($this->objectStorages->deleteObject($keyName)) {
+            $this->Flash->success('Deleted Object');
+        }
+        $this->redirect($this->referer());
     }
 }
