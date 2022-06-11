@@ -54,8 +54,9 @@ class ObjectStoragesTable extends Table
 
         $cmd = 'rm ' . $this->cacheLocation_data . $key_name . '*';
         // pr ($cmd);
+        exec($cmd, $out);
 
-        return exec($cmd, $out);
+        return true; //@todo add a check later
     }
 
     function getFileFromCache($key_name)
@@ -262,6 +263,8 @@ class ObjectStoragesTable extends Table
 
     function deleteObject($key_name)
     {
+        $this->removeCache($key_name);
+
         return $this->deleteAll(
             array('Storage.key_name' => $key_name), false
         );

@@ -88,9 +88,9 @@ class SetupPagesController extends AppController
 
             $mime = mime_content_type($uploadedFile);
 
-            $key_name = 'file_' . date('YmdHis');
-            $encoded = $this->objectStorages->putObject($key_name, file_get_contents($uploadedFile), $mime, $filename);
-            if ($encoded['status'] == 200) {
+            $key_name = 'key_name_' .$filename;
+            $res = $this->objectStorages->putObject($key_name, file_get_contents($uploadedFile), $mime, $filename);
+            if ($res['status'] == 200) {
                 $this->Flash->success('File added to object storage');
             } else {
                 $this->Flash->error('Problem adding to object storage');
@@ -117,8 +117,6 @@ class SetupPagesController extends AppController
     {
         if ($this->objectStorages->removeCache($keyName)) {
             $this->Flash->success('Deleted');
-        } else {
-            $this->Flash->error('NOT Deleted');
         }
         $this->redirect($this->referer());
     }
@@ -127,8 +125,6 @@ class SetupPagesController extends AppController
     {
         if ($this->objectStorages->deleteObject($keyName)) {
             $this->Flash->success('Deleted Object');
-        } else {
-            $this->Flash->error('ERROR: NOT Deleted');
         }
         $this->redirect($this->referer());
     }
