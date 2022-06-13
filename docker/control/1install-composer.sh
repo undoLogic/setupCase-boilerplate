@@ -34,6 +34,4 @@ fi
 exit $RESULT
 
 
-# let's move our composer to the global use
-sleep 2
-mv composer.phar /usr/local/bin/composer
+
