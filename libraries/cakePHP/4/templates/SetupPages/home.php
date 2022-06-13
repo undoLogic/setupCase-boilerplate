@@ -40,4 +40,50 @@
     'prefix' => 'Admin',
 )); ?>
 
+<hr/>
 
+<h2>
+    Object Storage
+</h2>
+
+<div class="row">
+    <div class="col-4">
+        <?php echo $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'SetupPages', 'action' => 'objAdd']]); ?>
+
+        <?php echo $this->Form->file('fileToUpload', ['type' => 'button']); ?>
+
+        <?= $this->Form->button('Upload'); ?>
+
+        <?php echo $this->Form->end(); ?>
+    </div>
+</div>
+
+<?php foreach ($objects as $object) : ?>
+    <div class="row">
+        <div class="col-lg-3">Filename: <?= $object['filename']; ?> (key_name: <?= $object['key_name']; ?>)</div>
+        <div class="col-lg-3" style="margin-left: 5px;">
+
+            <?php if ($object['current']): ?>
+                CURRENT
+            <?php else: ?>
+                ARCHIVED
+            <?php endif; ?>
+
+            <?= $this->Html->link('Download', ['action' => 'objDownload', $object['key_name']]); ?>
+            <a style="color: #000000; font-weight: bold;" href="<?= $webroot;?>SetupPages/objRemoveCache/<?= $object['key_name']; ?>">Remove-Cache</a>
+            <a style="color: red; font-weight: bold;" href="<?= $webroot;?>SetupPages/objDelete/<?= $object['key_name']; ?>">X</a>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
