@@ -19,6 +19,12 @@ php composer-setup.php --quiet
 RESULT=$?
 rm composer-setup.php
 
+
+sleep 2
+# let's move our composer to the global use
+mv composer.phar /usr/local/bin/composer
+
+
 if [$RESULT]
 then
 echo "ERROR: Something went wrong with compose installation"
