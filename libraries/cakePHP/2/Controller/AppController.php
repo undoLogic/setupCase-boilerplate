@@ -86,7 +86,7 @@ class AppController extends Controller {
         public $smtp = array(
             'transport' => 'Smtp',
             'from' => array('email@email.com' => 'Testing Email'), //TODO Change-me
-            'host' => 'domain.com', //TODO Change-me
+            'host' => 'mail.domain.com', //TODO Change-me
             'port' => 587,
             'timeout' => 30,
             'username' => 'email@email.com', //TODO Change-me
