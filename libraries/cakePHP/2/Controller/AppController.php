@@ -312,4 +312,34 @@ class AppController extends Controller {
     function handleRedirect() {
         $this->redirect('/login');
     }
+
+    //Export to CSV
+    function downloadCsv($rows, $filename) {
+
+        $f = fopen('php://memory', 'w');
+
+        $columnNames = array();
+        if (!empty($rows)) {
+            $firstRow = $rows[0];
+            foreach ($firstRow as $colName => $val) {
+                $columnNames[] = $colName;
+            }
+        }
+
+        fputcsv($f, $columnNames);
+
+        foreach ($rows as $rowName => $row) {
+            fputcsv($f, $row);
+        }
+        fseek($f, 0);
+        header('Content-Encoding: UTF-8');
+        header('Content-type: text/csv; charset=UTF-8');
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+        echo "\xEF\xBB\xBF"; // UTF-8 BOM
+        fpassthru($f);
+        fclose($f);
+
+        exit;
+    }
 }
