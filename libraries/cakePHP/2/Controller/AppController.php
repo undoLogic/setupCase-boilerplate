@@ -100,7 +100,10 @@ class AppController extends Controller {
         //View/Layouts/emails/html/default
         //View/Layouts/emails/text/default
         //STEP 3 - Email template (you need to create this)
-        //View/Elements/emailers/$TEMPLATE (eg main.ctp) add your text and variables (which $vars will populate)
+        //View/Emails/html/$TEMPLATE (eg main.ctp - $this->Element('template'))
+        //View/Emails/text/$TEMPLATE (eg main.ctp - strip_tags( $this->Element('template') )) This way the TEXT email will not have any HTML elements
+        //STEP 4 - Element
+        //The element is where the actual data goes with references to $vars etc (the actual content of the email)
         */
 
         $Email = new CakeEmail();
