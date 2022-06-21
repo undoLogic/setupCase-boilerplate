@@ -74,7 +74,29 @@ class AppController extends Controller {
         }
     }
 
-    function send($to, $vars, $subject, $template = 'default', $cc = false, $bcc = false, $from = false) {
+    var $test = array(
+        'email' => array(
+            'to' => 'support@undologic.com',
+        )
+    );
+    function send($to, $vars, $subject, $template = 'default', $cc = false) {
+
+        /*
+        //TODO - copy this array into app/Config/email.php
+        public $smtp = array(
+            'transport' => 'Smtp',
+            'from' => array('email@email.com' => 'Testing Email'), //TODO Change-me
+            'host' => 'domain.com', //TODO Change-me
+            'port' => 587,
+            'timeout' => 30,
+            'username' => 'email@email.com', //TODO Change-me
+            'password' => 'PASSWORD', //TODO Change-me
+            'client' => null,
+            'log' => false,
+            //'charset' => 'utf-8',
+            //'headerCharset' => 'utf-8',
+        );
+        */
 
         $Email = new CakeEmail();
         $Email->viewVars(array(
@@ -84,32 +106,21 @@ class AppController extends Controller {
         ));
         $Email->config('smtp');
 
-//        if (isset($vars['email'])) {
-//            $Email->from($vars['email']);
-//        }
-        //pr ($Email);exit;
-
         if ($this->isLiveSite()) {
             $Email->to($to);
-        } else {
-            $Email->to(Configure::read('test.email.to'));
-            $subject = 'TO: '.Configure::read('test.email.to').' - '.$subject;
-        }
 
-        //pr ($Email); exit;
-        //die ('stop');
+            //only CC when LIVE
+            if (empty($cc)) {
+                //no one cc'd
+            } else {
+                $Email->cc($cc);
+            }
 
-        if (!empty($bcc)) {
-            $Email->bcc($bcc);
-        } else {
-            //default go test@undo
+            //only BCC when live
             $Email->bcc(array('test@undologic.com'));
-        }
-
-        if (empty($cc)) {
-            //no one cc'd
         } else {
-            $Email->cc($cc);
+            $Email->to($this->test['email']['to']);
+            $subject = 'TO-EMAIL: '.$to.' - '.$subject;
         }
 
         //we do NOT have a from so we will add our default
@@ -120,15 +131,10 @@ class AppController extends Controller {
         $Email->from($from);
         $Email->replyTo($from);
 
-//        $from = Configure::read('Email.from');
-//        if (empty($from)) die ("add to bootstrap: Configure::write('Email.from', 'info@undologic.com');");
-//
+
         $Email->subject($subject);
         $Email->emailFormat('both');
-
         $Email->template($template);
-
-        //pr ($Email);exit;
 
         $sent = $Email->send();
 
