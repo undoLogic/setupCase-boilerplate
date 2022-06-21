@@ -79,10 +79,10 @@ class AppController extends Controller {
             'to' => 'support@undologic.com',
         )
     );
-    function send($to, $vars, $subject, $template = 'default', $cc = false) {
+    function send($to, $vars, $subject, $template = 'main', $cc = false) {
 
         /*
-        //TODO - copy this array into app/Config/email.php
+        //STEP 1 - copy this array into app/Config/email.php
         public $smtp = array(
             'transport' => 'Smtp',
             'from' => array('email@email.com' => 'Testing Email'), //TODO Change-me
@@ -96,6 +96,11 @@ class AppController extends Controller {
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
         );
+        //STEP 2 - Email layout (you can leave these as is)
+        //View/Layouts/emails/html/default
+        //View/Layouts/emails/text/default
+        //STEP 3 - Email template (you need to create this)
+        //View/Elements/emailers/$TEMPLATE (eg main.ctp) add your text and variables (which $vars will populate)
         */
 
         $Email = new CakeEmail();
