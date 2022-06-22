@@ -74,11 +74,12 @@ class AppController extends Controller {
         }
     }
 
-    var $test = array(
-        'email' => array(
-            'to' => 'support@undologic.com',
-        )
-    );
+    var $test = array('email' => array(
+        'to' => '',
+        'from' => '',
+        'bcc' => ''
+    ));
+
     function send($to, $vars, $subject, $template = 'main', $cc = false) {
 
         /*
@@ -96,13 +97,15 @@ class AppController extends Controller {
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
         );
-        //STEP 2 - Email layout (you can leave these as is)
+        //STEP 2 - place at the top of the App_controller
+        //App::uses('CakeEmail', 'Network/Email');
+        //STEP 3 - Email layout (you can leave these as is)
         //View/Layouts/emails/html/default
         //View/Layouts/emails/text/default
-        //STEP 3 - Email template (you need to create this)
+        //STEP 4 - Email template (you need to create this)
         //View/Emails/html/$TEMPLATE (eg main.ctp - $this->Element('template'))
         //View/Emails/text/$TEMPLATE (eg main.ctp - strip_tags( $this->Element('template') )) This way the TEXT email will not have any HTML elements
-        //STEP 4 - Element
+        //STEP 5 - Element
         //The element is where the actual data goes with references to $vars etc (the actual content of the email)
         */
 
@@ -123,22 +126,21 @@ class AppController extends Controller {
             } else {
                 $Email->cc($cc);
             }
-
             //only BCC when live
-            $Email->bcc(array('test@undologic.com'));
+            $Email->bcc(array($this->test['email']['bcc']));
         } else {
             $Email->to($this->test['email']['to']);
             $subject = 'TO-EMAIL: '.$to.' - '.$subject;
+            //testing do not cc or bcc
+            $Email->cc();
+            $Email->bcc();
         }
 
-        //we do NOT have a from so we will add our default
-        if (empty($from)) {
-            $from = Configure::read('Email.from');
-        }
+
+        $from = $this->test['email']['from'];
 
         $Email->from($from);
         $Email->replyTo($from);
-
 
         $Email->subject($subject);
         $Email->emailFormat('both');
