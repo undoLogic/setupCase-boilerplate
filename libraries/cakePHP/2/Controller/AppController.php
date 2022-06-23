@@ -164,6 +164,7 @@ class AppController extends Controller {
         }
         file_put_contents(APP.'tmp/logs/'.$filename.'.log', $message, FILE_APPEND);
     }
+
     function jsonHeaders($data) {
         header('Content-Type: application/json');
         echo $data;

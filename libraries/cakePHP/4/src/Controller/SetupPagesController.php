@@ -76,6 +76,10 @@ class SetupPagesController extends AppController
         $this->set('objects', $this->objectStorages->getObjects());
     }
 
+    function sticky() {
+
+    }
+
     function objAdd()
     {
         if ($this->request->is('post')) {
