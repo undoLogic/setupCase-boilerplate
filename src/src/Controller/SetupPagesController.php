@@ -17,7 +17,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Controller\Controller;
+
+
 use Cake\Core\Configure;
+use Cake\Event\Event;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -39,10 +43,11 @@ use Cake\ORM\TableRegistry;
  */
 class SetupPagesController extends AppController
 {
-    function beforeFilter(EventInterface $setupPages)
+    function beforeFilter(EventInterface $event  )
     {
-        parent::beforeFilter($setupPages);
+        parent::beforeFilter($event);
         $this->objectStorages = TableRegistry::getTableLocator()->get('ObjectStorages');
+
     }
 
     var $objectStorages;
@@ -78,6 +83,9 @@ class SetupPagesController extends AppController
 
     function sticky() {
 
+    }
+    function responsiveTable(){
+        $this->viewBuilder()->disableAutoLayout();
     }
 
     function objAdd()
