@@ -106,10 +106,12 @@ class SetupPagesController extends AppController
         if(empty($objData)){
             $objData = '{"name":"nametest","movie":"Vanilla Sky","email":"test999@undologic.com"}';
         }
-        $result = json_decode($objData, true);
-        $result['STATUS'] = 200;
+
+        $response = [];
+        $response['STATUS'] = 200;
+        $response['MSG'] = 'data: '.$objData;
         //echo json_encode($result);
-        echo  $this->jsonHeaders(json_encode($result));
+        echo  $this->jsonHeaders(json_encode($response));
         exit;
     }
 

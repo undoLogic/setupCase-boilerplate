@@ -15,14 +15,6 @@
 </head>
 <body>
 <style>
-    .test {
-        color: red;
-    }
-
-    .test1 {
-        border: solid 1px red;
-    }
-
     .empty {
         border: solid 1px red;
     }
@@ -49,24 +41,21 @@
                     <!-- name -->
                     <div class="col-lg-6">
                         <label for="name">Name</label>
-                        <input id="name" v-model="formData.name" type="text" name="name" class="form-control"
-                               :class="{empty: emptyName}">
+                        <input id="name" v-model="formData.name" type="text" name="name" class="form-control">
 
                     </div>
 
                     <!-- email -->
                     <div class="col-lg-6">
                         <label for="name">Email</label>
-                        <input id="email" v-model="email" type="email" name="email" class="form-control"
-                               :class="{empty: emptyEmail}">
+                        <input id="email" v-model="formData.email" type="email" name="email" class="form-control">
 
                     </div>
 
                     <!-- Favourite movie -->
                     <div class="col-lg-6">
                         <label for="movie">Favorite Movie</label>
-                        <select id="movie" v-model="movie" name="movie" class="form-control"
-                                :class="{empty: emptyMovie}" @change="updateMovie">
+                        <select id="movie" v-model="formData.movie" name="movie" class="form-control">
                             <option>Star Wars</option>
                             <option>Vanilla Sky</option>
                             <option>Atomic Blonde</option>
@@ -86,9 +75,6 @@
 
 </div><!-- /app -->
 
-<address>
-    Issues to be resolved. How to talk to the backend with a CSRF token, where to put that token ?
-</address>
 
 
 <!-- Optional JavaScript -->
@@ -112,106 +98,71 @@
         el: '#app',
         data: {
             errors: [],
-
             formData: {},
-            name: null,
-            email: null,
-            movie: null,
-            emptyName: false,
-            test: true,
-            test1: true,
-            emptyEmail: false,
-            emptyMovie: false,
-            message: 'Vue 2',
+            //FIELDS
+            fields: {
+                name: {rule: 'notBlank'},
+                email: {rule: 'notBlank'},
+                movie: {rule: 'notEqual', string: 'Star Wars'}
+            }
         },
         methods: {
 
             checkForm: function (e) {
                 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "<?= $csrf; ?>";
-                this.emptyName = false;
-                this.emptyEmail = false;
-                this.emptyMovie = false;
                 this.errors = [];
-                if (!this.formData.name) {
-                    this.errors.push("Name required.");
-                    this.emptyName = true;
 
-                } else {
-                    console.log('form data not empty');
-                    console.log(this.formData.name);
-                    console.log(this.formData);
+                //loop
+                Object.keys(this.fields).forEach(key => {
 
-                    //this.formData['name'] = this.name;
-                }
+                    console.log(key);
+                    console.log(this.fields[key]);
+                    console.log(this.fields[key]['rule']);
 
-// if (!this.name) {
-// this.errors.push("Name required.");
-// this.emptyName = true;
-//
-// }else{
-//     console.log('form data');
-//     console.log(this.formData);
-//
-//     //this.formData['name'] = this.name;
-// }
+                    let field = key;
+                    let rule = this.fields[key]['rule'];
+                    let string = this.fields[key]['string'];
 
-                if (!this.movie) {
-                    this.errors.push("Select Movie.");
-                    this.emptyMovie = true;
+                    if (rule === 'notBlank') {
+                        if (!this.formData[field]) {
+                            this.errors.push(field+" required.");
+                            document.getElementById(field).classList.add('empty');
+                        } else {
+                            document.getElementById(field).classList.remove('empty');
+                        }
+                    } else if (rule === 'notEqual') {
+                        if (!this.formData[field]) {
+                            this.errors.push("Select "+field);
+                            document.getElementById(field).classList.add('empty');
+                        } else if (this.formData[field] === string) {
+                            this.errors.push(string+" is not allowed");
+                            document.getElementById(field).classList.add('empty');
+                        } else {
+                            document.getElementById(field).classList.remove('empty');
+                        }
+                    }
 
-                } else if (this.movie === 'Star Wars') {
-                    this.errors.push("Star wars not allowed");
-                    this.emptyMovie = true;
-                } else {
-                    this.formData['movie'] = this.movie;
+                });
 
-                }
-
-
-                if (!this.email) {
-                    this.emptyEmail = true;
-                    this.errors.push('Email required.');
-                } else if (!this.validEmail(this.email)) {
-                    this.errors.push('Valid email required.');
-                } else {
-
-                    this.formData['email'] = this.email;
-
-                }
-
+                //array
                 if (!this.errors.length) {
-                    console.log('formdata');
+                    console.log('formdata - submit form');
                     console.log(this.formData);
-                    console.log('ready to submit form ');
+
                     var objData = JSON.stringify(this.formData);
-                    // var objData = this.formData;
+
                     console.log('objData');
                     console.log(objData);
                     let URL = "<?= $webroot; ?>en_US/SetupPages/submitForm";
                     axios.post(URL, objData).then(function (response) {
                         console.log("response");
                         console.log(response);
-                        // if (response) {
-                        //     console.log('submit success');
-                        //     app.data = response.data;
-                        //     // console.log('data');
-                        //     // console.log(data);
-                        //
-                        // }
-
+                        if (response.data.STATUS == 200) {
+                            alert('SUCCESS '+response.data.MSG);
+                        }
                     });
-//return true;
                 }
-
                 e.preventDefault();
-            },
-            updateMovie: function () {
-                this.emptyMovie = false;
-
-            },
-            validEmail: function (email) {
-                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(email);
             }
         }
     })
