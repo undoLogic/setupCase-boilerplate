@@ -87,9 +87,6 @@ class SetupPagesController extends AppController
     function responsiveTable(){
         $this->viewBuilder()->disableAutoLayout();
     }
-    function vueTest(){
-        $this->viewBuilder()->disableAutoLayout(); // to disable layout
-    }
 
     function formValidation(){
 

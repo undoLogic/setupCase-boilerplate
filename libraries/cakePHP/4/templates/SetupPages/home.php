@@ -32,6 +32,7 @@
 
 <hr/>
 
+
 <h2>
     Prefix
 </h2>
@@ -76,7 +77,17 @@
     </div>
 <?php endforeach; ?>
 
+<h2>CSS</h2>
+<div>
+    <?php echo $this->Html->link('Responsive Table', ['controller' => 'SetupPages', 'action' => 'responsiveTable']); ?>
+</div>
 
+
+
+<h2>Javascript</h2>
+<div>
+    <?php echo $this->Html->link('VUE validation', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'formValidation']); ?>
+</div>
 
 
 

@@ -132,4 +132,36 @@ class SetupPagesController extends AppController
         }
         $this->redirect($this->referer());
     }
+
+
+    function responsiveTable(){
+        $this->viewBuilder()->disableAutoLayout();
+    }
+
+    function formValidation(){
+
+        $token = $this->request->getAttribute('csrfToken');
+        $this->set('csrf', $token);
+
+        $this->viewBuilder()->disableAutoLayout(); // to disable layout
+        //  $this->viewBuilder()->setLayout("vue_layout"); // assign layout
+    }
+
+    function submitForm(){
+
+        $objData=file_get_contents('php://input');
+        if(empty($objData)){
+            $objData = '{"name":"nametest","movie":"Vanilla Sky","email":"test999@undologic.com"}';
+        }
+
+        $response = [];
+        $response['STATUS'] = 200;
+        $response['MSG'] = 'data: '.$objData;
+        //echo json_encode($result);
+        echo  $this->jsonHeaders(json_encode($response));
+        exit;
+    }
+
+
+
 }
