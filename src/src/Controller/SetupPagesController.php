@@ -92,24 +92,25 @@ class SetupPagesController extends AppController
     }
 
     function formValidation(){
+
+        $token = $this->request->getAttribute('csrfToken');
+        $this->set('csrf', $token);
+
         $this->viewBuilder()->disableAutoLayout(); // to disable layout
-      //  $this->viewBuilder()->setLayout("vue_layout"); // assign layout
+        //  $this->viewBuilder()->setLayout("vue_layout"); // assign layout
     }
 
     function submitForm(){
+
         $objData=file_get_contents('php://input');
         if(empty($objData)){
             $objData = '{"name":"nametest","movie":"Vanilla Sky","email":"test999@undologic.com"}';
         }
-
         $result = json_decode($objData, true);
-        echo 1;
-
-            //echo json_encode($result);
-      //echo  $this->jsonHeaders(json_encode($result));
-
-            exit;
-
+        $result['STATUS'] = 200;
+        //echo json_encode($result);
+        echo  $this->jsonHeaders(json_encode($result));
+        exit;
     }
 
     function objAdd()

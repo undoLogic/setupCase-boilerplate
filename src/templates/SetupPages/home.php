@@ -84,6 +84,11 @@
 
 
 
+<h2>Javascript</h2>
+<div>
+    <?php echo $this->Html->link('VUE validation', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'formValidation']); ?>
+</div>
+
 
 
 <br/>
