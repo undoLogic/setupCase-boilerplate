@@ -205,4 +205,10 @@ class AppController extends Controller
         file_put_contents(LOGS.DS.$filename.'.log', $message, FILE_APPEND);
     }
 
+    function jsonHeaders($data){
+        header('Content-Type: application/json');
+        echo $data;
+        exit;
+    }
+
 }
