@@ -26,8 +26,11 @@
             <h5>Vue2 Form Validation</h5>
             Required fields:
             <span v-for="(field,fieldKey) in fields" :id="'key-'+fieldKey">
-                {{fieldKey}} {{field}} <a href="#" @click="removeValidation(fieldKey)">Remove</a>
+                {{fieldKey}} {{field}} <a href="#" @click="removeValidation(fieldKey)">Remove</a><br>
             </span>
+
+
+
         </div>
         <div class="card-body">
             <form @submit="checkForm" novalidate="true">
@@ -111,11 +114,21 @@
                 email: {rule: 'notBlank'},
                 movie: {rule: 'notEqual', string: 'Star Wars'}
             }
+
         },
         methods: {
+            updateFields: function(){
+                console.log('fields begining');
+                console.log(this.fields);
+
+
+            },
+
 
             removeValidation: function(fieldKey) {
                 delete this.fields[ fieldKey ];
+                this.updateFields();
+
             },
             checkForm: function (e) {
                 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "<?= $csrf; ?>";
@@ -173,6 +186,11 @@
                 }
                 e.preventDefault();
             }
+        },// end of method
+        created: function(){
+            this.updateFields();
+
         }
-    })
+
+        })
 </script>

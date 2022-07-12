@@ -52,6 +52,23 @@ class SetupPagesController extends AppController
 
     var $objectStorages;
 
+    function getFields(){
+        $fields = [
+            'name' => ['rule' => 'notBlank'],
+            'email' => ['rule' => 'notBlank'],
+            'movie' => ['rule' => 'notBlank', 'string' => 'Start Wars']
+        ];
+        return $fields;
+
+    }
+
+    function jsonGetFields(){
+        $fields = $this->getFields();
+        //pr($fields); exit;
+        echo  json_encode($fields);
+        exit;
+    }
+
     function dashboard()
     {
         //let's redirect to the prefix admin (I was not able to do this in the prefix not sure why)
