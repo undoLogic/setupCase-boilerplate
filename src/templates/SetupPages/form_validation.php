@@ -67,6 +67,8 @@
                     </div>
 
                     <div class="col-lg-12 mt-2">
+                        <input type="button" value="Preview" class="btn btn-warning">
+
                         <input type="submit" value="Submit" class="btn btn-primary">
                     </div>
                 </div><!-- /row -->
