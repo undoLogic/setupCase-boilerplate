@@ -80,6 +80,8 @@
 <h2>CSS</h2>
 <div>
     <?php echo $this->Html->link('Responsive Table', ['controller' => 'SetupPages', 'action' => 'responsiveTable']); ?>
+    <br/>
+    <?php echo $this->Html->link('Sticky Content', ['controller' => 'SetupPages', 'action' => 'sticky']); ?>
 </div>
 
 
