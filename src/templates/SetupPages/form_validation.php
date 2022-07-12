@@ -64,13 +64,12 @@
                         <label for="movie">Favorite Movie</label>
                         <select id="movie" v-model="formData.movie" name="movie" class="form-control">
                             <option>Star Wars</option>
-                            <option>Vanilla Sky</option>
-                            <option>Atomic Blonde</option>
+                            <option>Star Trek</option>
                         </select>
                     </div>
 
                     <div class="col-lg-12 mt-2">
-                        <input type="button" value="Preview" class="btn btn-warning">
+                        <input type="button" value="Preview" @click="showModal()" class="btn btn-warning">
 
                         <input type="submit" value="Submit" class="btn btn-primary">
                     </div>
@@ -82,7 +81,46 @@
     </div><!-- /card -->
 
 
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Data to be submitted</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Name: {{formData.name}}<br/>
+                    Email: {{formData.email}}<br/>
+                    movie: {{formData.movie}}<br/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 </div><!-- /app -->
+
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +144,7 @@
     const app = new Vue({
         el: '#app',
         data: {
+            isModalVisible: true,
             errors: [],
             formData: {},
             //FIELDS
@@ -117,18 +156,11 @@
 
         },
         methods: {
-            updateFields: function(){
-                console.log('fields begining');
-                console.log(this.fields);
-
-
+            showModal() {
+                $('#exampleModal').modal('show');
             },
-
-
             removeValidation: function(fieldKey) {
-                delete this.fields[ fieldKey ];
-                this.updateFields();
-
+                this.$delete(this.fields[fieldKey], 'rule');
             },
             checkForm: function (e) {
                 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "<?= $csrf; ?>";
@@ -137,13 +169,11 @@
                 //loop
                 Object.keys(this.fields).forEach(key => {
 
-                    console.log(key);
-                    console.log(this.fields[key]);
-                    console.log(this.fields[key]['rule']);
-
                     let field = key;
                     let rule = this.fields[key]['rule'];
                     let string = this.fields[key]['string'];
+
+                    document.getElementById(field).classList.remove('empty');
 
                     if (rule === 'notBlank') {
                         if (!this.formData[field]) {
@@ -187,10 +217,6 @@
                 e.preventDefault();
             }
         },// end of method
-        created: function(){
-            this.updateFields();
-
-        }
 
         })
 </script>
