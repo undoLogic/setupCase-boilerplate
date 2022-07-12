@@ -24,6 +24,10 @@
     <div class="card mt-1 ml-1 mr-1">
         <div class="card-header">
             <h5>Vue2 Form Validation</h5>
+            Required fields:
+            <span v-for="(field,fieldKey) in fields" :id="'key-'+fieldKey">
+                {{fieldKey}} {{field}} <a href="#" @click="removeValidation(fieldKey)">Remove</a>
+            </span>
         </div>
         <div class="card-body">
             <form @submit="checkForm" novalidate="true">
@@ -108,6 +112,9 @@
         },
         methods: {
 
+            removeValidation: function(fieldKey) {
+                delete this.fields[ fieldKey ];
+            },
             checkForm: function (e) {
                 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "<?= $csrf; ?>";
                 this.errors = [];
