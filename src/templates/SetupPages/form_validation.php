@@ -58,6 +58,12 @@
                         <input id="email" v-model="formData.email" type="email" name="email" class="form-control">
 
                     </div>
+                    <div class="col-lg-6">
+                        <label>Single Checkbox</label><br>
+                        <input type="checkbox" id="checkbox" v-model="checked"> Checkbox<br>
+                        <label for="checkbox">Checked True Or False: {{ checked }}</label>
+                    </div>
+
 
                     <!-- Favourite movie -->
                     <div class="col-lg-6">
@@ -67,7 +73,48 @@
                             <option>Star Trek</option>
                         </select>
                     </div>
+                    <!-- province -- options dropdown -->
+                    <div class="col-lg-6">
+                        <label for="province">Province</label>
+                        <select id="province" v-model="formData.province" name="province" class="form-control">
 
+                            <option v-for="(province, key) in provinces" :value="key">{{province}}</option>
+                        </select>
+                    </div>
+
+                    <!-- radio -->
+                    <div class="col-lg-6">
+                        <label>Radio</label>
+                        <div class = "row ml-1 mr-2 " v-for="shipping in radioOptions" >
+                            <div class="col-md-1" >
+
+                                <input @click="updateShippingToCart(shipping.key)" type="radio" id="shipping.key" :value="shipping.key" v-model="selectedAddress" name="shippingaddress">
+
+                            </div>
+                            <div class="col-md-9 text-left" :class="{greyed: shipping.key === 'create'}">
+                                {{shipping.value}}
+                            </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    <div class="col-lg-12">
+                        <label>Multiple Checkbox</label><br/>
+                        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+                        <label for="jack">Jack</label>
+                        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+                        <label for="john">John</label>
+                        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+                        <label for="mike">Mike</label>
+                        <br>
+                        <span>Checked names: {{ checkedNames }}</span>
+                    </div>
+
+
+                </div>
                     <div class="col-lg-12 mt-2">
                         <input type="button" value="Preview" @click="showModal()" class="btn btn-warning">
 
@@ -151,8 +198,14 @@
             fields: {
                 name: {rule: 'notBlank'},
                 email: {rule: 'notBlank'},
+                province: {rule: 'notBlank'},
                 movie: {rule: 'notEqual', string: 'Star Wars'}
-            }
+            },
+            provinces: {'1':'AB', '2': 'BC'},
+            radioOptions: [{"key":"1", "value": "Yes"} ,{"key": "0", "value": "No"}],
+            selectedAddress: 0,
+            checked: true,
+            checkedNames: ['John', ]
 
         },
         methods: {
