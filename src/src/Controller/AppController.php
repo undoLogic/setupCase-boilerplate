@@ -21,7 +21,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Error\Debugger;
 use Cake\Event\EventInterface;
+use Cake\Log\Log;
 use Cake\Routing\Router;
 use Cake\Http\Session\DatabaseSession;
 
@@ -85,6 +87,19 @@ class AppController extends Controller
         if ($this->request->getAttributes()['params']['action'] == 'logout') {
             return false; //in cause of bad sessions ensure the user can always logout
         };
+
+        //getattribute('params.action');
+        //getattribute('data......
+
+        //ignore RBAC
+        //althentication and authorization
+
+        //new plugins - do not define in conroller (login only) - hashing
+        //addUnauthenticatedActions
+        //setup on next call
+        //implement authentication / authorization
+        //https://book.cakephp.org/4/en/tutorials-and-examples/cms/authentication.html
+        //https://book.cakephp.org/4/en/tutorials-and-examples/cms/authorization.html
 
         $this->writeToLog('debug', 'SetupAuth: '.json_encode( $this->request->getAttributes()['here']), true);
 
@@ -197,6 +212,7 @@ class AppController extends Controller
 
     public function writeToLog($filename, $message, $newLine = false)
     {
+
         if ($newLine) {
             $message = "\n" . date('Ymd-His') . ' > ' . $message;
         } else {

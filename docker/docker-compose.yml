@@ -7,7 +7,8 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      DATABASE_NAME: local
+      - DATABASE_NAME: local
+      - DATABASE_URL: mysql://local:undologic@db/LIVE_database
     volumes:
       - ../.:/var/www/vhosts/website.com/www
       - ./sites-available/:/etc/apache2/sites-available/
