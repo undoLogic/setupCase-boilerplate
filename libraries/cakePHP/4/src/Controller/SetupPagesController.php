@@ -17,7 +17,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Controller\Controller;
+
+
 use Cake\Core\Configure;
+use Cake\Event\Event;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -39,13 +43,31 @@ use Cake\ORM\TableRegistry;
  */
 class SetupPagesController extends AppController
 {
-    function beforeFilter(EventInterface $setupPages)
+    function beforeFilter(EventInterface $event  )
     {
-        parent::beforeFilter($setupPages);
+        parent::beforeFilter($event);
         $this->objectStorages = TableRegistry::getTableLocator()->get('ObjectStorages');
+
     }
 
     var $objectStorages;
+
+    function getFields(){
+        $fields = [
+            'name' => ['rule' => 'notBlank'],
+            'email' => ['rule' => 'notBlank'],
+            'movie' => ['rule' => 'notBlank', 'string' => 'Start Wars']
+        ];
+        return $fields;
+
+    }
+
+    function jsonGetFields(){
+        $fields = $this->getFields();
+        //pr($fields); exit;
+        echo  json_encode($fields);
+        exit;
+    }
 
     function dashboard()
     {
@@ -78,6 +100,37 @@ class SetupPagesController extends AppController
 
     function sticky() {
 
+    }
+    function responsiveTable(){
+        $this->viewBuilder()->disableAutoLayout();
+    }
+
+    function formValidation(){
+
+        $token = $this->request->getAttribute('csrfToken');
+        $this->set('csrf', $token);
+
+        $this->viewBuilder()->disableAutoLayout(); // to disable layout
+        //  $this->viewBuilder()->setLayout("vue_layout"); // assign layout
+    }
+
+    function setTimer(){
+        $this->viewBuilder()->disableAutoLayout(); // to disable layout
+    }
+
+    function submitForm(){
+
+        $objData=file_get_contents('php://input');
+        if(empty($objData)){
+            $objData = '{"name":"nametest","movie":"Vanilla Sky","email":"test999@undologic.com"}';
+        }
+
+        $response = [];
+        $response['STATUS'] = 200;
+        $response['MSG'] = 'data: '.$objData;
+        //echo json_encode($result);
+        echo  $this->jsonHeaders(json_encode($response));
+        exit;
     }
 
     function objAdd()
@@ -132,36 +185,4 @@ class SetupPagesController extends AppController
         }
         $this->redirect($this->referer());
     }
-
-
-    function responsiveTable(){
-        $this->viewBuilder()->disableAutoLayout();
-    }
-
-    function formValidation(){
-
-        $token = $this->request->getAttribute('csrfToken');
-        $this->set('csrf', $token);
-
-        $this->viewBuilder()->disableAutoLayout(); // to disable layout
-        //  $this->viewBuilder()->setLayout("vue_layout"); // assign layout
-    }
-
-    function submitForm(){
-
-        $objData=file_get_contents('php://input');
-        if(empty($objData)){
-            $objData = '{"name":"nametest","movie":"Vanilla Sky","email":"test999@undologic.com"}';
-        }
-
-        $response = [];
-        $response['STATUS'] = 200;
-        $response['MSG'] = 'data: '.$objData;
-        //echo json_encode($result);
-        echo  $this->jsonHeaders(json_encode($response));
-        exit;
-    }
-
-
-
 }

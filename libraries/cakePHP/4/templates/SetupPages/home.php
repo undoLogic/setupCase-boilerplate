@@ -80,13 +80,21 @@
 <h2>CSS</h2>
 <div>
     <?php echo $this->Html->link('Responsive Table', ['controller' => 'SetupPages', 'action' => 'responsiveTable']); ?>
+    <br/>
+    <?php echo $this->Html->link('Sticky Content', ['controller' => 'SetupPages', 'action' => 'sticky']); ?>
 </div>
 
 
 
 <h2>Javascript</h2>
+
 <div>
     <?php echo $this->Html->link('VUE validation', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'formValidation']); ?>
+</div>
+
+
+<div>
+    <?php echo $this->Html->link('VUE Set Timer', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'setTimer']); ?>
 </div>
 
 

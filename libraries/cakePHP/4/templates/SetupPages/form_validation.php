@@ -24,7 +24,7 @@
     <div class="card mt-1 ml-1 mr-1">
         <div class="card-header">
             <h5>Vue2 Form Validation</h5>
-            Required fields:
+            Required fields: {{message}}
             <span v-for="(field,fieldKey) in fields" :id="'key-'+fieldKey">
                 {{fieldKey}} {{field}} <a href="#" @click="removeValidation(fieldKey)">Remove</a><br>
             </span>
@@ -97,8 +97,8 @@
 
 
 
+                            </div>
                         </div>
-                    </div>
 
 
                     <div class="col-lg-12">
@@ -115,44 +115,44 @@
 
 
                 </div>
-                <div class="col-lg-12 mt-2">
-                    <input type="button" value="Preview" @click="showModal()" class="btn btn-warning">
+                    <div class="col-lg-12 mt-2">
+                        <input type="button" value="Preview" @click="showModal()" class="btn btn-warning">
 
-                    <input type="submit" value="Submit" class="btn btn-primary">
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                    </div>
+                </div><!-- /row -->
+
+
+            </form>
+        </div><!-- /card-body -->
+    </div><!-- /card -->
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Data to be submitted</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-        </div><!-- /row -->
-
-
-        </form>
-    </div><!-- /card-body -->
-</div><!-- /card -->
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Data to be submitted</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Name: {{formData.name}}<br/>
-                Email: {{formData.email}}<br/>
-                movie: {{formData.movie}}<br/>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="modal-body">
+                    Name: {{formData.name}}<br/>
+                    Email: {{formData.email}}<br/>
+                    movie: {{formData.movie}}<br/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -191,6 +191,7 @@
     const app = new Vue({
         el: '#app',
         data: {
+            message: 'test123',
             isModalVisible: true,
             errors: [],
             formData: {},
@@ -271,5 +272,5 @@
             }
         },// end of method
 
-    })
+        })
 </script>
