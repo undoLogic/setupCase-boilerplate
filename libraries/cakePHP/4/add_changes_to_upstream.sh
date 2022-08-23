@@ -20,7 +20,12 @@ rsync -av $SRC_FILES/templates/SetupPages/* templates/SetupPages/.
 rsync -av $SRC_FILES/templates/Admin/SetupPages/* templates/Admin/SetupPages/.
 rsync -av $SRC_FILES/templates/Users/* templates/Users/.
 
+# Elements
+rsync -av $SRC_FILES/templates/element/*.php templates/element/.
+
 # Git add any new files
 # git status
 
-git add --dry-run *
+git add *
+
+echo "- - - - - - - - New files have been copied and added to git. NEXT: Commit your git changes THEN switch to main branch and compare libraries/cakePHP/4 folders and manually import that new changes THEN commit to main branch"
