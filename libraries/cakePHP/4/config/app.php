@@ -7,6 +7,14 @@ use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
 
 return [
+
+    'rbac' => [
+        //'user_type' => 'Prefix',
+        'ADMIN' => ['Admin' => [], 'Manager' => [], 'Staff' => []],
+        'MANAGER' => ['Manager' => [], 'Staff' => []],
+        'STAFF' => ['Staff' => []],
+    ],
+
     /*
      * Debug Level:
      *

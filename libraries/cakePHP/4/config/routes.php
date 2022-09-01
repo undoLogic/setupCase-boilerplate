@@ -46,14 +46,14 @@ return static function (RouteBuilder $routes) {
 
     $routes->scope('/', function (RouteBuilder $builder) {
 
-        $builder->connect('/', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'index']);
-        $builder->connect('/login', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'login']);
-        $builder->connect('/logout', ['language' => 'en_US', 'controller' => 'Users', 'action' => 'logout']);
+        $builder->connect('/', ['controller' => 'SetupPages', 'action' => 'index']);
+        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
         // language
-        $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'home'), array('language' => 'en_US|fr_CA')) ;
-        $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en_US|fr_CA'));
-        $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en_US|fr_CA'));
+        $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'home'), array('language' => 'en|fr')) ;
+        $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en|fr'));
+        $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en|fr'));
 
         /*
          * Connect catchall routes for all controllers.
@@ -71,10 +71,18 @@ return static function (RouteBuilder $routes) {
         $builder->fallbacks();
     });
 
+    $routes->prefix('staff', function (RouteBuilder $routes) {
+
+        //with the lang
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr']) ;
+
+        $routes->fallbacks(DashedRoute::class);
+    });
+
     $routes->prefix('admin', function (RouteBuilder $routes) {
 
         //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en_US|fr_CA']) ;
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr']) ;
 
         $routes->fallbacks(DashedRoute::class);
     });
