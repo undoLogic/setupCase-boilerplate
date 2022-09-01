@@ -45,17 +45,15 @@ return static function (RouteBuilder $routes) {
     $routes->setRouteClass(DashedRoute::class);
 
     $routes->scope('/', function (RouteBuilder $builder) {
-        /*
-         * Here, we are connecting '/' (base path) to a controller called 'Pages',
-         * its action called 'display', and we pass a param to select the view file
-         * to use (in this case, templates/Pages/home.php)...
-         */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
-        /*
-         * ...and connect the rest of 'Pages' controller's URLs.
-         */
-        $builder->connect('/pages/*', 'Pages::display');
+        $builder->connect('/', ['controller' => 'SetupPages', 'action' => 'index']);
+        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+
+        // language
+        $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'home'), array('language' => 'en|fr')) ;
+        $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en|fr'));
+        $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en|fr'));
 
         /*
          * Connect catchall routes for all controllers.
@@ -71,6 +69,22 @@ return static function (RouteBuilder $routes) {
          * routes you want in your application.
          */
         $builder->fallbacks();
+    });
+
+    $routes->prefix('staff', function (RouteBuilder $routes) {
+
+        //with the lang
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr']) ;
+
+        $routes->fallbacks(DashedRoute::class);
+    });
+
+    $routes->prefix('admin', function (RouteBuilder $routes) {
+
+        //with the lang
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr']) ;
+
+        $routes->fallbacks(DashedRoute::class);
     });
 
     /*

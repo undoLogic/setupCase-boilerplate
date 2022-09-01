@@ -16,6 +16,9 @@ declare(strict_types=1);
  */
 namespace App;
 
+use App\Middleware\AccessMiddleware;
+use App\Middleware\LangMiddleware;
+use App\Middleware\RbacMiddleware;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
@@ -28,12 +31,28 @@ use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
+
+use Authentication\AuthenticationService;
+use Authentication\AuthenticationServiceInterface;
+use Authentication\AuthenticationServiceProviderInterface;
+use Authentication\Identifier\IdentifierInterface;
+use Authentication\Middleware\AuthenticationMiddleware;
+//use Cake\Http\MiddlewareQueue;
+use Cake\Routing\Router;
+use Psr\Http\Message\ServerRequestInterface;
+
+
+use Cake\Log\Log;
+
 /**
  * Application setup class.
  *
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
+
+// not working
+//class Application extends BaseApplication implements AuthenticationServiceProviderInterface
 class Application extends BaseApplication
 {
     /**
@@ -74,7 +93,11 @@ class Application extends BaseApplication
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
+        Log::debug('Middleware');
+
         $middlewareQueue
+
+
             // Catch any exceptions in the lower layers,
             // and make an error page/response
             ->add(new ErrorHandlerMiddleware(Configure::read('Error')))
@@ -97,6 +120,12 @@ class Application extends BaseApplication
             // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
             ->add(new BodyParserMiddleware())
 
+            //Added by SetupCase-BoilerPlate
+            ->add(new AuthenticationMiddleware($this->getAuthenticationService()))
+            ->add(new LangMiddleware())
+            ->add(new RbacMiddleware())
+            ->add(new AccessMiddleware())
+
             // Cross Site Request Forgery (CSRF) Protection Middleware
             // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
             ->add(new CsrfProtectionMiddleware([
@@ -104,6 +133,37 @@ class Application extends BaseApplication
             ]));
 
         return $middlewareQueue;
+    }
+
+    protected function getAuthenticationService() : AuthenticationService {
+
+        //Log::debug('getAuthenticationService');
+
+        $authenticationService = new AuthenticationService([
+            'unauthenticatedRedirect' => Router::url('/login'),
+            'queryParam' => 'redirect',
+        ]);
+
+        // Load identifiers, ensure we check email and password fields
+        $authenticationService->loadIdentifier('Authentication.Password', [
+            'fields' => [
+                'username' => 'email',
+                'password' => 'password',
+            ]
+        ]);
+
+        // Load the authenticators, you want session first
+        $authenticationService->loadAuthenticator('Authentication.Session');
+        // Configure form data check to pick email and password
+        $authenticationService->loadAuthenticator('Authentication.Form', [
+            'fields' => [
+                'username' => 'email',
+                'password' => 'password',
+            ],
+            'loginUrl' => Router::url('/login'),
+        ]);
+
+        return $authenticationService;
     }
 
     /**
@@ -130,6 +190,8 @@ class Application extends BaseApplication
         $this->addOptionalPlugin('Bake');
 
         $this->addPlugin('Migrations');
+
+        $this->addPlugin('Authentication');
 
         // Load more plugins here
     }
