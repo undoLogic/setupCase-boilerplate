@@ -259,7 +259,7 @@
 
                     console.log('objData');
                     console.log(objData);
-                    let URL = "<?= $webroot; ?>en_US/SetupPages/submitForm";
+                    let URL = "<?= $webroot; ?>en/SetupPages/submitForm";
                     axios.post(URL, objData).then(function (response) {
                         console.log("response");
                         console.log(response);

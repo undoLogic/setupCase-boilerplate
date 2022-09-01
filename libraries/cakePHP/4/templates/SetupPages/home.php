@@ -6,24 +6,28 @@
 
 - <?php echo $this->Html->link('Reset', array('prefix' => false, 'controller' => 'Users', 'action' => 'beginReset')); ?>
 
-- <?php echo $this->Html->link('Signup', array('prefix' => false, 'controller' => 'Users', 'action' => 'signup')); ?>
+- <?php echo $this->Html->link('AddUser', array('prefix' => false, 'controller' => 'Users', 'action' => 'add')); ?>
 
 <hr/>
+Here is the home page
 
+
+<?php if (0): ?>
 <h2>
     current lang: <?php echo $baseLang; ?>
 </h2>
+<?php endif; ?>
 
 <br/>
 
 <?php echo $this->Html->link('Home page EN', array(
-    'language' => 'en_US'
+    'language' => 'en'
 )); ?>
 
 <br/>
 
 <?php echo $this->Html->link('Home page FR', array(
-    'language' => 'fr_CA'
+    'language' => 'fr'
 )); ?>
 
 <br/>
@@ -36,6 +40,12 @@
 <h2>
     Prefix
 </h2>
+
+<?php echo $this->Html->link('Staff page', array(
+    'prefix' => 'Staff',
+)); ?>
+
+<br/>
 
 <?php echo $this->Html->link('Admin page', array(
     'prefix' => 'Admin',
@@ -89,19 +99,13 @@
 <h2>Javascript</h2>
 
 <div>
-    <?php echo $this->Html->link('VUE validation', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'formValidation']); ?>
+    <?php echo $this->Html->link('VUE validation', ['language' => 'en', 'controller' => 'SetupPages', 'action' => 'formValidation']); ?>
 </div>
 
 
 <div>
-    <?php echo $this->Html->link('VUE Set Timer', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'setTimer']); ?>
+    <?php echo $this->Html->link('VUE Set Timer', ['language' => 'en', 'controller' => 'SetupPages', 'action' => 'setTimer']); ?>
 </div>
-
-
-<div>
-    <?php echo $this->Html->link('IncreaseLimit', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'increaseLimit']); ?>
-</div>
-
 
 
 

@@ -1,5 +1,6 @@
 #!/bin/bash
 SRC_FILES=../../../sourceFiles
+rsync -av $SRC_FILES/config/app.php config/app.php
 rsync -av $SRC_FILES/config/app_local.php config/app_local.php
 rsync -av $SRC_FILES/config/routes.php config/routes.php
 
@@ -14,6 +15,14 @@ rsync -av $SRC_FILES/sourceFiles/Model/Entity/User.php sourceFiles/Model/Entity/
 rsync -av $SRC_FILES/sourceFiles/Model/Table/ObjectStoragesTable.php sourceFiles/Model/Table/ObjectStoragesTable.php
 rsync -av $SRC_FILES/sourceFiles/Model/Table/UsersTable.php sourceFiles/Model/Table/UsersTable.php
 rsync -av $SRC_FILES/sourceFiles/Model/Table/UserTypesTable.php sourceFiles/Model/Table/UserTypesTable.php
+
+
+# Middleware
+rsync -av $SRC_FILES/src/Middleware/*.php src/Middleware/.
+
+# Application
+rsync -av $SRC_FILES/src/Application.php src/Application.php
+
 
 # Templates
 rsync -av $SRC_FILES/templates/SetupPages/* templates/SetupPages/.

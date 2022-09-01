@@ -83,19 +83,62 @@ class UsersController extends AppController
 //    }
 
 
-    function signup() {
+//    function signup() {
+//
+//        if ($this->request->is('post')) {
+//
+//            $this->writeToLog('debug', 'Signup', true);
+//
+//            $emailSubmitted = $this->request->getData()['email'];
+//            $passSubmitted = $this->request->getData()['password'];
+//
+//            $passObj = new DefaultPasswordHasher;
+//            $didCreateUser = $this->Users->createUser(
+//                $emailSubmitted,
+//                $passObj->hash($passSubmitted)
+//            );
+//
+//            if ($didCreateUser) {
+//                $this->writeToLog('debug', 'User created user_id: '.$didCreateUser['id'], false);
+//                $this->Flash->success('User has been CREATED');
+//
+//                $session = $this->request->getSession();
+//                $session->write('User', $didCreateUser);
+//
+//                return $this->redirect(array('prefix' => 'Admin', 'controller' => 'SetupPages', 'action' => 'home'));
+//            } else {
+//                $this->Flash->error('Could NOT create user');
+//                return $this->redirect('/');
+//            }
+//
+//        }
+//
+//    }
+
+    public function add()
+    {
+        //die('hi');
+        //dd($this->request);
+
+        $this->request->allowMethod(['get', 'post']);
 
         if ($this->request->is('post')) {
+
+
 
             $this->writeToLog('debug', 'Signup', true);
 
             $emailSubmitted = $this->request->getData()['email'];
             $passSubmitted = $this->request->getData()['password'];
 
+            //dd($this->request);
+            $userType = $this->request->getData()['user_type'];
+
             $passObj = new DefaultPasswordHasher;
             $didCreateUser = $this->Users->createUser(
                 $emailSubmitted,
-                $passObj->hash($passSubmitted)
+                $passObj->hash($passSubmitted),
+                $userType
             );
 
             if ($didCreateUser) {
@@ -110,59 +153,46 @@ class UsersController extends AppController
                 $this->Flash->error('Could NOT create user');
                 return $this->redirect('/');
             }
-
-        }
-
-    }
-
-    function login()
-    {
-        if ($this->request->is('post')) {
-
-            $this->writeToLog('debug', 'Login', true);
-
-            $emailSubmitted = $this->request->getData()['email'];
-            $passObj = new DefaultPasswordHasher;
-            $userArray = $this->Users->getUserByEmail(
-                $emailSubmitted
-            );
-
-            if (!empty($userArray)) {
-                $this->writeToLog('debug', 'Found user: '.$userArray['email'], false);
-                $passSubmitted =  $this->request->getData()['password'];
-                $isCorrect = $passObj->check($passSubmitted, $userArray['password']);
-                if ($isCorrect) {
-                    //password is correct
-                    $session = $this->request->getSession();
-                    $session->write('User', $userArray);
-                    //pr($session->read('User')); exit;
-                    $this->writeToLog('debug', ' - Password is correct');
-                    $this->Flash->success('Login Success');
-                    return $this->redirect(array('prefix' => 'Admin', 'controller' => 'SetupPages', 'action' => 'home'));
-
-                } else {
-                    $this->writeToLog('debug', ' - WRONG Password');
-                    $this->Flash->error('Password is INCORRECT');
-                }
-            } else {
-                $this->writeToLog('debug', ' - '.$emailSubmitted.' does NOT exist');
-                $this->Flash->error('Problem logging you in. Please check your email and password and try again');
-            }
         }
 
     }//login
 
-    function logout()
+    public function login()
     {
-        $this->writeToLog('debug', 'Logout');
+        $this->request->allowMethod(['get', 'post']);
+        $result = $this->Authentication->getResult();
 
-        //remove the session which was holding the user object
-        $session = $this->request->getSession();
-        $session->write('User', false);
+        //pr ($result);exit;
+        // regardless of POST or GET, redirect if user is logged in
+        if ($result && $result->isValid()) {
+            // redirect to /articles after login success
+            $redirect = $this->request->getQuery('redirect', [
+                'controller' => 'SetupPages',
+                'action' => 'home',
+            ]);
 
-        //redirect to the home page
+            return $this->redirect($redirect);
+        }
+        // display error if user submitted and authentication failed
+        if ($this->request->is('post') && !$result->isValid()) {
+            $this->Flash->error(__('Invalid username or password'));
+        }
+
+    }//login
+
+// in src/Controller/UsersController.php
+    public function logout()
+    {
+        $result = $this->Authentication->getResult();
+        // regardless of POST or GET, redirect if user is logged in
+        if ($result && $result->isValid()) {
+            $this->Authentication->logout();
+            return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+        }
+
         $this->redirect('/');
     }
+
 
     function beginReset()
     {

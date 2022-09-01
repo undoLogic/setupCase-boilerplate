@@ -12,9 +12,6 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
         $this->setTable('users');
         // associations
-        $this->belongsTo('UserTypes', [
-            'foreignKey' => 'user_type_id'
-        ]);
     }
 
     function getUsers(){
@@ -22,12 +19,15 @@ class UsersTable extends Table
         return($users->toArray());
     }
 
-    function createUser($email, $password) {
+    function createUser($email, $password, $userType) {
         $user = $this->newEmptyEntity();
 
         $user->email = $email;
         $user->password = $password;
-        $user->user_type_id = 111;
+        $user->user_type = $userType;
+
+
+        //dd($user);exit;
 
         if ($this->save($user)) {
             return $user->toArray();
