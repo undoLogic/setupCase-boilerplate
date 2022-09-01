@@ -98,6 +98,136 @@ class SetupPagesController extends AppController
         $this->set('objects', $this->objectStorages->getObjects());
     }
 
+    function increaseLimit(){
+        $token = $this->request->getAttribute('csrfToken');
+        $this->set('csrf', $token);
+
+
+        $this->viewBuilder()->disableAutoLayout(); // to disable layout
+    }
+
+    function jsonIncreaseLimit(){
+        $objData=file_get_contents('php://input');
+        if(empty($objData)){
+            $objData = '{"limit":20}';
+        }
+
+        $data = json_decode($objData, true);
+        $limit = $data['limit'];
+        $names = [
+            ['id' => 0, 'name' => 'Lorem ipsum dolor sit amet'],
+            ['id' => 1, 'name' => 'Lorem ipsum dolor sit amet'],
+            [ 'id' => 2, 'name' => 'Lorem ipsum dolor sit amet']
+        ];
+
+        $increase_limit = [
+            'Lorem ipsum dolor sit amet','Lorem ipsum dolor sit amet',
+            'consectetur adipiscing elit', 'sed do eiusmod tempor incididunt ',
+            'Lorem ipsum dolor sit amet','consectetur adipiscing elit',
+            'sed do eiusmod tempor incididunt ','Lorem ipsum dolor sit amet',
+            'consectetur adipiscing elit', 'sed do eiusmod tempor incididunt ',
+            'Lorem ipsum dolor sit amet', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit','consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+            'consectetur adipiscing elit', 'consectetur adipiscing elit',
+
+        ];
+        $initial = 0;
+        //$increase = 21;
+        //$limit = 21 + 21;
+        $original_count = count($increase_limit);
+
+        $result = array_slice($increase_limit, $initial, $limit, true);
+        $count = count($result);
+        // pr($result); exit;
+        $data1 = array('result' => $result, 'limit' => $limit, 'count' => $count, 'originalCount' => $original_count);
+        echo  json_encode($data1);
+
+
+        exit;
+
+    }
+
     function sticky() {
 
     }

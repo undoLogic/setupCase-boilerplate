@@ -98,6 +98,12 @@
 </div>
 
 
+<div>
+    <?php echo $this->Html->link('IncreaseLimit', ['language' => 'en_US', 'controller' => 'SetupPages', 'action' => 'increaseLimit']); ?>
+</div>
+
+
+
 
 <br/>
 <br/>
