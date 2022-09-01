@@ -12,6 +12,7 @@
 Here is the home page
 
 
+
 <?php if (0): ?>
 <h2>
     current lang: <?php echo $baseLang; ?>

@@ -72,39 +72,22 @@ class AppController extends Controller
         $this->loadComponent('Authentication.Authentication');
     }
 
-    function getLoggedInUser()
-    {
-        $result = $this->Authentication->getIdentity();
-        //pr ($result); exit;
-        if (empty($result)) {
-            return false; //not logged in
-        } else {
-            //add the access they have access to
-            $rbac = Configure::read('rbac');
-            if (isset($rbac[ $result->user_type])) {
-              $access = $rbac[ $result->user_type];
-            } else {
-                $access = null;
-            }
-
-            return [
-                'id' => $result->id,
-                'email' => $result->email,
-                'user_type' => $result->user_type,
-                'access' => $access
-
-            ];
-        }
-    }
-
     function setupAuth()
     {
-        //still to be moved into Auth helper ??? errors
-        $loggedInUser = $this->getLoggedInUser();
-        if (!empty($loggedInUser)) {
-            $this->set('loggedInUser', $loggedInUser);
+        $access = $this->request->getAttribute('access');
+
+        if (!empty($access)) {
+            $this->set('isLoggedIn', true);
+        } else {
+            $this->set('isLoggedIn', NULL);
         }
-        //dd($loggedInUser);
+
+//        $identity = $this->request->getAttribute('identity');
+//        pr ($identity->get('id'));
+//        pr ($identity->get('email'));
+//        pr ($identity->get('user_type'));
+         // pr ($this->request);
+
     }
 
     private function session()
