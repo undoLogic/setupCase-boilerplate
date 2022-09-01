@@ -1,9 +1,9 @@
 # CakePHP #
 #################################################
-/src/logs/debug.log
-/src/tmp/cache/models/myapp*
-/src/tmp/cache/persistent/myapp*
-/src/tmp/debug*
+/sourceFiles/logs/debug.log
+/sourceFiles/tmp/cache/models/myapp*
+/sourceFiles/tmp/cache/persistent/myapp*
+/sourceFiles/tmp/debug*
 
 ### temp cake download files
 /4.x/*

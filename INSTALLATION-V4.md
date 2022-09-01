@@ -53,13 +53,13 @@ Composer is not auto-loaded. To setup:
 ```
 
 Now we are ready to install CakePHP 4.x
-- this will install to /src in our files. Allowing to navigate (in your browser to) localhost/src/
+- this will install to /sourceFiles in our files. Allowing to navigate (in your browser to) localhost/sourceFiles/
 ```angular2html
-php composer.phar create-project --prefer-dist cakephp/app /var/www/vhosts/website.com/www/src
+php composer.phar create-project --prefer-dist cakephp/app /var/www/vhosts/website.com/www/sourceFiles
 
 # Removing these files will ensure we can control from our SetupCase structure only (eg we WANT to include our database files etc)
-rm /var/www/vhosts/website.com/www/src/.gitignore
-rm /var/www/vhosts/website.com/www/src/.gitattributes
+rm /var/www/vhosts/website.com/www/sourceFiles/.gitignore
+rm /var/www/vhosts/website.com/www/sourceFiles/.gitattributes
 ```
 
 ### Option B. Manual CakePHP install
@@ -75,13 +75,13 @@ unzip and copy into the root
 ### Verify running
 - Go to your browser and verify the CakePHP is running without any missing dependancies:
 ```angular2html
-http://localhost/src/
+http://localhost/sourceFiles/
 ```
 
 Copy our Library for SetupCase base functionality
 ```angular2html
 # Copy our standard libraries on top of cakePHP
-rsync -av /var/www/vhosts/website.com/www/libraries/cakePHP/4/. /var/www/vhosts/website.com/www/src/.
+rsync -av /var/www/vhosts/website.com/www/libraries/cakePHP/4/. /var/www/vhosts/website.com/www/sourceFiles/.
 ```
 
 Start-up: You should see all the files / folders in the directory. Click on phpInfo and ensure php is working correctly. You know it has started up correctly.
@@ -93,7 +93,7 @@ Next we are going to add a professional layout
 https://startbootstrap.com/?showPro=false&showVue=false&showAngular=false
 
 ```shell
-curl https://github.com/startbootstrap/startbootstrap-sb-admin-2/archive/gh-pages.zip src/webroot/modules/layout/.
+curl https://github.com/startbootstrap/startbootstrap-sb-admin-2/archive/gh-pages.zip sourceFiles/webroot/modules/layout/.
 ```
 
 https://graygrids.com/templates/category/free-html-templates/
@@ -134,14 +134,14 @@ lastly, you need to find the shared portion of the layout for all the pages and 
 Now you can test it out and you should see the nice layout
 
 ```angular2html
-http://localhost/src
+http://localhost/sourceFiles
 ```
 
 ### Create pages and link together
 
 IMPORTANT: Before this can work you need to comment out the default pages routing
 ```
-/src/config/routes.php
+/sourceFiles/config/routes.php
 
 ### ensure this is commented so it does not activate
 ### -> This causes issues with caps on url->builder

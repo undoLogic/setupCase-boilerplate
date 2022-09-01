@@ -15,6 +15,6 @@
 
   "GITHUB_USER_SLASH_PROJECT": "undologic/projectname",
   "GITHUB_HOST": "github.com",
-  "SRC_FILES_RELATIVE_PATH": "src",
+  "SRC_FILES_RELATIVE_PATH": "sourceFiles",
   "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
 }

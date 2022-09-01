@@ -57,9 +57,9 @@ GITHUB_HOST:
 
 SRC_FILES_RELATIVE_PATH:
 - In your source files this represents where your project files are
-- You will have a docker folder which has all the files to manage your docker, you will then have 'launch' which has all the files to configure launch, then you should have 'src' which is where your project files are
-- Normally this is 'src' but if you change you can adjust here where to pull from
-- When a project is posted LIVE only the 'src' files are posted to the live location
+- You will have a docker folder which has all the files to manage your docker, you will then have 'launch' which has all the files to configure launch, then you should have 'sourceFiles' which is where your project files are
+- Normally this is 'sourceFiles' but if you change you can adjust here where to pull from
+- When a project is posted LIVE only the 'sourceFiles' files are posted to the live location
 
 BROWSER_LOCAL_PATH_WITH_PROGRAM
 - After launch uploads the files it will auto open Firefox to that correct location so you can test
