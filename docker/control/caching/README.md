@@ -1,6 +1,6 @@
 The translation layer between windows and docker is slow, so get around this you can enable internal caching 
-- This copies your source files every few seconds into the container
-- You get a big performance increase
+- This copies your source files which you have modified every few seconds into the container
+- You get a huge performance increase as the 
 
 Open /docker/sites-available/000-default.conf and make sure the following files are uncommented / commented
 ```shell
