@@ -9,8 +9,7 @@
 - <?php echo $this->Html->link('AddUser', array('prefix' => false, 'controller' => 'Users', 'action' => 'add')); ?>
 
 <hr/>
-Here is the home page
-
+Here is the home page - 3333
 
 
 <?php if (0): ?>

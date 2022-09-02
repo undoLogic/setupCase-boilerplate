@@ -1,3 +1,5 @@
-# must be ended with a new line "LF" (Unix) and not "CRLF" (Windows)
-* * * * * /var/www/vhosts/website.com/www/docker/control/automation/auto_rsync_to_internal.sh >> /var/log/cron.log 2>&1
-# An empty line is required at the end of this file for a valid cron file.
+### Create cron to ensure this stays running
+# ps -ef | grep -v grep | grep "SetupCase-Caching" && echo "running" || echo "not"
+# ps -ef | grep -v grep | grep "SetupCase-Caching" && echo "caching already running - nothing to do" || /var/www/html/caching/run.sh
+#crontab -l ; echo "* * * * * echo "Hello world" >> /var/log/cron.log"
+# not working
