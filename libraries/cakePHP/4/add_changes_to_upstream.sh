@@ -34,6 +34,9 @@ rsync -av $SRC_FILES/templates/Users/* templates/Users/.
 # Elements
 rsync -av $SRC_FILES/templates/element/*.php templates/element/.
 
+# Views
+rsync -av $SRC_FILES/src/View/. src/View/.
+
 # Git add any new files
 # git status
 

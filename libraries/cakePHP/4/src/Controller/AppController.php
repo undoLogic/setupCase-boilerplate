@@ -78,14 +78,9 @@ class AppController extends Controller
         }
 
         //language variables for the view
-        $params = $this->request->getAttribute('params');
-        if (isset($params['language'])) {
-            $this->set('lang', $params['language']);
-            Configure::write('lang', $params['language']);
-        } else {
-            $this->set('lang','unknown');
-            Configure::write('lang', 'unknown');
-        }
+        $lang = $this->request->getAttribute('lang');
+        $this->set('lang', $lang);
+        Configure::write('lang', $lang);
 
         $this->set('webroot', Router::url('/'));
     }
