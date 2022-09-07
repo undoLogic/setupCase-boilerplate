@@ -18,7 +18,7 @@
         methods: {
             loadPage: function(){
                 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "<?= $csrf; ?>";
-                let URL = "<?= $webroot; ?><?= $current_language; ?>/SetupPages/jsonIncreaseLimit/";
+                let URL = "<?= $webroot; ?>en/SetupPages/jsonIncreaseLimit/";
                 console.log(URL);
 
                 var data = {limit: this.limit};
@@ -63,6 +63,7 @@
 
             },
             resetLimit() {
+                console.log('resetting limit');
                 this.limit = this.limit_init;
                 this.loadPage();
             },
@@ -80,12 +81,12 @@
     window.onscroll = function(ev) {
 
         let boundaryAmount = 2000;
-        console.log('scroll Y');
-        console.log(window.scrollY);
+        console.log('scroll Y: '+window.scrollY);
+        console.log();
 
-        console.log('scroll Height');
-        console.log(document.body.scrollHeight);
-        //console.log('scrollY: '+window.scrollY+" scrollHeight: "+document.body.scrollHeight+" limit: "+limit+" loading: "+loading+" boundary: "+boundaryAmount+" = "+( document.body.scrollHeight - boundaryAmount));
+        console.log('scroll Height: '+document.body.scrollHeight);
+
+        //console.log('scrollY: '+window.scrollY+" scrollHeight: "+document.body.scrollHeight+" boundary: "+boundaryAmount+" = "+( document.body.scrollHeight - boundaryAmount));
 
         if (window.scrollY > ( document.body.scrollHeight - boundaryAmount) ) {
            // if (app.isLoading == false) {
@@ -97,11 +98,14 @@
         //}
 
         if (window.scrollY < 200) {
-            console.log('below 200');
+            console.log(' - - - - below 200');
+            //app.resetLimit();
             if (app.limit > app.limit_init) {
                 console.log('Reset');
                 alert('reset');
-                app.resetLimit();
+                this.resetLimit();
+            } else {
+                console.log('not ')
             }
         }
     };

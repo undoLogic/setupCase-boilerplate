@@ -9,15 +9,12 @@
 - <?php echo $this->Html->link('AddUser', array('prefix' => false, 'controller' => 'Users', 'action' => 'add')); ?>
 
 <hr/>
-Here is the home page
 
 
 
-<?php if (0): ?>
 <h2>
-    current lang: <?php echo $baseLang; ?>
+    current lang: <?php echo $lang; ?>
 </h2>
-<?php endif; ?>
 
 <br/>
 
@@ -107,6 +104,14 @@ Here is the home page
 <div>
     <?php echo $this->Html->link('VUE Set Timer', ['language' => 'en', 'controller' => 'SetupPages', 'action' => 'setTimer']); ?>
 </div>
+
+
+<div>
+    <?php echo $this->Html->link('IncreaseLimit', ['controller' => 'SetupPages', 'action' => 'increaseLimit']); ?>
+</div>
+
+
+
 
 
 

@@ -8,7 +8,7 @@
 
 
 <h2>
-    ADMIN ACCESS - current lang: <?php echo $baseLang; ?>
+    ADMIN ACCESS - current lang: <?php echo $lang; ?>
 </h2>
 
 

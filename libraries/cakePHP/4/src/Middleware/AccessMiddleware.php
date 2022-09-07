@@ -24,6 +24,11 @@ class AccessMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        //starting out we give access
+        $request = $request->withAttribute('access_granted', true);
+
+        //redirect
+        //pass auth middle - inject attribute authorization - result authorizd / forbidden
 
         //No restrictions, theres actions can ALWAYS access any prefix
         if (in_array($request->getAttributes()['params']['action'], ['logout'])) {
@@ -36,19 +41,29 @@ class AccessMiddleware implements MiddlewareInterface
         if (isset($params['prefix'])) {
             $prefix = $params['prefix'];
             $loggedUser = $request->getAttribute('identity');
+            //dd($loggedUser);
             if (is_null($loggedUser)) {
                 //user is NOT logged in
-                throw new ForbiddenException('User is NOT logged in and is trying to access: '.$prefix);
+                //throw new ForbiddenException('User is NOT logged in and is trying to access: '.$prefix);
+                //php 8.1 enum ? create result ok result failre
+                //https://stitcher.io/blog/php-enums
+
+                $request = $request->withAttribute('access_granted', false);
+                $request = $request->withAttribute('access_msg', 'User must be logged');
             } else {
                 $loggedUserAccess = $request->getAttribute('access');
                 if (empty($loggedUserAccess)) {
-                    throw new ForbiddenException('User has not been granted any access');
+                    $request = $request->withAttribute('access_granted', false);
+                    $request = $request->withAttribute('access_msg', 'No access has been granted');
+                    //throw new ForbiddenException('User has not been granted any access');
                 } else {
                     if (isset($loggedUserAccess[ $prefix ])) {
                         //Prefix is allowed
+                        $request = $request->withAttribute('access_granted', true);
                     } else {
                         //not allowed for this prefix
-                        throw new ForbiddenException('User does NOT have access to prefix: '.$prefix);
+                        $request = $request->withAttribute('access_granted', false);
+                        $request = $request->withAttribute('access_msg', 'Requires '.$prefix.' access');
                     }
                 }
             }
