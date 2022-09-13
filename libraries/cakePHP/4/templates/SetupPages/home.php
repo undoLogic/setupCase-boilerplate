@@ -1,115 +1,170 @@
-<?php if (isset($isLoggedIn)): ?>
-    LOGGED IN (<?php echo $this->Html->link('Logout', '/logout'); ?>)
-<?php else: ?>
-    NOT logged in (<?php echo $this->Html->link('Login', '/login'); ?>)
-<?php endif; ?>
+<style>
+    th {
+        white-space: nowrap;
+        background-color: #def4ff;
+        text-align: center;
+    }
+    td:first-child, th:first-child {
+        padding-left: 15px;
+    }
+    .side-nav a, .top-nav-links a, th a, .actions a {
+        color: #606c76;
+        text-decoration: underline;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            Feature
+        </th>
+        <th>
+            Description
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Language
+        </th>
+        <td>
+            current lang: <?php echo $lang; ?>
 
-- <?php echo $this->Html->link('Reset', array('prefix' => false, 'controller' => 'Users', 'action' => 'beginReset')); ?>
+            /
 
-- <?php echo $this->Html->link('AddUser', array('prefix' => false, 'controller' => 'Users', 'action' => 'add')); ?>
+            <?php echo $this->Html->link('EN', array(
+                'language' => 'en'
+            )); ?>
 
-<hr/>
+/
 
+            <?php echo $this->Html->link('FR', array(
+                'language' => 'fr'
+            )); ?>
 
+/
 
-<h2>
-    current lang: <?php echo $lang; ?>
-</h2>
+            <?php echo $this->Html->link('Lang-not-set', array()); ?>
+        </td>
+    </tr>
+    <Tr>
+        <th>
+            Access
+        </th>
+        <td>
 
-<br/>
-
-<?php echo $this->Html->link('Home page EN', array(
-    'language' => 'en'
-)); ?>
-
-<br/>
-
-<?php echo $this->Html->link('Home page FR', array(
-    'language' => 'fr'
-)); ?>
-
-<br/>
-
-<?php echo $this->Html->link('Home page NOT SET', array()); ?>
-
-<hr/>
-
-
-<h2>
-    Prefix
-</h2>
-
-<?php echo $this->Html->link('Staff page', array(
-    'prefix' => 'Staff',
-)); ?>
-
-<br/>
-
-<?php echo $this->Html->link('Admin page', array(
-    'prefix' => 'Admin',
-)); ?>
-
-<hr/>
-
-<h2>
-    Object Storage
-</h2>
-
-<div class="row">
-    <div class="col-4">
-        <?php echo $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'SetupPages', 'action' => 'objAdd']]); ?>
-
-        <?php echo $this->Form->file('fileToUpload', ['type' => 'button']); ?>
-
-        <?= $this->Form->button('Upload'); ?>
-
-        <?php echo $this->Form->end(); ?>
-    </div>
-</div>
-
-<?php foreach ($objects as $object) : ?>
-    <div class="row">
-        <div class="col-lg-3">Filename: <?= $object['filename']; ?> (key_name: <?= $object['key_name']; ?>)</div>
-        <div class="col-lg-3" style="margin-left: 5px;">
-
-            <?php if ($object['current']): ?>
-                CURRENT
+            <?php if (isset($isLoggedIn)): ?>
+                LOGGED IN (<?php echo $this->Html->link('Logout', '/logout'); ?>)
             <?php else: ?>
-                ARCHIVED
+                NOT logged in (<?php echo $this->Html->link('Login', '/login'); ?>)
             <?php endif; ?>
+            /
+            <?php echo $this->Html->link('Reset', array('prefix' => false, 'controller' => 'Users', 'action' => 'beginReset')); ?>
+            /
+            <?php echo $this->Html->link('AddUser', array('prefix' => false, 'controller' => 'Users', 'action' => 'add')); ?>
+            /
+            <?php echo $this->Html->link('StaffPrefx', array(
+                'prefix' => 'Staff',
+            )); ?>
+            /
+            <?php echo $this->Html->link('AdminPrefix', array(
+                'prefix' => 'Admin',
+            )); ?>
+        </td>
+    </Tr>
+    <tr>
+        <th>
+            Object Storage
+        </th>
+        <td>
+            <?php echo $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'SetupPages', 'action' => 'objAdd']]); ?>
 
-            <?= $this->Html->link('Download', ['action' => 'objDownload', $object['key_name']]); ?>
-            <a style="color: #000000; font-weight: bold;" href="<?= $webroot;?>SetupPages/objRemoveCache/<?= $object['key_name']; ?>">Remove-Cache</a>
-            <a style="color: red; font-weight: bold;" href="<?= $webroot;?>SetupPages/objDelete/<?= $object['key_name']; ?>">X</a>
-        </div>
-    </div>
-<?php endforeach; ?>
+            <?php echo $this->Form->file('fileToUpload', ['type' => 'button']); ?>
 
-<h2>CSS</h2>
-<div>
-    <?php echo $this->Html->link('Responsive Table', ['controller' => 'SetupPages', 'action' => 'responsiveTable']); ?>
-    <br/>
-    <?php echo $this->Html->link('Sticky Content', ['controller' => 'SetupPages', 'action' => 'sticky']); ?>
-</div>
+            <?= $this->Form->button('Upload'); ?>
+
+            <?php echo $this->Form->end(); ?>
+
+            <?php if (!empty($objects)): ?><hr/><?php endif; ?>
+
+            <?php foreach ($objects as $object) :
+
+                //pr ($object);
+                ?>
+                <div class="row">
+
+                    <div class="col-lg-3">
+                        <img src="data:<?= $object['mime']; ?>;base64, <?= base64_encode(stream_get_contents($object['data'])); ?>" style="height: 100px; height: 100px; padding: 3px; border: 1px solid black; margin: 3px;"/>
+                    </div>
+
+                    <div class="col-lg-9">
+
+                        Filename: <?= $object['filename']; ?> (key_name: <?= $object['key_name']; ?>)
+                        <?= $this->Html->link('Download', ['action' => 'objDownload', $object['key_name']]); ?>
+
+                        <br/>
+                        <?php if ($object['current']): ?>
+                            CURRENT
+                        <?php else: ?>
+                            ARCHIVED
+                        <?php endif; ?>
+                        <br/>
+
+                        <a style="color: #000000; font-weight: bold;" href="<?= $webroot;?>SetupPages/objRemoveCache/<?= $object['key_name']; ?>">Remove-Cache</a>
+                        <a style="color: red; font-weight: bold;" href="<?= $webroot;?>SetupPages/objDelete/<?= $object['key_name']; ?>">X</a>
+
+                    </div>
+
+                </div>
+            <?php endforeach; ?>
 
 
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <?php echo $this->Html->link('Responsive Table', ['controller' => 'SetupPages', 'action' => 'responsiveTable']); ?>
+        </th>
+        <td>
+            HTML table adjusts to rows when on a mobile device. Desktop is a normal table view
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <?php echo $this->Html->link('Sticky div / Floating div', ['controller' => 'SetupPages', 'action' => 'sticky']); ?>
+        </th>
+        <td>
 
-<h2>Javascript</h2>
+            A div will float (or stick to the top of the window) as the user scrolls.
 
-<div>
-    <?php echo $this->Html->link('VUE validation', ['language' => 'en', 'controller' => 'SetupPages', 'action' => 'formValidation']); ?>
-</div>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <?php echo $this->Html->link('VUE validation', ['language' => 'en', 'controller' => 'SetupPages', 'action' => 'formValidation']); ?>
 
+        </th>
+        <td>
+            Validate a form with a simple validation object
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <?php echo $this->Html->link('VUE timed form submission', ['language' => 'en', 'controller' => 'SetupPages', 'action' => 'setTimer']); ?>
 
-<div>
-    <?php echo $this->Html->link('VUE Set Timer', ['language' => 'en', 'controller' => 'SetupPages', 'action' => 'setTimer']); ?>
-</div>
+        </th>
+        <td>
+            Form input will only submit after the user stops typing for a few seconds
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <?php echo $this->Html->link('Auto pagination', ['controller' => 'SetupPages', 'action' => 'increaseLimit']); ?>
 
-
-<div>
-    <?php echo $this->Html->link('IncreaseLimit', ['controller' => 'SetupPages', 'action' => 'increaseLimit']); ?>
-</div>
-
+        </th>
+        <td>
+            As the user scrolls to the bottom of the page, the system will automatically load the next page / set of results. Instead of manually pushing next / previous pages.
+        </td>
+    </tr>
+</table>
 
 
 

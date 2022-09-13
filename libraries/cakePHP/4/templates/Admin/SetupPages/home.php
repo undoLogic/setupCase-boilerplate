@@ -16,7 +16,7 @@
 
 <?php echo $this->Html->link('Admin EN', array(
     'prefix' => 'Admin',
-    'language' => 'en_US'
+    'language' => 'en'
 
 )); ?>
 
@@ -24,7 +24,7 @@
 
 <?php echo $this->Html->link('Admin FR', array(
     'prefix' => 'Admin',
-    'language' => 'fr_CA'
+    'language' => 'fr'
 
 )); ?>
 

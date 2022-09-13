@@ -73,8 +73,10 @@ class AppController extends Controller
         $access = $this->request->getAttribute('access');
         if (!empty($access)) {
             Configure::write('isLoggedIn', true);
+            $this->set('isLoggedIn', true);
         } else {
             Configure::write('isLoggedIn', false);
+            $this->set('isLoggedIn', false);
         }
 
         //language variables for the view
