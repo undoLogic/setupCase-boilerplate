@@ -1,8 +1,8 @@
 version: "2.0"
 services:
   web:
-    build: ./web74
-    image: docker_web74
+    build: ./web81
+    image: docker_web81
     ports:
       - "80:80"
       - "443:443"
