@@ -54,6 +54,9 @@ class AppController extends Controller
 
         $this->setupCase();
 
+        //When added layouts in the future add a variable eg <img src="assets.... changes to <img src="<?= $baseLayout; ?\>assets....
+        //$this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
+
         Log::debug('appcontroller');
 
     }// end of beforeFilter
