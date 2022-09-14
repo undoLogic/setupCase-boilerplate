@@ -15,7 +15,7 @@
 <table class="table">
     <tr>
         <th>
-            Feature
+            CodeBlock
         </th>
         <th>
             Description
@@ -164,6 +164,48 @@
             As the user scrolls to the bottom of the page, the system will automatically load the next page / set of results. Instead of manually pushing next / previous pages.
         </td>
     </tr>
+    <tr>
+        <th>
+            Drag and Drop Upload
+            <br/>
+            (COMING SOON...)
+        </th>
+        <td>
+            Drag and drop files on the screen to upload into your database
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Export to CSV
+            <br/>
+            (COMING SOON...)
+        </th>
+        <td>
+            Export an array into a CSV file that is downloaded to your computer
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Render PDF
+            <br/>
+            (COMING SOON...)
+        </th>
+        <td>
+            Render a PDF from a custom HTML view and export and save to your computer
+        </td>
+    </tr>
+    <tr>
+        <th>
+            JSON API Headers
+            <br/>
+            (COMING SOON...)
+        </th>
+        <td>
+            Common function to always call the correct JSON headers when you are sending data between the front-end / back-end API
+        </td>
+    </tr>
+
+
 </table>
 
 

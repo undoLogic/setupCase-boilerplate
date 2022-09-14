@@ -80,8 +80,8 @@ http://localhost/sourceFiles/
 
 Copy our Library for SetupCase base functionality
 ```shell
-# Copy our standard libraries on top of cakePHP
-rsync -av /var/www/vhosts/website.com/www/libraries/cakePHP/4/. /var/www/vhosts/website.com/www/sourceFiles/.
+# Copy our codeBlocks on top of cakePHP
+rsync -av /var/www/vhosts/website.com/www/codeBlocks/cakePHP/4/. /var/www/vhosts/website.com/www/sourceFiles/.
 ```
 
 Start-up: You should see all the files / folders in the directory. Click on phpInfo and ensure php is working correctly. You know it has started up correctly.

@@ -8,7 +8,7 @@ services:
       - "443:443"
     environment:
       DATABASE_NAME: local
-      SECURITY_SALT: oyIhMm0JlX
+      SECURITY_SALT: CHANGE_ME_NOW_THIS_IS_INSECURE_IF_YOU_LEAVE_IT
     volumes:
       - ../.:/var/www/vhosts/website.com/www
       - ./sites-available/:/etc/apache2/sites-available/

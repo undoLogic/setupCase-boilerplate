@@ -42,7 +42,7 @@ rsync -av $SRC_FILES/src/View/. src/View/.
 
 git add *
 
-echo "- - - - - - - - New files have been copied and added to git. NEXT: Commit your git changes THEN switch to main branch and compare libraries/cakePHP/4 folders and manually import that new changes THEN commit to main branch"
+echo "- - - - - - - - New files have been copied and added to git. NEXT: Commit your git changes THEN switch to main branch and compare codeBlocks/cakePHP/4 folders and manually import that new changes THEN commit to main branch"
 
 
 # echo $SRC_FILES
