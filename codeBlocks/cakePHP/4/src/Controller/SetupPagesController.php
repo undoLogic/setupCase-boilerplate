@@ -98,6 +98,18 @@ class SetupPagesController extends AppController
         $this->set('objects', $this->objectStorages->getObjects());
     }
 
+
+    ///// newest to oldest /////
+
+    function digitalSignage() {
+
+        $this->viewBuilder()->disableAutoLayout(); // to disable layout
+
+    }
+
+
+
+
     function increaseLimit(){
         $token = $this->request->getAttribute('csrfToken');
         $this->set('csrf', $token);

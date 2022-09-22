@@ -166,6 +166,15 @@
     </tr>
     <tr>
         <th>
+            <?php echo $this->Html->link('Digital Signage Template', ['controller' => 'SetupPages', 'action' => 'digitalSignage']); ?>
+
+        </th>
+        <td>
+           Basic template for digital signage. Title, subtitle, text cycling between slides which can be scheduled with a php array
+        </td>
+    </tr>
+    <tr>
+        <th>
             Drag and Drop Upload
             <br/>
             (COMING SOON...)
