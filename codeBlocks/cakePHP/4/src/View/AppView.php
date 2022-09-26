@@ -42,5 +42,10 @@ class AppView extends View
 //        dd ($this->request);
 
         $this->loadHelper('Auth');
+        $this->loadHelper('Lang');
+
+
+
+
     }
 }

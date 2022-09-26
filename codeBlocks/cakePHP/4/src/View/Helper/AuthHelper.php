@@ -26,12 +26,19 @@ class AuthHelper extends Helper
 //        dd ($this->request);
     }
 
+//    public function beforeRender(EventInterface $event, $viewFile) {
+//           //reqest can then inject data into
+//        // //$this->>getView->set
+//
+//        //$this->getView()->
+//    }
     function isLoggedIn() {
-
-
-        //dd('hello');
-        return 'Auth helper works';
-
+        $req = $this->getView()->getRequest();
+        //dd($req);
+        if ($req->getAttribute('access') == true) {
+            return true;
+        }
+        return false;
     }
 
 }

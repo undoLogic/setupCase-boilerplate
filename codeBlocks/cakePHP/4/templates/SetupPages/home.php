@@ -11,6 +11,9 @@
         color: #606c76;
         text-decoration: underline;
     }
+    .active {
+        font-weight: bold;
+    }
 </style>
 <table class="table">
     <tr>
@@ -26,19 +29,19 @@
             Language
         </th>
         <td>
-            current lang: <?php echo $lang; ?>
+            Current Lang: <?= $this->Lang->get(); ?>
 
             /
 
-            <?php echo $this->Html->link('EN', array(
-                'language' => 'en'
-            )); ?>
+
+            <?php echo $this->Html->link('English', ['language' => 'en'], [
+                'class' => $this->Lang->getActiveClass('en')
+            ]); ?>
 
 /
-
-            <?php echo $this->Html->link('FR', array(
-                'language' => 'fr'
-            )); ?>
+            <?php echo $this->Html->link('French', ['language' => 'fr'], [
+                'class' => $this->Lang->getActiveClass('fr')
+            ]); ?>
 
 /
 
@@ -51,11 +54,12 @@
         </th>
         <td>
 
-            <?php if (isset($isLoggedIn)): ?>
+            <?php if ($this->Auth->isLoggedIn()): ?>
                 LOGGED IN (<?php echo $this->Html->link('Logout', '/logout'); ?>)
             <?php else: ?>
                 NOT logged in (<?php echo $this->Html->link('Login', '/login'); ?>)
             <?php endif; ?>
+
             /
             <?php echo $this->Html->link('Reset', array('prefix' => false, 'controller' => 'Users', 'action' => 'beginReset')); ?>
             /

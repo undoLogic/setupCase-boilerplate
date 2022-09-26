@@ -73,20 +73,6 @@ class AppController extends Controller
         //We handle all RBAC from our RBAC middleware - disable the CakePHP authentication for all pages
         $this->Authentication->addUnauthenticatedActions([ $this->request->getAttribute('params')['action'] ]);
 
-        $access = $this->request->getAttribute('access');
-        if (!empty($access)) {
-            Configure::write('isLoggedIn', true);
-            $this->set('isLoggedIn', true);
-        } else {
-            Configure::write('isLoggedIn', false);
-            $this->set('isLoggedIn', false);
-        }
-
-        //language variables for the view
-        $lang = $this->request->getAttribute('lang');
-        $this->set('lang', $lang);
-        Configure::write('lang', $lang);
-
         $this->set('webroot', Router::url('/'));
     }
 
