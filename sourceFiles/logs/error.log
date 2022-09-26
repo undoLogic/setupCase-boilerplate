@@ -1,0 +1,1892 @@
+2022-09-26 19:58:26 error: [Cake\Http\Exception\MissingControllerException] Controller class Webroot could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Webroot',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /webroot/modules/site/
+Client IP: 172.21.0.1
+2022-09-26 19:59:29 error: [Cake\Controller\Exception\MissingActionException] Action PagesController::index() could not be found, or is not accessible. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'PagesController',
+  'action' => 'index',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:134
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:114
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:320
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /
+Client IP: 172.21.0.1
+2022-09-26 20:00:35 warning: Undefined variable $updateCase
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/home.php, line 1
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:00:35 error: [Error] Call to a member function loadPageBySlug() on null in /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/home.php on line 1
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:1220
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:1177
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:808
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:773
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:556
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:139
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:114
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:320
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:01:09 warning: Undefined variable $updateCase
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/home.php, line 1
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:01:09 error: [Error] Call to a member function loadPageBySlug() on null in /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/home.php on line 1
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:1220
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:1177
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:808
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:773
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:556
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:139
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:114
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:320
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:02:18 error: [Error] Class "App\Controller\UpdateCase" not found in /var/www/vhosts/website.com/www/sourceFiles/src/Controller/AppController.php on line 60
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/src/Controller/PagesController.php:45
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Event/EventManager.php:309
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Event/EventManager.php:286
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:92
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:644
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:129
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:114
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:320
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:03:27 warning: fopen(updateCase.log) [<a href='https://secure.php.net/function.fopen'>function.fopen</a>]: Failed to open stream: Permission denied
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+Trace:
+fopen [internal], line ??
+UpdateCase::writeToLog() /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php, line 664
+UpdateCase::getMostRecentFilename() /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php, line 318
+UpdateCase::isPrepared() /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php, line 241
+UpdateCase::loadPageBySlug() /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php, line 852
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/home.php, line 1
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:03:27 error: [TypeError] fwrite(): Argument #1 ($stream) must be of type resource, bool given in /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php on line 665
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php:665
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php:241
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php:852
+- /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/home.php:1
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:1220
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:1177
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:808
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:773
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:556
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:139
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:114
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:320
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:04:47 warning: fopen(updateCase.log) [<a href='https://secure.php.net/function.fopen'>function.fopen</a>]: Failed to open stream: Permission denied
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+Trace:
+fopen [internal], line ??
+UpdateCase::writeToLog() /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php, line 664
+UpdateCase::downloadFromUpdateCase() /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php, line 391
+UpdateCase::isPrepared() /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php, line 248
+UpdateCase::loadPageBySlug() /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php, line 852
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/home.php, line 1
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:04:47 error: [TypeError] fwrite(): Argument #1 ($stream) must be of type resource, bool given in /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php on line 665
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php:665
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php:391
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php:248
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/updateCase-v4_1_1.php:852
+- /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/home.php:1
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:1220
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:1177
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php:808
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:773
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php:556
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:139
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:114
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:320
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:05:45 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:05:47 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:06:29 warning: Undefined variable $lang
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/element/a/social.php, line 2
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::_renderElement() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1712
+Cake\View\View::element() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 699
+include /var/www/vhosts/website.com/www/sourceFiles/templates/element/a/banner.php, line 21
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::_renderElement() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1712
+Cake\View\View::element() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 699
+include /var/www/vhosts/website.com/www/sourceFiles/templates/layout/default.php, line 34
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::renderLayout() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 860
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 819
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:06:30 warning: Undefined variable $lang
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/element/a/social.php, line 2
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::_renderElement() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1712
+Cake\View\View::element() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 699
+include /var/www/vhosts/website.com/www/sourceFiles/templates/element/a/footer.php, line 93
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::_renderElement() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1712
+Cake\View\View::element() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 699
+include /var/www/vhosts/website.com/www/sourceFiles/templates/layout/default.php, line 39
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::renderLayout() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 860
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 819
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:06:32 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:06:33 error: [Cake\Http\Exception\MissingControllerException] Controller class Css could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Css',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /css/a/added-styles-B.css
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:06:36 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:06:38 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/a/favicon.ico
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:06:59 warning: Undefined variable $lang
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/element/a/social.php, line 2
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::_renderElement() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1712
+Cake\View\View::element() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 699
+include /var/www/vhosts/website.com/www/sourceFiles/templates/element/a/banner.php, line 21
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::_renderElement() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1712
+Cake\View\View::element() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 699
+include /var/www/vhosts/website.com/www/sourceFiles/templates/layout/default.php, line 34
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::renderLayout() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 860
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 819
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:06:59 warning: Undefined variable $lang
+Request URL: /fr/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/element/a/social.php, line 2
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::_renderElement() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1712
+Cake\View\View::element() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 699
+include /var/www/vhosts/website.com/www/sourceFiles/templates/element/a/footer.php, line 93
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::_renderElement() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1712
+Cake\View\View::element() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 699
+include /var/www/vhosts/website.com/www/sourceFiles/templates/layout/default.php, line 39
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::renderLayout() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 860
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 819
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:07:01 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:07:03 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:09:27 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:09:29 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:09:33 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/en/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:09:35 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/en/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:10:03 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/en/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:10:04 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/en/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:10:09 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:10:10 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:17:00 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:17:02 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:17:05 warning: Undefined variable $lang
+Request URL: /pages/case-studies
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/case_studies.php, line 51
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:17:05 warning: Undefined variable $lang
+Request URL: /pages/case-studies
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/case_studies.php, line 51
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:17:06 warning: Undefined variable $lang
+Request URL: /pages/case-studies
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/case_studies.php, line 51
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:17:06 warning: Undefined variable $lang
+Request URL: /pages/case-studies
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/case_studies.php, line 51
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:17:06 warning: Undefined variable $lang
+Request URL: /pages/case-studies
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/case_studies.php, line 51
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:17:07 warning: Undefined variable $lang
+Request URL: /pages/case-studies
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/case_studies.php, line 51
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:17:07 warning: Undefined variable $lang
+Request URL: /pages/case-studies
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/case_studies.php, line 51
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:17:07 warning: Undefined variable $lang
+Request URL: /pages/case-studies
+Referer URL: http://localhost/sourceFiles/pages/home
+Client IP: 172.21.0.1
+Trace:
+include /var/www/vhosts/website.com/www/sourceFiles/templates/Pages/case_studies.php, line 51
+Cake\View\View::_evaluate() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1220
+Cake\View\View::_render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 1177
+Cake\View\View::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/View/View.php, line 808
+Cake\Controller\Controller::render() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 773
+Cake\Controller\Controller::invokeAction() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/Controller.php, line 556
+Cake\Controller\ControllerFactory::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php, line 320
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 77
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\AccessMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\RbacMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php, line 32
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+App\Middleware\LangMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php, line 74
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Authentication\Middleware\AuthenticationMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Middleware\BodyParserMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\RoutingMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Routing\Middleware\AssetMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+DebugKit\Middleware\DebugKitMiddleware::process() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 73
+Cake\Http\Runner::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php, line 58
+Cake\Http\Server::run() /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php, line 90
+[main] /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php, line 40
+
+2022-09-26 20:18:02 error: [Cake\Controller\Exception\InvalidParameterException] Missing passed parameter for `slug` in action Pages::caseStudy(). in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 243
+Exception Attributes: array (
+  'parameter' => 'slug',
+  'controller' => 'Pages',
+  'action' => 'caseStudy',
+  'prefix' => NULL,
+  'plugin' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:137
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:114
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:320
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:68
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /fr/pages/case-study
+Referer URL: http://localhost/sourceFiles/en/Pages/caseStudy/SEC_Dealer_Portal
+Client IP: 172.21.0.1
+2022-09-26 20:28:25 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/en/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:28:27 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/en/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:28:31 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:28:34 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home
+Client IP: 172.21.0.1
+2022-09-26 20:30:39 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/phone.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home/SEC_Dealer_Portal
+Client IP: 172.21.0.1
+2022-09-26 20:30:40 error: [Cake\Http\Exception\MissingControllerException] Controller class Images could not be found. in /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 348
+Exception Attributes: array (
+  'class' => 'Images',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/BaseApplication.php:318
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php:174
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/AccessMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/RbacMiddleware.php:32
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/src/Middleware/LangMiddleware.php:74
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:124
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Middleware/BodyParserMiddleware.php:157
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php:186
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php:77
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php:131
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:73
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Runner.php:58
+- /var/www/vhosts/website.com/www/sourceFiles/vendor/cakephp/cakephp/src/Http/Server.php:90
+- /var/www/vhosts/website.com/www/sourceFiles/webroot/index.php:40
+
+Request URL: /images/subtle.jpg
+Referer URL: http://localhost/sourceFiles/fr/pages/home/SEC_Dealer_Portal
+Client IP: 172.21.0.1
