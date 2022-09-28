@@ -81,16 +81,10 @@ class SetupPagesController extends AppController
 
     function index()
     {
-        //get the current lange
-        //$current_language = $this->setupLanguage();
-
-        $this->redirect(
-            array(
-                //'language' => $current_language,
-                'controller' => 'SetupPages',
-                'action' => 'home'
-            )
-        );
+        $this->redirect([
+            'language' => $this->request->getAttribute('lang'),
+            'action' => 'home'
+        ]);
     }
 
     function home()
