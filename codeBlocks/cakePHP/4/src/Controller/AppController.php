@@ -54,6 +54,8 @@ class AppController extends Controller
 
         $this->setupCase();
 
+        //LANG: Add to <html tag = <html lang="<?= $this->Lang->get(); .....
+
         //When added layouts in the future add a variable eg <img src="assets.... changes to <img src="<?= $baseLayout; ?\>assets....
         //$this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
 

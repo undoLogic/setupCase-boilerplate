@@ -45,6 +45,12 @@
 
 /
 
+            <?php echo $this->Html->link('Spanish', ['language' => 'es'], [
+                'class' => $this->Lang->getActiveClass('es')
+            ]); ?>
+
+            /
+
             <?php echo $this->Html->link('Lang-not-set', array()); ?>
         </td>
     </tr>

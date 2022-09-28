@@ -51,9 +51,9 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 
         // language
-        $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'home'), array('language' => 'en|fr')) ;
-        $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en|fr'));
-        $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en|fr'));
+        $builder->connect('/:language', array('controller' => 'SetupPages', 'action' => 'home'), array('language' => 'en|fr|es')) ;
+        $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en|fr|es'));
+        $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en|fr|es'));
 
         /*
          * Connect catchall routes for all controllers.
@@ -74,7 +74,7 @@ return static function (RouteBuilder $routes) {
     $routes->prefix('staff', function (RouteBuilder $routes) {
 
         //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr']) ;
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']) ;
 
         $routes->fallbacks(DashedRoute::class);
     });
@@ -82,7 +82,7 @@ return static function (RouteBuilder $routes) {
     $routes->prefix('admin', function (RouteBuilder $routes) {
 
         //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr']) ;
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']) ;
 
         $routes->fallbacks(DashedRoute::class);
     });
