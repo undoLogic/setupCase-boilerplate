@@ -26,6 +26,7 @@ use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\Routing\Router;
 use Cake\Http\Session;
 use Cake\View\Exception\MissingTemplateException;
 
