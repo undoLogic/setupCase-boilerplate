@@ -34,12 +34,20 @@ Install
 
 Visual Layout Click Through 
 - #1 Download Layout Source Files
-- #2 Add Layout Source Files 
+- #2 Add Layout Source Files to modules directory
 - #3 View in browser
 - #4 Integrate Layout into cakePHP 
-- #5 Create baseLayout variable 
+- #5 Create baseLayout variable to connect layout without moving any assets from modules
+- Create 'added-styles-A.css' which will override all default styles with branding
+- Ensure a class exists around each section so it is easy to target specific sections with the css styles
+- Create Real titles and lorum ipsum text
+- Create single items and duplicate them with foreach (range(1,3)) as it is best to have one item to modify and have the client approve
+- Troubleshooting: 
+  - If you have issues copy-and-pasting from the inspect element, copy from the raw html file (some javascript will modify the inspect element tags)
 - #6 Separate Layout content from each page content 
 - #7 Create each page 
+
+
 
 Programming
 - #1 CodeBlocks to program
