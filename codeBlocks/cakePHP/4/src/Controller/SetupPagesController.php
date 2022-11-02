@@ -99,7 +99,7 @@ class SetupPagesController extends AppController
         $newPath = str_replace('eng', 'en', $oldPath);
         $newPath = str_replace('spa', 'es', $newPath);
         $newPath = str_replace('fre', 'fr', $newPath);
-        $this->redirect($newPath, 301);
+        $this->redirect($newPath, 301); //301 Moved Permanently redirect
 
     }
 
