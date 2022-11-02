@@ -93,6 +93,15 @@ class SetupPagesController extends AppController
         $this->set('objects', $this->objectStorages->getObjects());
     }
 
+    function moved() {
+
+        $oldPath = $this->request->getUri()->getPath();
+        $newPath = str_replace('eng', 'en', $oldPath);
+        $newPath = str_replace('spa', 'es', $newPath);
+        $newPath = str_replace('fre', 'fr', $newPath);
+        $this->redirect($newPath, 301);
+
+    }
 
     ///// newest to oldest /////
 

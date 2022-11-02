@@ -55,6 +55,12 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/:language/:controller/:action/*', array(), array('language' => 'en|fr|es'));
         $builder->connect('/:language/:controller', array('action' => 'index'), array('language' => 'en|fr|es'));
 
+
+        // backward compatibility with older language links
+        $builder->connect('/eng/*', array('controller' => 'SetupPages', 'action' => 'moved')) ;
+        $builder->connect('/spa/*', array('controller' => 'SetupPages', 'action' => 'moved')) ;
+        $builder->connect('/fre/*', array('controller' => 'SetupPages', 'action' => 'moved')) ;
+
         /*
          * Connect catchall routes for all controllers.
          *
