@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Util\SetupCase;
 use Cake\Controller\Controller;
 //use Cake\Error\Debugger;
 use Cake\Core\Configure;
@@ -71,6 +72,15 @@ class AppController extends Controller
             $this->Flash->error($this->request->getAttribute('access_msg'));
             $this->redirect($this->referer());
         }
+
+        //only force these sites to be ssl
+//        $sslSites = [
+//            'www.livesite.com',
+//        ];
+//        $setupCase = new SetupCase();
+//        if ($setupCase->isLIVE($_SERVER['HTTP_HOST'], $sslSites)) {
+//            $setupCase->forceSSL($this);
+//        }
 
         //We handle all RBAC from our RBAC middleware - disable the CakePHP authentication for all pages
         $this->Authentication->addUnauthenticatedActions([ $this->request->getAttribute('params')['action'] ]);
