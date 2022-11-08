@@ -136,7 +136,7 @@ class UsersController extends AppController
                 $this->writeToLog('debug', "user added.$userData");
                 //  writeToLog log created in appController
 
-               // pr($userData); exit;
+                // pr($userData); exit;
                 $this->Flash->success(__('User Saved'));
             }
         }// end of  post
@@ -149,21 +149,21 @@ class UsersController extends AppController
             ->contain(['Groups'])
             ->first();
 
-        $user = $query->toArray();
-       //
+        if (!empty($query)) {
+            $user = $query->toArray();
+        }
 
         $query1 = $this->Users
-            ->find('all',[
+            ->find('all', [
                 'conditions' => [
                     'Users.group_id' => 1
                 ],
                 'contain' => ['Groups']
             ]);
-
-        $users = $query1->toArray();
-       // pr($users); exit;
-        $this->set(compact('user', 'users'));
-
+        if (!empty($query1)) {
+            $users = $query1->toArray();
+            $this->set(compact('user', 'users'));
+        }
 
 
 
@@ -177,7 +177,6 @@ class UsersController extends AppController
         $this->request->allowMethod(['get', 'post']);
 
         if ($this->request->is('post')) {
-
 
 
             $this->writeToLog('debug', 'Signup', true);
@@ -196,7 +195,7 @@ class UsersController extends AppController
             );
 
             if ($didCreateUser) {
-                $this->writeToLog('debug', 'User created user_id: '.$didCreateUser['id'], false);
+                $this->writeToLog('debug', 'User created user_id: ' . $didCreateUser['id'], false);
                 $this->Flash->success('User has been CREATED');
 
                 $session = $this->request->getSession();
@@ -239,7 +238,7 @@ class UsersController extends AppController
         // display error if user submitted and authentication failed
         if ($this->request->is('post') && !$result->isValid()) {
             $errors = ((array)$result);
-            $this->Flash->error('Login error: '.json_encode($errors));
+            $this->Flash->error('Login error: ' . json_encode($errors));
         }
 
     }//login
@@ -271,12 +270,12 @@ class UsersController extends AppController
                 //that user does exist
                 $userToken = $this->Users->resetAddToken($emailSubmitted);
                 //pr ($userToken);
-                $this->writeToLog('debug', '- token: '.$userToken['reset_token'], false);
+                $this->writeToLog('debug', '- token: ' . $userToken['reset_token'], false);
 
                 $vars = [
                     'emailSubmitted' => $emailSubmitted,
                     'resetToken' => $userToken['reset_token'],
-                    'url' => Router::url('/', true).'Users'.DS.'reset'.DS.base64_encode($emailSubmitted).DS.base64_encode($userToken['reset_token'])
+                    'url' => Router::url('/', true) . 'Users' . DS . 'reset' . DS . base64_encode($emailSubmitted) . DS . base64_encode($userToken['reset_token'])
                 ];
 
                 $sent = $this->sendEmail($emailSubmitted, 'Email Password Reset', $vars, false, false, 'email_reset');
@@ -287,7 +286,7 @@ class UsersController extends AppController
                 }
             } else {
                 //does not exist
-                $this->writeToLog('debug', 'That email does NOT exist: '.$emailSubmitted, false);
+                $this->writeToLog('debug', 'That email does NOT exist: ' . $emailSubmitted, false);
             }
         } else {
             //start

@@ -19,9 +19,13 @@
 
 
 <div>
+    <?php if(isset($user)): ?>
   User:<?php echo json_encode($user); ?>
+    <?php endif; ?>
 </div>
 
 <div>
+    <?php if(isset($users)): ?>
     Users: <?php echo json_encode($users); ?>
+    <?php endif; ?>
 </div>
