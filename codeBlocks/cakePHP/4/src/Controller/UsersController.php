@@ -209,19 +209,26 @@ class UsersController extends AppController
             }
         }
 
-
-
     }//login
 
     public function login()
     {
+
+//        $pass = '1234';
+//        $passObj = new DefaultPasswordHasher;
+//        $hash = ($passObj)->hash($pass);
+//        $this->writeToLog('debug', 'pass is: ' . $pass, true);
+//        $this->writeToLog('debug', 'hash is: ' . $hash, true);
+//        $isCorrect = $passObj->check($pass, $hash);
+//        $this->writeToLog('debug', 'is correct: '.$isCorrect, true);
+
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 
-        //pr ($result);exit;
         // regardless of POST or GET, redirect if user is logged in
         if ($result && $result->isValid()) {
             // redirect to /articles after login success
+            $this->Flash->success('You have been logged in');
             $redirect = $this->request->getQuery('redirect', [
                 'controller' => 'SetupPages',
                 'action' => 'home',
@@ -231,7 +238,8 @@ class UsersController extends AppController
         }
         // display error if user submitted and authentication failed
         if ($this->request->is('post') && !$result->isValid()) {
-            $this->Flash->error(__('Invalid username or password'));
+            $errors = ((array)$result);
+            $this->Flash->error('Login error: '.json_encode($errors));
         }
 
     }//login
@@ -265,9 +273,18 @@ class UsersController extends AppController
                 //pr ($userToken);
                 $this->writeToLog('debug', '- token: '.$userToken['reset_token'], false);
 
-                echo 'This link will be sent in an email | '.Router::url('/').'Users'.DS.'reset'.DS.$emailSubmitted.DS.$userToken['reset_token'];
-                exit;
+                $vars = [
+                    'emailSubmitted' => $emailSubmitted,
+                    'resetToken' => $userToken['reset_token'],
+                    'url' => Router::url('/', true).'Users'.DS.'reset'.DS.base64_encode($emailSubmitted).DS.base64_encode($userToken['reset_token'])
+                ];
 
+                $sent = $this->sendEmail($emailSubmitted, 'Email Password Reset', $vars, false, false, 'email_reset');
+                if ($sent) {
+                    $this->writeToLog('debug', 'email sent !');
+                } else {
+                    $this->writeToLog('debug', 'email could NOT be sent');
+                }
             } else {
                 //does not exist
                 $this->writeToLog('debug', 'That email does NOT exist: '.$emailSubmitted, false);
@@ -282,20 +299,15 @@ class UsersController extends AppController
         $this->writeToLog('debug', 'Reset', true);
         if ($this->request->is('post')) {
             $this->writeToLog('debug', 'POST');
-            $user = $this->Users->getUserByEmailAndResetToken($email, $resetToken);
+            $user = $this->Users->getUserByEmailAndResetToken(base64_decode($email), base64_decode($resetToken));
             if (!empty($user)) {
                 //email and token are still ok
                 $newPassword = $this->request->getData()['new_password'];
                 $passObj = new DefaultPasswordHasher;
-                $userUpdatedArray = $this->Users->saveUserPassword($email, $passObj->hash($newPassword));
-
+                $userUpdatedArray = $this->Users->saveUserPassword(base64_decode($email), $passObj->hash($newPassword));
                 if ($userUpdatedArray) {
-                    $session = $this->request->getSession();
-                    $session->write('User', $userUpdatedArray);
-
-                    $this->Users->resetRemoveToken($email); //prevent phishing / replay attack
-
-                    $this->Flash->success('New password has been updated and you are logged in');
+                    $this->Users->resetRemoveToken(base64_decode($email)); //prevent phishing / replay attack
+                    $this->Flash->success('New password has been updated');
                     $this->redirect('/');
                 } else {
                     $this->Flash->error('Password could NOT be updated');
@@ -309,11 +321,11 @@ class UsersController extends AppController
             $this->redirect('/');
         } else {
             //show a form so they can manually reset the password
-            $user = $this->Users->getUserByEmailAndResetToken($email, $resetToken);
+            $user = $this->Users->getUserByEmailAndResetToken(base64_decode($email), base64_decode($resetToken));
             if (!empty($user)) {
                 //correct token
                 $this->writeToLog('debug', 'Correct token, showing form');
-                $this->set('email', $email);
+                $this->set('email', base64_decode($email));
             } else {
                 //token is not correct
                 $this->writeToLog('debug', 'Email and/or token is NOT correct');

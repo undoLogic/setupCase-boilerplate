@@ -47,10 +47,7 @@ class UsersTable extends Table
             'AND' => [
                 [ 'Users.email' => $email]
             ]
-        ],
-            'recursive' => -1,
-            'contain' => ['UserTypes']
-        ])->first();
+        ]])->first();
 
         if(!empty($user)){
 
@@ -64,6 +61,8 @@ class UsersTable extends Table
             'conditions' => ['Users.email' => $email]
         ])->first();
         $user->password = $password;
+
+        //dd($user);
         if ($this->save($user)) {
             return $user->toArray();
         } else {
@@ -82,6 +81,8 @@ class UsersTable extends Table
         $user = $this->find('all', [
             'conditions' => ['Users.email' => $email]
         ])->first();
+
+
         $user->reset_token = '';
         return $this->save($user);
     }
@@ -92,11 +93,9 @@ class UsersTable extends Table
                 [ 'Users.email' => $email],
                 [ 'Users.reset_token' => $resetToken]
             ]
-        ],
-            'recursive' => -1,
-            'contain' => ['UserTypes']
-        ])->first();
+        ]])->first();
 
+        //dd($user);
         if(!empty($user)){
             return $user->toArray();
         }

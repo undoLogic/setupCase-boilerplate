@@ -31,6 +31,9 @@ rsync -av $SRC_FILES/templates/SetupPages/* templates/SetupPages/.
 rsync -av $SRC_FILES/templates/Admin/SetupPages/* templates/Admin/SetupPages/.
 rsync -av $SRC_FILES/templates/Users/* templates/Users/.
 
+# emails
+rsync -av $SRC_FILES/templates/email/* templates/email/.
+
 # Elements
 rsync -av $SRC_FILES/templates/element/*.php templates/element/.
 
