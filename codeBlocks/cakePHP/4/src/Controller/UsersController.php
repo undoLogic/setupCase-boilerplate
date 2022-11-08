@@ -46,6 +46,7 @@ class UsersController extends AppController
 
     }
 
+
 //    function testing()
 //    {
 //
@@ -114,6 +115,59 @@ class UsersController extends AppController
 //        }
 //
 //    }
+    /*
+     * @author: latha nov-08-2022
+     * @summary: addUser has the following features
+     * cake4 form create in template. form submit. flash message. logActivities, patchEntity, tableLocator,
+     */
+    public function addUser()
+    {
+        $user = $this->Users->newEmptyEntity();
+
+
+        if ($this->request->is('post')) {
+            $userData = $this->Users->patchEntity($user, $this->request->getData());
+
+            // Edit: some of the entity properties are manually set at this point, e.g.
+            $userData->group_id = 1;
+
+            if ($this->Users->save($userData)) {
+                $userData = json_encode($userData->toArray());
+                $this->writeToLog('debug', "user added.$userData");
+                //  writeToLog log created in appController
+
+               // pr($userData); exit;
+                $this->Flash->success(__('User Saved'));
+            }
+        }// end of  post
+
+        // add find first and find all , contain
+        // find first
+        $query = $this->Users
+            ->find()
+            ->where(['Users.id' => 1])
+            ->contain(['Groups'])
+            ->first();
+
+        $user = $query->toArray();
+       //
+
+        $query1 = $this->Users
+            ->find('all',[
+                'conditions' => [
+                    'Users.group_id' => 1
+                ],
+                'contain' => ['Groups']
+            ]);
+
+        $users = $query1->toArray();
+       // pr($users); exit;
+        $this->set(compact('user', 'users'));
+
+
+
+
+    }//login
 
     public function add()
     {
@@ -154,6 +208,8 @@ class UsersController extends AppController
                 return $this->redirect('/');
             }
         }
+
+
 
     }//login
 

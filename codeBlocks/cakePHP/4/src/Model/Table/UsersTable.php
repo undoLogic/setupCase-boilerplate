@@ -11,8 +11,15 @@ class UsersTable extends Table
     {
         $this->addBehavior('Timestamp');
         $this->setTable('users');
+
         // associations
+        $this->belongsTo('Groups', [
+            'foreignKey' => 'group_id'
+        ]);
+
     }
+
+
 
     function getUsers(){
         $users = $this->find('all');

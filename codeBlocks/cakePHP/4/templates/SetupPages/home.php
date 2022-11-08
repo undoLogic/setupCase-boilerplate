@@ -223,6 +223,11 @@
             Common function to always call the correct JSON headers when you are sending data between the front-end / back-end API
         </td>
     </tr>
+    <tr>
+        <th>
+            <a target="_blank" rel="noopener" href="<?= $webroot;?>Users/addUser">Add User</a>
+        </th>
+    </tr>
 
 
 </table>

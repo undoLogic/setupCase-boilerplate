@@ -1,11 +1,88 @@
-CREATE TABLE `users` ( `id` INT NOT NULL AUTO_INCREMENT , `user_type` VARCHAR(19) NOT NULL , `name` VARCHAR(99) NOT NULL , `email` VARCHAR(99) NOT NULL , `password` VARCHAR(1000) NOT NULL , `created` DATETIME NOT NULL , `modified` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: db
+-- Generation Time: Nov 08, 2022 at 09:04 PM
+-- Server version: 5.6.39
+-- PHP Version: 8.0.19
 
--- CREATE TABLE IF NOT EXISTS `user_types` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
--- INSERT INTO `user_types` (`id`, `name`) VALUES ('111', 'Admin'), ('30', 'Manager'), ('10', 'Staff');
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- UPDATE `users` SET `user_type_id` = '111' WHERE `users`.`id` = 1;
--- UPDATE `users` SET `user_type_id` = '111' WHERE `users`.`id` = 2;
+--
+-- Database: `LIVE_database`
+--
 
-ALTER TABLE `users` ADD `reset_token` VARCHAR(1000) NOT NULL AFTER `password`;
+-- --------------------------------------------------------
 
--- ALTER TABLE `users` ADD `user_type` VARCHAR(19) NOT NULL AFTER `id`;
+--
+-- Table structure for table `groups`
+--
+
+CREATE TABLE `groups` (
+                          `id` int(11) NOT NULL,
+                          `name` varchar(100) NOT NULL,
+                          `created` datetime NOT NULL,
+                          `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
+                                                               (1, 'Main Group', '2022-11-08 18:48:17', '2022-11-08 18:48:17'),
+                                                               (2, 'Secondary Group', '2022-11-08 18:48:17', '2022-11-08 18:48:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+                         `id` int(11) NOT NULL,
+                         `user_type` varchar(19) NOT NULL,
+                         `group_id` int(11) NOT NULL,
+                         `name` varchar(99) NOT NULL,
+                         `email` varchar(99) NOT NULL,
+                         `password` varchar(1000) NOT NULL,
+                         `reset_token` varchar(1000) NOT NULL,
+                         `created` datetime NOT NULL,
+                         `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `groups`
+--
+ALTER TABLE `groups`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `groups`
+--
+ALTER TABLE `groups`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
