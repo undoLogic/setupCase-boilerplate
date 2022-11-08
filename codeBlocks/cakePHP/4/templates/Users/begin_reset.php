@@ -8,11 +8,9 @@
 
                 <div class="col-lg-12">
                     <?= $this->Form->control('email', ['class' => 'form-control', 'placeholder' => 'Email']); ?>
-                </div>
-
-                <div class="col-lg-12 text-left m-t-2">
                     <?= $this->Form->submit('Begin Reset Process', ['class' => 'btn btn-primary']); ?>
                 </div>
+
             </div>
         </div>
     </div>

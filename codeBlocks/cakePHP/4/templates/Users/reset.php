@@ -7,9 +7,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <?= $this->Form->control('new_password', ['class' => 'form-control', 'type' => 'password', 'placeholder' => 'Password']); ?>
-                </div>
 
-                <div class="col-lg-12 text-left m-t-2">
+                    <br/>
                     <?= $this->Form->submit('Reset Password', ['class' => 'btn btn-primary']); ?>
                 </div>
             </div>

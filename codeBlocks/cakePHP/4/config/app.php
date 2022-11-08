@@ -253,6 +253,14 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        'localTesting' => [
+            'host' => 'HOST-GOES-HERE',
+            'username' => 'EMAIL-USERNAME-GOES-HERE',
+            'password' => 'EMAIL-PASSWORD-GOES-HERE',
+            'port' => 587,
+            'className' => 'Smtp',
+            //'tls' => true
+        ]
     ],
 
     /*
