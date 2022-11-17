@@ -92,3 +92,15 @@ This is the dockerfile for php 7.2
 
 web74
 This is the dockerfile for php 7.4
+
+
+## Troubleshooting
+
+Docker cannot start: listen tcp4 0.0.0.0:80: bind: address already in use
+- This means apache is probably running
+```shell
+docker-compose down # first ensure we shutdown our docker
+sudo lsof -i -P -n | grep <port number>
+# if you see apache
+killall apache2
+```
