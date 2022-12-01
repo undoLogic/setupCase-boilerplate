@@ -69,12 +69,14 @@ class AppController extends Controller
 
     function setupCase()
     {
-
         //RBAC/Access middleware decides if they are allowed in - here we redirect if needed
         $access_granted = $this->request->getAttribute('access_granted');
         if (!$access_granted) {
             $this->Flash->error($this->request->getAttribute('access_msg'));
             $this->redirect($this->referer());
+        } else {
+            //We handle all RBAC from our RBAC middleware - disable the CakePHP authentication for all pages
+            $this->Authentication->addUnauthenticatedActions([$this->request->getAttribute('params')['action']]);
         }
 
         //only force these sites to be ssl
@@ -85,9 +87,6 @@ class AppController extends Controller
 //        if ($setupCase->isLIVE($_SERVER['HTTP_HOST'], $sslSites)) {
 //            $setupCase->forceSSL($this);
 //        }
-
-        //We handle all RBAC from our RBAC middleware - disable the CakePHP authentication for all pages
-        $this->Authentication->addUnauthenticatedActions([$this->request->getAttribute('params')['action']]);
 
         $this->set('webroot', Router::url('/'));
     }
