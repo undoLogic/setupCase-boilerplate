@@ -97,6 +97,11 @@ class ObjectStoragesTable extends Table
 
             $file = $this->getObject($key_name);
 
+            if ($file['STATUS'] == 404) {
+                //nothign found
+                return $file;
+            }
+
             $mimeParts = explode('/', $file['mime']);
 
             //pr ($mimeParts);exit;
@@ -181,22 +186,23 @@ class ObjectStoragesTable extends Table
             'conditions' => $conditions
                 ])->first();
 
-        $binaryData = stream_get_contents($found->data);
-        $base64Data = base64_encode($binaryData);
-
-        $array = $found->toArray();
-
-       // pr ($base64Data);
-       // pr ($found);exit;
         if (!empty($found)) {
-            $return['status'] = 200;
+
+            $binaryData = stream_get_contents($found->data);
+            $base64Data = base64_encode($binaryData);
+
+            $array = $found->toArray();
+
+            $return['STATUS'] = 200;
             $return['status_msg'] = "Found #" . $array['key_name'];
             $return['data'] = $base64Data;
             $return['mime'] = $array['mime'];
-            $return['filename'] = $array['filename'];
+            //$return['filename'] = $array['filename']; //@todo do we need this
 
         } else {
-            $return['status'] = 404;
+
+
+            $return['STATUS'] = 404;
             $return['status_msg'] = "Nothing found in the database for the " . $key_name;
         }
 
