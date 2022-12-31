@@ -140,12 +140,10 @@ cd launch
 ### GITHUB_HOST - Configure multiple projects on the same server
 
 Github does NOT allow (for security) to add mutliple SSH-KEYS to the same server. In order to setup multiple projects on the same server you need to create separate github hostnames to reference each project.
-- First create the new private/public file which will be used for this github project and rename it to the project name
+- First create the new private/public file which will be used for this github project and we are specifying the "-f ..." so we won't overright our original key pairs
 ```
 cd ~/.ssh
-ssh-keygen -t ed25519 -C "you@email.com"
-mv id_ed25519 project1.prv
-mv id_ed25519.pub project1.pub
+ssh-keygen -t ed25519 -C "you@email.com" -f id_ed25519_projectName1
 ```
 
 - Now create or edit your ssh config file
@@ -159,10 +157,10 @@ mv id_ed25519.pub project1.pub
 ```
 Host project1.github.com
         Hostname github.com
-        IdentityFile ~/.ssh/project1.prv
+        IdentityFile ~/.ssh/id_ed25519_projectName1
 Host project2.github.com
         Hostname github.com
-        IdentityFile ~/.ssh/project2.prv
+        IdentityFile ~/.ssh/id_ed25519_projectName2
 ```
 
 NOTE: You do NOT need to manually clone, but just so you understand how this works, and if you wanted to manually clone
