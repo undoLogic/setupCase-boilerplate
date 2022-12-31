@@ -144,6 +144,7 @@ Github does NOT allow (for security) to add mutliple SSH-KEYS to the same server
 ```
 cd ~/.ssh
 ssh-keygen -t ed25519 -C "you@email.com" -f id_ed25519_projectName1
+chmod 600 id_ed25519_projectName1*
 ```
 
 - Now create or edit your ssh config file
