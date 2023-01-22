@@ -17,7 +17,7 @@ GITHUB_USER_SLASH_PROJECT=$(grep '^ *"GITHUB_USER_SLASH_PROJECT":' settings.json
 SRC_FILES_RELATIVE_PATH=$(grep '^ *"SRC_FILES_RELATIVE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING_URL=$(grep '^ *"TESTING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING_ABSOLUTE_PATH=$(grep '^ *"TESTING_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-GITHUB_HOST=$(grep '^ *"GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+TESTING_GITHUB_HOST=$(grep '^ *"TESTING_GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 LIVE_URL=$(grep '^ *"TESTING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 BROWSER_LOCAL_PATH_WITH_PROGRAM=$(grep '^ *"BROWSER_LOCAL_PATH_WITH_PROGRAM":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 #
@@ -30,20 +30,25 @@ else
   GITHUB_CURRENT_BRANCH="$GITHUB_CURRENT_BRANCH"
 fi
 
-# echo $SSH_USER@$SSH_HOST "cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH && svn export --force --no-auth-cache --username $GITHUB_USERNAME --password $GITHUB_PASSWORD https://@github.com/$GITHUB_USER_SLASH_PROJECT/$GITHUB_CURRENT_BRANCH $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH" && echo ""
-echo "ssh" $SSH_USER@$SSH_HOST "cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH && git clone git@$GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH" && echo ""
+echo "ssh" \
+$SSH_USER@$SSH_HOST "cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+&& git clone git@$TESTING_GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
+&& rsync -av $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ." && echo ""
 
 echo "TESTING URL:" $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/
 
-echo " - - - "
-
+echo " "
 read -p "Press enter to update TESTING server"
 
-#ssh $SSH_USER@$SSH_HOST "cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH && svn export --force --no-auth-cache --username $GITHUB_USERNAME --password $GITHUB_PASSWORD https://@github.com/$GITHUB_USER_SLASH_PROJECT/$GITHUB_CURRENT_BRANCH $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH" && echo ""
-ssh $SSH_USER@$SSH_HOST "cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH && git clone git@$GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH" && echo ""
+# Don't make changes to this one, simply modify above and then copy and paste to here again and make ssh a command instead of a string
+ssh \
+$SSH_USER@$SSH_HOST "cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+&& git clone git@$TESTING_GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
+&& rsync -av $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ." && echo ""
 
 #open firefox new tab with link
-#figure out how to pass spaces from the settings page to here as the space is ending the variable
-"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/
+# figure out how to pass spaces from the settings page to here as the space is ending the variable
+#"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/
+"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $TESTING_URL/
 
 read -p "Uploaded to TESTING - Press enter to continue"
