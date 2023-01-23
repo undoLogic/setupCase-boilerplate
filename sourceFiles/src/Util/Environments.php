@@ -7,12 +7,14 @@ use Cake\Datasource\FactoryLocator;
 
 class Environments
 {
+    /*
+     * Used to ensure we don't send emails (when connected to app controller - send...) from the software unless we are LIVE
+     */
     public static function isLive(){
         $liveDomains = [
-            'boilerplate.undoweb.com'
+            'live.undoweb.com'
         ];
         $currentDomain = $_SERVER['HTTP_HOST'];
-
         if (in_array($currentDomain, $liveDomains)) {
             return true;
         } else {
@@ -20,7 +22,6 @@ class Environments
         }
     }
     public static function getActive() {
-
         //dd($_SERVER);
         if (isset($_SERVER['SERVER_NAME'])) {
             $serverEnv = null;
@@ -29,11 +30,10 @@ class Environments
                     return 'LOCAL';
                     break;
                 case 'boilerplate.undoweb.com':
-                    return 'UNDOWEB';
+                    return 'TESTING';
                     break;
             }
         } else {
-
             //handle command line stuff here, find a way to detect
             if (isset($_SERVER['HOME'])) {
                 if (isset($_SERVER['LOGNAME'])) {
@@ -44,9 +44,6 @@ class Environments
             }
             return 'LIVE'; //default command line
         }
-
         //dd($_SERVER);
-
     }
-
 }

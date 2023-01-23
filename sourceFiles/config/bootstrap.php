@@ -87,8 +87,13 @@ try {
  * Load an environment local configuration file to provide overrides to your configuration.
  * Notice: For security reasons app_local.php **should not** be included in your git repo.
  */
-if (file_exists(CONFIG . 'app_local.php')) {
+$activeEnv = \App\Util\Environments::getActive();
+if ($activeEnv == 'TESTING') {
+    Configure::load('app_testing', 'default');
+} elseif ($activeEnv == 'LOCAL') {
     Configure::load('app_local', 'default');
+}  else {
+    dd('Environment is not configured');
 }
 
 /*

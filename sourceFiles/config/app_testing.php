@@ -6,6 +6,7 @@
  * into source code version control.
  */
 return [
+
     /*
      * Debug Level:
      *
@@ -36,7 +37,7 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'url' => "mysql://root:undologic@db/LIVE_database",
+            'url' => "mysql://boilerplate:undologic@localhost/undoweb_testing_boilerplate",
         ],
     ],
 
