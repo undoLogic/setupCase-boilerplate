@@ -193,11 +193,10 @@
     <tr>
         <th>
             Drag and Drop Upload
-            <br/>
-            (COMING SOON...)
+
         </th>
         <td>
-            Drag and drop files on the screen to upload into your database
+            Drag and drop files on the screen to upload efficiently
         </td>
     </tr>
     <tr>

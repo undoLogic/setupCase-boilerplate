@@ -56,6 +56,7 @@ class SetupPagesController extends AppController
         $this->ActivityLogs = FactoryLocator::get('Table')->get('ActivityLogs');
 
         $cols = $this->ActivityLogs->getSchema()->columns();
+        //unset here if you want to limit the view
         $this->set('cols', $cols);
 
         $logs = $this->ActivityLogs->find('all')->order('id DESC')->limit(10);

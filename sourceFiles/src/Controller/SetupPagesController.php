@@ -370,7 +370,10 @@ class SetupPagesController extends AppController
     }
     function activityLogAddToLog() {
 
-        $res = FactoryLocator::get('Table')->get('ActivityLogs')->addLog($this->getUserId(), 'PublicAddToLogPage', 'On test undoweb website');
+        $res = FactoryLocator::get('Table')->get('ActivityLogs')->addLog(
+            $this->getUserId(),
+            'PublicAddToLogPage',
+            'On test undoweb website OR json_encode($this->request->getData())');
         $this->Flash->warning('Added log id: '.$res);
         $this->redirect($this->referer());
 
