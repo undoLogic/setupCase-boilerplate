@@ -197,6 +197,10 @@
         </th>
         <td>
             Drag and drop files on the screen to upload efficiently
+            <br/>
+
+            <?= $this->Html->link('Add-Files', ['prefix' => 'Staff', 'controller' => 'SetupPages', 'action' => 'dragDrop']); ?>
+
         </td>
     </tr>
     <tr>

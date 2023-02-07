@@ -14,15 +14,18 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller\Staff;
 
 //share the appcontroller between all the views
 use App\Controller\AppController;
 
+use App\Util\SetupFiles;
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\Log\Log;
 use Cake\View\Exception\MissingTemplateException;
 
 /**
@@ -36,95 +39,60 @@ class SetupPagesController extends AppController
 {
 
 
-    function home() {
+    function home()
+    {
 
     }
-    function dashboard(){
 
-        $this->writeToLog('debug' ,'Admin: dashboard', true);
+    function dashboard()
+    {
+
+        $this->writeToLog('debug', 'Admin: dashboard', true);
 
         // pr('in admin pages dashboard');
 
-       // pr ( $this->getLoggedInUser() );
+        // pr ( $this->getLoggedInUser() );
 
         //pr ( $this->request->getAttributes());
     }
 
-    function ajaxDragDropUploader() {
+    function dragDrop()
+    {
 
+        Log::debug('testing');
+
+        $this->set('allowedFileTypes', $this->allowedFileTypes);
+
+        $token = $this->request->getAttribute('csrfToken');
+        $this->set('csrf', $token);
+
+    }
+
+    var $allowedFileTypes = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
+
+    function ajaxDragDrop()
+    {
         $res = array();
 
-        $this->writeToLog('debug', 'Ajax Images');
-        $this->writeToLog('debug', json_encode($_FILES), true);
-        $arr_file_types = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg'];
+        Log::debug(json_encode($_FILES));
 
-        $filename = $_FILES['file']['name'];
-        $file = $_FILES['file']['tmp_name'];
-
-        if (isset($_FILES['file'])) {
-
-            $fileType = $_FILES['file']['type'];
-            if (!(in_array($fileType, $arr_file_types))) {
-                $res = array('STATUS' => 400, 'MSG' => 'ERROR: "'.$fileType.'" is not allowed (only images allowed) for file '.$filename);
-            } else {
-
-                $tmp = explode('_', $filename);
-
-                if (isset($tmp[1])) {
-                    //we have 2 parts good
-
-                    //let's strip off the filetype
-                    $tmpp = explode('.', $tmp[1]);
-                    $imageVersion = $tmpp[0];
-
-                    if (in_array($imageVersion, array('A','B','C','D'))) {
-                        //good
-
-                        $codeExists = $this->Product->doesCodeExist($tmp[0]);
-                        if ($codeExists) {
-                            $code = $tmp[0];
-
-                            $storage = ClassRegistry::init('Storage', 'Model');
-
-                            $key_name = 'image_'.$code.'_'.$imageVersion;
-
-                            $didSave = $storage->put($key_name,
-                                file_get_contents($file),
-                                mime_content_type($file),
-                                $filename
-                            );
-
-                            if ($didSave) {
-                                //good we can save
-                                $res = array('STATUS' => 200, 'MSG' => 'Success: '.$filename.' added to product '.$codeExists);
-                            } else {
-                                //good we can save
-                                $res = array('STATUS' => 400, 'MSG' => 'ERROR saving - image is named correctly and product code exists');
-                            }
-
-                        } else {
-                            //bad code does NOT exist
-                            $res = array('STATUS' => 400, 'MSG' => 'ERROR: that CODE does not exist. Ensure the filename is CODE_A.jpg - '.$filename);
-                        }
-                    } else {
-                        //bad filename not setup correctly
-                        $res = array('STATUS' => 400, 'MSG' => 'ERROR: missing the image version - '.$imageVersion.' - Eg CODE_A.jpg - '.$filename);
-                    }
-                } else {
-                    //bad filename not setup correctly
-                    $res = array('STATUS' => 400, 'MSG' => 'ERROR: the filename "'.$filename.'" is not setup correctly Eg CODE_A.jpg');
-                }
-
-                //$this->writeToLog('debug','Uploading: '.$filename, true);
-                //$this->writeToLog('debug','file: '.$_FILES['file']['tmp_name'], true);
-
-            }
-        } else {
+        if (!isset($_FILES['file'])) {
             $res = array('STATUS' => 400, 'MSG' => 'Nothing to upload');
+        } else {
+            $upload = $_FILES['file'];
+            if (!(in_array($upload['type'], $this->allowedFileTypes))) {
+                $res = array('STATUS' => 400, 'MSG' => 'ERROR: "' . $upload['type'] . '" is not allowed for ' . $upload['name']);
+            } else {
+                $setupFiles = new SetupFiles();
+                $fileRes = $setupFiles->put($upload['name'], file_get_contents($upload['tmp_name']), $upload['name']);
+                if ($fileRes['STATUS'] == 200) {
+                    $res = array('STATUS' => 200, 'MSG' => 'File '.$upload['name'].' saved');
+                } else {
+                    $res = array('STATUS' => 500, 'MSG' => 'ERROR file '.$upload['name'].' could not be saved');
+                }
+            }
         }
-
         echo json_encode($res);
-
         die;
     }
 
