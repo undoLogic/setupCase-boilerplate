@@ -6,73 +6,7 @@ use Cake\Datasource\FactoryLocator;
 
 class SetupCase {
 
-    public function getNextThirdThursday($date){
-
-        $thirdThur = $this->getThirdThursday($date);
-
-        if (strtotime($thirdThur) < strtotime($date)) {
-            //it's last month, let's get the next month
-            $nextMonth = date('Y-m-d', strtotime('+1 month', strtotime($date)));
-
-            $thirdThur = $this->getThirdThursday($nextMonth);
-        }
-
-        return $thirdThur;
-    }
-
-    public function getThirdThursday($date){
-
-        //$date = '2022-11-29';
-        // pr($this->thirdThurs($date)); exit;
-        $today = date('l', strtotime($date));
-
-
-        $first = date('Y-m-01', strtotime("$date"));
-        $last = date('Y-m-31', strtotime("$date"));
-
-        $date = $first;
-        $count = 0;
-
-        do {
-
-            if(date('l', strtotime($date)) === 'Thursday'){
-                $count++;
-            }
-            if($count == 3){
-                return $date;
-            }
-
-            $date = date('Y-m-d', strtotime($date. "+1day"));
-
-
-        } while ($date <= $last);
-
-        return false;
-
-    }
-
-    public static function addToLog($message,$json_data, $user_id, $params)
-    {
-
-       FactoryLocator::get('Table')->get('ActivityLogs')->add($message,$json_data, $user_id, $params);
-
-    }// addToLog
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //File Storage
 
 
 

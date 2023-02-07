@@ -37,7 +37,7 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'url' => "mysql://boilerplate:undologic@localhost/undoweb_testing_boilerplate",
+            'url' => "mysql://boilerplate:undologic@localhost/undoweb_boilerplate_testing",
         ],
     ],
 

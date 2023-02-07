@@ -90,7 +90,8 @@ class SetupPagesController extends AppController
 
     function home()
     {
-        $this->set('objects', $this->objectStorages->getObjects());
+
+        //$this->set('objects', $this->objectStorages->getObjects());
     }
 
     function moved() {
