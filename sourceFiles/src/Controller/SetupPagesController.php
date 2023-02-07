@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Util\SetupFiles;
 use Cake\Controller\Controller;
 
 
@@ -33,6 +34,7 @@ use Cake\View\Exception\MissingTemplateException;
 use Cake\Datasource\ConnectionManager;
 
 use Cake\ORM\TableRegistry;
+use Laminas\Diactoros\StreamFactory;
 
 
 /**
@@ -90,8 +92,10 @@ class SetupPagesController extends AppController
 
     function home()
     {
-
-        //$this->set('objects', $this->objectStorages->getObjects());
+        $setupFiles = new SetupFiles();
+        $allFiles = $setupFiles->getAll();
+        //dd($allFiles);
+        $this->set('allFiles', $allFiles);
     }
 
     function moved() {
@@ -280,56 +284,77 @@ class SetupPagesController extends AppController
         exit;
     }
 
-    function objAdd()
+    function fileAdd()
     {
+
         if ($this->request->is('post')) {
+            $submittedData = $this->request->getData();
+
+            // Here is all the info about the uploaded file
             $attachment = $this->request->getData('fileToUpload');
             $filename = $attachment->getClientFilename();
             $typeOfUpload = $attachment->getClientMediaType();
             $size = $attachment->getSize();
             $uploadedFile = $attachment->getStream()->getMetadata('uri');
             $error = $attachment->getError();
+            // end of info about uploaded file
 
-            $mime = mime_content_type($uploadedFile);
+            $setupFiles = new SetupFiles();
+            $res = $setupFiles->put($submittedData['key_name'], file_get_contents($uploadedFile), $filename);
 
-            $key_name = 'key_name_' .$filename;
-            $res = $this->objectStorages->putObject($key_name, file_get_contents($uploadedFile), $mime, $filename);
-            if ($res['status'] == 200) {
-                $this->Flash->success('File added to object storage');
+            if ($res['STATUS'] == 200) {
+                $this->Flash->success('File added');
             } else {
-                $this->Flash->error('Problem adding to object storage');
+                $this->Flash->error('Problem adding');
             }
         }
         $this->redirect($this->referer());
     }
 
-    function objDownload($keyName)
+    public function fileView(string $key_name): Response
     {
-        $res = $this->objectStorages->getFileFromCache($keyName);
-        $downloadName = 'downloadname.' . $res['extension'];
-        if ($res['STATUS'] == 200) {
-            header('Content-Type: ' . $res['mime'] . '; charset=utf-8');
-            header('Content-Disposition: attachment; filename=' . $downloadName);
-            echo file_get_contents($res['path']);
-            exit;
+
+        $setupFiles = new SetupFiles();
+        $file = $setupFiles->get($key_name);
+
+        if ($file['STATUS'] == 200) {
+            $streamFactory = new StreamFactory();
+            return $this->response
+                ->withType($file['extension'])
+                ->withBody($streamFactory->createStreamFromFile($file['file']));
         } else {
-            die('found found');
+            //show a placeholder image
+//            return $this->response
+//                ->withType($file['extension'])
+//                ->withBody($streamFactory->createStreamFromFile($file['file']));
         }
+
+
     }
 
-    function objRemoveCache($keyName)
+    function fileDownload($key_name)
     {
-        if ($this->objectStorages->removeCache($keyName)) {
-            $this->Flash->success('Deleted');
-        }
+        $setupFiles = new SetupFiles();
+        $file = $setupFiles->get($key_name);
+
+        $streamFactory = new StreamFactory();
+        return $this->response
+            //->withType('image/jpeg')
+            //->withType('application/zip')
+            ->withLength($file['size'])
+            ->withType($file['extension'])
+            ->withDownload($file['key_name'].'.'.$file['extension'])
+            ->withBody($streamFactory->createStreamFromFile($file['file']));
+    }
+
+    function fileDelete($key_name)
+    {
+
+        $setupFiles = new SetupFiles();
+        $file = $setupFiles->delete($key_name);
+
         $this->redirect($this->referer());
     }
 
-    function objDelete($keyName)
-    {
-        if ($this->objectStorages->deleteObject($keyName)) {
-            $this->Flash->success('Deleted Object');
-        }
-        $this->redirect($this->referer());
-    }
+
 }

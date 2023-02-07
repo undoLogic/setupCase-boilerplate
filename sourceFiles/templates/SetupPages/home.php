@@ -85,41 +85,35 @@
             Object Storage
         </th>
         <td>
-            <?php echo $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'SetupPages', 'action' => 'objAdd']]); ?>
+            <?php echo $this->Form->create(null, ['type' => 'file', 'url' => ['controller' => 'SetupPages', 'action' => 'fileAdd']]); ?>
 
             <?php echo $this->Form->file('fileToUpload', ['type' => 'button']); ?>
 
+            <?= $this->Form->control('key_name', ['class' => 'form_control']); ?>
             <?= $this->Form->button('Upload'); ?>
 
             <?php echo $this->Form->end(); ?>
 
-            <?php if (!empty($objects)): ?><hr/><?php endif; ?>
+            <?php if (!empty($allFiles)): ?><hr/><?php endif; ?>
 
-            <?php foreach ($objects as $object) :
+            <?php foreach ($allFiles as $object) :
 
                 //pr ($object);
                 ?>
                 <div class="row">
 
                     <div class="col-lg-3">
-                        <img src="data:<?= $object['mime']; ?>;base64, <?= base64_encode(stream_get_contents($object['data'])); ?>" style="height: 100px; height: 100px; padding: 3px; border: 1px solid black; margin: 3px;"/>
+                        <?= $this->Html->image('/SetupPages/fileView/'.$object['key_name']); ?>
                     </div>
 
                     <div class="col-lg-9">
 
                         Filename: <?= $object['filename']; ?> (key_name: <?= $object['key_name']; ?>)
-                        <?= $this->Html->link('Download', ['action' => 'objDownload', $object['key_name']]); ?>
+                        <?= $this->Html->link('Download', ['action' => 'fileDownload', $object['key_name']]); ?>
 
                         <br/>
-                        <?php if ($object['current']): ?>
-                            CURRENT
-                        <?php else: ?>
-                            ARCHIVED
-                        <?php endif; ?>
-                        <br/>
 
-                        <a style="color: #000000; font-weight: bold;" href="<?= $webroot;?>SetupPages/objRemoveCache/<?= $object['key_name']; ?>">Remove-Cache</a>
-                        <a style="color: red; font-weight: bold;" href="<?= $webroot;?>SetupPages/objDelete/<?= $object['key_name']; ?>">X</a>
+                        <a style="color: red; font-weight: bold;" href="<?= $webroot;?>SetupPages/fileDelete/<?= $object['key_name']; ?>">X</a>
 
                     </div>
 

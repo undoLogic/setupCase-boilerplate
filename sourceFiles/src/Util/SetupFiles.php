@@ -7,11 +7,14 @@ use Cake\Datasource\FactoryLocator;
 class SetupFiles {
 
     var $fileCacheLocation = '';
-    function __constructor() {
-        $this->fileCacheLocation = '';
+    function __construct() {
+
+        //Maybe adjust this based on your environments
+        $this->fileCacheLocation = APP.'Files'.DS;
         if (empty($this->fileCacheLocation)) {
             die('missing fileCacheLocation');
         }
+
     }
 
     //File Storage
@@ -30,13 +33,30 @@ class SetupFiles {
 
         $return = array();
         if ($saved) {
-            $return['status'] = 200;
-            $return['status_msg'] = 'Saved';
+            $return['STATUS'] = 200;
+            $return['MSG'] = 'Saved';
         } else {
-            $return['status'] = 500;
-            $return['status_msg'] = 'ERROR';
+            $return['STATUS'] = 500;
+            $return['MSG'] = 'ERROR';
         }
         return $return;
+    }
+
+    function getAll() {
+        $files = scandir($this->fileCacheLocation);
+        $files = array_diff($files, ['.','..']);
+        $list = [];
+        foreach ($files as $file) {
+            if ($file == 'empty') continue;
+            $info = pathinfo($file);
+
+            $info['key_name'] = $info['filename'];
+            unset($info['dirname']);
+
+            $list[ $info['filename'] ] = $info;
+
+        }
+        return $list;
     }
 
     function get($key_name) {
@@ -50,13 +70,15 @@ class SetupFiles {
             //we have one
             $file = $result[0];
             $info = pathinfo($file);
+
             $size = filesize($file);
 
             $res['STATUS'] = 200;
-            $res['filename'] = $file;
+            $res['file'] = $file;
             $res['exists'] = true;
             $res['extension'] = $info['extension'];
             $res['key_name'] = $key_name;
+            $res['size'] = filesize($file);
 
         } else {
             $res['STATUS'] = 404;
