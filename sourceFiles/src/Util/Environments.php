@@ -29,7 +29,7 @@ class Environments
                 case 'localhost':
                     return 'LOCAL';
                     break;
-                case 'boilerplate.undoweb.com':
+                case 'testboilerplate.undoweb.com':
                     return 'TESTING';
                     break;
             }
