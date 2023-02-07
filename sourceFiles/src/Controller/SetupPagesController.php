@@ -22,6 +22,7 @@ use Cake\Controller\Controller;
 
 
 use Cake\Core\Configure;
+use Cake\Datasource\FactoryLocator;
 use Cake\Event\Event;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
@@ -356,5 +357,24 @@ class SetupPagesController extends AppController
         $this->redirect($this->referer());
     }
 
+
+
+    public function getUserId() {
+
+        if (isset($this->request->getAttribute('identity')['id'])) {
+            return $this->request->getAttribute('identity')['id'];
+        } else {
+            return false;
+        }
+
+    }
+    function activityLogAddToLog() {
+
+        $res = FactoryLocator::get('Table')->get('ActivityLogs')->addLog($this->getUserId(), 'PublicAddToLogPage', 'On test undoweb website');
+        $this->Flash->warning('Added log id: '.$res);
+        $this->redirect($this->referer());
+
+
+    }
 
 }

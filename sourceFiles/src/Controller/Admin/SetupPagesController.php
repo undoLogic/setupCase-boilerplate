@@ -20,6 +20,7 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 
 use Cake\Core\Configure;
+use Cake\Datasource\FactoryLocator;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
@@ -48,5 +49,16 @@ class SetupPagesController extends AppController
        // pr ( $this->getLoggedInUser() );
 
         //pr ( $this->request->getAttributes());
+    }
+
+    function activityLogs() {
+
+        $this->ActivityLogs = FactoryLocator::get('Table')->get('ActivityLogs');
+
+        $cols = $this->ActivityLogs->getSchema()->columns();
+        $this->set('cols', $cols);
+
+        $logs = $this->ActivityLogs->find('all')->order('id DESC')->limit(10);
+        $this->set('logs', $logs);
     }
 }

@@ -86,3 +86,63 @@ ALTER TABLE `groups`
 ALTER TABLE `users`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE `activity_logs` (
+                                 `id` int(11) NOT NULL,
+                                 `user_id` int(11) DEFAULT NULL,
+                                 `dealer_id` int(11) DEFAULT NULL,
+                                 `supplier_id` int(11) DEFAULT NULL,
+                                 `store_id` int(11) DEFAULT NULL,
+                                 `page` varchar(20) NOT NULL,
+                                 `notes` varchar(1000) NOT NULL,
+                                 `ip` varchar(20) NOT NULL,
+                                 `created` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;

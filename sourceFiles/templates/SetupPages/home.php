@@ -168,13 +168,26 @@
             As the user scrolls to the bottom of the page, the system will automatically load the next page / set of results. Instead of manually pushing next / previous pages.
         </td>
     </tr>
-    <tr>
+    <tr><!-- digital signage -->
         <th>
             <?php echo $this->Html->link('Digital Signage Template', ['controller' => 'SetupPages', 'action' => 'digitalSignage']); ?>
 
         </th>
         <td>
            Basic template for digital signage. Title, subtitle, text cycling between slides which can be scheduled with a php array
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Activity Monitor
+        </th>
+        <td>
+            Tracks actions of users on predefined actions in a database for long term and ease of viewing
+
+            <br/>
+
+            <?= $this->Html->link('View-ActivityLog', ['prefix' => 'Admin', 'controller' => 'SetupPages', 'action' => 'activity-logs']); ?>
+            <?= $this->Html->link('Test-addToLog', ['controller' => 'SetupPages', 'action' => 'activityLogAddToLog']); ?>
         </td>
     </tr>
     <tr>
@@ -225,10 +238,6 @@
 
 
 </table>
-
-
-
-
 
 <br/>
 <br/>
