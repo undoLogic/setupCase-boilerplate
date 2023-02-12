@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #!/bin/sh
-source share.sh
+source Z_share.sh
 
 COMMAND="$STAGING_USER@$STAGING_URL cd $STAGING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
 && git clone git@$STAGING_GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $STAGING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \

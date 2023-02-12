@@ -1,5 +1,6 @@
 #!/bin/sh
 
+source Z_share.sh
 COMMAND=$STAGING_USER@$STAGING_URL "rsync -av --omit-dir-times --no-perms $STAGING_ABSOLUTE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
 
 echo "ssh $COMMAND"
