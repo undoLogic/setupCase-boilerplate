@@ -1,51 +1,16 @@
-# Setup
-# Requires deploy keys setup on github
-# get the public key from the live server (ssh into the server)
-# First time only: (subsequent times this will already be created - to check ls -la and you will see id_rsa*)
-# ssh-keygen -t ed25519 -C "support@undologic.com"
-# cd ~/.ssh
-# cat id_ed25519.pub
-# copy that public key
-# Github.com -> Settings -> Deploy keys
-# Add Deploy Key
-# Add comment which server (so you remember later)
-# Paste in the key into the box
-# IMPORTANT: You MUST manually connect the first time so the server before you can automate with the launch system
-SSH_HOST=$(grep '^ *"TESTING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-SSH_USER=$(grep '^ *"TESTING_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-GITHUB_USER_SLASH_PROJECT=$(grep '^ *"GITHUB_USER_SLASH_PROJECT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-SRC_FILES_RELATIVE_PATH=$(grep '^ *"SRC_FILES_RELATIVE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-TESTING_URL=$(grep '^ *"TESTING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-TESTING_ABSOLUTE_PATH=$(grep '^ *"TESTING_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-TESTING_GITHUB_HOST=$(grep '^ *"TESTING_GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-LIVE_URL=$(grep '^ *"TESTING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-BROWSER_LOCAL_PATH_WITH_PROGRAM=$(grep '^ *"BROWSER_LOCAL_PATH_WITH_PROGRAM":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-#
-#
-#
-GITHUB_CURRENT_BRANCH=$(git branch --show-current)
-if [ $GITHUB_CURRENT_BRANCH = "master" ]; then
-  GITHUB_CURRENT_BRANCH="master"
-else
-  GITHUB_CURRENT_BRANCH="$GITHUB_CURRENT_BRANCH"
-fi
+#!/bin/sh
+source share.sh
 
-echo "ssh" \
-$SSH_USER@$SSH_HOST "cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+COMMAND="$TESTING_USER@$TESTING_URL cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
 && git clone git@$TESTING_GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
 && rsync -av $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ." && echo ""
 
-echo "TESTING URL:" $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/
+echo $COMMAND
 
 echo " "
 read -p "Press enter to update TESTING server"
 
-# Don't make changes to this one, simply modify above and then copy and paste to here again and make ssh a command instead of a string
-ssh \
-$SSH_USER@$SSH_HOST "cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
-&& git clone git@$TESTING_GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
-&& rsync -av $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ." && echo ""
-
+ssh $COMMAND
 #open firefox new tab with link
 # figure out how to pass spaces from the settings page to here as the space is ending the variable
 #"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/

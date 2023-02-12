@@ -205,6 +205,22 @@
     </tr>
     <tr>
         <th>
+            Google Analytics GA4
+        </th>
+        <td>
+            Google Analytics
+            <br/>
+
+            <?= $this->Html->link('GoogleAnalytics', [
+                'prefix' => false,
+                'controller' => 'SetupPages',
+                'action' => 'googleAnalytics'
+            ]); ?>
+
+        </td>
+    </tr>
+    <tr>
+        <th>
             Export to CSV
             <br/>
             (COMING SOON...)

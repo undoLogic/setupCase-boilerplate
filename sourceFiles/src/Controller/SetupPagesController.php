@@ -380,4 +380,12 @@ class SetupPagesController extends AppController
 
     }
 
+    function googleAnalytics() {
+
+        $this->viewBuilder()->disableAutoLayout();
+
+
+
+    }
+
 }
