@@ -357,6 +357,33 @@ class SetupPagesController extends AppController
         $this->redirect($this->referer());
     }
 
+    //object storage
+    function objAdd()
+    {
+        if ($this->request->is('post')) {
+
+            dd($this->request->getData());
+
+            $attachment = $this->request->getData('fileToUpload');
+            $filename = $attachment->getClientFilename();
+            $typeOfUpload = $attachment->getClientMediaType();
+            $size = $attachment->getSize();
+            $uploadedFile = $attachment->getStream()->getMetadata('uri');
+            $error = $attachment->getError();
+
+            $mime = mime_content_type($uploadedFile);
+
+            $key_name = 'key_name_' .$filename;
+            $res = $this->objectStorages->putObject($key_name, file_get_contents($uploadedFile), $mime, $filename);
+            if ($res['status'] == 200) {
+                $this->Flash->success('File added to object storage');
+            } else {
+                $this->Flash->error('Problem adding to object storage');
+            }
+        }
+        $this->redirect($this->referer());
+    }
+
 
 
     public function getUserId() {
