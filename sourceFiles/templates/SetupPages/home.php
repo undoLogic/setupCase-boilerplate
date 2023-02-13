@@ -235,6 +235,32 @@
     </tr>
     <tr>
         <th>
+            Transaction
+
+        </th>
+        <td>
+
+            <pre>
+
+$errors = false;
+
+$connection = ConnectionManager::get('default');
+$connection->begin();
+
+if ($anyProblems) {
+    $errors = true;
+}
+
+if ($errors) {
+    $connection->rollback();
+} else {
+    $connection->commit();
+}
+            </pre>
+        </td>
+    </tr>
+    <tr>
+        <th>
             <a target="_blank" rel="noopener" href="<?= $webroot;?>Users/addUser">Add User</a>
         </th>
     </tr>
