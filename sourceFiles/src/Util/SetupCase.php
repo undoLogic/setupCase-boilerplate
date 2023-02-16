@@ -195,6 +195,81 @@ class SetupCase {
         $c .= '</div>';
         echo $c;
     }
+
+
+
+
+
+
+
+
+
+
+    static function downloadCsv($rows, $filename, $columnsSort = false) {
+
+        // /download start
+        $f = fopen('php://memory', 'w');
+
+        $columnNames = array();
+        if (!empty($rows)) {
+            //We only need to loop through the first row of our result
+            //in order to collate the column names.
+            $firstRow = $rows[0];
+            //pr($firstRow); exit;
+            if ($columnsSort) {
+                //we have a custom sort
+                foreach ($columnsSort as $eachColumnSort) {
+
+                    //dd($eachColumnSort);
+                    $columnNames[] = $eachColumnSort['label'];
+                }
+            } else {
+                //export the rows as they are
+                foreach ($firstRow as $colName => $val) {
+                    $columnNames[] = $colName;
+                }
+            }
+        }
+
+        fputcsv($f, $columnNames);
+
+        //pr ($rows);exit;
+        foreach ($rows as $rowName => $row) {
+
+            //dd($row);
+            if ($columnsSort) {
+                $sortRow = [];
+                foreach ($columnsSort as $eachColumnSort) {
+                    if (isset($row[ $eachColumnSort['field'] ])) {
+                        $sortRow[$eachColumnSort['field'] ] = $row[ $eachColumnSort['field'] ];
+                    } else {
+                        $sortRow[$eachColumnSort['field'] ] = 'UNKNOWN';
+                    }
+
+                }
+                fputcsv($f, $sortRow);
+            } else {
+                fputcsv($f, $row);
+            }
+        }
+
+        fseek($f, 0);
+
+        header('Content-Encoding: UTF-8');
+        header('Content-type: text/csv; charset=UTF-8');
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+        echo "\xEF\xBB\xBF"; // UTF-8 BOM
+        fpassthru($f);
+        fclose($f);
+
+        exit;
+    }
+
+
+
+
+
 }
 
 

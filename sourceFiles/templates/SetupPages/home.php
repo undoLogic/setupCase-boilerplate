@@ -265,11 +265,14 @@
     <tr>
         <th>
             Export to CSV
-            <br/>
-            (COMING SOON...)
+
         </th>
         <td>
-            Export an array into a CSV file that is downloaded to your computer
+            Export an array into a CSV file that is downloaded to your computer. Simply add to your controller a basic array of your prepared data.
+            It will auto create the CSV and add headers to download to your computer
+
+            <br/>
+            SetupCase::downloadCsv($rows, $filename, $columnsSort = false);
         </td>
     </tr>
     <tr>
@@ -290,6 +293,28 @@
         </th>
         <td>
             Common function to always call the correct JSON headers when you are sending data between the front-end / back-end API
+        </td>
+    </tr>
+    <tr>
+        <th>
+            CSS Hide / show on Desktop / phone
+        </th>
+        <td>
+
+            <pre>
+                @media screen and (max-width: 600px) {
+                    .hiddenDesktop {
+                        display: none;
+                    }
+                }
+
+                @media screen and (min-width: 600px) {
+                    .hiddenPhone {
+                        display: none;
+                    }
+                }
+
+            </pre>
         </td>
     </tr>
     <tr>
