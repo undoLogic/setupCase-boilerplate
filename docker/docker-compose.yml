@@ -26,7 +26,9 @@ services:
       MYSQL_DATABASE: LIVE_database
         #volumes:
         #- ../back-end/:/var/www/html #put the db here
-        #- ../back-end/:/var/www/html #import dir`
+        #- ../back-end/:/var/www/html #import dir
+
+  # Basic setup when using a local machine setup
   phpmyadmin:
     image: "phpmyadmin/phpmyadmin"
     environment:
@@ -35,3 +37,16 @@ services:
       - "8081:80"
     links:
       - db
+
+#  # Connect over SSH using port forwarding
+#  # ssh -L 127.0.0.1:8081:127.0.0.1:8081 root@www.YourServer.com
+#  # Open a browser to localhost:8081
+#  phpmyadmin:
+#    image: "phpmyadmin/phpmyadmin"
+#    ports:
+#      - "127.0.0.1:8081:80"
+#    environment:
+#      - PMA_HOST=
+#      - PMA_PORT=
+#      - PMA_SSL=
+#      - PMA_SSL_CA=/home/www/docker/phpMyAdmin/ca-certificate.crt #place cert in docker/phpMyAdmin directory
