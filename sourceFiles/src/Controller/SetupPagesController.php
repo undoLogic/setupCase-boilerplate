@@ -99,6 +99,10 @@ class SetupPagesController extends AppController
         $this->set('allFiles', $allFiles);
     }
 
+    function readMore() {
+
+        $this->viewBuilder()->disableAutoLayout();
+    }
     function moved() {
 
         $oldPath = $this->request->getUri()->getPath();

@@ -1,3 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+
 <style>
     th {
         white-space: nowrap;
@@ -23,6 +25,97 @@
         <th>
             Description
         </th>
+    </tr>
+    <tr>
+        <th>
+            Frequent
+        </th>
+        <td>
+
+            <?php
+                $blocks = [
+                    ['name' => '$this->Html->link(...', 'block' => "\$this->Html->link('Name', ['controller' => '', 'action' => ''], ['class' => 'btn btn-primary']);"]
+                ]
+            ?>
+
+
+            <?php foreach ($blocks as $key => $block): ?>
+
+                <input type="text" value="Hello World" id="myInput">
+
+                <!-- The button used to copy the text -->
+                <button onclick="myFunction()">Copy text</button>
+
+                <script>
+                    function myFunction() {
+                        // Get the text field
+                        var copyText = document.getElementById("myInput");
+
+                        // Select the text field
+                        copyText.select();
+                        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                        // Copy the text inside the text field
+                        navigator.clipboard.writeText(copyText.value);
+
+                        // Alert the copied text
+                        alert("Copied the text: " + copyText.value);
+                    }
+                </script>
+
+            <input id="block<?= $key; ?>" value="<?= $block['block']; ?>"/>
+
+            <button onclick="copy<?= $key; ?>()">
+                COPY <?= $block['name']; ?>
+            </button>
+
+            <script>
+                function copy<?= $key; ?>() {
+                    // Get the text field
+                    var copyText = document.getElementById("block<?= $key; ?>");
+
+                    // Select the text field
+                    copyText.select();
+                   // copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                    // Copy the text inside the text field
+                    navigator.clipboard.writeText(copyText.value);
+
+                    // Alert the copied text
+                    alert("Copied the text: " + copyText.value);
+                }
+            </script>
+
+            <?php endforeach; ?>
+
+
+            <script>
+                function copyToClipboard(ITEMID) {
+                    var $temp = $("<input>");
+                    $("body").append($temp);
+                    $temp.val(ITEMID).select();
+                    document.execCommand("copy");
+                    $temp.remove();
+                }
+
+                function openLink(ITEMID) {
+                    let LINK = 'https://us.merchantos.com/?name=item.views.item&form_name=view&id='+ITEMID+'&tab=merge';
+
+                    window.open(LINK);
+                    console.log(LINK);
+                }
+
+                function start(LINK) {
+                    copyToClipboard(LINK);
+                    //openLink(ITEMID);
+                    //$('.'+ITEMID).addClass('complete');
+
+                }
+
+
+
+            </script>
+        </td>
     </tr>
     <tr>
         <th>
@@ -343,14 +436,70 @@ if ($errors) {
             </pre>
         </td>
     </tr>
+
+
+
+
+    <tr>
+        <th>
+            Json
+
+        </th>
+        <td>
+
+            <pre>
+
+    function jsonName(){
+
+        $jsonData = file_get_contents('php://input');
+        if (empty($jsonData)) {
+            $jsonData ='{"id":-1}';
+        }
+
+        $user_id = $this->getUserId();
+        $res = $this->Models->function($user_id, $jsonData);
+
+        $this->jsonHeaders( json_encode($res) );
+
+    }
+            </pre>
+        </td>
+    </tr>
     <tr>
         <th>
             <a target="_blank" rel="noopener" href="<?= $webroot;?>Users/addUser">Add User</a>
         </th>
     </tr>
 
+    <tr>
+        <th>
+            Read more with fade
+        </th>
+        <td>
+
+
+            Show partial text with a fade out and link to reveal all
+
+            <?= $this->Html->link('Read more with fade', [ 'action' => 'readMore'], ['class' => 'btn btn-primary']); ?>
+
+
+        </td>
+    </tr>
+
+
+
+
+
+
+
 
 </table>
+
+
+
+Code Blocks
+
+
 
 <br/>
 <br/>
