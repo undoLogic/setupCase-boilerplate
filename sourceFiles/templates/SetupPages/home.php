@@ -63,19 +63,20 @@
                 </div>
             </div>
             <div class="card-body">
-            <pre><code class="language-php">$this->Html->link('English',
+<pre><code class="language-php">$this->Html->link('English',
     ['language' => 'en'],
     ['class' => $this->Lang->getActiveClass('en')
-    ]);</code></pre>
-                <pre><code class="language-php">$this->Html->link('French',
+]);</code></pre>
+<pre><code class="language-php">$this->Html->link('French',
     ['language' => 'fr'],
     ['class' => $this->Lang->getActiveClass('fr')]
-    );</code></pre>
-                <pre><code class="language-php">$this->Html->link('Spanish',
+);</code></pre>
+<pre><code class="language-php">$this->Html->link('Spanish',
     ['language' => 'es'],
     ['class' => $this->Lang->getActiveClass('es')]
-    );</code></pre>
-                <pre><code class="language-php">$this->Html->link('Lang-not-set', array());</code></pre>
+);</code></pre>
+<pre><code class="language-php">$this->Html->link('Lang-not-set', array());</code></pre>
+
             </div>
         </div>
     </div>
@@ -109,25 +110,23 @@
                 </div>
             </div>
             <div class="card-body">
-                <pre><code class="language-php">
+                <pre><code class="language-php">&lt;?php if ($this->Auth->isLoggedIn()): ?>
+LOGGED IN (&lt;?php echo $this->Html->link('Logout', '/logout'); ?>)
+&lt;?php else: ?>
+NOT logged in (&lt;?php echo $this->Html->link('Login', '/login'); ?>)
+&lt;?php endif; ?>
 
-    &lt;?php if ($this->Auth->isLoggedIn()): ?>
-    LOGGED IN (&lt;?php echo $this->Html->link('Logout', '/logout'); ?>)
-    &lt;?php else: ?>
-    NOT logged in (&lt;?php echo $this->Html->link('Login', '/login'); ?>)
-    &lt;?php endif; ?>
+&lt;?php echo $this->Html->link('Reset', array('prefix' => false, 'controller' => 'Users', 'action' => 'beginReset')); ?>
 
-    &lt;?php echo $this->Html->link('Reset', array('prefix' => false, 'controller' => 'Users', 'action' => 'beginReset')); ?>
+&lt;?php echo $this->Html->link('AddUser', array('prefix' => false, 'controller' => 'Users', 'action' => 'add')); ?>
 
-    &lt;?php echo $this->Html->link('AddUser', array('prefix' => false, 'controller' => 'Users', 'action' => 'add')); ?>
+&lt;?php echo $this->Html->link('StaffPrefx', array(
+'prefix' => 'Staff',
+)); ?>
 
-    &lt;?php echo $this->Html->link('StaffPrefx', array(
-    'prefix' => 'Staff',
-    )); ?>
-
-    &lt;?php echo $this->Html->link('AdminPrefix', array(
-    'prefix' => 'Admin',
-    )); ?>
+&lt;?php echo $this->Html->link('AdminPrefix', array(
+'prefix' => 'Admin',
+)); ?>
 
 
                     </code></pre>
@@ -145,11 +144,9 @@
             </div>
         </div>
         <div class="card-body">
-                <pre><code class="language-javascript">
-
-    function postExample() {
-
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "< ? = $csrf; ?>";
+                <pre><code class="language-javascript">function postExample() {
+    <?php if (!isset($$csrf)) $csrf = '$csrf_token'; ?>
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "<?= $csrf; ?>";
 
     console.log('formdata - submit form');
     console.log(this.formData);
@@ -158,7 +155,7 @@
 
     console.log('objData');
     console.log(objData);
-    let URL = "< ? = $webroot; ?>SetupPages/get";
+    let URL = "<?= $webroot; ?>SetupPages/get";
     axios.post(URL, objData).then(function (response) {
     console.log("response");
     console.log(response);
@@ -168,7 +165,7 @@
     console.log('Fail - something went wrong');
     }
     });
-    }
+}
                     </code></pre>
         </div>
     </div>
@@ -184,10 +181,9 @@
             </div>
         </div>
         <div class="card-body">
-                <pre><code class="language-php">
-    function getExample() {
+                <pre><code class="language-php">function getExample() {
     console.log(URL);
-    let URL = "< ? = $webroot; ?>SetupPages/get";
+    let URL = "<?= $webroot; ?>SetupPages/get";
     axios.get(URL).then(function (response) {
     console.log("response");
     console.log(response);
@@ -197,7 +193,7 @@
         console.log('Fail - something went wrong');
     }
     });
-    }
+}
                     </code></pre>
         </div>
     </div>
@@ -213,10 +209,7 @@
             </div>
         </div>
         <div class="card-body">
-                <pre><code class="language-php">
-
-    function jsonName(){
-
+                <pre><code class="language-php">function jsonName(){
     $jsonData = file_get_contents('php://input');
     if (empty($jsonData)) {
     $jsonData ='{"id":-1}';
@@ -226,8 +219,7 @@
     $res = $this->Models->function($user_id, $jsonData);
 
     $this->jsonHeaders( json_encode($res) );
-
-    }
+}
                     </code></pre>
         </div>
     </div>
@@ -291,6 +283,376 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>VUEjs - Conditional classes</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-css">:class="{greyed: shipping.key === 'create'}"
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP 4 datepicker</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">$this->Form->text('date',['type' => 'date']); ?></code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP4 - Table Locator</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">$object = $this->getTableLocator()->get('MODEL')->method();</code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP4 - Factor Locator</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">$object = FactoryLocator::get('Table')->get('MODEL')->method();</code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>VUEjs - Dropdown</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-css">
+
+&#x3C;label&#x3E;Gender &#x3C;small class=&#x22;&#x22;red-font&#x22;&#x22;&#x3E;*&#x3C;/small&#x3E;&#x3C;/label&#x3E;
+&#x3C;select id=&#x22;&#x22;id&#x22;&#x22; v-model=&#x22;&#x22;formData.inputname&#x22;&#x22; name=&#x22;&#x22;formData.inputName&#x22;&#x22; class=&#x22;&#x22;form-control&#x22;&#x22;&#x3E;
+&#x3C;option v-for=&#x22;&#x22;(value, key) in dropdown&#x22;&#x22; :value=&#x22;&#x22;key&#x22;&#x22;&#x3E;{{value}}&#x3C;/option&#x3E;
+&#x3C;/select&#x3E;
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP4 - find LIST</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">$list = $this->MODEL->find('list', ['keyField' => 'id', 'valueField' => ('user_type')])->toArray();</code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP4 - JoinTable in Model</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">$this->belongsToMany('Users',
+    ['joinTable' => 'rebate_dealers_users',
+    'foreignKey' => 'rebate_dealer_id',
+    'targetForeignKey' => 'user_id'
+]);
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP4 - Add created / modified automatically</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">
+                        //add to initialize in model
+                        $this->addBehavior('Timestamp');
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>VUEjs - joinTable</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">&#x3C;li ng-repeat=&#x22;season in dealer.rebate_seasons&#x22; ng-if=&#x22;season._joinData.visible_supplier&#x22;&#x3E;</code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP 4 - Find first</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">$user = $this->ind()->select('id')->where(['email' => $email])->first();
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP 4 - Delete link</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">echo $this->Html->link('Delete', ['prefix' =>'Manager', 'action' => 'delete', $each[ 'id' ]],['confirm' => 'Are You sure you want to delete']);?>
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP 4 - New layout</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">$this->viewBuilder()->setLayout("vue_layout"); // assign layout
+                    </code></pre>
+
+                <pre><code class="language-php">$this->viewBuilder()->disableAutoLayout(); // to disable layout
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>Javascript - hide / add class</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-css">document.getElementById("results").setAttribute("style", "display: none;");
+                    </code></pre>
+
+
+                <pre><code class="language-css">document.getElementById("results").classList = "msg-success";
+                    </code></pre>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP4 - Save data with entity</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-css">$data = json_decode($jsonData, true);
+$dataEntity = $this->newEntity($data);
+                    </code></pre>
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>VUEjs - Foreach</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-css">Object.entries(newThis.jobTitles).forEach(entry => {    const [key, value] = entry;    console.log('key');    console.log(key);    console.log('value');    console.log(value);    });
+
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP4 - Form Create</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-css">$this->Form->create(null, ['url' => ['language' => $this->Lang->get(), 'controller' => 'Users', 'action' => 'submitToUpdatecase']]); ?>
+                    </code></pre>
+
+
+
+                <pre><code class="language-css">public function addUser(){
+$user = $this->Users->newEmptyEntity();
+if ($this->request->is('post')) {
+    $userData = $this->Users->patchEntity($user, $this->request->getData());
+    // Edit: some of the entity properties are manually set at this point, e.g.
+    $userData->group_id = 1;
+    if ($this->Users->save($userData)) {
+        $userData = json_encode($userData->toArray());
+        $this->Flash->success('User Saved');
+    }else{
+        $this->Flash->error('Error not Saved');
+    }
+}// end of  post
+
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 
 
