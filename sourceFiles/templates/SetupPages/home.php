@@ -655,6 +655,92 @@ if ($this->request->is('post')) {
 
 
 
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <a name="pdfRender"></a>
+                <h5>PHP - Render PDF <a href="#pdfRender">#</a></h5>
+                <p>
+                    Allows to render a PDF from a HTML page which contains various data you want your client to print.
+                    IMPORTANT: You MUST add IP verification or token authorization as the concept is insecure
+                </p>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">//located in a prefix to ensure only validated users can initiate
+public function download($id) {
+    $setupCase = new SetupCase; //our setup case library
+    $setupCase->createPdf(Router::url('/', true).'Users/download/'.$id.'?token=123', 'infoPdf.pdf');
+}
+                    </code></pre>
+
+                <pre><code class="language-php">//This is located in our SetupCase library in a util class
+var $dpi = 30;
+var $factor = 1;
+function setSize($width, $height) {
+    $this->width_pixels = $width * (($this->dpi * $this->factor) + 0); //1 in = 96 px / add fine adjustments to the end
+    $this->height_pixels = $height * (($this->dpi * $this->factor) + 0); //1 in = 96 px
+}
+function createPdf($url, $filename) {
+
+    $this->setSize(8.5, 11);
+
+    //dd($url);
+    $cmd = "wkhtmltopdf "
+    . " --dpi ".$this->dpi." --page-width ".$this->width_pixels." --page-height ".$this->height_pixels
+    ." --margin-top 0 --margin-right 0 --margin-bottom 0 --margin-left 0 " . $url . " " . TMP.$filename;
+    if (isset($_GET['debug'])) {
+    dd($cmd); //used to debug and get the link for testing
+    }
+    exec($cmd);
+    header("Content-type:application/pdf");
+    header("Content-Disposition:attachment;filename=\"$filename\"");
+    //Add more headers here
+    readfile(TMP.$filename);
+    exit;
+}
+                    </code></pre>
+
+                <pre><code class="language-php">//this is located in an un-authenticated function call (without a prefix)
+
+public function download($id) {
+
+    //@todo add security here to ensure this view never get's displayed to the public (ip address / token etc)
+    $this->viewBuilder()->setLayout('print'); //make sure you create a print layout
+
+    //get your data you want to display in the view which will be saved as a pdf
+    $info = $this->Users->find('all',[
+    'conditions' => [],
+    'contain' => ['Groups']
+    ])->first()->toArray();
+
+    $this->set(compact('info'));
+
+}
+                    </code></pre>
+
+
+                <pre><code class="language-html">//templates/Users/download.php
+    < h1>< ?= $info['name']; ?></h1>
+                        ......
+
+                    </code></pre>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 
 
 
