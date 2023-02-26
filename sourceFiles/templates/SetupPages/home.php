@@ -41,6 +41,30 @@
     <div class="<?= $classEach; ?>">
         <div class="card">
             <div class="card-header">
+                <h5>Offset Anchor for Fixed Header</h5>
+            </div>
+            <div class="card-body">
+
+                <pre><code class="language-html">&lt;a class="anchor" id="top">&lt;/a>
+
+                    </code></pre>
+
+                <pre><code class="language-css">
+a.anchor {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+}
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
                 <h5>Language Switching</h5>
                 <div class="card-header-right">
 
@@ -670,6 +694,8 @@ if ($this->request->is('post')) {
                 </div>
             </div>
             <div class="card-body">
+
+
                 <pre><code class="language-php">//located in a prefix to ensure only validated users can initiate
 public function download($id) {
     $setupCase = new SetupCase; //our setup case library
@@ -745,6 +771,126 @@ public function download($id) {
 
 
 
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>Cake Initial index/edit table</h5>
+
+                <div class="card-header-right">
+
+                </div>
+            </div>
+            <div class="card-body">
+                <h3>
+                    Controller
+                </h3>
+                <pre><code class="language-php">function index() {
+    $cols = $this->MODEL->getSchema()->columns();
+    $this->set('cols', $cols);
+
+    $rows = $this->MODEL->find('all');
+    $this->set(compact('rows'));
+}//index
+
+function edit($id=false) {
+
+        $cols = $this->MODEL->getSchema()->columns();
+        $this->set('cols', $cols);
+
+        $row = $this->MODEL->newEmptyEntity();
+        $postData = $this->request->getData();
+
+        if (!empty($postData)) {
+            $row = $this->MODEL->patchEntity($row, $postData);
+            if ($this->MODEL->save($row)) {
+                $this->Flash->success('Saved');
+                if (in_array($row['cameFrom'], ['/', ''])) {
+                    $this->redirect(['action' => 'index']);
+                } else {
+                    $this->redirect($row['cameFrom']);
+                }
+            } else {
+                $this->Flash->error('Error saving');
+            }
+        } else {// end of  post
+            if ($id === 'new') {
+                //New - row entity will be used
+            } else {
+                $row = $this->MODEL->get($id);
+            }
+            $row->cameFrom = $this->referer();
+        }
+        $this->set('row', $row);
+    }//edit
+
+function delete($id = NULL) {
+    if (!$id) {
+        $this->Flash->error('Specify ID');
+        $this->redirect(array('prefix'=>'Staff', 'action' => 'index'));
+    }else {
+        $entity = $this->MODEL->get($id);
+        if ($this->MODEL->delete($entity)) {
+            $this->Flash->success('Deleted '.$entity->name);
+        } else {
+            $this->Flash->error('Error cannot delete');
+        }
+        $this->redirect($this->referer());
+    }
+}//delete</code></pre>
+
+                <h3>
+                    View - index.php
+                </h3>
+                <pre><code class="language-php">&lt;table class="table">
+    &lt;thead>
+    &lt;tr>
+        &lt;th>
+            Actions
+        &lt;/th>
+        &lt;?php foreach ($cols as $col): ?>
+            &lt;th>
+                &lt;?= $col; ?>
+            &lt;/th>
+        &lt;?php endforeach; ?>
+    &lt;/tr>
+    &lt;/thead>
+    &lt;tbody>
+    &lt;?php foreach ($rows as $row): ?>
+        &lt;tr>
+            &lt;th>
+                &lt;?= $this->Html->link('Edit', [
+                    'action' => 'edit', $row['id']
+                ], ['class' => 'btn btn-primary']); ?>
+            &lt;/th>
+            &lt;?php foreach ($cols as $col): ?>
+                &lt;th>
+                    &lt;?= $row[$col]; ?>
+                &lt;/th>
+            &lt;?php endforeach; ?>
+        &lt;/tr>
+    &lt;?php endforeach; ?>
+    &lt;/tbody>
+&lt;/table></code></pre>
+
+                <h3>
+                    View - edit.php
+                </h3>
+                <pre><code class="language-php">&lt;?= $this->Form->create($row, array(
+    'novalidate' => true,
+    //'type' => 'file' //uncomment if you want to upload files
+)); ?>
+&lt;?= $this->Form->hidden('id'); ?>
+&lt;?= $this->Form->hidden('cameFrom'); ?>
+
+&lt;?php foreach ($cols as $col): ?>
+    &lt;?= $this->Form->control($col, ['class' => 'form-control']); ?>
+&lt;?php endforeach; ?>
+
+&lt;?= $this->Form->button('Save', ['class' => 'btn btn-primary']); ?>
+&lt;?= $this->Form->end(); ?></code></pre>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -1011,6 +1157,8 @@ public function download($id) {
 
             </td>
         </tr>
+
+
 
 
     </table>
