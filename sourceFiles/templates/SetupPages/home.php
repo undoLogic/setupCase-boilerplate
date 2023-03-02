@@ -33,7 +33,30 @@
                 <h5>HTML Link</h5>
             </div>
             <div class="card-body">
-                <pre><code class="language-php">$this->Html->link('Name', ['controller' => '', 'action' => ''], ['class' => 'btn btn-primary']);</code></pre>
+                <pre><code class="language-php">$this->Html->link('Name', ['prefix' => 'Staff','controller' => '', 'action' => ''], ['class' => 'btn btn-primary', 'confirm' => '']);</code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>CakePHP 4 Contain with conditions</h5>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">$row = $this
+    ->find()
+    ->contain('ASSOCIATED_MODEL',  function(\Cake\ORM\Query $q) {
+        return $q->where(['ASSOCIATED_MODEL.removed' => 0]);
+    })
+    ->where([
+        'MODEL.id' => $id
+    ])
+->first();
+                    </code></pre>
             </div>
         </div>
     </div>
