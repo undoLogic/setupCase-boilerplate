@@ -41,16 +41,52 @@
 
 
 
+
     <div class="<?= $classEach; ?>">
         <div class="card">
             <div class="card-header">
-                <h5>CakePHP 4 Contain with conditions</h5>
+                <h5>PHP USORT</h5>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">
+$default['field'] = 'votes';
+$default['dir'] = 'DESC';
+usort($status, function ($item1, $item2) use ($default) {
+    $field = $default['field'];
+    $dir = $default['dir'];
+    if ($item1[$field] == $item2[$field]) return 0;
+    if ($dir == 'ASC') {
+        return $item1[$field] < $item2[$field] ? -1 : 1;
+    } else {
+        return $item1[$field] > $item2[$field] ? -1 : 1;
+    }
+});
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+
+                <a name="containWithConditions"></a>
+                <h5>CakePHP 4 Contain with conditions <a href="#containWithConditions">#</a></h5>
+
+
             </div>
             <div class="card-body">
                 <pre><code class="language-php">$row = $this
     ->find()
     ->contain('ASSOCIATED_MODEL',  function(\Cake\ORM\Query $q) {
         return $q->where(['ASSOCIATED_MODEL.removed' => 0]);
+    })
+    ->contain('ANOTHER_ASSOCIATED_MODEL',  function(\Cake\ORM\Query $q) {
+        return $q->where(['ANOTHER_ASSOCIATED_MODEL.removed' => 0]);
     })
     ->where([
         'MODEL.id' => $id
