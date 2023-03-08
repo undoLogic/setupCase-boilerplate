@@ -88,6 +88,11 @@ usort($status, function ($item1, $item2) use ($default) {
     ->contain('ANOTHER_ASSOCIATED_MODEL',  function(\Cake\ORM\Query $q) {
         return $q->where(['ANOTHER_ASSOCIATED_MODEL.removed' => 0]);
     })
+    ->contain('ANOTHER_ASSOCIATED_MODEL.DEEPER_ASSOCIATED_MODEL',  function(\Cake\ORM\Query $q) {
+        $q->order('id DESC');
+        $q->limit(1);
+        return $q;
+    })
     ->where([
         'MODEL.id' => $id
     ])
