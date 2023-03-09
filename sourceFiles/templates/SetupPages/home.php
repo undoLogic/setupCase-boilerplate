@@ -259,6 +259,32 @@ NOT logged in (&lt;?php echo $this->Html->link('Login', '/login'); ?>)
     </div>
     </div>
 
+
+
+
+    <div class="<?= $classEach; ?>">
+    <div class="card">
+        <div class="card-header">
+            <h5>AngularJS (deprecated) - HTTP POST</h5>
+
+            <div class="card-header-right">
+
+            </div>
+        </div>
+        <div class="card-body">
+                <pre><code class="language-javascript">
+
+                        var xhttp = new XMLHttpRequest();
+
+                        xhttp.open("POST", URL, true);
+                        xhttp.setRequestHeader('x-csrf-token', '<?= $csrf; ?>');
+                        xhttp.onload = function(event);
+                        ....
+                    </code></pre>
+        </div>
+    </div>
+    </div>
+
     <div class="<?= $classEach; ?>">
     <div class="card">
         <div class="card-header">

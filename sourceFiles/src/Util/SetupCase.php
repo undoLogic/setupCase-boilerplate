@@ -199,6 +199,55 @@ class SetupCase {
 
 
 
+    static function parseCsv($filename) {
+        $csvRows = [];
+        $headers = [];
+        $handle = fopen($filename, "r");
+        for ($i = 0; $row = fgetcsv($handle ); ++$i) {
+            // Do something will $row array
+            if ($i == 0) {
+                //our headers
+                $headers = $row;
+            } else {
+                //add the header into the key
+
+
+                //only add the second row into our csv data
+                $csvRows[ $i ] = array_combine(
+                    $headers,
+                    array_slice($row, 0, count($headers))
+                );
+
+                //dd($csvRows);
+            }
+        }
+        fclose($handle);
+
+        //dd($csvRows);
+        //clean data
+        foreach ($csvRows as $k => $v) {
+            foreach ($v as $kk => $vv) {
+                //remove the hidden characters left by the csv parsing system
+                $kk_new = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $kk);
+
+                $kk_new = str_replace('"', '', $kk_new);
+//                pr ($kk);
+//                pr ($kk_new);
+//                pr ($csvRows);
+//
+//                exit;
+                //if both are the same ignore
+                unset($csvRows[ trim($k) ][ $kk ]);
+                $csvRows[ trim($k) ][ $kk_new ] = trim($vv);
+            }
+        }
+
+        //dd($csvRows);
+        return $csvRows;
+    }
+
+
+
 
 
 
