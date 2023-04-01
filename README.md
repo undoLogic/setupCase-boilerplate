@@ -107,12 +107,19 @@ choco install opera-developer -y
 
 ### Specific Systems
 choco install docker-desktop -y
+
 choco install dropbox -y
+
 choco install tailscale -y
+
 choco install steam -y
+
 choco install nvidia-display-driver -y
+
 choco install microsoft-teams -y
+
 choco install mysql.workbench -y
+
 choco install googlechrome -y
 
 ## 4. Final Manual Tweaks
