@@ -58,3 +58,65 @@ Launch
 - #2 Upload to TESTING (optional) 
 - #3 Upload to STAGING 
 - #4 post LIVE 
+
+
+
+
+
+
+
+
+
+
+# Reformat Computer
+A workstation is your main setup that you do your majority of work. It should be a desktop, but to each their own. 
+Desktop provides the most efficient, non-throttled experience.
+- Your workstation's multi-screen layout should be able to be swapped to your secondary (backup computer eg Laptop) 
+at a moments notice so you can continue to be efficient even while your main system is down for repair / being reformatted etc. in your comfortable setup.
+
+Reformatting should consist of the following
+1. Initial reset process you should be able to do with WITHOUT backing up any files. 
+2. Setting up initial programs: Choco, ethernet etc. 
+3. Run Choco scripts to re-install all your regular programs (This should be automated)
+4. Final manual tweaks. Get this down the a little as possible since this takes the most time
+
+## 1. Initial Reset Process
+Windows: Windows button - search for reset this pc
+
+## 2. Setting up initial programs
+Windows use Choco
+https://chocolatey.org/install
+- Use powershell to install
+
+## 3. Automated installation of your main programs using Choco
+
+### All systems
+choco install powertoys -y
+choco install libreoffice-fresh -y
+choco install phpstorm -y
+choco install firefox-dev --pre -y
+choco install git -y
+choco install openssh --pre -y
+choco install opera-developer -y
+
+### Specific Systems
+choco install docker-desktop -y
+choco install dropbox -y
+choco install tailscale -y
+choco install steam -y
+choco install nvidia-display-driver -y
+choco install microsoft-teams -y
+choco install mysql.workbench -y
+choco install googlechrome -y
+
+## 4. Final Manual Tweaks
+- Set default browser
+- Add Bitwarden to main browser
+- Add Raindrop bookmark manager (much more efficient then syncing your browser bookmarks)
+- Add SSH keys
+
+
+
+
+
+
