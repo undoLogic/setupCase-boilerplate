@@ -92,11 +92,17 @@ https://chocolatey.org/install
 
 ### All systems
 choco install powertoys -y
+
 choco install libreoffice-fresh -y
+
 choco install phpstorm -y
+
 choco install firefox-dev --pre -y
+
 choco install git -y
+
 choco install openssh --pre -y
+
 choco install opera-developer -y
 
 ### Specific Systems
