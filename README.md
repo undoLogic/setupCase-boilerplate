@@ -87,9 +87,9 @@ Windows: Windows button - search for reset this pc
 Windows use Choco
 https://chocolatey.org/install
 - Use powershell to install
+- Install ethernet driver, etc
 
 ## 3. Automated installation of your main programs using Choco
-
 ### All systems
 choco install powertoys -y
 
@@ -104,6 +104,8 @@ choco install git -y
 choco install openssh --pre -y
 
 choco install opera-developer -y
+
+choco install googledrive -y
 
 ### Specific Systems
 choco install docker-desktop -y
