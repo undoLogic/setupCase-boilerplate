@@ -107,6 +107,8 @@ choco install opera-developer -y
 
 choco install googledrive -y
 
+choco install anydesk -y
+
 ### Specific Systems
 choco install docker-desktop -y
 
