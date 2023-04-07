@@ -366,7 +366,7 @@ class SetupPagesController extends AppController
     {
         if ($this->request->is('post')) {
 
-            dd($this->request->getData());
+            //dd($this->request->getData());
 
             $attachment = $this->request->getData('fileToUpload');
             $filename = $attachment->getClientFilename();

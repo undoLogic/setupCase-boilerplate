@@ -69,7 +69,7 @@ Launch
 
 
 # Reformat Computer
-A workstation is your main setup that you do your majority of work. It should be a desktop, but to each their own. 
+A workstation / main setup that you do your majority of work. It should be a desktop, but to each their own. 
 Desktop provides the most efficient, non-throttled experience.
 - Your workstation's multi-screen layout should be able to be swapped to your secondary (backup computer eg Laptop) 
 at a moments notice so you can continue to be efficient even while your main system is down for repair / being reformatted etc. in your comfortable setup.
