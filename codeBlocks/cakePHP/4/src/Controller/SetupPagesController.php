@@ -17,10 +17,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Util\SetupFiles;
 use Cake\Controller\Controller;
 
 
 use Cake\Core\Configure;
+use Cake\Datasource\FactoryLocator;
 use Cake\Event\Event;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
@@ -33,6 +35,7 @@ use Cake\View\Exception\MissingTemplateException;
 use Cake\Datasource\ConnectionManager;
 
 use Cake\ORM\TableRegistry;
+use Laminas\Diactoros\StreamFactory;
 
 
 /**
@@ -90,9 +93,16 @@ class SetupPagesController extends AppController
 
     function home()
     {
-        $this->set('objects', $this->objectStorages->getObjects());
+        $setupFiles = new SetupFiles();
+        $allFiles = $setupFiles->getAll();
+        //dd($allFiles);
+        $this->set('allFiles', $allFiles);
     }
 
+    function readMore() {
+
+        $this->viewBuilder()->disableAutoLayout();
+    }
     function moved() {
 
         $oldPath = $this->request->getUri()->getPath();
@@ -279,9 +289,85 @@ class SetupPagesController extends AppController
         exit;
     }
 
+    function fileAdd()
+    {
+
+        if ($this->request->is('post')) {
+            $submittedData = $this->request->getData();
+
+            // Here is all the info about the uploaded file
+            $attachment = $this->request->getData('fileToUpload');
+            $filename = $attachment->getClientFilename();
+            $typeOfUpload = $attachment->getClientMediaType();
+            $size = $attachment->getSize();
+            $uploadedFile = $attachment->getStream()->getMetadata('uri');
+            $error = $attachment->getError();
+            // end of info about uploaded file
+
+            $setupFiles = new SetupFiles();
+            $res = $setupFiles->put($submittedData['key_name'], file_get_contents($uploadedFile), $filename);
+
+            if ($res['STATUS'] == 200) {
+                $this->Flash->success('File added');
+            } else {
+                $this->Flash->error('Problem adding');
+            }
+        }
+        $this->redirect($this->referer());
+    }
+
+    public function fileView(string $key_name): Response
+    {
+
+        $setupFiles = new SetupFiles();
+        $file = $setupFiles->get($key_name);
+
+        if ($file['STATUS'] == 200) {
+            $streamFactory = new StreamFactory();
+            return $this->response
+                ->withType($file['extension'])
+                ->withBody($streamFactory->createStreamFromFile($file['file']));
+        } else {
+            //show a placeholder image
+//            return $this->response
+//                ->withType($file['extension'])
+//                ->withBody($streamFactory->createStreamFromFile($file['file']));
+        }
+
+
+    }
+
+    function fileDownload($key_name)
+    {
+        $setupFiles = new SetupFiles();
+        $file = $setupFiles->get($key_name);
+
+        $streamFactory = new StreamFactory();
+        return $this->response
+            //->withType('image/jpeg')
+            //->withType('application/zip')
+            ->withLength($file['size'])
+            ->withType($file['extension'])
+            ->withDownload($file['key_name'].'.'.$file['extension'])
+            ->withBody($streamFactory->createStreamFromFile($file['file']));
+    }
+
+    function fileDelete($key_name)
+    {
+
+        $setupFiles = new SetupFiles();
+        $file = $setupFiles->delete($key_name);
+
+        $this->redirect($this->referer());
+    }
+
+    //object storage
     function objAdd()
     {
         if ($this->request->is('post')) {
+
+            dd($this->request->getData());
+
             $attachment = $this->request->getData('fileToUpload');
             $filename = $attachment->getClientFilename();
             $typeOfUpload = $attachment->getClientMediaType();
@@ -302,33 +388,35 @@ class SetupPagesController extends AppController
         $this->redirect($this->referer());
     }
 
-    function objDownload($keyName)
-    {
-        $res = $this->objectStorages->getFileFromCache($keyName);
-        $downloadName = 'downloadname.' . $res['extension'];
-        if ($res['STATUS'] == 200) {
-            header('Content-Type: ' . $res['mime'] . '; charset=utf-8');
-            header('Content-Disposition: attachment; filename=' . $downloadName);
-            echo file_get_contents($res['path']);
-            exit;
+
+
+    public function getUserId() {
+
+        if (isset($this->request->getAttribute('identity')['id'])) {
+            return $this->request->getAttribute('identity')['id'];
         } else {
-            die('found found');
+            return false;
         }
+
+    }
+    function activityLogAddToLog() {
+
+        $res = FactoryLocator::get('Table')->get('ActivityLogs')->addLog(
+            $this->getUserId(),
+            'PublicAddToLogPage',
+            'On test undoweb website OR json_encode($this->request->getData())');
+        $this->Flash->warning('Added log id: '.$res);
+        $this->redirect($this->referer());
+
+
     }
 
-    function objRemoveCache($keyName)
-    {
-        if ($this->objectStorages->removeCache($keyName)) {
-            $this->Flash->success('Deleted');
-        }
-        $this->redirect($this->referer());
+    function googleAnalytics() {
+
+        $this->viewBuilder()->disableAutoLayout();
+
+
+
     }
 
-    function objDelete($keyName)
-    {
-        if ($this->objectStorages->deleteObject($keyName)) {
-            $this->Flash->success('Deleted Object');
-        }
-        $this->redirect($this->referer());
-    }
 }
