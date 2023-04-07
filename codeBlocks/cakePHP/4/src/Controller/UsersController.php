@@ -210,10 +210,7 @@ class UsersController extends AppController
 
     }//login
 
-    public function login()
-    {
-
-//        $pass = '1234';
+    //        $pass = '1234';
 //        $passObj = new DefaultPasswordHasher;
 //        $hash = ($passObj)->hash($pass);
 //        $this->writeToLog('debug', 'pass is: ' . $pass, true);
@@ -221,6 +218,8 @@ class UsersController extends AppController
 //        $isCorrect = $passObj->check($pass, $hash);
 //        $this->writeToLog('debug', 'is correct: '.$isCorrect, true);
 
+    public function login()
+    {
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 
@@ -232,7 +231,6 @@ class UsersController extends AppController
                 'controller' => 'SetupPages',
                 'action' => 'home',
             ]);
-
             return $this->redirect($redirect);
         }
         // display error if user submitted and authentication failed
@@ -240,7 +238,6 @@ class UsersController extends AppController
             $errors = ((array)$result);
             $this->Flash->error('Login error: ' . json_encode($errors));
         }
-
     }//login
 
 // in src/Controller/UsersController.php

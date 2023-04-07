@@ -15,9 +15,6 @@ declare(strict_types=1);
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
 
-
-
-
 namespace App\Controller;
 
 use App\Util\SetupCase;
@@ -98,6 +95,35 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
     }
+
+    public function getGroupId(){
+        $identity = $this->request->getAttribute('identity');
+        if ($identity) {
+            return $identity['group_id'] ?? false;
+        } else {
+            return false;
+        }
+    }
+    public function getUserId() {
+        $identity = $this->request->getAttribute('identity');
+        if ($identity) {
+            return $identity['id'] ?? false;
+        } else {
+            return false;
+        }
+    }
+    public function getType() {
+        $identity = $this->request->getAttribute('identity');
+        if ($identity) {
+            return $identity['type'] ?? false;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
 
     private function session()
     {
