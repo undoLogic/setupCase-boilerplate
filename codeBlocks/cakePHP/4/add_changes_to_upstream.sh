@@ -1,6 +1,9 @@
 #!/bin/bash
 SRC_FILES=../../../sourceFiles
 
+# libraries
+rsync -av $SRC_FILES/src/Util/SetupCase.php src/Util/SetupCase.php
+rsync -av $SRC_FILES/src/Util/SetupFiles.php src/Util/SetupFiles.php
 
 rsync -av $SRC_FILES/config/app.php config/app.php
 rsync -av $SRC_FILES/config/app_local.php config/app_local.php
@@ -18,13 +21,11 @@ rsync -av $SRC_FILES/src/Model/Table/ObjectStoragesTable.php src/Model/Table/Obj
 rsync -av $SRC_FILES/src/Model/Table/UsersTable.php src/Model/Table/UsersTable.php
 rsync -av $SRC_FILES/src/Model/Table/UserTypesTable.php src/Model/Table/UserTypesTable.php
 
-
 # Middleware
 rsync -av $SRC_FILES/src/Middleware/*.php src/Middleware/.
 
 # Application
 rsync -av $SRC_FILES/src/Application.php src/Application.php
-
 
 # Templates
 rsync -av $SRC_FILES/templates/SetupPages/* templates/SetupPages/.
@@ -46,7 +47,6 @@ rsync -av $SRC_FILES/src/View/. src/View/.
 git add *
 
 echo "- - - - - - - - New files have been copied and added to git. NEXT: Commit your git changes THEN switch to main branch and compare codeBlocks/cakePHP/4 folders and manually import that new changes THEN commit to main branch"
-
 
 # echo $SRC_FILES
 echo "rsync -av $SRC_FILES/src/Controller/AppController.php sourceFiles/Controller/AppController.php"
