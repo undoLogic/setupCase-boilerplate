@@ -1,15 +1,20 @@
 # setup on server to make changes
 
-git clone https://github.com/undoLogic/setupCase-boilerplate.git
+git clone https://github.com/undoLogic/setupCase-boilerplate.git .
 
 git fetch origin
+
+# server has different ownership so use this
+git config --global --add safe.directory /home/undoweb/www/testboiler
 
 # see the remote branches (ensure you fetch it first)
 #git branch -a
 git branch -r
 
-# checkout a branch
+# checkout a branch - this did not work
 # git checkout -b origin/2023-04-07-undoWeb
+
+# add without the origin as that was causing an issue
 git checkout -b 2023-04-07-undoWeb
 
 git config pull.rebase false
@@ -25,7 +30,7 @@ composer require "cakephp/authentication:^2.0" -d sourceFiles
 # copy our codeBlocks ontop of CakePHP
 rsync -av codeBlocks/cakePHP/4/. sourceFiles/.
 
-# add new files to git
+# add new files to git - need this for delete as well
 git add --all
 
 #add identity
