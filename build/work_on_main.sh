@@ -40,5 +40,13 @@ git commit -m 'Installed cakePHP and codeblocks'
 # make sure you have setup personal access tokens (ensure organization is allowed)
 # https://github.com/settings/tokens?type=beta
 
+# remember our tokens so we don't have to add it in each time
+git config --global credential.helper cache
+# if you want to clear the token
+# git config --global --unset credential.helper
+
 # push to server
 git push -u origin --all
+
+# your project is now setup in GitHub
+# Next you can checkit out on PHPstorm and then push your changes as you work to your server

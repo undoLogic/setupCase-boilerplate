@@ -13,3 +13,18 @@ composer require "cakephp/authentication:^2.0" -d sourceFiles
 
 # copy our codeBlocks ontop of CakePHP
 rsync -av codeBlocks/cakePHP/4/. sourceFiles/.
+
+# create a new git repo
+# git init -b main
+
+# create the repo in github
+
+# echo "# test123" >> README.md
+git init -b main
+git add . && git commit -m "Creating new project"
+
+# rename branch to main
+# git branch -M main
+
+git remote add origin https://github.com/undoLogic/test123.git
+git push -u origin main
