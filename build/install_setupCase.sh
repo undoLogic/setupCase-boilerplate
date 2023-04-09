@@ -1,8 +1,5 @@
-# Create a new subdomain and cd to that folder using SSH
-
-# Checkout our SetupCase structure
-# This assumes you have already run this command from the website
-# first time you need to setup as follows or if you are checking out github then ignore this
+#!/bin/bash
+# download the setupCase libraries
 svn export --force https://github.com/undoLogic/setupCase-boilerplate/trunk .
 
 # Install CakePHP 4
@@ -11,22 +8,18 @@ composer create-project --prefer-dist cakephp/app:~4.0 sourceFiles
 # Install CakePHP Authentication
 composer require "cakephp/authentication:^2.0" -d sourceFiles
 
-# copy our codeBlocks ontop of CakePHP
+# copy our codeBlocks on top of CakePHP
 rsync -av codeBlocks/cakePHP/4/. sourceFiles/.
 
-# create a new git repo
-# git init -b main
-
-# create the repo in github
-
-# echo "# test123" >> README.md
-git init -b main
+# create a git repo to track our files
+git init -b master
 git add . && git commit -m "Creating new project"
 
-# rename branch to main
-# git branch -M main
-
 #get the domain from the user
+read -p 'Web address from Step 2: ' webAddress
 
-git remote add origin https://github.com/undoLogic/test123.git
-git push -u origin main
+# connect to our server git directory @todo can be connected intially on git init ?
+git remote add origin "$webAddress"
+git push -u origin master
+
+# all our files are now available from the git repo on our server
