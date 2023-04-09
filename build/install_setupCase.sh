@@ -26,5 +26,7 @@ git add . && git commit -m "Creating new project"
 # rename branch to main
 # git branch -M main
 
+#get the domain from the user
+
 git remote add origin https://github.com/undoLogic/test123.git
 git push -u origin main
