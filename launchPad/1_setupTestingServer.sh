@@ -1,9 +1,18 @@
 #!/bin/sh
 source Z_share.sh
 
-COMMAND="$TESTING_USER@$TESTING_URL cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
-&& git clone git@$TESTING_GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
-&& rsync -av $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ." && echo ""
+if [ $TESTING_COPY_SRC_TO_ROOT = true ]
+then
+  # WILL rsync the branch to the root (required for authentication / login)
+  COMMAND="$TESTING_USER@$TESTING_URL cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+  && git clone git@$TESTING_GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
+  && rsync -av $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ." && echo ""
+else
+  # WILL rsync the branch to the root (required for authentication / login)
+  COMMAND="$TESTING_USER@$TESTING_URL cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+  && git clone git@$TESTING_GITHUB_HOST:$GITHUB_USER_SLASH_PROJECT.git --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
+  " && echo ""
+fi
 
 echo $COMMAND
 

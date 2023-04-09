@@ -5,11 +5,13 @@
   "TESTING_USER": "undoweb",
   "TESTING_GITHUB_HOST": "github.com",
   "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
+  "TESTING_COPY_SRC_TO_ROOT": true,
 
   "STAGING_URL": "",
   "STAGING_USER": "",
   "STAGING_GITHUB_HOST": "github.com",
   "STAGING_ABSOLUTE_PATH": "",
+  "STAGING_COPY_SRC_TO_ROOT": true,
 
   "LIVE_URL": "",
   "LIVE_USER": "",
