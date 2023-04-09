@@ -9,6 +9,8 @@ echo "- - - - - - - - - - - - - - - - - - - - - - - - - cloning git repo: $webAd
 # from step 2 clone the git repo
 git clone $webAddress .
 
+read - 'ready to install' read
+
 # download the setupCase libraries
 svn export --force https://github.com/undoLogic/setupCase-boilerplate/trunk .
 
