@@ -5,6 +5,7 @@ TESTING_URL=$(grep '^ *"TESTING_URL":' settings.json | awk '{ print $2 }' | sed 
 # shellcheck disable=SC2034
 TESTING_USER=$(grep '^ *"TESTING_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING_GITHUB_HOST=$(grep '^ *"TESTING_GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+TESTING_GIT_ADDRESS=$(grep '^ *"TESTING_GIT_ADDRESS":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING_ABSOLUTE_PATH=$(grep '^ *"TESTING_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING_COPY_SRC_TO_ROOT=$(grep '^ *"TESTING_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 
@@ -13,6 +14,7 @@ TESTING2_URL=$(grep '^ *"TESTING2_URL":' settings.json | awk '{ print $2 }' | se
 # shellcheck disable=SC2034
 TESTING2_USER=$(grep '^ *"TESTING2_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING2_GITHUB_HOST=$(grep '^ *"TESTING2_GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+TESTING2_GIT_ADDRESS=$(grep '^ *"TESTING2_GIT_ADDRESS":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING2_ABSOLUTE_PATH=$(grep '^ *"TESTING2_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING2_COPY_SRC_TO_ROOT=$(grep '^ *"TESTING2_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 
@@ -20,6 +22,7 @@ TESTING2_COPY_SRC_TO_ROOT=$(grep '^ *"TESTING2_COPY_SRC_TO_ROOT":' settings.json
 STAGING_URL=$(grep '^ *"STAGING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 STAGING_USER=$(grep '^ *"STAGING_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 STAGING_GITHUB_HOST=$(grep '^ *"STAGING_GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+STAGING_GIT_ADDRESS=$(grep '^ *"STAGING_GIT_ADDRESS":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 STAGING_ABSOLUTE_PATH=$(grep '^ *"STAGING_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 STAGING_COPY_SRC_TO_ROOT=$(grep '^ *"STAGING_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 
