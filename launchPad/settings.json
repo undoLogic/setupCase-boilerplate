@@ -1,0 +1,22 @@
+{
+  "ReadME": "Do not use trailing slashes but do use http|https / github current dir will be added to testing absolute path / GITHUB_CURRENT_BRANCH is either trunk OR branches/nameOfBranch",
+
+  "TESTING_URL": "test.undoweb.com",
+  "TESTING_USER": "undoweb",
+  "TESTING_GITHUB_HOST": "github.com",
+  "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
+
+  "STAGING_URL": "",
+  "STAGING_USER": "",
+  "STAGING_GITHUB_HOST": "github.com",
+  "STAGING_ABSOLUTE_PATH": "",
+
+  "LIVE_URL": "",
+  "LIVE_USER": "",
+  "LIVE_GITHUB_HOST": "github.com",
+  "LIVE_ABSOLUTE_PATH": "",
+
+  "GITHUB_USER_SLASH_PROJECT": "undologic/setupCase-boilerplate",
+  "SRC_FILES_RELATIVE_PATH": "sourceFiles",
+  "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe"
+}
