@@ -4,7 +4,7 @@ echo "- - - - - - - - - - - - - - - - - - - - - - - - - Installing SetupCase..."
 #get the domain from the user
 read -p 'Git "Web address" from Step 2: ' webAddress
 
-echo "- - - - - - - - - - - - - - - - - - - - - - - - - cloning git repo: $webAddress..."
+echo "- - - - - - - - - - - - - - - - - - - - - - - - - cloning git repo: $webAddress"
 
 # from step 2 clone the git repo
 git clone $webAddress .
