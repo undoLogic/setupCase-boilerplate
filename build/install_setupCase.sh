@@ -27,6 +27,9 @@ composer require "cakephp/authentication:^2.0" -d sourceFiles
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - integrating SetupCase codeblocks"
 rsync -av codeBlocks/cakePHP/4/. sourceFiles/.
 
+# remove git ignore in the cake directory since we have our own git ignore in our boilerplate files
+
+
 # deprecated - create a git repo to track our files
 # git init -b master
 
