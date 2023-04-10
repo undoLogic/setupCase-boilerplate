@@ -7,7 +7,9 @@ read -p 'Git "Web address" from Step 2: ' webAddress
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - cloning git repo: $webAddress"
 
 # from step 2 clone the git repo
-git clone $webAddress .
+git clone $webAddress tmp
+rsync -av tmp/. .
+rm -rf tmp
 
 read -p 'ready to install' read
 
