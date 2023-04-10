@@ -28,7 +28,7 @@ echo "- - - - - - - - - - - - - - - - - - - - - - - - - integrating SetupCase co
 rsync -av codeBlocks/cakePHP/4/. sourceFiles/.
 
 # remove git ignore in the cake directory since we have our own git ignore in our boilerplate files
-
+rm -rf sourceFiles/.git*
 
 # deprecated - create a git repo to track our files
 # git init -b master
@@ -36,9 +36,6 @@ rsync -av codeBlocks/cakePHP/4/. sourceFiles/.
 read -p 'Add source files to git repo' read
 
 git add . && git commit -m "Creating new project"
-
-# deprecated - connect to our server git directory @todo can be connected intially on git init ?
-# git remote add origin "$webAddress"
 
 git push -u origin master
 
