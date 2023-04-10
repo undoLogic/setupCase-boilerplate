@@ -28,6 +28,8 @@ rsync -av codeBlocks/cakePHP/4/. sourceFiles/.
 # deprecated - create a git repo to track our files
 # git init -b master
 
+read -p 'Add source files to git repo' read
+
 git add . && git commit -m "Creating new project"
 
 # deprecated - connect to our server git directory @todo can be connected intially on git init ?
