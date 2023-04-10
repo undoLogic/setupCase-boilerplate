@@ -3,15 +3,15 @@
 
   "TESTING_URL": "test.undoweb.com",
   "TESTING_USER": "undoweb",
-  "TESTING_GITHUB_HOST": "github.com",
+  "TESTING_GIT_ADDRESS": "github.com",
   "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
-  "TESTING_COPY_SRC_TO_ROOT": true,
+  "TESTING_COPY_SRC_TO_ROOT": false,
 
   "STAGING_URL": "",
   "STAGING_USER": "",
-  "STAGING_GITHUB_HOST": "github.com",
+  "STAGING_GIT_ADDRESS": "github.com",
   "STAGING_ABSOLUTE_PATH": "",
-  "STAGING_COPY_SRC_TO_ROOT": true,
+  "STAGING_COPY_SRC_TO_ROOT": false,
 
   "LIVE_URL": "",
   "LIVE_USER": "",
