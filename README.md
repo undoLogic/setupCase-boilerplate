@@ -1,60 +1,69 @@
 # setupCase-boilerPlate Version 4
-setupCase.com project base - Manage and launch your project with Docker and CakePHP
+setupCase.com solution - Build and manage custom software and business websites
+with our block programming on our Platform-as-a-service and minimize your local computer 
+dependancies.
 
-## Quick Start Instructions
+## Quick Start
 
-Here is a basic test / quick start guide which shows you how the overall technology stack works.
-When complete you will have:
-- prepared a new project with the latest CakePHP v4 and docker using powershell / terminal
-- integrated it with our SetupCase CodeBlocks
-- integrated a free finalized layout into cakePHP V4
-- customized the visuals and added new pages
-- Verified and modified the responsive design for different mobile devices
+1. Initial Setup / Preparation
+2. Build a new CakePHP 4 project with our Platform-as-a-service
+3. Install software on your local computer with Chocolatey.org
+4. Checkout your new sourceFiles to your local computer
+5. Configure your IDE to automatically push changes to your server
+6. Testing and watch updates on the test subdomain
+7. Integrate a professional visual layout to your project
+8. Program with our CodeBlocks
+9. Launch changes
+10. Optional: Migrate to a GitHub Account
+11. Optional: Convert to a dockerized container and launch your project on a popular VPS server
 
-###Requirements to run:
-- Windows 10 with virtualization activated OR MacOS
-- GIT installed (Easy way to install: https://community.chocolatey.org/packages/git OR https://brew.sh/)
-- Docker installed (https://www.docker.com/) & Docker-compose
-- Powershell / Terminal
+### Step 1: Initial Setup / Preparation
+- Enable SSH (Control panel -> SSH Access -> SSH access is disabled -> Click Enable)
+- Activate Wget/Curl (Control panel -> SSH Access -> Network tools -> Enable)
+- Create sub-domains (Control panel -> Sub Domains -> Create 'test' & 'repos')
+- Activate Git Repo (Control panel -> Git -> fill in form)
+- Domain: choose your main domain
+- Sub-domain choose 'repos'
+- Leave 'web access path' blank'
+- Name: use your project name
+- Desc: A short desc about your project
+- NOTE: Copy down the Web Address, username and password after the Git repo is created for step 4
 
-Detailed steps are on our website: https://www.setupcase.com/eng/Pages/home#install
+### Step 2: Build a new CakePHP 4 project with our Platform-as-a-service
+- Use powershell / terminal to access the ssh server
+```angular2html
+ssh user@domain.com
+```
+- Fill-in the password that was sent with your welcome package
+- Navigate to the 'test' sub-domain (eg test.domain.com)
+```angular2html
+cd ~/www/test
+wget https://raw.githubusercontent.com/undoLogic/setupCase-boilerplate/main/build/install_setupCase.sh
+chmod +x install_setupCase.sh
+./install_setupCase.sh
+# Accept the permissions with Y
+```
 
-Which explain how to: 
+### Step 3: Install Software with Chocolatey.org 
+- Open PowerShell as admin and paste in the install script from  https://chocolatey.org/install
+- Run the desired script to install software on your computer
+```angular2html
+# Install with PowerShell
+choco install powertoys -y
+choco install libreoffice-fresh -y
+choco install phpstorm -y
+choco install firefox-dev --pre -y
+choco install git -y
+choco install openssh --pre -y
+choco install opera-developer -y
 
-Install
-- #1 Download SetupCase 
-- #2 Startup Docker 
-- #3 Verify Docker Running
-- #4 Log INTO our Docker Container 
-- #5 Install Composer 
-- #6 Install CakePHP
-- #7 Verified CakePHP is running
-- #8 Integrate SetupCase into CakePHP 
-- #9 Test screen
+# Optional 
+choco install dropbox -y
+choco install tailscale -y
+choco install steam -y
+choco install nvidia-display-driver -y
+choco install microsoft-teams -y
+```
 
-Visual Layout Click Through 
-- #1 Download Layout Source Files
-- #2 Add Layout Source Files to modules directory
-- #3 View in browser
-- #4 Integrate Layout into cakePHP 
-- #5 Create baseLayout variable to connect layout without moving any assets from modules
-- Create 'added-styles-A.css' which will override all default styles with branding
-- Ensure a class exists around each section so it is easy to target specific sections with the css styles
-- Create Real titles and lorum ipsum text
-- Create single items and duplicate them with foreach (range(1,3)) as it is best to have one item to modify and have the client approve
-- Troubleshooting: 
-  - If you have issues copy-and-pasting from the inspect element, copy from the raw html file (some javascript will modify the inspect element tags)
-- #6 Separate Layout content from each page content 
-- #7 Create each page 
-
-
-
-Programming
-- #1 CodeBlocks to program
-- #2 Refactor, Testing & Verification
-
-Launch
-- #1 Configure LaunchPad 
-- #2 Upload to TESTING (optional) 
-- #3 Upload to STAGING 
-- #4 post LIVE 
+... Partially complete
+-> see details here: https://www.setupcase.com/en/Pages/home#install
