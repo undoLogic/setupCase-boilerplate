@@ -11,10 +11,7 @@
 ### composer is downloaded with command line script
 /docker/control/composer.phar
 
-# IDE and editor specific files #
-#################################
-/nbproject
-.idea
+# no longer ignoring the phpstorm files
 
 # OS generated files #
 ######################
