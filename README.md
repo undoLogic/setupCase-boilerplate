@@ -65,5 +65,28 @@ choco install nvidia-display-driver -y
 choco install microsoft-teams -y
 ```
 
+
+## Programming
+
+Add all your database credentials to the PHP.ini file on your server
+- This will increase the security of your app and prevent credentials from being stolen from your source files
+
+NOTE: Ensure you remove the php.ini file from your sourcefiles as that will override the parent directory and prevent your source files from getting the credetnaisls
+
+add the following to your global PHP.ini file
+```angular2html
+PROJECTNAME.Datasources.default.url = mysql://USER:PASS@HOST/DBNAME
+```
+
+Then in your source files (app.php - or specific file app_name.php)
+
+```angular2html
+    'Datasources' => [
+        'default' => [
+            'url' => get_cfg_var('PROJECTNAME.Datasources.default.url'),
+        ],
+....
+```
+
 ... Partially complete
 -> see details here: https://www.setupcase.com/en/Pages/home#install
