@@ -61,6 +61,36 @@ class SetupCase {
 
 
 
+    var $liveDomains = [
+        //domain => //NAME
+    ];
+
+    //environments
+    public function env_isLive() {
+        $currentDomain = $_SERVER['HTTP_HOST'];
+
+        if (isset($this->liveDomains[ $currentDomain ])) {
+            if ($this->liveDomains[ $currentDomain ] == 'LIVE') {
+                return true;
+            }
+        }
+        return false;
+    }
+    public function env_getActive() {
+        // allows to define rules how to determine where your software is located
+        // you can change this file as you wish
+
+        $currentDomain = $_SERVER['HTTP_HOST'];
+
+        if (isset($this->liveDomains[ $currentDomain ])) {
+            return $this->liveDomains[ $currentDomain ];
+        } else {
+            dd('ERROR: unknown location');
+        }
+
+    }
+
+
 
 
 
@@ -262,5 +292,3 @@ class SetupCase {
         echo $c;
     }
 }
-
-
