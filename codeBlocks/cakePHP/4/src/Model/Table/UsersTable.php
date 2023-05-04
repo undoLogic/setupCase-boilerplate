@@ -4,6 +4,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Utility\Text;
+//use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
@@ -18,6 +19,39 @@ class UsersTable extends Table
         ]);
 
     }
+
+    //TO USE BEFORE $this->save(
+//if ($entity->getErrors()) {
+//
+//    //dd($entity->getErrors());
+//$response['STATUS'] = 400;
+//$response['MSG'] = $entity->getErrors();
+//return $response;
+//}
+//    public function validationDefault(Validator $validator): Validator
+//    {
+//        $validator
+//            ->requirePresence('code_id')
+//            ->notEmptyString('code_id', 'code_id is required')
+//           ;
+//
+//
+//        //custom validation
+//        $validator->add('contested_dealer_amount', 'myRule', [
+//            'rule' => function ($value, array $context) {
+//                if ($value >  0) {
+//
+//                    return true;
+//
+//                }
+//
+//            }
+//            );
+//
+//        return $validator;
+//
+//    }
+
 
 
 
