@@ -25,6 +25,41 @@ Launch needs to be configured for your target server as well as your github acco
 
 1. open the file /launchPad/settings.json and modify all the rows (FIRST-TIME: Rename settings.json.NEW to settings.json - this allows to upgrade and manually update your settings file without overwriting)
 
+TESTING_URL
+- Similar to 'STAGING_URL' but for your testing url (Database is separate from LIVE / staging)
+```angular2html
+"TESTING_URL": "/home/undoweb/www/projectname",
+```
+
+TESTING_USER
+- Same as 'STAGING_USER' but for testing server
+```
+"TESTING_USER": "undoweb",
+```
+
+TESTING_GIT_ADDRESS:
+- This is the full path to your git repo
+- If you are launching multiple projects on the same server you need to configure github as github ONLY allows for security a single ssh key per each hostname server
+- See below instructions how to create multiple sites configuration file
+```angular2html
+  "TESTING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
+```
+
+TESTING_ABSOLUTE_PATH
+- Same as "STAGING_ABSOLUTE_PATH" above but for testing url
+```angular2html
+"TESTING_ABSOLUTE_PATH": "/home/undoweb/www/projectname",
+```
+
+TESTING_COPY_SRC_TO_ROOT
+- copy all the files in the sourceFiles directory to the root of the folder
+- false will leave all the files in the sub-folder sourceFiles
+- true will copy them all to the root
+   - This is important when you deal with authentication and your auth requires the login page be on the root of your sub-domain
+```angular2html
+  "TESTING_COPY_SRC_TO_ROOT": false
+```
+
 STAGING_URL
 - This requires you have CREATED a 'Subdomain' on your control panel
 - If your subdomain is 'staging' then you would access your site with http://staging.YourDomain.com / http://staging.servername.com
@@ -40,14 +75,32 @@ STAGING_USER
 "STAGING_USER": "username",
 ```
 
+STAGING_GIT_ADDRESS:
+- This is the full path to your git repo
+- If you are launching multiple projects on the same server you need to configure github as github ONLY allows for security a single ssh key per each hostname server
+- See below instructions how to create multiple sites configuration file
+```angular2html
+  "TESTING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
+```
+
+
 STAGING_ABSOLUTE_PATH
 - This is the path on your server to the location where the source files will be uploaded
 - Navigate (on the control panel) to "File Manager" -> "WWW"
 - This is the path where you will see the STAGING_URL you created above, click that link
-- the Path is located next to 'Location: ' for example "/home/username/www/test"
+- the Path is located next to 'Location: ' for example "/home/username/www/staging"
 ```
-"STAGING_ABSOLUTE_PATH": "/home/username/www/test",
+"STAGING_ABSOLUTE_PATH": "/home/username/www/staging",
 ```
+STAGING_COPY_SRC_TO_ROOT
+- copy all the files in the sourceFiles directory to the root of the folder
+- false will leave all the files in the sub-folder sourceFiles
+- true will copy them all to the root
+   - This is important when you deal with authentication and your auth requires the login page be on the root of your sub-domain
+```angular2html
+  "STAGING_COPY_SRC_TO_ROOT": false
+```
+
 
 LIVE_URL
 - Similar to 'STAGING_URL' but for your LIVE production files 
@@ -65,23 +118,7 @@ LIVE_ABSOLUTE_PATH
 "LIVE_ABSOLUTE_PATH": "/home/undologic/www/www",
 ```
 
-TESTING_URL
-- Similar to 'STAGING_URL' but for your testing url (Database is separate from LIVE / staging)
-```angular2html
-"TESTING_URL": "/home/undoweb/www/projectname",
-```
 
-TESTING_USER
-- Same as 'STAGING_USER' but for testing server
-```
-"TESTING_USER": "undoweb",
-```
-
-TESTING_ABSOLUTE_PATH
-- Same as "STAGING_ABSOLUTE_PATH" above but for testing url
-```angular2html
-"TESTING_ABSOLUTE_PATH": "/home/undoweb/www/projectname",
-```
 
 GITHUB_USER_SLASH_PROJECT
 - This is the location where your source files are located on github
@@ -90,13 +127,6 @@ GITHUB_USER_SLASH_PROJECT
 "GITHUB_USER_SLASH_PROJECT": "undoLogic/projectName",
 ```
 
-GITHUB_HOST:
-- By default this is github.com
-- If you are launching multiple projects on the same server you need to configure github as github ONLY allows a single ssh key per each hostname server
-- See below instructions how to create multiple sites configuration file
-```angular2html
-  "GITHUB_HOST": "github.com",
-```
 SRC_FILES_RELATIVE_PATH:
 - In your source files this represents where your project files are
 - You will have a docker folder which has all the files to manage your docker, you will then have 'launch' which has all the files to configure launch, then you should have 'sourceFiles' which is where your project files are
