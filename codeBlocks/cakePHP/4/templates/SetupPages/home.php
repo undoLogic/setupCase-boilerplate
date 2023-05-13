@@ -48,8 +48,10 @@
 
 //add new database field
 ALTER TABLE `users` ADD `password_v4` VARCHAR(200) NOT NULL AFTER `password`;
+ALTER TABLE `users` ADD `reset_token` VARCHAR(200) NOT NULL AFTER `password_v4`;
+ALTER TABLE `users` ADD `user_type` VARCHAR(20) NOT NULL AFTER `reset_token`;
 
-//change password to a new link
+//change password to a new link - application.php
 $authenticationService->loadIdentifier('Authentication.Password', [
     'fields' => [
         'username' => 'email',
