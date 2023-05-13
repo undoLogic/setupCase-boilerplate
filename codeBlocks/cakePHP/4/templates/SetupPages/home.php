@@ -34,7 +34,43 @@
 <?php endif; ?>
 
 
+
+
 <div class="row">
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>Auth Change password field</h5>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">
+
+//add new database field
+ALTER TABLE `users` ADD `password_v4` VARCHAR(200) NOT NULL AFTER `password`;
+
+//change password to a new link
+$authenticationService->loadIdentifier('Authentication.Password', [
+    'fields' => [
+        'username' => 'email',
+        'password' => 'password_v4',
+    ]
+]);
+
+//Users controller - RESET PASSWORD
+$row->password_v4 = $passObj->hash($postData['new_password']);
+
+
+
+//Users table - SAVE user password
+$user->password_v4 = $password;
+if ($this->save($user)) {
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+
 
     <div class="<?= $classEach; ?>">
         <div class="card">
