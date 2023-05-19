@@ -5,7 +5,7 @@
   "TESTING_USER": "undoweb",
   "TESTING_GIT_ADDRESS": "git@boilerplate.github.com:undoLogic/setupCase-boilerplate.git",
   "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/testboilerplate",
-  "TESTING_COPY_SRC_TO_ROOT": false,
+  "TESTING_COPY_SRC_TO_ROOT": true,
 
   "STAGING_URL": "",
   "STAGING_USER": "",
