@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5cc42b12-805a-4fd2-b01a-563666f5efeb" name="undoweb">
+        <fileTransfer rootFolder="/home/undoweb" accessType="SFTP" host="testboilerplate.undoweb.com" port="22" sshConfigId="cc05a1ed-d2dd-4471-8c2e-f592ef6ec419" sshConfig="undoweb@testboilerplate.undoweb.com:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
