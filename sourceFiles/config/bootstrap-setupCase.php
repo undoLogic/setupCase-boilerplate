@@ -24,4 +24,4 @@ if (isset($_SERVER['SERVER_NAME'])) {
     }
 }
 
-dd(get_cfg_var('UNDOWEB.EmailTransport.default.password'));
+//dd(get_cfg_var('UNDOWEB.EmailTransport.default.password'));

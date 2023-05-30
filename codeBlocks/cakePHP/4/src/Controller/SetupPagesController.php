@@ -293,6 +293,7 @@ class SetupPagesController extends AppController
     {
 
         if ($this->request->is('post')) {
+
             $submittedData = $this->request->getData();
 
             // Here is all the info about the uploaded file
