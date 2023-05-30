@@ -44,6 +44,10 @@ TESTING_GIT_ADDRESS:
 ```angular2html
   "TESTING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
 ```
+OR if you are working on a server with shared projects
+```angular2html
+    "TESTING_GIT_ADDRESS": "git@PROJECTNAME.github.com:OWNER/repo-project1.git
+```
 
 TESTING_ABSOLUTE_PATH
 - Same as "STAGING_ABSOLUTE_PATH" above but for testing url
@@ -80,7 +84,11 @@ STAGING_GIT_ADDRESS:
 - If you are launching multiple projects on the same server you need to configure github as github ONLY allows for security a single ssh key per each hostname server
 - See below instructions how to create multiple sites configuration file
 ```angular2html
-  "TESTING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
+  "STAGING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
+```
+OR if you are working on a server with shared projects
+```angular2html
+    "STAGING_GIT_ADDRESS": "git@PROJECTNAME.github.com:OWNER/repo-project1.git
 ```
 
 
@@ -116,15 +124,6 @@ LIVE_ABSOLUTE_PATH
 - Same as "STAGING_ABSOLUTE_PATH" above but for LIVE
 ```angular2html
 "LIVE_ABSOLUTE_PATH": "/home/undologic/www/www",
-```
-
-
-
-GITHUB_USER_SLASH_PROJECT
-- This is the location where your source files are located on github
-- it is your the github username slash project name i.e. undoLogic/projectName
-```
-"GITHUB_USER_SLASH_PROJECT": "undoLogic/projectName",
 ```
 
 SRC_FILES_RELATIVE_PATH:
