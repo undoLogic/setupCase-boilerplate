@@ -3,7 +3,7 @@ setupCase.com solution - Build and manage custom software and business websites
 with our block programming on our Platform-as-a-service and minimize your local computer 
 dependancies.
 
-## Quick Start / Overview
+## Overview Steps
 
 1. [Initial Setup / Preparation](#step-1-initial-setup--preparation)
 2. [Build a new CakePHP 4 project with our Platform-as-a-service](#step-2-build-a-new-cakephp-4-project-with-our-platform-as-a-service)
@@ -16,7 +16,8 @@ dependancies.
 9. [Launch changes](#step-9-launch-changes)
 10. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-10-convert-to-a-dockerized-container-for-vps-deployment)
 
-### Step 1 Initial Setup / Preparation
+
+### Step 1 Initial Setup / Preparation [top](#overview-steps)
 - Enable SSH (Control panel -> SSH Access -> SSH access is disabled -> Click Enable)
 - Activate Wget/Curl (Control panel -> SSH Access -> Network tools -> Enable)
 - Create sub-domains (Control panel -> Sub Domains -> Create 'test' & 'repos')
@@ -28,7 +29,7 @@ dependancies.
 - Desc: A short desc about your project
 - NOTE: Copy down the Web Address, username and password after the Git repo is created for step 4
 
-### Step 2 Build a new CakePHP 4 project with our Platform-as-a-service
+### Step 2 Build a new CakePHP 4 project with our Platform-as-a-service [top](#overview-steps)
 - Use powershell / terminal to access the ssh server
 ```angular2html
 ssh user@domain.com
@@ -43,7 +44,7 @@ chmod +x install_setupCase.sh
 # Accept the permissions with Y
 ```
 
-### Step 3 Install Software with Chocolatey.org 
+### Step 3 Install Software with Chocolatey.org [top](#overview-steps)
 - Open PowerShell as admin and paste in the install script from  https://chocolatey.org/install
 - Run the desired script to install software on your computer
 ```angular2html
