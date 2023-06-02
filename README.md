@@ -90,11 +90,11 @@ Using PHPstorm:
 - Name: test (type: sFTP - ssh over FTP)
 - SSH configuration - click '...'
 - Create new config with "+"
-  HOST: test.domain.com (replace domain with your server domainname)
-  USER: server username (included in your welcome package)
-  AUTHENTICATION TYPE: Key Pair
-  PRIVATE KEY FILE: click folder to navigate to private key
-  PASSPHRASE: Optional
+  -  HOST: test.domain.com (replace domain with your server domainname)
+  - USER: server username (included in your welcome package)
+  - AUTHENTICATION TYPE: Key Pair
+  - PRIVATE KEY FILE: click folder to navigate to private key
+  - PASSPHRASE: Optional
 - Click 'Test Connection' to ensure you can connect to the test server
 
 Click OK to return to the previous screen
@@ -102,9 +102,10 @@ Click OK to return to the previous screen
 ROOT PATH: click 'Autodetect'
 MAPPINGS (TAB)
 - LOCAL PATH: Navigate to your 'sourceFiles' directory
-- DEVELOPMENT PATH (During installation): click to navigate to 'www' - 'test' - 'sourceFiles'
-OR
-- DEVELOPMENT PATH (During Programming): click to navigate to 'www' - 'test' (During programming we upload to the root of the subdomain NOT the sourceFiles directory)
+- DEVELOPMENT PATH (During installation): click to navigate to 'www' - 'test' - 'sourceFiles' 
+  - OR
+- DEVELOPMENT PATH (During Programming): click to navigate to 'www' - 'test' 
+  - During programming we upload to the root of the subdomain NOT the sourceFiles directory
 
 #### 5.2 Auto-upload changes
 When activated anytime you change a file on your computer it will automatically sFTP that file to the server, allowing you to develop on the server
@@ -119,13 +120,14 @@ If you have issues where your IDE is not uploads the changes to the server follo
 Make sure your default upload is selected to the correct profile
 - Tools -> Development -> Browse Remote Host (a side panel will appear) NEXT click '...'
 - Right click on the correct profile and choose 'Set as Default'
-- 
+
 [back to top](#overview-steps)
 ### Step 6 Testing and watch updates on the test subdomain
 
 Test modifying a file on your computer and see the changes right away on your test server
 
 http://test.domain.com/sourceFiles
+
 [back to top](#overview-steps)
 ### Step 7 Integrate a professional visual layout to your project
 
@@ -191,6 +193,7 @@ Using inspector find the correct div and cut this content and add to a page
 Create all the visual pages by doing the following
 
 Create a new function in the controller AND create a new view page
+
 [back to top](#overview-steps)
 ### Step 8 Programming
 
@@ -257,6 +260,7 @@ On your server in the PHP.ini (GLOBAL) file you need to add the following:
 ```angular2html
 PROJECTNAME.Datasources.default.url = mysql:/
 ```
+
 [back to top](#overview-steps)
 ### Step 9 Launch Changes
 
@@ -297,7 +301,6 @@ At this point all the changes have been approved on the staging and we can now c
 ```angular2html
 ./3_go_LIVE.sh
 ```
-
 
 [back to top](#overview-steps)
 ### Step 10 Convert to a dockerized container for VPS deployment
