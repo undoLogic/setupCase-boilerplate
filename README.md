@@ -5,7 +5,7 @@ dependancies.
 
 ## Quick Start / Overview
 
-1. [Initial Setup / Preparation](#step-1--initial-setup--preparation)
+1. [Initial Setup / Preparation](#step1)
 2. [Build a new CakePHP 4 project with our Platform-as-a-service](#step-2--build-a-new-cakephp-4-project-with-our-platform-as-a-service)
 3. [Install software on your local computer with Chocolatey.org](#step-3--install-software-with-chocolateyorg)
 4. [Checkout your new sourceFiles to your local computer](#step-4--checkout-your-new-sourcefiles-to-your-local-computer)
@@ -16,7 +16,7 @@ dependancies.
 9. [Launch changes](#step-9--launch-changes)
 10. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-10--convert-to-a-dockerized-container-for-vps-deployment)
 
-### Step 1: Initial Setup / Preparation
+### step1
 - Enable SSH (Control panel -> SSH Access -> SSH access is disabled -> Click Enable)
 - Activate Wget/Curl (Control panel -> SSH Access -> Network tools -> Enable)
 - Create sub-domains (Control panel -> Sub Domains -> Create 'test' & 'repos')
