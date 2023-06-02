@@ -6,15 +6,15 @@ dependancies.
 ## Quick Start / Overview
 
 1. [Initial Setup / Preparation](#step-1-initial-setup--preparation)
-2. [Build a new CakePHP 4 project with our Platform-as-a-service](#step-2--build-a-new-cakephp-4-project-with-our-platform-as-a-service)
-3. [Install software on your local computer with Chocolatey.org](#step-3--install-software-with-chocolateyorg)
-4. [Checkout your new sourceFiles to your local computer](#step-4--checkout-your-new-sourcefiles-to-your-local-computer)
-5. [Configure your IDE to automatically push changes to your server](#step-5--configure-your-ide-to-automatically-push-changes-to-your-server)
-6. [Testing and watch updates on the test subdomain](#step-6--testing-and-watch-updates-on-the-test-subdomain)
-7. [Integrate a professional visual layout to your project](#step-7--integrate-a-professional-visual-layout-to-your-project)
-8. [Programming](#step-8--programming) 
-9. [Launch changes](#step-9--launch-changes)
-10. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-10--convert-to-a-dockerized-container-for-vps-deployment)
+2. [Build a new CakePHP 4 project with our Platform-as-a-service](#step-2-build-a-new-cakephp-4-project-with-our-platform-as-a-service)
+3. [Install software on your local computer with Chocolatey.org](#step-3-install-software-with-chocolateyorg)
+4. [Checkout your new sourceFiles to your local computer](#step-4-checkout-your-new-sourcefiles-to-your-local-computer)
+5. [Configure your IDE to automatically push changes to your server](#step-5-configure-your-ide-to-automatically-push-changes-to-your-server)
+6. [Testing and watch updates on the test subdomain](#step-6-testing-and-watch-updates-on-the-test-subdomain)
+7. [Integrate a professional visual layout to your project](#step-7-integrate-a-professional-visual-layout-to-your-project)
+8. [Programming](#step-8-programming) 
+9. [Launch changes](#step-9-launch-changes)
+10. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-10-convert-to-a-dockerized-container-for-vps-deployment)
 
 ### Step 1 Initial Setup / Preparation
 - Enable SSH (Control panel -> SSH Access -> SSH access is disabled -> Click Enable)
@@ -28,7 +28,7 @@ dependancies.
 - Desc: A short desc about your project
 - NOTE: Copy down the Web Address, username and password after the Git repo is created for step 4
 
-### Step 2: Build a new CakePHP 4 project with our Platform-as-a-service
+### Step 2 Build a new CakePHP 4 project with our Platform-as-a-service
 - Use powershell / terminal to access the ssh server
 ```angular2html
 ssh user@domain.com
@@ -43,7 +43,7 @@ chmod +x install_setupCase.sh
 # Accept the permissions with Y
 ```
 
-### Step 3: Install Software with Chocolatey.org 
+### Step 3 Install Software with Chocolatey.org 
 - Open PowerShell as admin and paste in the install script from  https://chocolatey.org/install
 - Run the desired script to install software on your computer
 ```angular2html
@@ -64,7 +64,7 @@ choco install nvidia-display-driver -y
 choco install microsoft-teams -y
 ```
 
-### Step 4: Checkout your new sourceFiles to your local computer
+### Step 4 Checkout your new sourceFiles to your local computer
 We will now prepare our IDE so we can program locally on our computer but all our files will be auto-uploaded to our server to view the changes
 -> Open powershell / terminal
 
@@ -77,7 +77,7 @@ git clone http://repos.domain.com/project.git projectName
 The files which you prepared on the server are now on your local computer
 
 
-### Step 5: Configure your IDE to automatically push changes to your server
+### Step 5 Configure your IDE to automatically push changes to your server
 
 #### 5.1 Setup sFTP on your IDE
 
@@ -117,13 +117,13 @@ Make sure your default upload is selected to the correct profile
 - Right click on the correct profile and choose 'Set as Default'
 - 
 
-### Step 6: Testing and watch updates on the test subdomain
+### Step 6 Testing and watch updates on the test subdomain
 
 Test modifying a file on your computer and see the changes right away on your test server
 
 http://test.domain.com/sourceFiles
 
-### Step 7: Integrate a professional visual layout to your project
+### Step 7 Integrate a professional visual layout to your project
 
 #### 7.1 Download layout source files
 Before we start any programming, we first must create our Visual Layout Clickthrough.
@@ -188,7 +188,7 @@ Create all the visual pages by doing the following
 
 Create a new function in the controller AND create a new view page
 
-### Step 8: Programming
+### Step 8 Programming
 
 #### 8.1 Program with CodeBlocks
 
@@ -254,7 +254,7 @@ On your server in the PHP.ini (GLOBAL) file you need to add the following:
 PROJECTNAME.Datasources.default.url = mysql:/
 ```
 
-### Step 9: Launch Changes
+### Step 9 Launch Changes
 
 #### 9.1 Configure LaunchPad
 First we must configure out settings.json file to connect with our target server.
@@ -296,5 +296,5 @@ At this point all the changes have been approved on the staging and we can now c
 
 
 
-### Step 10: Convert to a dockerized container for VPS deployment
+### Step 10 Convert to a dockerized container for VPS deployment
 Coming soon...
