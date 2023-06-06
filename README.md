@@ -1,6 +1,6 @@
 # setupCase-boilerPlate Version 4
 setupCase.com solution - Build and manage custom software and business websites
-with our block programming on our Platform-as-a-service and minimize your local computer 
+with our block programming on our Platform-as-a-service and minimize your local computer
 dependancies.
 
 ## Overview Steps
@@ -12,7 +12,7 @@ dependancies.
 5. [Configure your IDE to automatically push changes to your server](#step-5-configure-your-ide-to-automatically-push-changes-to-your-server)
 6. [Testing and watch updates on the test subdomain](#step-6-testing-and-watch-updates-on-the-test-subdomain)
 7. [Integrate a professional visual layout to your project](#step-7-integrate-a-professional-visual-layout-to-your-project)
-8. [Programming](#step-8-programming) 
+8. [Programming](#step-8-programming)
 9. [Launch changes](#step-9-launch-changes)
 10. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-10-convert-to-a-dockerized-container-for-vps-deployment)
 
@@ -36,8 +36,8 @@ dependancies.
 ```angular2html
 ssh user@domain.com
 ```
-- Fill-in the password that was sent with your welcome package
-- Navigate to the 'test' sub-domain (eg test.domain.com)
+- Fill-in the username / password that was sent with your welcome package
+- Navigate to the 'test' sub-domain (eg test.domain.com) OR you can use any subdomain you like (ensure you create first in the control panel first)
 ```angular2html
 cd ~/www/test
 wget https://raw.githubusercontent.com/undoLogic/setupCase-boilerplate/main/build/install_setupCase.sh
@@ -45,9 +45,20 @@ chmod +x install_setupCase.sh
 ./install_setupCase.sh
 # Accept the permissions with Y
 ```
+
+This script will install CakePHP 4 with authentication and integrate the SetupCase library.
+You can now test and view the working site: http://test.domain.com/sourceFiles
+
+IMPORTANT: If you get permission issues follow the instructions on the screen to allow the mixed permission directories and then manually commit / push the git files
+
+```angular2html
+git add . && git commit -m "Creating new project"
+git push -u origin master
+```
+
 [back to top](#overview-steps)
 
-### Step 3 Install Software with Chocolatey.org 
+### Step 3 Install Software with Chocolatey.org
 - Open PowerShell as admin and paste in the install script from  https://chocolatey.org/install
 - Run the desired script to install software on your computer
 ```angular2html
@@ -100,12 +111,13 @@ Using PHPstorm:
 Click OK to return to the previous screen
 
 ROOT PATH: click 'Autodetect'
+
 MAPPINGS (TAB)
 - LOCAL PATH: Navigate to your 'sourceFiles' directory
-- DEVELOPMENT PATH (During installation): click to navigate to 'www' - 'test' - 'sourceFiles' 
+- DEVELOPMENT PATH (During installation): click to navigate to 'www' -> 'test' (OR the subdomain you created in the control panel) -> 'sourceFiles'
   - OR
-- DEVELOPMENT PATH (During Programming): click to navigate to 'www' - 'test' 
-  - During programming we upload to the root of the subdomain NOT the sourceFiles directory
+- DEVELOPMENT PATH (During Programming): click to navigate to 'www' - 'test' (OR the subdomain you created in the control panel)
+  - During programming we upload to the root of the subdomain NOT the sourceFiles directory (better for authentication)
 
 #### 5.2 Auto-upload changes
 When activated anytime you change a file on your computer it will automatically sFTP that file to the server, allowing you to develop on the server
@@ -115,7 +127,7 @@ PHPstorm - Tools - Developement - Options
 
 
 #### 5.3 TROUBLESHOOTING
-If you have issues where your IDE is not uploads the changes to the server follow these steps 
+If you have issues where your IDE is not uploads the changes to the server follow these steps
 
 Make sure your default upload is selected to the correct profile
 - Tools -> Development -> Browse Remote Host (a side panel will appear) NEXT click '...'
