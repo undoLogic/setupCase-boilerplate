@@ -220,12 +220,110 @@ Search for the specific code fragments in order to convert the finalized visuals
 #### 8.3 Connect MySQL Database
 
 Now we are ready to connect a database to our software application, which will enable us to save data and interact with previously saved data.
+- We are only going to make minor changes to the CakePHP framework so we have a simple upgrade path in the future
 
-Copy the file "sourceFiles/config/app_local.php"
-- Save it as app_LOCATION.php (name is to indicate where it will be used eg app_LIVE or app_TEST or app_CLIENTLOCATION)
-  -> You now have a newly created file app_LOCATION.php
-  -> We will now modify this file: Find 'datasources' and modify the url array value
-  -> You are adding on get_cfg.... which will allow to get the credentials from your server
+  1. open BaseApplication.php (vendor\cakephp\cakephp\src\Http)
+     2. find the function "public function bootstrap(): void
+     3. UNDER "require_once $this->configDir . 'bootstrap.php';" ADD:
+     4. ```
+        if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
+             require_once $this->configDir . 'bootstrap-setupCase.php';
+        }
+        ```
+     5.  Appcontroller: ADD
+     6. ```
+        $this->loadComponent('Authentication.Authentication');
+        ```
+     7. Then in Application.php add above the CSRF:
+     8. ```angular2html
+        //Added by SetupCase-BoilerPlate
+        ->add(new AuthenticationMiddleware($this->getAuthenticationService()))
+        ->add(new LangMiddleware())
+        ->add(new RbacMiddleware())
+        ->add(new AccessMiddleware())
+        ```
+     9.  And below that function add this function:
+     10. ```angular2html
+          protected function getAuthenticationService() : AuthenticationService {
+          
+              //Log::debug('getAuthenticationService');
+          
+              $authenticationService = new AuthenticationService([
+                  'unauthenticatedRedirect' => Router::url('/login'),
+                  'queryParam' => 'redirect',
+              ]);
+          
+              // Load identifiers, ensure we check email and password fields
+              $authenticationService->loadIdentifier('Authentication.Password', [
+                  'fields' => [
+                      'username' => 'email',
+                      'password' => 'password',
+                  ]
+              ]);
+          
+              // Load the authenticators, you want session first
+              $authenticationService->loadAuthenticator('Authentication.Session');
+              // Configure form data check to pick email and password
+              $authenticationService->loadAuthenticator('Authentication.Form', [
+                  'fields' => [
+                      'username' => 'email',
+                      'password' => 'password',
+                  ],
+                  'loginUrl' => Router::url('/login'),
+              ]);
+          
+              return $authenticationService;
+          }
+         ```
+     10. Don't forget to import the classes with right click (in PHPstorm)
+     11. In App_controller / beforeFilter
+     ```angular2html
+        $this->setupCase();
+     ```
+     And a new function below
+```php
+      function setupCase()
+      {
+      //RBAC/Access middleware decides if they are allowed in - here we redirect if needed
+      $access_granted = $this->request->getAttribute('access_granted');
+      if (!$access_granted) {
+      $this->Flash->error($this->request->getAttribute('access_msg'));
+      $this->redirect($this->referer());
+      } else {
+      //We handle all RBAC from our RBAC middleware - disable the CakePHP authentication for all pages
+      $this->Authentication->addUnauthenticatedActions([$this->request->getAttribute('params')['action']]);
+      }
+      
+              //only force these sites to be ssl
+      //        $sslSites = [
+      //            'www.livesite.com',
+      //        ];
+      //        $setupCase = new SetupCase();
+      //        if ($setupCase->isLIVE($_SERVER['HTTP_HOST'], $sslSites)) {
+      //            $setupCase->forceSSL($this);
+      //        }
+      
+              $this->set('webroot', Router::url('/'));
+          }
+```
+      Bootstrap (comment out and add environments)
+```php
+//if (file_exists(CONFIG . 'app_local.php')) {
+//    Configure::load('app_local', 'default');
+//}
+
+$activeEnv = \App\Util\Environments::getActive();
+switch($activeEnv) {
+    case 'UNDOWEB':
+        Configure::load('app_undoweb', 'default');
+        break;
+    default:
+        dd('missing environment config file');
+}
+
+```
+
+You can duplicate app_setupCase.php to a different environment as you add more locations
 
 ```angular2html
 'Datasources' => [
