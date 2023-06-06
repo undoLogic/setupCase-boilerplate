@@ -11,7 +11,10 @@
 ### composer is downloaded with command line script
 /docker/control/composer.phar
 
-# no longer ignoring the phpstorm files
+# Remove this after setting up project to add your remote host settings into github
+/nbproject
+.idea
+
 
 # OS generated files #
 ######################
