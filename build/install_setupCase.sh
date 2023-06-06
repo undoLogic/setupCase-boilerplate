@@ -24,8 +24,8 @@ composer create-project --prefer-dist cakephp/app:~4.0 sourceFiles
 composer require "cakephp/authentication:^2.0" -d sourceFiles
 
 # copy our codeBlocks on top of CakePHP
-echo "- - - - - - - - - - - - - - - - - - - - - - - - - integrating SetupCase codeblocks"
-rsync -av codeBlocks/cakePHP/4/. sourceFiles/.
+echo "- - - - - - - - - - - - - - - - - - - - - - - - - integrating SetupCase v4.1 codeblocks"
+rsync -av codeBlocks/cakePHP/4.1/. sourceFiles/.
 
 # remove git ignore in the cake directory since we have our own git ignore in our boilerplate files
 rm -rf sourceFiles/.git*
