@@ -323,6 +323,23 @@ switch($activeEnv) {
 
 ```
 
+
+
+Src / View Helpers
+
+AppView.php
+add into initalize()
+```php
+        $this->loadHelper('Auth');
+        $this->loadHelper('Lang');
+```
+
+
+
+
+
+
+
 You can duplicate app_setupCase.php to a different environment as you add more locations
 
 ```angular2html
