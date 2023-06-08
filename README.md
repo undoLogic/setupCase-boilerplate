@@ -231,7 +231,7 @@ if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
   require_once $this->configDir . 'bootstrap-setupCase.php';
 }
 ```
-2. AppController->initialize: ADD
+2. Then in Application.php add ABOVE the CSRF:
 ```php
 //Added by SetupCase-BoilerPlate
 ->add(new AuthenticationMiddleware($this->getAuthenticationService()))
@@ -240,7 +240,7 @@ if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
 ->add(new AccessMiddleware())
 ```
 
-3. And below that function add this function:
+3. And below that function (in Application.php) add this function:
 ```php
 protected function getAuthenticationService() : AuthenticationService {
 
@@ -274,7 +274,7 @@ protected function getAuthenticationService() : AuthenticationService {
 }
 ```
 
-4. Then in Application.php add ABOVE the CSRF:
+4. AppController->initialize: ADD
 ```php
 $this->loadComponent('Authentication.Authentication');
 ```
