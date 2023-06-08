@@ -14,7 +14,7 @@ if (isset($_SERVER['SERVER_NAME'])) {
     $serverEnv = null;
     switch ($_SERVER['SERVER_NAME']) {
         case 'testboilerplate.undoweb.com':
-            Configure::load('app_undoweb', 'default');
+            Configure::load('app_setupCase', 'default');
             break;
         default:
             die('Missing environment');
