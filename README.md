@@ -217,7 +217,7 @@ https://codeblocks.setupcase.com
 
 Search for the specific code fragments in order to convert the finalized visuals into working systems
 
-#### 8.3 Connect MySQL Database
+#### 8.2 Connect MySQL Database
 
 Now we are ready to connect a database to our software application, which will enable us to save data and interact with previously saved data.
 - We are only going to make minor changes to the CakePHP framework so we have a simple upgrade path in the future
@@ -314,6 +314,17 @@ switch($activeEnv) {
 }
 ```
 
+You can duplicate app_setupCase.php to a different environment
+- Then add different credentials within your php.ini file
+- On your server in the PHP.ini (GLOBAL) file you need to add the following:
+
+```angular2html
+PROJECTNAME.Datasources.default.url = mysql:/.........
+```
+which allows to keep all your credentials on the server and NOT in your source files
+- get_cfg_var('UNDOWEB.Datasources.default.url')
+
+
 8. Src / View Helpers
 - AppView.php - add into initalize()
 ```php
@@ -321,57 +332,8 @@ $this->loadHelper('Auth');
 $this->loadHelper('Lang');
 ```
 
-You can duplicate app_setupCase.php to a different environment as you add more locations
-
-```angular2html
-'Datasources' => [
-    'default' => [
-        'url' => get_cfg_var('PROJECTNAME.Datasources.default.url'),
-    ],
-],
-```
-
-Now we need to configure our software to switch to the correct file in the 'bootstrap.php' file (sourceFiles/config/bootstrap.php)
-
-Find " * Load an environment local configuration file to provide overrides to your configuration." and connect that function name
--> Replace with this instead
-
-```php
-$setupCase = new \App\Util\SetupCase;
-$activeIs = $setupCase->env_getActive();
-if ($activeIs == 'UNDOWEB') {
-    Configure::load('app_LOCATION', 'default');
-} elseif ($activeIs == 'LIVE') {
-    dd('not setup yet');
-} else {
-    dd('unknown env to setup ?');
-}
-```
-
-Open SourceFiles/src/Util/SetupCase.php -> var $liveDomains
--> Add your domain of your location with a name
-
-```angular2html
-var $liveDomains = [
-    //domain => //NAME
-   'test.server.com' => 'TEST',
-    'live.com' => 'LIVE',
-];
-```
-
-Create a new database with phpMyAdmin on your server
--> name it with prefix_PROJECTNAME_testing
--> testing is important so you will always know it's not a live db when working on it
-
-On your server in the PHP.ini (GLOBAL) file you need to add the following:
-
-```angular2html
-PROJECTNAME.Datasources.default.url = mysql:/
-```
-which allows to keep all your credentials on the server and NOT in your source files
-- get_cfg_var('UNDOWEB.Datasources.default.url')
-
 [back to top](#overview-steps)
+
 ### Step 9 Launch Changes
 
 #### 9.1 Configure LaunchPad
