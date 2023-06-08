@@ -224,10 +224,10 @@ Now we are ready to connect a database to our software application, which will e
 
 1. open BaseApplication.php (vendor\cakephp\cakephp\src\Http)
 ```php
-    //find the function "public function bootstrap(): void and UNDER "require_once $this->configDir . 'bootstrap.php';" ADD:
-    if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
-      require_once $this->configDir . 'bootstrap-setupCase.php';
-    }
+//find the function "public function bootstrap(): void and UNDER "require_once $this->configDir . 'bootstrap.php';" ADD:
+if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
+  require_once $this->configDir . 'bootstrap-setupCase.php';
+}
 ```
 2. AppController: ADD
 ```php
@@ -243,67 +243,67 @@ $this->loadComponent('Authentication.Authentication');
 ```
 4. And below that function add this function:
 ```php
-    protected function getAuthenticationService() : AuthenticationService {
-    
-       //Log::debug('getAuthenticationService');
-    
-       $authenticationService = new AuthenticationService([
-           'unauthenticatedRedirect' => Router::url('/login'),
-           'queryParam' => 'redirect',
-       ]);
-    
-       // Load identifiers, ensure we check email and password fields
-       $authenticationService->loadIdentifier('Authentication.Password', [
-           'fields' => [
-               'username' => 'email',
-               'password' => 'password',
-           ]
-       ]);
-    
-       // Load the authenticators, you want session first
-       $authenticationService->loadAuthenticator('Authentication.Session');
-       // Configure form data check to pick email and password
-       $authenticationService->loadAuthenticator('Authentication.Form', [
-           'fields' => [
-               'username' => 'email',
-               'password' => 'password',
-           ],
-           'loginUrl' => Router::url('/login'),
-       ]);
-    
-       return $authenticationService;
-    }
+protected function getAuthenticationService() : AuthenticationService {
+
+   //Log::debug('getAuthenticationService');
+
+   $authenticationService = new AuthenticationService([
+       'unauthenticatedRedirect' => Router::url('/login'),
+       'queryParam' => 'redirect',
+   ]);
+
+   // Load identifiers, ensure we check email and password fields
+   $authenticationService->loadIdentifier('Authentication.Password', [
+       'fields' => [
+           'username' => 'email',
+           'password' => 'password',
+       ]
+   ]);
+
+   // Load the authenticators, you want session first
+   $authenticationService->loadAuthenticator('Authentication.Session');
+   // Configure form data check to pick email and password
+   $authenticationService->loadAuthenticator('Authentication.Form', [
+       'fields' => [
+           'username' => 'email',
+           'password' => 'password',
+       ],
+       'loginUrl' => Router::url('/login'),
+   ]);
+
+   return $authenticationService;
+}
 ```
 5. Don't forget to import the classes with right click (in PHPstorm)
 6. In App_controller / beforeFilter
 ```php
-    function beforeFilter() {
-        //add 
-        $this->setupCase();    
+function beforeFilter() {
+    //add 
+    $this->setupCase();    
+}
+
+//Add below
+function setupCase() {
+    //RBAC/Access middleware decides if they are allowed in - here we redirect if needed
+    $access_granted = $this->request->getAttribute('access_granted');
+    if (!$access_granted) {
+        $this->Flash->error($this->request->getAttribute('access_msg'));
+        $this->redirect($this->referer());
+    } else {
+        //We handle all RBAC from our RBAC middleware - disable the CakePHP authentication for all pages
+        $this->Authentication->addUnauthenticatedActions([$this->request->getAttribute('params')['action']]);
     }
     
-    //Add below
-    function setupCase() {
-        //RBAC/Access middleware decides if they are allowed in - here we redirect if needed
-        $access_granted = $this->request->getAttribute('access_granted');
-        if (!$access_granted) {
-            $this->Flash->error($this->request->getAttribute('access_msg'));
-            $this->redirect($this->referer());
-        } else {
-            //We handle all RBAC from our RBAC middleware - disable the CakePHP authentication for all pages
-            $this->Authentication->addUnauthenticatedActions([$this->request->getAttribute('params')['action']]);
-        }
-        
-        //only force these sites to be ssl
-        //        $sslSites = [
-        //            'www.livesite.com',
-        //        ];
-        //        $setupCase = new SetupCase();
-        //        if ($setupCase->isLIVE($_SERVER['HTTP_HOST'], $sslSites)) {
-        //            $setupCase->forceSSL($this);
-        //        }
-        $this->set('webroot', Router::url('/'));
-    }
+    //only force these sites to be ssl
+    //        $sslSites = [
+    //            'www.livesite.com',
+    //        ];
+    //        $setupCase = new SetupCase();
+    //        if ($setupCase->isLIVE($_SERVER['HTTP_HOST'], $sslSites)) {
+    //            $setupCase->forceSSL($this);
+    //        }
+    $this->set('webroot', Router::url('/'));
+}
 ```
 7. Bootstrap (comment out and add environments)
 ```php
@@ -323,8 +323,8 @@ switch($activeEnv) {
 8. Src / View Helpers
 - AppView.php - add into initalize()
 ```php
-        $this->loadHelper('Auth');
-        $this->loadHelper('Lang');
+$this->loadHelper('Auth');
+$this->loadHelper('Lang');
 ```
 
 You can duplicate app_setupCase.php to a different environment as you add more locations
