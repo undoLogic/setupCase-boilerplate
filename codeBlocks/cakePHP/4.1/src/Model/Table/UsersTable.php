@@ -1,6 +1,7 @@
 <?php
 // src/Model/Table/ArticlesTable.php
 
+namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Utility\Text;
 //use Cake\Validation\Validator;

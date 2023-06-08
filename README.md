@@ -233,17 +233,14 @@ if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
 ```
 2. AppController->initialize: ADD
 ```php
-$this->loadComponent('Authentication.Authentication');
-```
-3. Then in Application.php add ABOVE the CSRF:
-```php
 //Added by SetupCase-BoilerPlate
 ->add(new AuthenticationMiddleware($this->getAuthenticationService()))
 ->add(new LangMiddleware())
 ->add(new RbacMiddleware())
 ->add(new AccessMiddleware())
 ```
-4. And below that function add this function:
+
+3. And below that function add this function:
 ```php
 protected function getAuthenticationService() : AuthenticationService {
 
@@ -276,6 +273,12 @@ protected function getAuthenticationService() : AuthenticationService {
    return $authenticationService;
 }
 ```
+
+4. Then in Application.php add ABOVE the CSRF:
+```php
+$this->loadComponent('Authentication.Authentication');
+```
+
 5. Don't forget to import the classes with right click (in PHPstorm)
 6. In App_controller / beforeFilter
 ```php
@@ -294,7 +297,7 @@ function setupCase() {
         $this->Authentication->addUnauthenticatedActions([$this->request->getAttribute('params')['action']]);
     }
     $this->set('webroot', Router::url('/'));
-}  
+}
 ```
 7. Bootstrap (comment out and add environments)
 ```php
@@ -304,7 +307,7 @@ function setupCase() {
 $activeEnv = \App\Util\Environments::getActive();
 switch($activeEnv) {
     case 'UNDOWEB':
-        Configure::load('app_undoweb', 'default');
+        Configure::load('app_setupCase', 'default');
         break;
     default:
         dd('missing environment config file');
