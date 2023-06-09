@@ -301,13 +301,18 @@ function setupCase() {
 ```
 7. Bootstrap (comment out and add environments)
 ```php
-//if (file_exists(CONFIG . 'app_local.php')) {
-//    Configure::load('app_local', 'default');
-//}
+//Keep this function
+if (file_exists(CONFIG . 'app_local.php')) {
+    Configure::load('app_local', 'default');
+}
+//This will override the database connection based on environment
 $activeEnv = \App\Util\Environments::getActive();
 switch($activeEnv) {
     case 'UNDOWEB':
         Configure::load('app_setupCase', 'default');
+        break;
+    case 'LOCAL':
+        Configure::load('app_local', 'default');
         break;
     default:
         dd('missing environment config file');
@@ -333,6 +338,23 @@ $this->loadHelper('Lang');
 ```
 
 [back to top](#overview-steps)
+
+
+
+
+
+#### 8.3 Setup Functional Testing
+
+- On Windows setup Ubuntu using WSL2
+1. Navigate to the base folder within WSL2
+```php
+cd /mnt/c/Users/USERNAME/PhpstormProjects/PROJECTNAME
+```
+2. 
+
+
+
+
 
 ### Step 9 Launch Changes
 
