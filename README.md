@@ -346,11 +346,28 @@ $this->loadHelper('Lang');
 #### 8.3 Setup Functional Testing
 
 - On Windows setup Ubuntu using WSL2
-1. Navigate to the base folder within WSL2
+1. Start Docker on your local computer
+2. Login to the docker container
 ```php
-cd /mnt/c/Users/USERNAME/PhpstormProjects/PROJECTNAME
+cd PROJECTFILE/docker
+./2loginDockerContainer.bat
+// you are now inside the docker container
+cd /var/www/vhosts/website.com/www/sourceFiles
 ```
-2. 
+3. Bake the Users Table
+```php
+bin/cake bake test Table Users
+```
+
+4. Bake the fixture
+```php
+bin/cake bake fixture users
+```
+
+5. Run the test
+```php
+vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
+```
 
 
 
