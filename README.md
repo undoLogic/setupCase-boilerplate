@@ -22,12 +22,12 @@ dependancies.
 - Activate Wget/Curl (Control panel -> SSH Access -> Network tools -> Enable)
 - Create sub-domains (Control panel -> Sub Domains -> Create 'test' & 'repos')
 - Activate Git Repo (Control panel -> Git -> fill in form)
-- Domain: choose your main domain
-- Sub-domain choose 'repos'
-- Leave 'web access path' blank'
-- Name: use your project name
-- Desc: A short desc about your project
-- NOTE: Copy down the Web Address, username and password after the Git repo is created for step 4
+  - Domain: choose your main domain
+  - Sub-domain choose 'repos'
+  - Leave 'web access path' blank'
+  - Name: use your project name
+  - Desc: A short desc about your project
+- IMPORTANT: Copy down the Web Address, username and password after the Git repo is created as we will use them again in the future steps
 
 [back to top](#overview-steps)
 
