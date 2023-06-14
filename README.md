@@ -211,16 +211,20 @@ Create a new function in the controller AND create a new view page
 
 #### 8.1 Program with CodeBlocks
 
-Use our CodeBlocks to convert your approved visuals into working software.
+We develop with a modular programming process by harnessing standarized blocks of code. 
 
 https://codeblocks.setupcase.com
 
 Search for the specific code fragments in order to convert the finalized visuals into working systems
 
-#### 8.2 Connect MySQL Database
-
-Now we are ready to connect a database to our software application, which will enable us to save data and interact with previously saved data.
-- We are only going to make minor changes to the CakePHP framework so we have a simple upgrade path in the future
+#### 8.2 Integration with SetupCase Plugin Module
+Our solution will give a clear development path: 
+- Url based language switching
+- Authentication
+- MySQL database environments
+  - with server based credentials 
+  - source files do not store any private credentials
+- We are only going to make minor changes to the CakePHP framework core so we have a simple upgrade path in the future
 
 1. open BaseApplication.php (vendor\cakephp\cakephp\src\Http)
 ```php
@@ -299,13 +303,23 @@ function setupCase() {
     $this->set('webroot', Router::url('/'));
 }
 ```
-7. Bootstrap (comment out and add environments)
+
+7. Src / View Helpers
+- AppView.php - add into initalize()
+```php
+$this->loadHelper('Auth');
+$this->loadHelper('Lang');
+```
+
+
+
+8. Bootstrap.php (add environments)
 ```php
 //Keep this function
 if (file_exists(CONFIG . 'app_local.php')) {
     Configure::load('app_local', 'default');
 }
-//This will override the database connection based on environment
+//This will prepare all the correct values for your current environment
 $activeEnv = \App\Util\Environments::getActive();
 switch($activeEnv) {
     case 'UNDOWEB':
@@ -320,21 +334,23 @@ switch($activeEnv) {
 ```
 
 You can duplicate app_setupCase.php to a different environment
-- Then add different credentials within your php.ini file
-- On your server in the PHP.ini (GLOBAL) file you need to add the following:
+- Then add different credentials within your php.ini file 
 
-```angular2html
+Credentials
+- We harness server based passwords / credentials / api keys, etc
+- The source files do NOT contain any secret information ensuring that even if your sourceFiles get leaked, no private connection info will be exposed
+- We will store all the private data in the server PHP.ini (GLOBAL) file.
+
+PHP.ini
+```php
+// Add to your PHP.ini file
 PROJECTNAME.Datasources.default.url = mysql:/.........
 ```
-which allows to keep all your credentials on the server and NOT in your source files
-- get_cfg_var('UNDOWEB.Datasources.default.url')
 
-
-8. Src / View Helpers
-- AppView.php - add into initalize()
+SOURCE FILES
 ```php
-$this->loadHelper('Auth');
-$this->loadHelper('Lang');
+// in your PHP source files simple call the variables (from your php.ini file) as follows
+get_cfg_var('UNDOWEB.Datasources.default.url')
 ```
 
 [back to top](#overview-steps)
