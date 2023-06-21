@@ -27,3 +27,5 @@ ehthumbs.db
 Thumbs.db
 /sourceFiles/logs/error.log
 /sourceFiles/logs/cli-error.log
+/sourceFiles/logs/cli-debug.log
+/sourceFiles/.phpunit.result.cache
