@@ -325,6 +325,9 @@ switch($activeEnv) {
     case 'UNDOWEB':
         Configure::load('app_setupCase', 'default');
         break;
+    case 'DOCKER':
+        Configure::load('app_setupCase', 'default');
+        break;
     case 'LOCAL':
         Configure::load('app_local', 'default');
         break;

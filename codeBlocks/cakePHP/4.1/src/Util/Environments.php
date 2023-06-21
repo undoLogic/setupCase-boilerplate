@@ -26,8 +26,10 @@ class Environments
             }
         } else {
 
-            //probably CLI
-            if (isset($_SERVER['HOME'])) {
+            //maybe docker
+            if (isset($_SERVER['DATABASE_DEFAULT_URL'])) {
+                return 'DOCKER';
+            } elseif (isset($_SERVER['HOME'])) {
                 if (isset($_SERVER['LOGNAME'])) {
                     if ($_SERVER['LOGNAME'] == 'undoweb') {
                         return 'UNDOWEB';
