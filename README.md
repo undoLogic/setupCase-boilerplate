@@ -386,6 +386,21 @@ vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 ```
 
 
+#### 8.4 Enhance Security of your site
+
+- Here are some methods to increase the security of your account
+
+1. Change documentRoot 
+- On the control panel click "Subdomains"
+- Click the pencil next to the subdomain in question
+  - If you want to change the LIVE subdomain (it would be 'www', but you can also apply this change to another subdomain)
+  - Click the folder and a popup will appear. navigate to 'webroot'
+  - After you click 'select' it will return and the 'Document Root' will now be /www/www/webroot
+  - Click the checkbox to finalize
+- Now your cakePHP files are only exposing the webroot to the public and all the other files are not accessible publically which will increase the security 
+
+2. Change file permissions
+- Coming soon...
 
 
 
