@@ -76,7 +76,10 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'url' => get_cfg_var('UNDOWEB.Datasources.default.url'),
+            'url' => filter_var(env('DATABASE_URL', get_cfg_var('BOILER.Datasources.default.url')), FILTER_VALIDATE_URL),
+        ],
+        'test' => [
+            'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('BOILER.Datasources.test.url')), FILTER_VALIDATE_URL),
         ],
     ],
 
