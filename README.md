@@ -392,8 +392,11 @@ bin/cake bake fixture users
 
 5. Run the test
 ```php
+# All
 vendor/bin/phpunit
-# Or a specific file only
+# Controller only (working)
+vendor/bin/phpunit tests/TestCase/Controller/PagesControllerTest.php
+# Model only (not working)
 vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 ```
 
