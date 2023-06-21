@@ -341,26 +341,33 @@ Credentials
 - The source files do NOT contain any secret information ensuring that even if your sourceFiles get leaked, no private connection info will be exposed
 - We will store all the private data in the server PHP.ini (GLOBAL) file.
 
-PHP.ini
+- Ensure you have 2 databases created
 ```php
-// Add to your PHP.ini file
-PROJECTNAME.Datasources.default.url = mysql:/.........
-```
-
-SOURCE FILES
-```php
-// in your PHP source files simple call the variables (from your php.ini file) as follows
-get_cfg_var('UNDOWEB.Datasources.default.url')
+# app_setupcase.php
+'Datasources' => [
+    'default' => [
+        'url' => filter_var(env('DATABASE_URL', get_cfg_var('BOILER.Datasources.default.url')), FILTER_VALIDATE_URL),
+    ],
+    'test' => [
+        'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('BOILER.Datasources.test.url')), FILTER_VALIDATE_URL),
+    ],
+],
+This will first try to load the docker environment vars otherwise will load from the PHP.ini file on the server
+# docker-compose.yml
+environment:
+  DATABASE_URL: mysql://root:undologic@db/LIVE_database
+  DATABASE_TEST_URL: mysql://root:undologic@db/automation
+# PHP.ini
+BOILER.Datasources.default.url = mysql://boilerplate:123@localhost/undoweb_boilerplate_testing
+BOILER.Datasources.test.url = mysql://boilerplate:123@localhost/undoweb_boilerplate_test
 ```
 
 [back to top](#overview-steps)
 
 
-
-
-
 #### 8.3 Setup Functional Testing
 
+- Testing works on both the server or local using docker
 - On Windows setup Ubuntu using WSL2
 1. Start Docker on your local computer
 2. Login to the docker container
@@ -382,9 +389,10 @@ bin/cake bake fixture users
 
 5. Run the test
 ```php
+vendor/bin/phpunit
+# Or a specific file only
 vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 ```
-
 
 #### 8.4 Enhance Security of your site
 
