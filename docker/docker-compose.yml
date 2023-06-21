@@ -7,7 +7,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      DATABASE_URL: mysql://root:undologic@db/LIVE_database
+      DATABASE_DEFAULT_URL: mysql://root:undologic@db/LIVE_database
       DATABASE_TEST_URL: mysql://root:undologic@db/automation
       DATABASE_NAME: local
       SECURITY_SALT: CHANGE_ME_NOW_THIS_IS_INSECURE_IF_YOU_LEAVE_IT

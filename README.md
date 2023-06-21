@@ -346,10 +346,10 @@ Credentials
 # app_setupcase.php
 'Datasources' => [
     'default' => [
-        'url' => filter_var(env('DATABASE_URL', get_cfg_var('BOILER.Datasources.default.url')), FILTER_VALIDATE_URL),
+        'url' => filter_var(env('DATABASE_DEFAULT_URL', get_cfg_var('DATABASE.DEFAULT.URL')), FILTER_VALIDATE_URL),
     ],
     'test' => [
-        'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('BOILER.Datasources.test.url')), FILTER_VALIDATE_URL),
+        'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('DATABASE.TEST.URL')), FILTER_VALIDATE_URL),
     ],
 ],
 This will first try to load the docker environment vars otherwise will load from the PHP.ini file on the server
