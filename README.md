@@ -95,10 +95,13 @@ The files which you prepared on the server are now on your local computer
 ### Step 5 Configure your IDE to automatically push changes to your server
 
 #### 5.1 Setup sFTP on your IDE
+- This will allow to upload changes from your computer to your server 
 
 Using PHPstorm:
-- Tools -> Development -> Browse Remote Host (a side panel will appear) NEXT click '...'
-- Name: test (type: sFTP - ssh over FTP)
+- Tools -> Deployment -> Browse Remote Host
+  - (a side panel will appear) NEXT click '...'
+- Name: Test Server (can be anything) 
+  - Choose type: sFTP - ssh over FTP
 - SSH configuration - click '...'
 - Create new config with "+"
   -  HOST: test.domain.com (replace domain with your server domainname)
@@ -114,10 +117,12 @@ ROOT PATH: click 'Autodetect'
 
 MAPPINGS (TAB)
 - LOCAL PATH: Navigate to your 'sourceFiles' directory
-- DEVELOPMENT PATH (During installation): click to navigate to 'www' -> 'test' (OR the subdomain you created in the control panel) -> 'sourceFiles'
-  - OR
-- DEVELOPMENT PATH (During Programming): click to navigate to 'www' - 'test' (OR the subdomain you created in the control panel)
-  - During programming we upload to the root of the subdomain NOT the sourceFiles directory (better for authentication)
+- DEPLOYMENT PATH (During installation): 
+  - click to navigate to 'www' -> 'test' (OR the subdomain you created in the control panel) -> 'sourceFiles'
+- --- OR ---
+- DEPLOYMENT PATH (After project is launched live): 
+- click to navigate to 'www' - 'test' (OR the subdomain you created in the control panel)
+    - During programming we upload to the root of the subdomain NOT the sourceFiles directory (better for authentication)
 
 #### 5.2 Auto-upload changes
 When activated anytime you change a file on your computer it will automatically sFTP that file to the server, allowing you to develop on the server
