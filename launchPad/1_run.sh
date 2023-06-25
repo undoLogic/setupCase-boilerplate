@@ -77,6 +77,5 @@ ssh $COMMAND
 #"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/
 "C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $URL/
 
-read -p "Uploaded to TESTING - Press enter to continue"
+read -p "Complete - Press enter to close this window"
 
-sleep 20
