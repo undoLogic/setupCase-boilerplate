@@ -74,10 +74,16 @@ read -p "Press ENTER to SSH and run COMMAND"
 
 ssh $COMMAND
 
-#open firefox new tab with link
-# figure out how to pass spaces from the settings page to here as the space is ending the variable
-#"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/
-"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $URL/
+# Check exit status
+if [[ $? -eq 0 ]]; then
+  echo -e "\e[32mSSH command executed successfully. - OPENING Browser \e[0m"
+  #open firefox new tab with link
+  # figure out how to pass spaces from the settings page to here as the space is ending the variable
+  #"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/
+  "C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $URL/
+else
+  echo -e "\e[31mSSH command encountered an error.\e[0m"
+fi
 
 read -p "Complete - Press enter to close this window"
 
