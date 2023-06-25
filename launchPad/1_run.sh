@@ -43,31 +43,36 @@ select opt in "${options[@]}"; do
   esac
 done
 
-#   && git clone \"https://\$(php -r 'echo env(\"PAT\", get_cfg_var(\"PAT\"));')@$GIT_ADDRESS\" \
+# git clone "https://$(php -r 'echo get_cfg_var("PAT");')@github.com/undoLogic/undoLogicWebsite.git"
+
+LAUNCH_URL=""
 
 # Create the command based
 if [[ $opt == "upload to test" || $opt == "upload to staging" ]]; then
   COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
-  && git clone \"https://\$(php -r 'echo get_cfg_var(\"PAT\");')@$GIT_ADDRESS\" \
-  --branch $GITHUB_CURRENT_BRANCH --single-branch $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH\
-  "
-
+&& git clone \"https://\$(php -r 'echo get_cfg_var(\"PAT\");')@$GIT_ADDRESS\" \
+--branch $GITHUB_CURRENT_BRANCH --single-branch $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH\
+"
   if [ $COPY_SRC_TO_ROOT = true ]
   then
     #Rsync files to root
-    COMMAND+=" && rsync -av $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ."
+    COMMAND+=" && rsync -av --no-perms --omit-dir-times --fake-super $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ."
+    # we are rsyncing to root, so we load the url with firefox
+    LAUNCH_URL="$URL/"
   else
     # will NOT rsync to root
     COMMAND+=" "
+    # we are NOT rsyncing to root, so we want to load the full path in firefox
+    LAUNCH_URL="$URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/"
   fi
-
   # for windows
   COMMAND+=""
   echo "$COMMAND"
 else
   echo "this will be LIVE"
-  COMMAND="$USER@$URL rsync -av --omit-dir-times --no-perms $STAGING_ABSOLUTE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
+  COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $STAGING_ABSOLUTE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
   echo "ssh $COMMAND"
+  LAUNCH_URL=$URL
 fi
 
 read -p "Press ENTER to SSH and run COMMAND"
@@ -78,12 +83,10 @@ ssh $COMMAND
 if [[ $? -eq 0 ]]; then
   echo -e "\e[32mSSH command executed successfully. - OPENING Browser \e[0m"
   #open firefox new tab with link
-  # figure out how to pass spaces from the settings page to here as the space is ending the variable
-  #"C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $TESTING_URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/
-  "C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $URL/
+  sleep 1
+  "C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $LAUNCH_URL
 else
   echo -e "\e[31mSSH command encountered an error.\e[0m"
 fi
 
 read -p "Complete - Press enter to close this window"
-
