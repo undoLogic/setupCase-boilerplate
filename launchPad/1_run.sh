@@ -83,7 +83,7 @@ ssh $COMMAND
 if [[ $? -eq 0 ]]; then
   echo -e "\e[32mSSH command executed successfully. - OPENING Browser \e[0m"
   #open firefox new tab with link
-  sleep 1
+  sleep 1 #allow to quickly see success before opening
   "C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $LAUNCH_URL
 else
   echo -e "\e[31mSSH command encountered an error.\e[0m"
