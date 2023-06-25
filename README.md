@@ -428,44 +428,24 @@ vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 
 
 ### Step 9 Launch Changes
+Launch allows to efficiently uploads your GITHUB projects to testing, staging and LIVE servers.
+Our technology uses basic SSH commands to prepare the source files and does not require extra libraries.
 
-#### 9.1 Configure LaunchPad
-First we must configure out settings.json file to connect with our target server.
+- Run the local script ./1_run.sh
+- Launch will logon to your target server (your SSH passphrase adds extra security)
+- All the source files from your GitHub account will be exported to the testing and/or staging locations
+- You must create a Personal Access Token (in github). This file is NOT stored in your sourcFiles instead it is saved to a PHP.ini file on your server
+- This allows you to test and verify all the changes before going LIVE
+- After you are satisfied all changes and database changes have been completed you can 'PushLIVE' - which copies all the files to the LIVE location on your target server
+- You first need to adjust your 'launch/settings.json' file to match your target servers
 
-Follow the detailed instructions on our source code page
-
-Navigate to the 'launchPad' directly.
-
-```angular2html
-cd /launchPad
+```php
+# navigate to the launch dir
+cd launchPad
+./1_run.sh
 ```
 
-#### 9.2 Upload to TESTING (optional)
-
-The test environment is optional and is meant to allow each developer to upload their files to an online server.
-
-This is great to share their progress online and between colleagues.
-```angular2html
-./1_setupTesting.sh
-```
-
-#### 9.3 Upload to STAGING
-
-After all the changes have been completed it is time to post our changes to the LIVE server
--> We first upload our changes to our STAGING server
--> This ensures our project is fully functional, connects properly with any database, etc.
--> This link can be shared with a client who can verify the new version before going LIVE
-
-```angular2html
-./2setupStaging.sh
-```
-
-#### 9.4 Post LIVE
-At this point all the changes have been approved on the staging and we can now confidently push our changes to the LIVE server
-
-```angular2html
-./3_go_LIVE.sh
-```
+Read the full documentation in the README.md file in the launchPad directory
 
 [back to top](#overview-steps)
 ### Step 10 Convert to a dockerized container for VPS deployment
