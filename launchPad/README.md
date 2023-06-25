@@ -1,11 +1,14 @@
 # Launch
-Launch allows to efficiently uploads your project to testing, staging and LIVE servers. Our technology uses SSH to negotiate the files upload and does not require any extra libraries.
-- Run a local script
+Launch allows to efficiently uploads your GITHUB projects to testing, staging and LIVE servers. 
+Our technology uses basic SSH commands to prepare the source files and does not require extra libraries.
+
+- Run the local script ./1_run.sh
 - Launch will logon to your target server (your SSH passphrase adds extra security)
 - All the source files from your GitHub account will be exported to the testing and/or staging locations
+- You must create a Personal Access Token (in github). This file is NOT stored in your sourcFiles instead it is saved to a PHP.ini file on your server
 - This allows you to test and verify all the changes before going LIVE
 - After you are satisfied all changes and database changes have been completed you can 'PushLIVE' - which copies all the files to the LIVE location on your target server
-- You first need to adjust your 'launch/settings.json' file to match your target server
+- You first need to adjust your 'launch/settings.json' file to match your target servers
 
 ### Testing Server
 This is an optional server designed to be a URL which you can test that does NOT share the database with the live production server
@@ -19,11 +22,26 @@ This is designed to be a URL that shares the database with the LIVE production.
 - This allows to verify all your changes before pushing to LIVE.
 - The database can be modified and verified before going LIVE
 - Careful as all changes on Staging will be reflected on LIVE
-e
+
+### Live Server
+Live server must be on the same server as Staging
+- When you are happy with your staging server all files are copied to the live absolute path
+
+
 ## Configuring
 Launch needs to be configured for your target server as well as your github account.
 
-1. open the file /launchPad/settings.json and modify all the rows (FIRST-TIME: Rename settings.json.NEW to settings.json - this allows to upgrade and manually update your settings file without overwriting)
+
+### PAT - Personal Access Tokens
+We use PAT to authenticate with GIT hub to export your files to your server
+This is ideal as you can export all the projects you have access to and you do NOT need to setup ssh keys for each project anymore
+- Simple add to your php.ini file on the server
+```php
+PAT = 123456skdjflkdsj43094
+```
+
+### Configure Settings.json
+- open the file /launchPad/settings.json and add the info on the desired servers
 
 TESTING_URL
 - Similar to 'STAGING_URL' but for your testing url (Database is separate from LIVE / staging)
@@ -135,19 +153,10 @@ BROWSER_LOCAL_PATH_WITH_PROGRAM
     "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
 ```
 
-### PAT - Personal Access Tokens
-We use PAT to authenticate with GIT hub to export your files to your server
-This is ideal as you can export all the projects you have access to and you do NOT need to setup ssh keys for each project anymore
-- Simple add to your php.ini file on the server
-```php
-PAT = 123456skdjflkdsj43094
-```
+=================== OPTIONAL =======================
 
-
------------------- DEPRECATED BELOW ----------------------
-
-### Setup SSH keys (DEPRECATED)
-To allow to export the GitHub source files to the server we must setup a public / private key. the PRIVATE key is ONLY on the server. the PUBLIC key goes onto Github -> deploy keys
+### Setup SSH keys (OPTIONAL)
+If you do not want to use a PAT, you can also add SSH keys for EACH project. To allow to export the GitHub source files to the server we must setup a public / private key. the PRIVATE key is ONLY on the server. the PUBLIC key goes onto Github -> deploy keys
 1. Logon to your server via SSH using the STAGING credentials
    
 NOTE: New servers you need to put your PUBLIC SSH KEY into the Control panel -> ssh keys -> import ssh key
