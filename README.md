@@ -445,7 +445,8 @@ cd launchPad
 ./1_run.sh
 ```
 
-Read the full documentation in the README.md file in the launchPad directory
+Read the full documentation in the README.md file in the launchPad directory:
+https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
 
 [back to top](#overview-steps)
 ### Step 10 Convert to a dockerized container for VPS deployment
