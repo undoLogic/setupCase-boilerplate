@@ -1,18 +1,22 @@
 #!/bin/sh
 source Z_share.sh
 
+COMMAND="$TESTING_USER@$TESTING_URL cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+&& git clone \"https://\$(php -r 'echo get_cfg_var(\"PAT\");')@$TESTING_GIT_ADDRESS\" \
+--branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH\
+"
+
 if [ $TESTING_COPY_SRC_TO_ROOT = true ]
 then
-  # WILL rsync the branch to the root (required for authentication / login)
-  COMMAND="$TESTING_USER@$TESTING_URL cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
-  && git clone $TESTING_GIT_ADDRESS --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
-  && rsync -av $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ." && echo ""
+  #
+  COMMAND+=" && rsync -av $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ."
 else
-  # WILL rsync the branch to the root (required for authentication / login)
-  COMMAND="$TESTING_USER@$TESTING_URL cd $TESTING_ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
-  && git clone $TESTING_GIT_ADDRESS --branch $GITHUB_CURRENT_BRANCH --single-branch $TESTING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH \
-  " && echo ""
+  # will NOT rsync to root
+  COMMAND+=" "
 fi
+
+# for windows
+COMMAND+=""
 
 echo $COMMAND
 

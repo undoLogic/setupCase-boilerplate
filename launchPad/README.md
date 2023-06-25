@@ -38,15 +38,14 @@ TESTING_USER
 ```
 
 TESTING_GIT_ADDRESS:
-- This is the full path to your git repo
-- If you are launching multiple projects on the same server you need to configure github as github ONLY allows for security a single ssh key per each hostname server
-- See below instructions how to create multiple sites configuration file
+- This is the path starting with github.com to your git repo
+- https and the PAT will be added to this link when you run
+- Ensure you add your PAT to the server php.ini as 
+- PAT = 123456789...
+- This will allow to not include any secrets in these source files
+- 
 ```angular2html
-  "TESTING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
-```
-OR if you are working on a server with shared projects
-```angular2html
-    "TESTING_GIT_ADDRESS": "git@PROJECTNAME.github.com:OWNER/repo-project1.git
+  "TESTING_GIT_ADDRESS": "github.com/undoLogic/setupCase-boilerplate.git",
 ```
 
 TESTING_ABSOLUTE_PATH
@@ -80,17 +79,12 @@ STAGING_USER
 ```
 
 STAGING_GIT_ADDRESS:
-- This is the full path to your git repo
-- If you are launching multiple projects on the same server you need to configure github as github ONLY allows for security a single ssh key per each hostname server
-- See below instructions how to create multiple sites configuration file
+- This is the path starting with github.com to your git repo
+- The PAT will be added to your link when you run this script
+- ensure you have added PAT = 123 on your php.ini file on your server
 ```angular2html
   "STAGING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
 ```
-OR if you are working on a server with shared projects
-```angular2html
-    "STAGING_GIT_ADDRESS": "git@PROJECTNAME.github.com:OWNER/repo-project1.git
-```
-
 
 STAGING_ABSOLUTE_PATH
 - This is the path on your server to the location where the source files will be uploaded
@@ -141,7 +135,18 @@ BROWSER_LOCAL_PATH_WITH_PROGRAM
     "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
 ```
 
-### Setup SSH keys
+### PAT - Personal Access Tokens
+We use PAT to authenticate with GIT hub to export your files to your server
+This is ideal as you can export all the projects you have access to and you do NOT need to setup ssh keys for each project anymore
+- Simple add to your php.ini file on the server
+```php
+PAT = 123456skdjflkdsj43094
+```
+
+
+------------------ DEPRECATED BELOW ----------------------
+
+### Setup SSH keys (DEPRECATED)
 To allow to export the GitHub source files to the server we must setup a public / private key. the PRIVATE key is ONLY on the server. the PUBLIC key goes onto Github -> deploy keys
 1. Logon to your server via SSH using the STAGING credentials
    
@@ -201,41 +206,3 @@ git clone git@project1.github.com:OWNER/repo-project1.git
 # OR
 git clone git@project2.github.com:OWNER/repo-project2.git
 ```
-
-### Configure Testing Server as Dev Environment
-Using your TESTING server you are able to create an efficient DEV environment. 
-- Locally on your computer you ONLY need PHPstorm open to edit your source files
-- PHPstorm will automatically upload all changed files to the testing server ongoing
-- Anytime you change any file the same file will be uploaded to the testing server
-- As soon as you switch to your browser and view the testing link you will see your new changes
-- On Windows Docker can be very slow locally, so this is ideal
-1. Open PHPstorm
-2. Click 'Tools' -> 'Depoloyment' -> 'Browse Remote Host'
-3. Click the '...' to add a new server
-4. Name (Add TESTING project) so you will know this is testing
-5. Type (choose SFTP: SSH over FTP)
-A new window appears
-6. SSH configuration: click '...' to create a new ssh config
-7. Another new window opens - click 'ADD' to create a new
-8. HOST: is the URL of your testing server "projectname.undoweb.com"
-9. USERNAME: your assigned username you login to the server with
-10. Authentication type:
-- Password use the same password you use to login to your testing server
-- Keys: If your public key is on the testing server you can use this to authenticate
-11. Test connection: click to verify your settings are correct. 
-12. Click OK and you will return to the previous window. At this point your SSH connection is setup you now need to assign your project to the testing server
-13. Root Path - Click 'autodetect' and the base directory will be determined 
-14. Click 'Mappings' tab (top middle tab)
-15. Local path - click the folder and browse to the 'sourceFiles'
-16. Deployment Path - click the folder and browse to the location of your testing absolute path
-17. Top LEFT: click the CHECKMARK on your testing to choose this as the default
-18. click OK as you are done setting up
-19. Click TOOLS -> DEPLOYMENT -> OPTIONS
-20. "Upload changed files automatically to the default server" CHOOSE ALWAYS
-
-#### SUMMARY: 
-- At this point you have setup SFTP to allow to upload all your files from the 'sourceFiles' directory to the testing server
-- You verified you can connect and ensured the mapping from your local computer to the testing server is correct
-- You chose your testing server as the default server
-- You enabled auto upload to the default server
-- Now any files you change on your local computer will be automaticalliy uploaded to your testing url
