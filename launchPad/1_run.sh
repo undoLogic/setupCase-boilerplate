@@ -43,10 +43,12 @@ select opt in "${options[@]}"; do
   esac
 done
 
+#   && git clone \"https://\$(php -r 'echo env(\"PAT\", get_cfg_var(\"PAT\"));')@$GIT_ADDRESS\" \
+
 # Create the command based
 if [[ $opt == "upload to test" || $opt == "upload to staging" ]]; then
   COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
-  && git clone \"https://\$(php -r 'echo env(\"PAT\", get_cfg_var(\"PAT\"));')@$GIT_ADDRESS\" \
+  && git clone \"https://\$(php -r 'echo get_cfg_var(\"PAT\");')@$GIT_ADDRESS\" \
   --branch $GITHUB_CURRENT_BRANCH --single-branch $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH\
   "
 
