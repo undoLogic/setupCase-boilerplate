@@ -375,6 +375,47 @@ BOILER.Datasources.default.url = mysql://boilerplate:123@localhost/undoweb_boile
 BOILER.Datasources.test.url = mysql://boilerplate:123@localhost/undoweb_boilerplate_test
 ```
 
+9. Add routes
+- Routes are needed to connect the languages
+
+```php
+# in the function 
+# $routes->scope('/', function (RouteBuilder $builder) {
+# ADD
+
+$builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+$builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+$builder->connect('/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
+$builder->connect('/reset', ['controller' => 'Users', 'action' => 'reset']);
+            
+// language
+$builder->connect('/{language}', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']) ;
+$builder->connect('/{language}/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
+$builder->connect('/{language}/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
+        
+### Then add below that function new functions for the different Usertypes / Prefixes
+
+$routes->prefix('staff', function (RouteBuilder $routes) {
+
+    //with the lang
+    $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']) ;
+
+    $routes->fallbacks(DashedRoute::class);
+});
+
+$routes->prefix('admin', function (RouteBuilder $routes) {
+
+    //with the lang
+    $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']) ;
+
+    $routes->fallbacks(DashedRoute::class);
+});
+
+
+
+```
+
+
 [back to top](#overview-steps)
 
 
