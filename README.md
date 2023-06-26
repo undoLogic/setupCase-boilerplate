@@ -14,7 +14,7 @@ dependancies.
 7. [Integrate a professional visual layout to your project](#step-7-integrate-a-professional-visual-layout-to-your-project)
 8. [Programming](#step-8-programming)
 9. [Launch changes](#step-9-launch-changes)
-10. [Manually Modify Files On Server](#step-10-modify-files-on-server)
+10. [Manually Modify Files On Server](#step-10-manually-modify-files-on-server)
 11. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-11-convert-to-a-dockerized-container-for-vps-deployment)
 
 
