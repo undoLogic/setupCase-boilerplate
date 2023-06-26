@@ -6,7 +6,9 @@ read -p 'Git "Web address" from Step 2: ' webAddress
 
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - cloning git repo: $webAddress"
 
-# from step 2 clone the git repo
+## from step 2 clone the git repo
+# avoid error permission denied
+git config --global --unset credential.helper
 git clone $webAddress tmp
 rsync -av --no-perms --omit-dir-times --fake-super tmp/. .
 rm -rf tmp
