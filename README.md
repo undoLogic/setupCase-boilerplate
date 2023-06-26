@@ -14,7 +14,8 @@ dependancies.
 7. [Integrate a professional visual layout to your project](#step-7-integrate-a-professional-visual-layout-to-your-project)
 8. [Programming](#step-8-programming)
 9. [Launch changes](#step-9-launch-changes)
-10. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-10-convert-to-a-dockerized-container-for-vps-deployment)
+10. [Manually Modify Files On Server](#step-10-modify-files-on-server)
+11. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-11-convert-to-a-dockerized-container-for-vps-deployment)
 
 
 ### Step 1 Initial Setup / Preparation
@@ -449,5 +450,31 @@ Read the full documentation in the README.md file in the launchPad directory:
 https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
 
 [back to top](#overview-steps)
-### Step 10 Convert to a dockerized container for VPS deployment
+
+### Step 10 Manually Modify Files On Server
+- You are able to SSH into a server and perform emergency fixes 
+- You can even do this with an iPad
+  - Simply download iSH on your IOS device: https://ish.app/
+1. SSH to your server - Add your PRIVATE KEY to your ISH root matching your PUBLIC key to your server
+2. Add your github PAT (personal access token) to the php.ini file: PAT = 123456789
+3. Git clone your files to your server
+```php
+git clone "https://$(php -r 'echo get_cfg_var("PAT");')@github.com/USERNAME/project.git" --branch master --single-branch /path/to/server/dir/main/.
+```
+2. You now have your repo on the server
+3. Use nano to modify a file
+```php
+nano /path/to/file/to/edit.php
+```
+4. CTRL+S / CTRL+X 
+5. You can test the changes on the test url
+6. LaunchPad/4_uploadChangesToLive.sh will automatically show you the files that were modified, simply select and this will ssh to your LIVE server (under construction)
+7. Commit / Push changes from server
+```php 
+git add . && git commit -m "server changes"
+git push -u origin master
+```
+
+
+### Step 11 Convert to a dockerized container for VPS deployment
 Coming soon...
