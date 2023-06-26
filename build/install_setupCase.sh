@@ -8,7 +8,7 @@ echo "- - - - - - - - - - - - - - - - - - - - - - - - - cloning git repo: $webAd
 
 # from step 2 clone the git repo
 git clone $webAddress tmp
-rsync -av tmp/. .
+rsync -av --no-perms --omit-dir-times --fake-super tmp/. .
 rm -rf tmp
 
 read -p 'ready to install' read
@@ -25,7 +25,7 @@ composer require "cakephp/authentication:^2.0" -d sourceFiles
 
 # copy our codeBlocks on top of CakePHP
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - integrating SetupCase codeblocks"
-rsync -av codeBlocks/cakePHP/4.1/. sourceFiles/.
+rsync -av --no-perms --omit-dir-times --fake-super codeBlocks/cakePHP/4.1/. sourceFiles/.
 
 # remove git ignore in the cake directory since we have our own git ignore in our boilerplate files
 rm -rf sourceFiles/.git*
