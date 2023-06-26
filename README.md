@@ -326,9 +326,9 @@ $this->loadHelper('Lang');
 8. Bootstrap.php (add environments)
 ```php
 //Keep this function
-if (file_exists(CONFIG . 'app_local.php')) {
-    Configure::load('app_local', 'default');
-}
+//if (file_exists(CONFIG . 'app_local.php')) {
+//    Configure::load('app_local', 'default');
+//}
 //This will prepare all the correct values for your current environment
 $activeEnv = \App\Util\Environments::getActive();
 switch($activeEnv) {
