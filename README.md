@@ -452,11 +452,17 @@ https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
 [back to top](#overview-steps)
 
 ### Step 10 Manually Modify Files On Server
-- You are able to SSH into a server and perform emergency fixes 
+- You are able to SSH into a server and perform emergency fixes.
 - You can even do this with an iPad
   - Simply download iSH on your IOS device: https://ish.app/
 1. SSH to your server - Add your PRIVATE KEY to your ISH root matching your PUBLIC key to your server
-2. Add your github PAT (personal access token) to the php.ini file: PAT = 123456789
+2. Add your github PAT (personal access token) to the php.ini file on your server. 
+- This will ensure your sourceFiles do not have any private credentials.
+- Github - Settings - Developer Settings - Personal Access Tokens - Tokens (Classic)
+```php
+#PHP.ini - copy and paste from Tokens (Classic) 
+PAT = 123456789
+```
 3. Git clone your files to your server
 ```php
 git clone "https://$(php -r 'echo get_cfg_var("PAT");')@github.com/USERNAME/project.git" --branch master --single-branch /path/to/server/dir/main/.
