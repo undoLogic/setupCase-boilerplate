@@ -216,6 +216,21 @@ class SetupCase {
 
     }
 
+    public function requireSSLExcept($exceptions, $ths) {
+        $this->ths = $ths;
+
+        if (in_array($_SERVER[ 'SERVER_NAME' ], $exceptions)) {
+            //ignore ssl on this host
+        } else {
+            //if we are NOT ssl activate ssl
+            if (!$this->__isSSL()) {
+                $this->__redirectSSL();
+            } else {
+                //already ssl - do nothing
+            }
+        }
+    }
+
     ////public
     public function forceSSL($ths) {
         $this->ths = $ths;

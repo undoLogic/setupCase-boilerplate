@@ -301,6 +301,22 @@ public function beforeFilter(EventInterface $event) {
     $this->setupCase();
 }
 function setupCase() {
+
+    $setupCase = new SetupCase;
+    $setupCase->requirePasswordExcept(['www.henrygiroux.com', 'henrygiroux.com'], $_SERVER, $this->request->getSession());
+    $setupCase->requireSSLExcept([
+        'localhost',
+    ], $this);
+
+    //redirect older langs
+//    $oldLangCheck = $this->request->getParam('language');
+//    if ($oldLangCheck == 'eng') {
+//        $this->redirect(['language' => 'en']);
+//    } elseif ($oldLangCheck == 'fre') {
+//        $this->redirect(['language' => 'fr']);
+//    }
+
+
     //RBAC/Access middleware decides if they are allowed in - here we redirect if needed
     $access_granted = $this->request->getAttribute('access_granted');
     if (!$access_granted) {
@@ -382,7 +398,6 @@ BOILER.Datasources.test.url = mysql://boilerplate:123@localhost/undoweb_boilerpl
 # in the function 
 # $routes->scope('/', function (RouteBuilder $builder) {
 # ADD
-
 $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
 $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
 $builder->connect('/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
@@ -393,8 +408,16 @@ $builder->connect('/{language}', ['controller' => 'Pages', 'action' => 'home'], 
 $builder->connect('/{language}/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
 $builder->connect('/{language}/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
         
-### Then add below that function new functions for the different Usertypes / Prefixes
+//redirect for older langs
+//$builder->connect('/eng', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']) ;
+//$builder->connect('/fre', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']) ;
+//$builder->connect('/eng/{controller}/{action}/*', ['language' => 'eng', 'controller' => 'Pages', 'action' => 'redirect'], ['language' => 'en|fr|es']);
+//$builder->connect('/fre/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
+//$builder->connect('/eng/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
+//$builder->connect('/fre/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
 
+
+### Then add below that function new functions for the different Usertypes / Prefixes
 $routes->prefix('staff', function (RouteBuilder $routes) {
 
     //with the lang
