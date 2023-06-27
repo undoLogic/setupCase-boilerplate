@@ -305,8 +305,7 @@ function setupCase() {
     $setupCase = new SetupCase;
     $setupCase->requirePasswordExcept(['www.LIVESITE.com', 'LIVESITE.com'], $_SERVER, $this->request->getSession());
     $setupCase->requireSSLExcept([
-        'localhost',
-        //add other hosts which should NOT redict to SSL
+        'localhost', //add other hosts which should NOT redict to SSL
     ], $this);
 
     //redirect older langs
@@ -316,7 +315,6 @@ function setupCase() {
 //    } elseif ($oldLangCheck == 'fre') {
 //        $this->redirect(['language' => 'fr']);
 //    }
-
 
     //RBAC/Access middleware decides if they are allowed in - here we redirect if needed
     $access_granted = $this->request->getAttribute('access_granted');
