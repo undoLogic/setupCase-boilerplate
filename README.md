@@ -447,7 +447,6 @@ cd PROJECTFILE/docker
 //Now you can run command line tests without issues
 ```
 
-
 [back to top](#overview-steps)
 
 
