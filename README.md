@@ -437,8 +437,19 @@ $routes->prefix('admin', function (RouteBuilder $routes) {
 
 ```
 
+10. Fix windows line endings
+- Ensure our windows line endings are corrected
+```php
+cd PROJECTFILE/docker
+./2loginDockerContainer.bat
+// you are now inside the docker container
+./fix-windows-line-endings.sh
+//Now you can run command line tests without issues
+```
+
 
 [back to top](#overview-steps)
+
 
 
 #### 8.3 Setup Functional Testing
@@ -461,15 +472,30 @@ bin/cake bake test Table Users
 4. Bake the fixture
 ```php
 bin/cake bake fixture users
+bin/cake bake fixture groups
 ```
 
-5. Run the test
+5. Replace the cakePHP tests with a basic boilerplate test
+- Edit the file tests/TestCase/Model/Table/UsersTableTest.php
+- Remove all functions EXCEPT the 'setUp' and 'tearDown' functions
+- Add this function
+```php
+public function testBoilerPlateTest(): void
+{
+    $newUser = ['name' => 'new user here'];
+    $user = $this->Users->newEntity($newUser);
+    $res = $this->Users->save($user);
+    $this->assertEquals(2, $res->id);
+}
+```
+
+6. Run the test
 ```php
 # All
 vendor/bin/phpunit
 # Controller only (working)
 vendor/bin/phpunit tests/TestCase/Controller/PagesControllerTest.php
-# Model only (not working)
+# Model only - should work with a single test passing (above step 5)
 vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 ```
 
