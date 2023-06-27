@@ -41,6 +41,27 @@
     <div class="<?= $classEach; ?>">
         <div class="card">
             <div class="card-header">
+                <h5>GIT RESET --hard</h5>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">
+
+git log --oneline
+git reset --hard commit_hash
+git push --force
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
                 <h5>Auth Change password field</h5>
             </div>
             <div class="card-body">
