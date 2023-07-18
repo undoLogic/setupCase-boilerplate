@@ -581,8 +581,7 @@ You are able to efficiently copy the database from a LIVE server and push this d
 ```shell
 #!/bin/sh
 d=$(date +%Y-%m-%d)
-#echo $d
-rsync -av --progress *$d* user@testwebsite.com:~/private/.
+rsync -av --progress -e "ssh -i $HOME/.ssh/YOURKEY" *$d* user@testwebsite.com:~/private/.
 ```
 
 
