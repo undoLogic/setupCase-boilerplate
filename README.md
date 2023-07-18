@@ -15,7 +15,8 @@ dependancies.
 8. [Programming](#step-8-programming)
 9. [Launch changes](#step-9-launch-changes)
 10. [Manually Modify Files On Server](#step-10-manually-modify-files-on-server)
-11. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-11-convert-to-a-dockerized-container-for-vps-deployment)
+11. [Prepare testing serverer](#step-11-prepare-testing-server)
+11. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-12-convert-to-a-dockerized-container-for-vps-deployment)
 
 
 ### Step 1 Initial Setup / Preparation
@@ -570,5 +571,20 @@ git push -u origin master
 ```
 
 
-### Step 11 Convert to a dockerized container for VPS deployment
+### Step 11 Prepare testing server
+You are able to efficiently copy the database from a LIVE server and push this data to your test server.
+- This ensures that you can develop with real data on a test server securely. 
+- Always PUSH data from LIVE to testing to maintain security by never giving access from a testing server to connect to LIVE.
+- On your LIVE server simple copy this script and after you export the current database it will rsync the data to your test website. You can then manually import on the test website
+- On the testing server place the public key into the authorized_hosts allowing SSH key connection
+
+```shell
+#!/bin/sh
+d=$(date +%Y-%m-%d)
+#echo $d
+rsync -av --progress *$d* user@testwebsite.com:~/private/.
+```
+
+
+### Step 12 Convert to a dockerized container for VPS deployment
 Coming soon...
