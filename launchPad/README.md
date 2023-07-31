@@ -153,6 +153,16 @@ BROWSER_LOCAL_PATH_WITH_PROGRAM
     "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
 ```
 
+
+
+# Upgrade from previous version
+Navigate to the root of your source files
+```shell
+mkdir launchPad
+cd launchPad
+svn export --force https://github.com/undoLogic/setupCase-boilerplate/trunk/launchPad .
+```
+
 =================== OPTIONAL =======================
 
 ### Setup SSH keys (OPTIONAL)
