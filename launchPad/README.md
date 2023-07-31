@@ -2,10 +2,13 @@
 Launch allows to efficiently uploads your GITHUB projects to testing, staging and LIVE servers. 
 Our technology uses basic SSH commands to prepare the source files and does not require extra libraries.
 
+How it works:
 - Run the local script ./1_run.sh
+- Choose which environment to update
 - Launch will logon to your target server (your SSH passphrase adds extra security)
 - All the source files from your GitHub account will be exported to the testing and/or staging locations
 - You must create a Personal Access Token (in github). This file is NOT stored in your sourcFiles instead it is saved to a PHP.ini file on your server
+- Alternatively you can setup SSH keys allowing your server to access the files from github ongoing without an expiring PAT token
 - This allows you to test and verify all the changes before going LIVE
 - After you are satisfied all changes and database changes have been completed you can 'PushLIVE' - which copies all the files to the LIVE location on your target server
 - You first need to adjust your 'launch/settings.json' file to match your target servers
@@ -13,7 +16,7 @@ Our technology uses basic SSH commands to prepare the source files and does not 
 ### Testing Server
 This is an optional server designed to be a URL which you can test that does NOT share the database with the live production server
 - Allows to preview new features to clients or colleagues without affecting LIVE production database
-- Allow to use for DEV Environment and NOT use Docker (can be faster since Windows is slow for docker). Using SFTP all changed files are uploaded to the testing server automatically.
+- Allow to use for DEV Environment and NOT use Docker (can be faster since Windows is slow for docker). Using SFTP all changed files are uploaded to the testing server automatically after initial files are launched
 - Simply access the testing URL and preview your changes
 - See below how to [Configure your testing server as your DEV environment](#configure-testing-server-as-dev-environment)
 
@@ -22,15 +25,14 @@ This is designed to be a URL that shares the database with the LIVE production.
 - This allows to verify all your changes before pushing to LIVE.
 - The database can be modified and verified before going LIVE
 - Careful as all changes on Staging will be reflected on LIVE
+- When you are satisfied with all new changes the goLIVE script will rsync all files from staging to the LIVE folder
 
 ### Live Server
 Live server must be on the same server as Staging
 - When you are happy with your staging server all files are copied to the live absolute path
 
-
 ## Configuring
 Launch needs to be configured for your target server as well as your github account.
-
 
 ### PAT - Personal Access Tokens
 We use PAT to authenticate with GIT hub to export your files to your server
@@ -44,15 +46,18 @@ PAT = 123456skdjflkdsj43094
 - open the file /launchPad/settings.json and add the info on the desired servers
 
 TESTING_URL
-- Similar to 'STAGING_URL' but for your testing url (Database is separate from LIVE / staging)
+- This requires you have CREATED a 'Subdomain' on your control panel
+- If your subdomain is 'test' then you would access your site with http://test.YourDomain.com / http://staging.servername.com
+- ONLY add the url WITHOUT 'http://'
 ```angular2html
-"TESTING_URL": "/home/undoweb/www/projectname",
+"TESTING_URL": "test.domain.com",
 ```
 
 TESTING_USER
-- Same as 'STAGING_USER' but for testing server
+- This is the username in your control panel of your testing server
+- Top LEFT in the 'hosting account' box you will see 'Username:'
 ```
-"TESTING_USER": "undoweb",
+"TESTING_USER": "username",
 ```
 
 TESTING_GIT_ADDRESS:
@@ -67,14 +72,16 @@ TESTING_GIT_ADDRESS:
 ```
 
 TESTING_ABSOLUTE_PATH
-- Same as "STAGING_ABSOLUTE_PATH" above but for testing url
+- This is the path on your testing server to the location where the source files will be uploaded
+- Navigate (on the control panel) to "File Manager" -> "WWW"
+- the Path is located next to 'Location: ' for example "/home/username/www/test"
 ```angular2html
 "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/projectname",
 ```
 
 TESTING_COPY_SRC_TO_ROOT
 - copy all the files in the sourceFiles directory to the root of the folder
-- false will leave all the files in the sub-folder sourceFiles
+- false will leave all the files in the sub-folder sourceFiles and the current branch (eg test.domain.com/main/sourceFiles)
 - true will copy them all to the root
    - This is important when you deal with authentication and your auth requires the login page be on the root of your sub-domain
 ```angular2html
@@ -152,7 +159,6 @@ BROWSER_LOCAL_PATH_WITH_PROGRAM
 ```angular2html
     "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
 ```
-
 
 
 # Upgrade from previous version

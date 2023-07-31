@@ -4,12 +4,14 @@
   "TESTING_URL": "test.undoweb.com",
   "TESTING_USER": "undoweb",
   "TESTING_GIT_ADDRESS": "github.com/username/project.git",
+  "TESTING_USE_PAT": true,
   "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
   "TESTING_COPY_SRC_TO_ROOT": false,
 
   "STAGING_URL": "",
   "STAGING_USER": "",
   "STAGING_GIT_ADDRESS": "",
+  "STAGING_USE_PAT": false,
   "STAGING_ABSOLUTE_PATH": "",
   "STAGING_COPY_SRC_TO_ROOT": false,
 

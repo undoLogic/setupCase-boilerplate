@@ -16,6 +16,7 @@ select opt in "${options[@]}"; do
       GIT_ADDRESS=$TESTING_GIT_ADDRESS
       ABSOLUTE_PATH=$TESTING_ABSOLUTE_PATH
       COPY_SRC_TO_ROOT=$TESTING_COPY_SRC_TO_ROOT
+      USE_PAT=$TESTING_USE_PAT
       break
       ;;
     "upload to staging")
@@ -25,6 +26,7 @@ select opt in "${options[@]}"; do
       GIT_ADDRESS=$STAGING_GIT_ADDRESS
       ABSOLUTE_PATH=$STAGING_ABSOLUTE_PATH
       COPY_SRC_TO_ROOT=$STAGING_COPY_SRC_TO_ROOT
+      USE_PAT=$STAGING_USE_PAT
       break
       ;;
     "GO LIVE!")
@@ -49,10 +51,19 @@ LAUNCH_URL=""
 
 # Create the command based
 if [[ $opt == "upload to test" || $opt == "upload to staging" ]]; then
+  if [ $USE_PAT = true ]
+  then
   COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
 && git clone \"https://\$(php -r 'echo get_cfg_var(\"PAT\");')@$GIT_ADDRESS\" \
 --branch $GITHUB_CURRENT_BRANCH --single-branch $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH\
 "
+  else
+   COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+ && git clone \"$GIT_ADDRESS\" \
+ --branch $GITHUB_CURRENT_BRANCH --single-branch $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH\
+ "
+  fi
+  # next
   if [ $COPY_SRC_TO_ROOT = true ]
   then
     #Rsync files to root
