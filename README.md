@@ -76,6 +76,7 @@ choco install firefox-dev --pre -y
 choco install git -y
 choco install openssh --pre -y
 choco install opera-developer -y
+choco install svn -y
 
 # Optional 
 choco install dropbox -y
