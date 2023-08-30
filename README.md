@@ -550,7 +550,7 @@ https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
 - This will ensure your sourceFiles do not have any private credentials.
 - Github - Settings - Developer Settings - Personal Access Tokens - Tokens (Classic)
 ```php
-#PHP.ini - copy and paste from Tokens (Classic) 
+#PHP.ini (global only - not individual subdomains) - copy and paste from Tokens (Classic) 
 PAT = 123456789
 ```
 3. Git clone your files to your server
