@@ -523,14 +523,15 @@ sourceFiles/config/Migrations/DATE_initial.php
 ```
 Using PHPMyAdmin
 - navigate to the structure tab
-- checkbox one table at a time
-- at the bottom use the dropdown -> EXPORT
-- Set to 'Custom'
-- UNCHECK 'data' (we only want the structure)
-- choose 'View output as text'
-- click 'GO' at the bottom
+- Click the table (Choose one database table at a time)
+- On the top tabs click 'Export'
+- Export Method: "Custom"
+- Format: "SQL"
+- Output: "View output as text"
+- Format-specific options: Structure (do not export all data)
+- Click 'GO' at the bottom
 - Copy the 'create table....' statement
-- Have chatGPT convert to the cakePHP migration notation
+- Have chatGPT convert to the cakePHP migration notation:
 ```ChatGPT
 Please convert this SQL to CakePHP notation used for creating database tables and defining their columns using the CakePHP database schema builder:
 CREATE TABLE `users` (
@@ -582,6 +583,8 @@ public function up(): void
             ])
             //// ETC
 ```
+You can now keep exporting all the tables in your database, until you are done
+
 
 5. Replace the cakePHP tests with a basic boilerplate test
 - Edit the file tests/TestCase/Model/Table/UsersTableTest.php
