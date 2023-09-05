@@ -501,7 +501,9 @@ bin/cake bake test Table Users
 bin/cake bake fixture users
 bin/cake bake fixture groups
 ```
-- This will give a basic fixture, BUT you now need to export from your PHPmyAdmin -> export -> as PHP ARRAY
+- This will give a basic fixture
+- We recommend to add data as you test each function however you can also add global data
+- PHPmyAdmin -> export as PHP ARRAY
 - Paste this into 
 ```
 $this->records = [
@@ -518,6 +520,67 @@ $this->records = [
 ```php
 sourceFiles/config/Migrations/DATE_initial.php
 # Update this file so it is the same as your DB structure
+```
+Using PHPMyAdmin
+- navigate to the structure tab
+- checkbox one table at a time
+- at the bottom use the dropdown -> EXPORT
+- Set to 'Custom'
+- UNCHECK 'data' (we only want the structure)
+- choose 'View output as text'
+- click 'GO' at the bottom
+- Copy the 'create table....' statement
+- Have chatGPT convert to the cakePHP migration notation
+```ChatGPT
+Please convert this SQL to CakePHP notation used for creating database tables and defining their columns using the CakePHP database schema builder:
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `user_type_id` int(11) DEFAULT NULL,
+  `user_type` varchar(50) NOT NULL,
+  `reset_token` varchar(1000) NOT NULL,
+  ..... ETC
+
+```
+- ChatGPT will give you back in this notation
+```ChatGPT
+// Define the 'users' table
+$table = new Table('users');
+
+// Define the table columns
+$table
+    ->addColumn('id', 'integer', [
+        'limit' => 11,
+        'null' => false,
+    ])
+    ->addColumn('user_type_id', 'integer', [
+        'limit' => 11,
+        'default' => null,
+    ])
+    ->addColumn('user_type', 'string', [
+        'length' => 50,
+        'null' => false,
+    ])
+    ..... ETC
+
+```
+- Paste this into the 'up()' function
+```php
+public function up(): void
+    {
+        // Define the 'users' table
+        $table = new Table('users');
+
+        // Define the table columns
+        $table
+            ->addColumn('id', 'integer', [
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('user_type_id', 'integer', [
+                'limit' => 11,
+                'default' => null,
+            ])
+            //// ETC
 ```
 
 5. Replace the cakePHP tests with a basic boilerplate test
