@@ -14,7 +14,7 @@ dependancies.
 7. [Integrate a professional visual layout to your project](#step-7-integrate-a-professional-visual-layout-to-your-project)
 8. [Programming](#step-8-programming)
 9. [Launch changes](#step-9-launch-changes)
-10. [Functional Testing] (#step-10-functional-changes)
+10. [Functional Testing](#step-10-functional-testing)
 11. [Enhance Security](#step-11-enhance-security)
 12. [Manually Modify Files On Server](#step-10-manually-modify-files-on-server)
 13. [Prepare testing server](#step-11-prepare-testing-server)
