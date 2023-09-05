@@ -535,7 +535,7 @@ public function testBoilerPlateTest(): void
 vendor/bin/phpunit tests/TestCase/Model/
 
 # you can also test one model at a time
-#vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
+# vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 
 # Controller only (working)
 # vendor/bin/phpunit tests/TestCase/Controller/PagesControllerTest.php
