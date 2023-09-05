@@ -492,36 +492,25 @@ https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
 
 - Testing currently works on our PaaS using a SSH terminal
 1. SSH to your test server
-2. Bake the Users Table
+2. Bake one table at a time as you add working testing into it
 ```php
 bin/cake bake test Table Users
 ```
-3. Bake the fixture
+3. Bake all the fixtures
 ```php
+//This will create all the fixutres without any default data
+bin/cake bake fixture all --count = 0
+
+//If you want to create specific fixtures for a model
 bin/cake bake fixture users
-bin/cake bake fixture groups
 ```
-- This will give a basic fixture
-- We recommend to add data as you test each function however you can also add global data
-- PHPmyAdmin -> export as PHP ARRAY
-- Paste this into 
-```
-$this->records = [
-  [
-  'id' => '3',
-  'user_type_id' => '2',
-  ....
-   etc
-   ...
-   
-```
+- This will give a basic fixture without any global data which is preferred (you can add to the records array if you want gloabl data)
 
 4. Add your database structure
 - Migrations file (coming later)
 - Connect your test database and assign in your app_...php file
-- Just paste in the structure from your live for now
-- Coming later: how to add the schema into your source files test/schema dir
-
+- Just paste in the structure from your LIVE db for now (no data ONLY structure)
+- @todo how to add the schema into your source files test/schema dir
 
 5. Replace the cakePHP tests with a basic boilerplate test
 - Edit the file tests/TestCase/Model/Table/UsersTableTest.php
@@ -533,20 +522,24 @@ public function testBoilerPlateTest(): void
     $newUser = ['name' => 'new user here'];
     $user = $this->Users->newEntity($newUser);
     $res = $this->Users->save($user);
-    $this->assertEquals(2, $res->id);
+    
+    //ensure it was written 
+    $found = $this->Users->find('all')->first();
+    $this->assertEquals(1, $found->id);
 }
 ```
 
 6. Run the test
 ```php
-# test your model
-vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
+# test all model tests
+vendor/bin/phpunit tests/TestCase/Model/
+
+# you can also test one model at a time
+#vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 
 # Controller only (working)
 # vendor/bin/phpunit tests/TestCase/Controller/PagesControllerTest.php
 
-# All
-# vendor/bin/phpunit
 ```
 
 
