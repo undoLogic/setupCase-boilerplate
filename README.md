@@ -490,25 +490,34 @@ https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
 
 ### Step 10 Functional Testing
 
-- Testing works on both the server or local using docker
-- On Windows setup Ubuntu using WSL2
-1. Start Docker on your local computer
-2. Login to the docker container
-```php
-cd PROJECTFILE/docker
-./2loginDockerContainer.bat
-// you are now inside the docker container
-cd /var/www/vhosts/website.com/www/sourceFiles
-```
-3. Bake the Users Table
+- Testing currently works on our PaaS using a SSH terminal
+1. SSH to your test server
+2. Bake the Users Table
 ```php
 bin/cake bake test Table Users
 ```
-
-4. Bake the fixture
+3. Bake the fixture
 ```php
 bin/cake bake fixture users
 bin/cake bake fixture groups
+```
+- This will give a basic fixture, BUT you now need to export from your PHPmyAdmin -> export -> as PHP ARRAY
+- Paste this into 
+```
+$this->records = [
+  [
+  'id' => '3',
+  'user_type_id' => '2',
+  ....
+   etc
+   ...
+   
+```
+
+4. Create a migrations file 
+```php
+sourceFiles/config/Migrations/DATE_initial.php
+# Update this file so it is the same as your DB structure
 ```
 
 5. Replace the cakePHP tests with a basic boilerplate test
@@ -527,12 +536,14 @@ public function testBoilerPlateTest(): void
 
 6. Run the test
 ```php
-# All
-vendor/bin/phpunit
-# Controller only (working)
-vendor/bin/phpunit tests/TestCase/Controller/PagesControllerTest.php
-# Model only - should work with a single test passing (above step 5)
+# test your model
 vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
+
+# Controller only (working)
+# vendor/bin/phpunit tests/TestCase/Controller/PagesControllerTest.php
+
+# All
+# vendor/bin/phpunit
 ```
 
 

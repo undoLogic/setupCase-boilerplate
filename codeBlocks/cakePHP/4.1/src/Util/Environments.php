@@ -22,7 +22,9 @@ class Environments
                     return 'UNDOWEB';
                     break;
                 default:
-                    die('MISSING environment for '.$_SERVER['SERVER_NAME']);
+                    //default to the undoWEB env
+                    return 'UNDOWEB';
+                    //die('MISSING environment for '.$_SERVER['SERVER_NAME']);
             }
         } else {
 
