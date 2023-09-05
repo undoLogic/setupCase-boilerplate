@@ -516,74 +516,11 @@ $this->records = [
    
 ```
 
-4. Create a migrations file 
-```php
-sourceFiles/config/Migrations/DATE_initial.php
-# Update this file so it is the same as your DB structure
-```
-Using PHPMyAdmin
-- navigate to the structure tab
-- Click the table (Choose one database table at a time)
-- On the top tabs click 'Export'
-- Export Method: "Custom"
-- Format: "SQL"
-- Output: "View output as text"
-- Format-specific options: Structure (do not export all data)
-- Click 'GO' at the bottom
-- Copy the 'create table....' statement
-- Have chatGPT convert to the cakePHP migration notation:
-```ChatGPT
-Please convert this SQL to CakePHP notation used for creating database tables and defining their columns using the CakePHP database schema builder:
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `user_type_id` int(11) DEFAULT NULL,
-  `user_type` varchar(50) NOT NULL,
-  `reset_token` varchar(1000) NOT NULL,
-  ..... ETC
-
-```
-- ChatGPT will give you back in this notation
-```ChatGPT
-// Define the 'users' table
-$table = new Table('users');
-
-// Define the table columns
-$table
-    ->addColumn('id', 'integer', [
-        'limit' => 11,
-        'null' => false,
-    ])
-    ->addColumn('user_type_id', 'integer', [
-        'limit' => 11,
-        'default' => null,
-    ])
-    ->addColumn('user_type', 'string', [
-        'length' => 50,
-        'null' => false,
-    ])
-    ..... ETC
-
-```
-- Paste this into the 'up()' function
-```php
-public function up(): void
-    {
-        // Define the 'users' table
-        $table = new Table('users');
-
-        // Define the table columns
-        $table
-            ->addColumn('id', 'integer', [
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addColumn('user_type_id', 'integer', [
-                'limit' => 11,
-                'default' => null,
-            ])
-            //// ETC
-```
-You can now keep exporting all the tables in your database, until you are done
+4. Add your database structure
+- Migrations file (coming later)
+- Connect your test database and assign in your app_...php file
+- Just paste in the structure from your live for now
+- Coming later: how to add the schema into your source files test/schema dir
 
 
 5. Replace the cakePHP tests with a basic boilerplate test
