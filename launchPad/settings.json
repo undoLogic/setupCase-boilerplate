@@ -17,10 +17,8 @@
 
   "LIVE_URL": "",
   "LIVE_USER": "",
-  "LIVE_GITHUB_HOST": "github.com",
   "LIVE_ABSOLUTE_PATH": "",
 
-  "GITHUB_USER_SLASH_PROJECT": "undologic/setupCase-boilerplate",
   "SRC_FILES_RELATIVE_PATH": "sourceFiles",
   "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe"
 }

@@ -14,9 +14,11 @@ dependancies.
 7. [Integrate a professional visual layout to your project](#step-7-integrate-a-professional-visual-layout-to-your-project)
 8. [Programming](#step-8-programming)
 9. [Launch changes](#step-9-launch-changes)
-10. [Manually Modify Files On Server](#step-10-manually-modify-files-on-server)
-11. [Prepare testing serverer](#step-11-prepare-testing-server)
-11. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-12-convert-to-a-dockerized-container-for-vps-deployment)
+10. [Functional Testing] (#step-10-functional-changes)
+11. [Enhance Security](#step-11-enhance-security)
+12. [Manually Modify Files On Server](#step-10-manually-modify-files-on-server)
+13. [Prepare testing server](#step-11-prepare-testing-server)
+14. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-12-convert-to-a-dockerized-container-for-vps-deployment)
 
 
 ### Step 1 Initial Setup / Preparation
@@ -192,7 +194,7 @@ All the source files we added to our layout reference files which are located in
 
 In your PagesController.php (or AppController.php) file
 
-```angular2html
+```php
 function beforeFilter() {
 $this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
 }
@@ -453,7 +455,40 @@ cd PROJECTFILE/docker
 
 
 
-#### 8.3 Setup Functional Testing
+
+
+
+
+
+### Step 9 Launch Changes
+Launch allows to efficiently uploads your GITHUB projects to testing, staging and LIVE servers.
+Our technology uses basic SSH commands to prepare the source files and does not require extra libraries.
+
+- Run the local script ./1_run.sh
+- Launch will logon to your target server (your SSH passphrase adds extra security)
+- All the source files from your GitHub account will be exported to the testing and/or staging locations
+- You must create a Personal Access Token (in github). This file is NOT stored in your sourcFiles instead it is saved to a PHP.ini file on your server
+- This allows you to test and verify all the changes before going LIVE
+- After you are satisfied all changes and database changes have been completed you can 'PushLIVE' - which copies all the files to the LIVE location on your target server
+- You first need to adjust your 'launch/settings.json' file to match your target servers
+
+```php
+# navigate to the launch dir
+cd launchPad
+./1_run.sh
+```
+
+Read the full documentation in the README.md file in the launchPad directory:
+https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
+
+[back to top](#overview-steps)
+
+
+
+
+
+
+### Step 10 Functional Testing
 
 - Testing works on both the server or local using docker
 - On Windows setup Ubuntu using WSL2
@@ -500,48 +535,26 @@ vendor/bin/phpunit tests/TestCase/Controller/PagesControllerTest.php
 vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 ```
 
-#### 8.4 Enhance Security of your site
+
+
+### Step 11 Enhance Security
 
 - Here are some methods to increase the security of your account
 
-1. Change documentRoot 
+1. Change documentRoot
 - On the control panel click "Subdomains"
 - Click the pencil next to the subdomain in question
   - If you want to change the LIVE subdomain (it would be 'www', but you can also apply this change to another subdomain)
   - Click the folder and a popup will appear. navigate to 'webroot'
   - After you click 'select' it will return and the 'Document Root' will now be /www/www/webroot
   - Click the checkbox to finalize
-- Now your cakePHP files are only exposing the webroot to the public and all the other files are not accessible publically which will increase the security 
+- Now your cakePHP files are only exposing the webroot to the public and all the other files are not accessible publically which will increase the security
 
 2. Change file permissions
 - Coming soon...
 
 
-
-### Step 9 Launch Changes
-Launch allows to efficiently uploads your GITHUB projects to testing, staging and LIVE servers.
-Our technology uses basic SSH commands to prepare the source files and does not require extra libraries.
-
-- Run the local script ./1_run.sh
-- Launch will logon to your target server (your SSH passphrase adds extra security)
-- All the source files from your GitHub account will be exported to the testing and/or staging locations
-- You must create a Personal Access Token (in github). This file is NOT stored in your sourcFiles instead it is saved to a PHP.ini file on your server
-- This allows you to test and verify all the changes before going LIVE
-- After you are satisfied all changes and database changes have been completed you can 'PushLIVE' - which copies all the files to the LIVE location on your target server
-- You first need to adjust your 'launch/settings.json' file to match your target servers
-
-```php
-# navigate to the launch dir
-cd launchPad
-./1_run.sh
-```
-
-Read the full documentation in the README.md file in the launchPad directory:
-https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
-
-[back to top](#overview-steps)
-
-### Step 10 Manually Modify Files On Server
+### Step 12 Manually Modify Files On Server
 - You are able to SSH into a server and perform emergency fixes.
 - You can even do this with an iPad
   - Simply download iSH on your IOS device: https://ish.app/
