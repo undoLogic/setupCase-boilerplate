@@ -19,7 +19,7 @@ dependancies.
 12. [Manually Modify Files On Server](#step-10-manually-modify-files-on-server)
 13. [Prepare testing server](#step-11-prepare-testing-server)
 14. [Optional: Convert to a dockerized container and launch your project on a popular VPS server](#step-12-convert-to-a-dockerized-container-for-vps-deployment)
-
+15. [Refactor](#step-15-refactor)
 
 ### Step 1 Initial Setup / Preparation
 - Enable SSH (Control panel -> SSH Access -> SSH access is disabled -> Click Enable)
@@ -608,3 +608,22 @@ rsync -av --progress -e "ssh -i $HOME/.ssh/YOURKEY" *$d* user@testwebsite.com:~/
 
 ### Step 12 Convert to a dockerized container for VPS deployment
 Coming soon...
+
+
+### Step 15 Refactor
+After the initial development has started the following coding rules should be adhered to to keep the code manageable between developers and yourself 9 months later when you have to modify the source files. 
+1. Assigned PUBLIC and PRIVATE to all the the functions
+- PUBLIC functions MUST fit fully expanded within your screen
+- Use PRIVATE functions with shared variables to move complex code out of your public function to keep it manageable
+- PREPEND all private functions with the name of the PUBLIC function name to keep it all visible when you view your functions list alphabetically
+- Validations should be all within a single PRIVATE function making it easy to add future validations in the future
+2. All assignments in the controller need to be moved into the model to prepare for functional tests which are added at the model level
+3. Anytime you send an email ensure it done through a EMAIL-QUEUE (code-blocks code coming soon) 
+- This is important as when tests are added we are able to easily create an email and test that it was created successfully from the queue
+- It becomes problematic when you are testings and manually checking the emails 
+4. All PUBLIC functions should return a RESPONSE ARRAY 
+- It must contain STATUS & MSG
+- STATUS is similar to 200 meaning it was successful, 404 not found etc
+- The reponse should contain ID's created when adding / updating the database to help later with tests / automation
+
+
