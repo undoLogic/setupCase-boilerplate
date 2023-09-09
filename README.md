@@ -492,11 +492,7 @@ https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
 
 - Testing currently works on our PaaS using a SSH terminal
 1. SSH to your test server
-2. Bake one table at a time as you add working testing into it
-```php
-bin/cake bake test Table Users
-```
-3. Bake all the fixtures
+2. Bake all the fixtures
 ```php
 //This will create all the fixutres without any default data
 bin/cake bake fixture all --count = 0
@@ -505,12 +501,24 @@ bin/cake bake fixture all --count = 0
 bin/cake bake fixture users
 ```
 - This will give a basic fixture without any global data which is preferred (you can add to the records array if you want gloabl data)
-
+3. Bake one table at a time as you add working testing into it
+```php
+bin/cake bake test Table Users
+```
 4. Add your database structure
-- Migrations file (coming later)
+- Using PHPmyAdmin export all your table
+  - uncheck DATA only export the structure
+  - uncheck as a transaction (faster)
+  - view as text
+  - copy all sql 
+  - paste into sourceFiles/tests/schema.sql
+- Change the bootstrap file for the tests to use the schema.sql instead of migrations (for larger projects)
+```php
+//Look at the bottom of sourceFiles/tests/bootstrap.php
+(new \Cake\TestSuite\Fixture\SchemaLoader())->loadSqlFiles('./tests/schema.sql', 'test');
+//(new Migrator())->run(); 
+```
 - Connect your test database and assign in your app_...php file
-- Just paste in the structure from your LIVE db for now (no data ONLY structure)
-- @todo how to add the schema into your source files test/schema dir
 
 5. Replace the cakePHP tests with a basic boilerplate test
 - Edit the file tests/TestCase/Model/Table/UsersTableTest.php
@@ -541,7 +549,6 @@ vendor/bin/phpunit tests/TestCase/Model/
 # vendor/bin/phpunit tests/TestCase/Controller/PagesControllerTest.php
 
 ```
-
 
 
 ### Step 11 Enhance Security
