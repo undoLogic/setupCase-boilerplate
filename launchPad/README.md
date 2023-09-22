@@ -66,9 +66,12 @@ TESTING_GIT_ADDRESS:
 - Ensure you add your PAT to the server php.ini as 
 - PAT = 123456789...
 - This will allow to not include any secrets in these source files
-- 
 ```angular2html
   "TESTING_GIT_ADDRESS": "github.com/undoLogic/setupCase-boilerplate.git",
+```
+OR with SSH-KEYS on the server
+```angular2html
+  "TESTING_GIT_ADDRESS": "git@github.com:undoLogic/setupCase-boilerplate.git",
 ```
 
 TESTING_ABSOLUTE_PATH
@@ -109,6 +112,10 @@ STAGING_GIT_ADDRESS:
 - ensure you have added PAT = 123 on your php.ini file on your server
 ```angular2html
   "STAGING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
+```
+OR with SSH-KEYS on the server
+```angular2html
+  "STAGING_GIT_ADDRESS": "git@github.com:undoLogic/setupCase-boilerplate.git",
 ```
 
 STAGING_ABSOLUTE_PATH
