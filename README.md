@@ -542,6 +542,9 @@ public function testBoilerPlateTest(): void
 # test all model tests
 vendor/bin/phpunit tests/TestCase/Model/
 
+# run a test and filter by a specific function
+vendor/bin/phpunit tests/TestCase/Model/ --filter testFunctionName
+
 # you can also test one model at a time
 # vendor/bin/phpunit tests/TestCase/Model/Table/UsersTableTest.php
 
