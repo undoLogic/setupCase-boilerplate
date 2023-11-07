@@ -81,7 +81,12 @@ if [[ $opt == "upload to test" || $opt == "upload to staging" ]]; then
   echo "$COMMAND"
 else
   echo "this will be LIVE"
-  COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $STAGING_ABSOLUTE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
+  if [ $COPY_SRC_TO_ROOT = true ]
+    then
+      COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $STAGING_ABSOLUTE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
+  else
+      COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $STAGING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
+  fi
   echo "ssh $COMMAND"
   LAUNCH_URL=$URL
 fi

@@ -37,6 +37,10 @@ Launch needs to be configured for your target server as well as your github acco
 ### PAT - Personal Access Tokens
 We use PAT to authenticate with GIT hub to export your files to your server
 This is ideal as you can export all the projects you have access to and you do NOT need to setup ssh keys for each project anymore
+- Github - Settings - Developer Settings - Personal Access Tokens - Tokens (Classic)
+- Generate new token - Generate new token (classic)
+- At least choose 'Repo' (checkbox) - Generate token
+- Copy token and save to your server
 - Simple add to your php.ini file on the server
 ```php
 PAT = 123456skdjflkdsj43094
