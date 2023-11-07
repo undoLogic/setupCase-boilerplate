@@ -95,7 +95,15 @@ if [[ $? -eq 0 ]]; then
   echo -e "\e[32mSSH command executed successfully. - OPENING Browser \e[0m"
   #open firefox new tab with link
   sleep 1 #allow to quickly see success before opening
-  "C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab $LAUNCH_URL
+
+  # Check if the script is running on macOS
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Use the correct Firefox path for macOS
+    /Applications/Firefox.app/Contents/MacOS/firefox -new-tab "http://$LAUNCH_URL/"
+  else
+    # If not running on macOS, you can provide a default behavior or display an error message.
+    "C:\Program Files\Firefox Developer Edition\firefox.exe" -new-tab "$LAUNCH_URL/"
+  fi
 else
   echo -e "\e[31mSSH command encountered an error.\e[0m"
 fi
