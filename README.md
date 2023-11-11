@@ -81,6 +81,8 @@ choco install opera-developer -y
 choco install svn -y
 choco install dropbox -y
 choco install tailscale -y
+choco install ultravnc -y
+
 
 # Optional
 choco install steam -y
@@ -90,11 +92,17 @@ choco install microsoft-teams -y
 
 Opera
 - Extensions add Bitwarden
-
+ 
 TailScale
 - Login and install client
 
+UltraVNC
+- server -> service -> install -> start service
+- Set secure password
+- login with vnc://tailscaleIP:590
 
+iPad RealVNC
+- easy to use mouse with this program
 
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
