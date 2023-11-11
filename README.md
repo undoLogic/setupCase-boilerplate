@@ -79,14 +79,23 @@ choco install git -y
 choco install openssh --pre -y
 choco install opera-developer -y
 choco install svn -y
-
-# Optional 
 choco install dropbox -y
 choco install tailscale -y
+
+# Optional
 choco install steam -y
 choco install nvidia-display-driver -y
 choco install microsoft-teams -y
 ```
+
+Opera
+- Extensions add Bitwarden
+
+TailScale
+- Login and install client
+
+
+
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
 We will now prepare our IDE so we can program locally on our computer but all our files will be auto-uploaded to our server to view the changes
