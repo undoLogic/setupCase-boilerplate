@@ -96,13 +96,20 @@ Opera
 TailScale
 - Login and install client
 
-UltraVNC
+UltraVNC (Free)
 - server -> service -> install -> start service
 - Set secure password
 - login with vnc://tailscaleIP:590
+- Multiple Screen on WINDOWS only; MAC only displays ONE monitor
+
+RealVNC (Paid)
+- Requires an account
+- Supports multiple Monitors on WINDOWS and MAC
 
 iPad RealVNC
 - easy to use mouse with this program
+- login with vnc://tailscaleIP:590
+
 
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
