@@ -97,7 +97,6 @@ TailScale
 - Login and install client
 
 ### Remote Management (FREE)
-
 UltraVNC (server -> service -> install -> start service)
 - login with vnc://tailscaleIP:5900
 - Multi-Monitor on Windows ONLY
@@ -115,7 +114,6 @@ iPad RealVNC (free version)
 RealVNC
 - Multi-monitor works for both Windows and MacOS
 - Requires a paid account
-
 
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
