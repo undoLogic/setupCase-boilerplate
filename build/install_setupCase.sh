@@ -15,8 +15,19 @@ rm -rf tmp
 
 read -p 'ready to install' read
 
-# download the setupCase libraries
-svn export --force https://github.com/undoLogic/setupCase-boilerplate/trunk .
+# download the setupCase libraries DEPRECATED
+# svn export --force https://github.com/undoLogic/setupCase-boilerplate/trunk .
+
+# Clone the repository (replace URL with your repository URL)
+git clone --depth=1 https://github.com/undoLogic/setupCase-boilerplate.git .
+
+# Remove the .git directory to eliminate the Git history
+rm -rf .git
+
+
+
+
+
 
 # Install CakePHP 4
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - installing cakePHP with authentication"
@@ -27,7 +38,7 @@ composer require "cakephp/authentication:^2.0" -d sourceFiles
 
 # copy our codeBlocks on top of CakePHP
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - integrating SetupCase codeblocks"
-rsync -av --no-perms --omit-dir-times --fake-super codeBlocks/cakePHP/4.1/. sourceFiles/.
+rsync -av --no-perms --omit-dir-times --fake-super codeBlocks/cakePHP/4.x/. sourceFiles/.
 
 # remove git ignore in the cake directory since we have our own git ignore in our boilerplate files
 rm -rf sourceFiles/.git*

@@ -54,6 +54,8 @@ chmod +x install_setupCase.sh
 # Accept the permissions with Y
 ```
 
+When you get asked for "Web address" this is from the previous step: i.e. http://repos.undoweb.com/projectname.git
+
 This script will install CakePHP 4 with authentication and integrate the SetupCase library.
 You can now test and view the working site: http://test.domain.com/sourceFiles
 
@@ -82,6 +84,8 @@ choco install svn -y
 choco install dropbox -y
 choco install tailscale -y
 choco install ultravnc -y
+choco install googledrive -y
+choco install snagit -y
 
 # Optional
 choco install steam -y
@@ -128,6 +132,11 @@ NOTE:
 PhpStorm
 - Settings -> Appearance & Behaviour -> Appearance -> UI Options -> Show main menu in a separate menu bar
 
+Snagit
+- set to image
+- Share - file - JPG - automatic nameing - downloads - JPG - 
+
+
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
 We will now prepare our IDE so we can program locally on our computer but all our files will be auto-uploaded to our server to view the changes
@@ -140,6 +149,17 @@ git clone http://repos.domain.com/project.git projectName
 ```
 
 The files which you prepared on the server are now on your local computer
+
+At this point you can keep working within the GIT - REPO on undoweb 
+- This is easier and only requires a basic user/pass to checkout the files on your computer and you can start developing your project this way easier
+- HOWEVER, if you want more security for your sourceFiles at this point you can migrate to GITHUB.com
+
+GITHUB
+- 
+
+
+
+
 
 [back to top](#overview-steps)
 ### Step 5 Configure your IDE to automatically push changes to your server
