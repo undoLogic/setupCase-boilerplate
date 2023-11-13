@@ -18,6 +18,9 @@ read -p 'ready to install' read
 # download the setupCase libraries DEPRECATED
 # svn export --force https://github.com/undoLogic/setupCase-boilerplate/trunk .
 
+# ensure all the previous git is gone
+# rm -rf .git*
+
 # Clone the repository (replace URL with your repository URL)
 git clone --depth=1 https://github.com/undoLogic/setupCase-boilerplate.git .
 
