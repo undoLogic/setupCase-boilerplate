@@ -137,6 +137,11 @@ Snagit
 - Share - file - JPG - automatic nameing - downloads - JPG - 
 
 
+Dropbox
+- Only sync folders: Software
+- Dark / Light icon on task bar
+
+
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
 We will now prepare our IDE so we can program locally on our computer but all our files will be auto-uploaded to our server to view the changes
