@@ -155,10 +155,13 @@ At this point you can keep working within the GIT - REPO on undoweb
 - HOWEVER, if you want more security for your sourceFiles at this point you can migrate to GITHUB.com
 
 GITHUB
-- 
-
-
-
+- Create new Repository in your GitHub account
+- As empty as possible (no readme, no gitignore files etc)
+- Switch to https and copy that link
+- Go back to PhpStorm (Menu -> GIT -> Manage Remotes)
+- EDIT the existing 'origin' entry and you are REPLACING with the new github address
+- Click ok and then Git - PUSH
+- All your source files are now in GitHub
 
 
 [back to top](#overview-steps)

@@ -21,18 +21,24 @@ read -p 'ready to install' read
 # ensure all the previous git is gone
 # rm -rf .git*
 
+
+
 # Clone the repository (replace URL with your repository URL)
-git clone --depth=1 https://github.com/undoLogic/setupCase-boilerplate.git .
+git clone --depth=1 https://github.com/undoLogic/setupCase-boilerplate.git tmpSetupCase
 
-# Remove the .git directory to eliminate the Git history
-rm -rf .git
+# we do not want any git association at all
+rm -rf tmpSetupCase/.git
+
+# merge into our existing git repo
+rsync -av --no-perms --omit-dir-times --fake-super tmpSetupCase/. .
+
+# cleanup / delete the tmp dir
+rm -rf tmpSetupCase
 
 
 
 
-
-
-# Install CakePHP 4
+##################################################################################################### Install CakePHP 4
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - installing cakePHP with authentication"
 composer create-project --prefer-dist cakephp/app:~4.0 sourceFiles
 
