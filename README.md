@@ -95,6 +95,7 @@ Opera
 TailScale
 - Login and install client
 
+### Remote Management (FREE)
 UltraVNC (Free Method)
 - server -> service -> install -> start service
 - Set secure password
@@ -108,6 +109,10 @@ Start VNC server service before user logs into account
 - Trigger: Begin the task at Startup, Delay task for 30 seconds, 
 - Actions: Start a program: "C:\Program Files\uvnc bvba\UltraVNC\winvnc.exe" Add arguments (optional) -service
 - Settings: If the task fails, restart every: 1 minute - attempt to restart up to 3 times
+
+RDP (Remote Desktop)
+- MacOS
+- Requires Windows Pro
 
 iPad RealVNC (Free)
 - easy to use mouse with this program
