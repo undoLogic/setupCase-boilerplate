@@ -83,7 +83,6 @@ choco install dropbox -y
 choco install tailscale -y
 choco install ultravnc -y
 
-
 # Optional
 choco install steam -y
 choco install nvidia-display-driver -y
@@ -96,20 +95,30 @@ Opera
 TailScale
 - Login and install client
 
-UltraVNC (Free)
+UltraVNC (Free Method)
 - server -> service -> install -> start service
 - Set secure password
 - login with vnc://tailscaleIP:590
-- Multiple Screen on WINDOWS only; MAC only displays ONE monitor
+- Multiple Screen on WINDOWS only; MAC only displays ONE monitor (You can disable the extra screens snd just use the primary on all OS's)
 
-RealVNC (Paid)
-- Requires an account
+Start VNC server service before user logs into account
+- This will ensure you can login if the computer is restarted (Altering the Service as a specific user does not work)
+- Create a task Scheduler assigned to your user with high privileges 
+- Run: whether user is logged on or not (Check, run with highest priviledges)
+- Trigger: Begin the task at Startup, Delay task for 30 seconds, 
+- Actions: Start a program: "C:\Program Files\uvnc bvba\UltraVNC\winvnc.exe" Add arguments (optional) -service
+- Settings: If the task fails, restart every: 1 minute - attempt to restart up to 3 times
+
+iPad RealVNC (Free)
+- easy to use mouse with this program
+- login with vnc://tailscaleIP:5900
+
+RealVNC (Paid Method)
+- Requires an account that costs per device and per month
 - Supports multiple Monitors on WINDOWS and MAC
 
-iPad RealVNC
-- easy to use mouse with this program
-- login with vnc://tailscaleIP:590
-
+NOTE:
+- Explorer show hidden files
 
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
