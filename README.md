@@ -86,6 +86,7 @@ choco install tailscale -y
 choco install ultravnc -y
 choco install googledrive -y
 choco install snagit -y
+choco install skype -y
 
 # Optional
 choco install steam -y
