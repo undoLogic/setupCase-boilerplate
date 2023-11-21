@@ -95,8 +95,15 @@ choco install microsoft-teams -y
 ```
 
 Opera
-- Extensions add Bitwarden
- 
+- Install RainDrop.io bookmark extension
+https://help.raindrop.io/install-extension
+
+Firefox
+- Install DarkMode extensions:
+https://addons.mozilla.org/en-US/firefox/addon/darkreader/
+- Install Bitwarden extension:
+https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
+
 TailScale
 - Login and install client
 
@@ -136,6 +143,11 @@ PhpStorm
 Snagit
 - set to image
 - Share - file - JPG - automatic nameing - downloads - JPG - 
+
+
+Dropbox
+- Only sync folders: Software
+- Dark / Light icon on task bar
 
 
 [back to top](#overview-steps)
