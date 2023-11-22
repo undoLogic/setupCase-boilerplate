@@ -211,6 +211,28 @@
 
 
 
+    <div class="<?= $classEach; ?>">
+        <div class="card">
+            <div class="card-header">
+                <h5>
+                    GIT remove .idea project files already pushed
+                </h5>
+            </div>
+            <div class="card-body">
+                <pre><code class="language-php">
+
+                git rm -r --cached .idea
+                git commit -am "Removed .idea"
+                git push
+
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <div class="<?= $classEach; ?>">
         <div class="card">
