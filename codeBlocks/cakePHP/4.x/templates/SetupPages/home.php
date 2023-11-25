@@ -63,45 +63,40 @@
                 <pre><code class="language-css">
 
 
-	body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
+/* Popup container */
+.popup-container {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    box-sizing: border-box;
+    animation: slide-up 0.5s ease-out;
+    text-align: center;
+}
 
-    /* Popup container */
-    .popup-container {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #f1f1f1;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        padding: 15px;
-        box-sizing: border-box;
-        animation: slide-up 0.5s ease-out;
-        text-align: center;
-    }
+/* Button to close the popup */
+.close-button {
+    background-color: #4962AA;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-    /* Button to close the popup */
-    .close-button {
-        background-color: #4962AA;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
+/* Animation for sliding up */
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
     }
-
-    /* Animation for sliding up */
-    @keyframes slide-up {
-        from {
-            transform: translateY(100%);
-        }
-        to {
-            transform: translateY(0);
-        }
+    to {
+        transform: translateY(0);
     }
+}
 
 
                     </code></pre>
@@ -120,12 +115,12 @@
 
 <!-- Popup content -->
 &lt;div id="popup" class="popup-container">
-	Text goes here
+Text goes here
 
-	&lt;button class="close-button" onclick="closePopup()">
-		OK
-	&lt;/button>
-    <!-- Add your popup content here -->
+    &lt;button class="close-button" onclick="closePopup()">
+        OK
+    &lt;/button>
+<!-- Add your popup content here -->
 
 &lt;/div>
 
@@ -142,30 +137,40 @@
                 <pre><code class="language-javascript">
 
 
-	// Function to open the popup
-    function openPopup() {
-        document.getElementById('popup').style.display = 'block';
-    }
+// Function to open the popup
+function openPopup() {
+    document.getElementById('popup').style.display = 'block';
+}
 
-    // Function to close the popup
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
-        document.cookie = 'popupClosed=true; expires=' + new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
-    }
+// Function to close the popup
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+    document.cookie = 'popupClosed=true; expires=' + new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+}
 
-    function clearCookie() {
-        // Set the 'popupClosed' cookie to expire in the past, effectively deleting it
-        document.cookie = 'popupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    }
+function clearCookie() {
+    // Set the 'popupClosed' cookie to expire in the past, effectively deleting it
+    document.cookie = 'popupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
+
+if (document.cookie.indexOf('popupClosed=true') === -1) {
+    setTimeout(function () {
+        openPopup();
+    }, 1000);
+} else {
+    // Show an alert if the cookie is set
+    //alert('Popup already closed!');
+}
+
+&lt;?php if (isset($_GET['clearCookie'])): ?>
+    document.cookie = 'popupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
     if (document.cookie.indexOf('popupClosed=true') === -1) {
-        setTimeout(function () {
-            openPopup();
-        }, 1000);
+    alert('Cookie is cleared')
     } else {
-        // Show an alert if the cookie is set
-        //alert('Popup already closed!');
+    alert('NO');
     }
+&lt;?php endif; ?>
 
 
 
