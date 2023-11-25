@@ -54,6 +54,11 @@
                     <a name="popupDisclaimer"></a> <a href="#popupDisclaimer">#</a>
 
                 </h5>
+                
+                After you click the button a cookie will prevent it from appearing on the next page load. 
+                
+                You can add to the address bar to reset and have the popup appear again: 
+                www.domain.com?clearCookie
             </div>
             <div class="card-body">
 
@@ -179,31 +184,6 @@ if (document.cookie.indexOf('popupClosed=true') === -1) {
                     </code>
                 </pre>
 
-
-
-
-
-
-                <h3>
-                    NEW PAGE to clear the cookie
-                </h3>
-                <pre><code class="language-javascript">
-
-                        &lt;script>
-                        	document.cookie = 'popupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-                            if (document.cookie.indexOf('popupClosed=true') === -1) {
-                                alert('Cookie is cleared')
-                            } else {
-                                alert('NO');
-                            }
-                        &lt;/script>
-
-
-
-
-                    </code>
-                </pre>
 
 
 
