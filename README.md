@@ -144,11 +144,11 @@ Snagit
 - set to image
 - Share - file - JPG - automatic nameing - downloads - JPG - 
 
-
 Dropbox
 - Only sync folders: Software
-- Dark / Light icon on task bar
 
+Software
+- Dark / Light icon on task bar
 
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
