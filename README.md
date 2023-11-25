@@ -107,7 +107,7 @@ https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
 TailScale
 - Login and install client
 
-### Remote Management (FREE)
+### Remote Management (Default)
 UltraVNC (Free Method)
 - server -> service -> install -> start service
 - Set secure password
@@ -149,6 +149,9 @@ Dropbox
 
 Software
 - Dark / Light icon on task bar
+
+Synergy
+- Use one computers mouse / keyboard on another computer
 
 [back to top](#overview-steps)
 ### Step 4 Checkout your new sourceFiles to your local computer
