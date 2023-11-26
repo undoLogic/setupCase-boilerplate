@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Middleware;
 
+use Cake\Core\Configure;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -42,6 +43,17 @@ class LangMiddleware implements MiddlewareInterface
             $current_lang = $default_lang;
             $lang_from = 'default_lang';
         }
+
+
+        //ensure this language is allowed or assign the default lang
+        $allowedLanguages = Configure::read('allowedLanguages');
+        if (is_array($allowedLanguages)) {
+            if (!in_array($current_lang, $allowedLanguages)) {
+                $current_lang = $default_lang;
+            }
+        }
+
+
 
         //assign the lang and how it was found
         $baseLang = substr($current_lang, 0, 2);

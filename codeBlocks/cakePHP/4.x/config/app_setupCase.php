@@ -10,6 +10,14 @@ use Cake\Log\Engine\FileLog;
 
 return [
 
+
+    //if browser language does not match will be redirected to default lang
+    'allowedLanguages' => [
+        'en',
+        //'fr',
+        //'es'
+    ],
+
     /*
      * Debug Level:
      *
