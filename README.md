@@ -164,9 +164,11 @@ cd ~/PhpstormProjects
 git clone http://repos.domain.com/project.git projectName
 ```
 
-NOTE: If you are upgrading a previous version project and you already have a git Repo
+NOTE: If you are upgrading a previous version project and you already have a git Repo run this command on your LOCAL computer
 ```shell
-# Clone the repository (replace URL with your repository URL)
+# On your LOCAL computer run this command in the directory of your project 
+# Replace URL with your repository URL that you setup above
+
 git clone --depth=1 http://repos.domain.com/project.git tmpRepo
 
 # we do not want any git association at all
