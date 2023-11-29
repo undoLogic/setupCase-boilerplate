@@ -164,6 +164,17 @@ cd ~/PhpstormProjects
 git clone http://repos.domain.com/project.git projectName
 ```
 
+NOTE: If you are upgrading a previous version project and you already have a git Repo
+```shell
+# Clone the repository (replace URL with your repository URL)
+git clone --depth=1 http://repos.domain.com/project.git tmpRepo
+
+# we do not want any git association at all
+rm -rf tmpRepo/.git
+
+# now manually move the files to the desired directory where you are creating the new project
+```
+
 The files which you prepared on the server are now on your local computer
 
 At this point you can keep working within the GIT - REPO on undoweb 
