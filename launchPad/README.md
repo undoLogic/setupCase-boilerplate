@@ -28,8 +28,8 @@ This is designed to be a URL that shares the database with the LIVE production.
 - When you are satisfied with all new changes the goLIVE script will rsync all files from staging to the LIVE folder
 
 ### Live Server
-Live server must be on the same server as Staging
-- When you are happy with your staging server all files are copied to the live absolute path
+Live server must be on the same server as PENDING
+- When you are happy with your PENDING server all files are copied to the live absolute path
 
 ## Configuring
 Launch needs to be configured for your target server as well as your github account.
@@ -51,7 +51,7 @@ PAT = 123456skdjflkdsj43094
 
 TESTING_URL
 - This requires you have CREATED a 'Subdomain' on your control panel
-- If your subdomain is 'test' then you would access your site with http://test.YourDomain.com / http://staging.servername.com
+- If your subdomain is 'test' then you would access your site with http://test.YourDomain.com / http://pending.servername.com
 - ONLY add the url WITHOUT 'http://'
 ```angular2html
 "TESTING_URL": "test.domain.com",
@@ -97,10 +97,10 @@ TESTING_COPY_SRC_TO_ROOT
 
 PENDING_URL
 - This requires you have CREATED a 'Subdomain' on your control panel
-- If your subdomain is 'staging' then you would access your site with http://staging.YourDomain.com / http://staging.servername.com
+- If your subdomain is 'PENDING' then you would access your site with http://pending.YourDomain.com / http://pending.servername.com
 - ONLY add the url WITHOUT 'http://'
 ```angular2html
-"PENDING_URL": "staging.undologic.com",
+"PENDING_URL": "pending.undologic.com",
 ```
 
 PENDING_USER
@@ -126,9 +126,9 @@ PENDING_ABSOLUTE_PATH
 - This is the path on your server to the location where the source files will be uploaded
 - Navigate (on the control panel) to "File Manager" -> "WWW"
 - This is the path where you will see the PENDING_URL you created above, click that link
-- the Path is located next to 'Location: ' for example "/home/username/www/staging"
+- the Path is located next to 'Location: ' for example "/home/username/www/pending"
 ```
-"PENDING_ABSOLUTE_PATH": "/home/username/www/staging",
+"PENDING_ABSOLUTE_PATH": "/home/username/www/pending",
 ```
 PENDING_COPY_SRC_TO_ROOT
 - copy all the files in the sourceFiles directory to the root of the folder
@@ -184,12 +184,12 @@ svn export --force https://github.com/undoLogic/setupCase-boilerplate/trunk/laun
 
 ### Setup SSH keys (OPTIONAL)
 If you do not want to use a PAT, you can also add SSH keys for EACH project. To allow to export the GitHub source files to the server we must setup a public / private key. the PRIVATE key is ONLY on the server. the PUBLIC key goes onto Github -> deploy keys
-1. Logon to your server via SSH using the STAGING credentials
+1. Logon to your server via SSH using the PENDING credentials
    
 NOTE: New servers you need to put your PUBLIC SSH KEY into the Control panel -> ssh keys -> import ssh key
    ssh PENDING_USER @ PENDING_URL
 ```angular2html
-ssh undologic@staging.undologic.com
+ssh undologic@pending.undologic.com
 ```
 
 2. First time only - Setup keys - This will create the private / public key (*.pub) in your .ssh directory (do NOT add a passphase).
@@ -205,7 +205,7 @@ cat id_ed25519.pub
 IMPORTANT: The first time you need to manually run the script as it will require you confirm YES to the authenticity. When you run the script copy and paste the script manully into your favourite ssh program
 ```
 cd launch
-./2_setupStagingServer.sh
+./2_setupPendingServer.sh
 ```
 ### GITHUB_HOST - Configure multiple projects on the same server
 
