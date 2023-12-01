@@ -8,12 +8,12 @@
   "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
   "TESTING_COPY_SRC_TO_ROOT": false,
 
-  "STAGING_URL": "",
-  "STAGING_USER": "",
-  "STAGING_GIT_ADDRESS": "",
-  "STAGING_USE_PAT": false,
-  "STAGING_ABSOLUTE_PATH": "",
-  "STAGING_COPY_SRC_TO_ROOT": false,
+  "PENDING_URL": "",
+  "PENDING_USER": "",
+  "PENDING_GIT_ADDRESS": "",
+  "PENDING_USE_PAT": false,
+  "PENDING_ABSOLUTE_PATH": "",
+  "PENDING_COPY_SRC_TO_ROOT": false,
 
   "LIVE_URL": "",
   "LIVE_USER": "",

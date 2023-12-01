@@ -20,13 +20,13 @@ TESTING2_ABSOLUTE_PATH=$(grep '^ *"TESTING2_ABSOLUTE_PATH":' settings.json | awk
 TESTING2_COPY_SRC_TO_ROOT=$(grep '^ *"TESTING2_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 
 # Staging
-STAGING_URL=$(grep '^ *"STAGING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-STAGING_USER=$(grep '^ *"STAGING_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-STAGING_GITHUB_HOST=$(grep '^ *"STAGING_GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-STAGING_USE_PAT=$(grep '^ *"STAGING_USE_PAT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-STAGING_GIT_ADDRESS=$(grep '^ *"STAGING_GIT_ADDRESS":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-STAGING_ABSOLUTE_PATH=$(grep '^ *"STAGING_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
-STAGING_COPY_SRC_TO_ROOT=$(grep '^ *"STAGING_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+PENDING_URL=$(grep '^ *"PENDING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+PENDING_USER=$(grep '^ *"PENDING_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+PENDING_GITHUB_HOST=$(grep '^ *"PENDING_GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+PENDING_USE_PAT=$(grep '^ *"PENDING_USE_PAT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+PENDING_GIT_ADDRESS=$(grep '^ *"PENDING_GIT_ADDRESS":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+PENDING_ABSOLUTE_PATH=$(grep '^ *"PENDING_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+PENDING_COPY_SRC_TO_ROOT=$(grep '^ *"PENDING_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 
 # Live
 LIVE_URL=$(grep '^ *"LIVE_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')

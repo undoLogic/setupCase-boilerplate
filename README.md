@@ -333,7 +333,7 @@ Our solution will give a clear development path:
   - source files do not store any private credentials
 - We are only going to make minor changes to the CakePHP framework core so we have a simple upgrade path in the future
 
-1. open BaseApplication.php (vendor\cakephp\cakephp\src\Http)
+1. open BaseApplication.php (vendor\cakephp\cakephp\src\Http\BaseApplication.php)
 ```php
 //find the function
 //public function bootstrap(): void
@@ -342,7 +342,8 @@ if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
   require_once $this->configDir . 'bootstrap-setupCase.php';
 }
 ```
-2. Then in Application.php add ABOVE the CSRF:
+2. Then in Application.php add ABOVE the CSRF (sourceFiles\src\Application.php):
+NOTE: You will need to right click and import these classes after you paste
 ```php
 //Added by SetupCase-BoilerPlate
 ->add(new AuthenticationMiddleware($this->getAuthenticationService()))
@@ -351,7 +352,8 @@ if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
 ->add(new AccessMiddleware())
 ```
 
-3. And below that function (in Application.php) add this function:
+3. In the same page (application.php) add this function BELOW:
+NOTE: Make sure you import the required classes after you paste
 ```php
 protected function getAuthenticationService() : AuthenticationService {
 
@@ -435,7 +437,7 @@ $this->loadHelper('Lang');
 
 
 
-8. Bootstrap.php (add environments)
+8. Bootstrap.php - add environments (sourceFiles\config\bootstrap.php)
 ```php
 //Keep this function
 //if (file_exists(CONFIG . 'app_local.php')) {
@@ -460,32 +462,6 @@ switch($activeEnv) {
 
 You can duplicate app_setupCase.php to a different environment
 - Then add different credentials within your php.ini file 
-
-Credentials
-- We harness server based passwords / credentials / api keys, etc
-- The source files do NOT contain any secret information ensuring that even if your sourceFiles get leaked, no private connection info will be exposed
-- We will store all the private data in the server PHP.ini (GLOBAL) file.
-
-- Ensure you have 2 databases created
-```php
-# app_setupcase.php
-'Datasources' => [
-    'default' => [
-        'url' => filter_var(env('DATABASE_DEFAULT_URL', get_cfg_var('DATABASE.DEFAULT.URL')), FILTER_VALIDATE_URL),
-    ],
-    'test' => [
-        'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('DATABASE.TEST.URL')), FILTER_VALIDATE_URL),
-    ],
-],
-This will first try to load the docker environment vars otherwise will load from the PHP.ini file on the server
-# docker-compose.yml
-environment:
-  DATABASE_URL: mysql://root:undologic@db/LIVE_database
-  DATABASE_TEST_URL: mysql://root:undologic@db/automation
-# PHP.ini
-BOILER.Datasources.default.url = mysql://boilerplate:123@localhost/undoweb_boilerplate_testing
-BOILER.Datasources.test.url = mysql://boilerplate:123@localhost/undoweb_boilerplate_test
-```
 
 9. Add routes
 - Routes are needed to connect the languages
@@ -529,10 +505,41 @@ $routes->prefix('admin', function (RouteBuilder $routes) {
 
     $routes->fallbacks(DashedRoute::class);
 });
-
-
-
 ```
+
+
+Databases and Credentials (optional)
+- We harness server based passwords / credentials / api keys, etc
+- The source files do NOT contain any secret information ensuring that even if your sourceFiles get leaked, no private connection info will be exposed
+- We will store all the private data in the server PHP.ini (GLOBAL) file.
+
+- Ensure you have 2 databases created for main and testing
+```php
+# app_setupcase.php
+'Datasources' => [
+    'default' => [
+        'url' => filter_var(env('DATABASE_DEFAULT_URL', get_cfg_var('DATABASE.DEFAULT.URL')), FILTER_VALIDATE_URL),
+    ],
+    'test' => [
+        'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('DATABASE.TEST.URL')), FILTER_VALIDATE_URL),
+    ],
+],
+This will first try to load the docker environment vars otherwise will load from the PHP.ini file on the server
+# docker-compose.yml
+environment:
+  DATABASE_URL: mysql://root:undologic@db/LIVE_database
+  DATABASE_TEST_URL: mysql://root:undologic@db/automation
+# PHP.ini
+BOILER.Datasources.default.url = mysql://boilerplate:123@localhost/undoweb_boilerplate_testing
+BOILER.Datasources.test.url = mysql://boilerplate:123@localhost/undoweb_boilerplate_test
+```
+
+TROUBLESHOOTING
+ERROR: Class "App\Controller\SetupCase" not found (could also be Router, etc)
+FIX: You did not import the class SetupCase
+
+
+
 
 10. Fix windows line endings
 - Ensure our windows line endings are corrected

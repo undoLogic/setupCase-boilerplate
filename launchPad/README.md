@@ -95,63 +95,63 @@ TESTING_COPY_SRC_TO_ROOT
   "TESTING_COPY_SRC_TO_ROOT": false
 ```
 
-STAGING_URL
+PENDING_URL
 - This requires you have CREATED a 'Subdomain' on your control panel
 - If your subdomain is 'staging' then you would access your site with http://staging.YourDomain.com / http://staging.servername.com
 - ONLY add the url WITHOUT 'http://'
 ```angular2html
-"STAGING_URL": "staging.undologic.com",
+"PENDING_URL": "staging.undologic.com",
 ```
 
-STAGING_USER
+PENDING_USER
 - This is the username in your control panel
 - Top LEFT in the 'hosting account' box you will see 'Username:'
 ```
-"STAGING_USER": "username",
+"PENDING_USER": "username",
 ```
 
-STAGING_GIT_ADDRESS:
+PENDING_GIT_ADDRESS:
 - This is the path starting with github.com to your git repo
 - The PAT will be added to your link when you run this script
 - ensure you have added PAT = 123 on your php.ini file on your server
 ```angular2html
-  "STAGING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
+  "PENDING_GIT_ADDRESS": "https://github.com/undoLogic/setupCase-boilerplate.git",
 ```
 OR with SSH-KEYS on the server
 ```angular2html
-  "STAGING_GIT_ADDRESS": "git@github.com:undoLogic/setupCase-boilerplate.git",
+  "PENDING_GIT_ADDRESS": "git@github.com:undoLogic/setupCase-boilerplate.git",
 ```
 
-STAGING_ABSOLUTE_PATH
+PENDING_ABSOLUTE_PATH
 - This is the path on your server to the location where the source files will be uploaded
 - Navigate (on the control panel) to "File Manager" -> "WWW"
-- This is the path where you will see the STAGING_URL you created above, click that link
+- This is the path where you will see the PENDING_URL you created above, click that link
 - the Path is located next to 'Location: ' for example "/home/username/www/staging"
 ```
-"STAGING_ABSOLUTE_PATH": "/home/username/www/staging",
+"PENDING_ABSOLUTE_PATH": "/home/username/www/staging",
 ```
-STAGING_COPY_SRC_TO_ROOT
+PENDING_COPY_SRC_TO_ROOT
 - copy all the files in the sourceFiles directory to the root of the folder
 - false will leave all the files in the sub-folder sourceFiles
 - true will copy them all to the root
    - This is important when you deal with authentication and your auth requires the login page be on the root of your sub-domain
 ```angular2html
-  "STAGING_COPY_SRC_TO_ROOT": false
+  "PENDING_COPY_SRC_TO_ROOT": false
 ```
 
 
 LIVE_URL
-- Similar to 'STAGING_URL' but for your LIVE production files 
+- Similar to 'PENDING_URL' but for your LIVE production files 
 - EXAMPLE: "LIVE_URL": "/home/undologic/www/www"
 
 LIVE_USER
-- Same as 'STAGING_USER' but for live server
+- Same as 'PENDING_USER' but for live server
 ```
 "LIVE_USER": "undologic",
 ```
 
 LIVE_ABSOLUTE_PATH
-- Same as "STAGING_ABSOLUTE_PATH" above but for LIVE
+- Same as "PENDING_ABSOLUTE_PATH" above but for LIVE
 ```angular2html
 "LIVE_ABSOLUTE_PATH": "/home/undologic/www/www",
 ```
@@ -187,7 +187,7 @@ If you do not want to use a PAT, you can also add SSH keys for EACH project. To 
 1. Logon to your server via SSH using the STAGING credentials
    
 NOTE: New servers you need to put your PUBLIC SSH KEY into the Control panel -> ssh keys -> import ssh key
-   ssh STAGING_USER @ STAGING_URL
+   ssh PENDING_USER @ PENDING_URL
 ```angular2html
 ssh undologic@staging.undologic.com
 ```

@@ -21,12 +21,12 @@ select opt in "${options[@]}"; do
       ;;
     "upload to staging")
       echo "You chose to upload to staging."
-      USER=$STAGING_USER
-      URL=$STAGING_URL
-      GIT_ADDRESS=$STAGING_GIT_ADDRESS
-      ABSOLUTE_PATH=$STAGING_ABSOLUTE_PATH
-      COPY_SRC_TO_ROOT=$STAGING_COPY_SRC_TO_ROOT
-      USE_PAT=$STAGING_USE_PAT
+      USER=$PENDING_USER
+      URL=$PENDING_URL
+      GIT_ADDRESS=$PENDING_GIT_ADDRESS
+      ABSOLUTE_PATH=$PENDING_ABSOLUTE_PATH
+      COPY_SRC_TO_ROOT=$PENDING_COPY_SRC_TO_ROOT
+      USE_PAT=$PENDING_USE_PAT
       break
       ;;
     "GO LIVE!")
@@ -35,7 +35,7 @@ select opt in "${options[@]}"; do
       URL=$LIVE_URL
       GIT_ADDRESS=$LIVE_GIT_ADDRESS
       # These vars are used as is
-      # STAGING_ABSOLUTE_PATH=$STAGING_ABSOLUTE_PATH
+      # PENDING_ABSOLUTE_PATH=$PENDING_ABSOLUTE_PATH
       # LIVE_ABSOLUTE_PATH=$LIVE_ABSOLUTE_PATH
       break
       ;;
@@ -83,9 +83,9 @@ else
   echo "this will be LIVE"
   if [ $COPY_SRC_TO_ROOT = true ]
     then
-      COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $STAGING_ABSOLUTE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
+      COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $PENDING_ABSOLUTE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
   else
-      COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $STAGING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
+      COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $PENDING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
   fi
   echo "ssh $COMMAND"
   LAUNCH_URL=$URL
