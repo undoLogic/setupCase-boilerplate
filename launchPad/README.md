@@ -20,7 +20,7 @@ This is an optional server designed to be a URL which you can test that does NOT
 - Simply access the testing URL and preview your changes
 - See below how to [Configure your testing server as your DEV environment](#configure-testing-server-as-dev-environment)
 
-### Staging Server
+### Pending Server
 This is designed to be a URL that shares the database with the LIVE production. 
 - This allows to verify all your changes before pushing to LIVE.
 - The database can be modified and verified before going LIVE
