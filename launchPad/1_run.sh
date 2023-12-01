@@ -1,7 +1,7 @@
 #!/bin/bash
 source Z_share.sh
 
-options=("upload to test" "upload to staging" "GO LIVE!")
+options=("upload to test" "upload to pending" "GO LIVE!")
 
 echo "Please select an option:"
 
@@ -19,8 +19,8 @@ select opt in "${options[@]}"; do
       USE_PAT=$TESTING_USE_PAT
       break
       ;;
-    "upload to staging")
-      echo "You chose to upload to staging."
+    "upload to pending")
+      echo "You chose to upload to pending."
       USER=$PENDING_USER
       URL=$PENDING_URL
       GIT_ADDRESS=$PENDING_GIT_ADDRESS
@@ -50,7 +50,7 @@ done
 LAUNCH_URL=""
 
 # Create the command based
-if [[ $opt == "upload to test" || $opt == "upload to staging" ]]; then
+if [[ $opt == "upload to test" || $opt == "upload to pending" ]]; then
   if [ $USE_PAT = true ]
   then
   COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
