@@ -737,3 +737,32 @@ After the initial development has started the following coding rules should be a
 - The reponse should contain ID's created when adding / updating the database to help later with tests / automation
 
 
+
+
+
+### Step 16 LAUNCH
+When your project is ready to launch ensure the following
+1. Create LIVE profile
+- duplicate 'app_setupCase.php' to 'app_live.php'
+- force 'debug' => false,
+- This will disable the DebugKit
+-> If you want to manually disable debugKit for all profiles comment out "this->addPlugin('DebugKit');" in 'src/Application.php'
+
+2. Verify no errors
+- Open terminal
+- navigate to the sourceFiles directory
+- tail -f logs/error.log
+- Browse all the pages and ensure no errors
+
+3. Add custom ERROR page
+- In the dir 'sourceFiles/templates/Error/'
+- Add the following pages with your desired error message
+- error400.php
+- error500.php
+- missing_action.php
+- missing_controller.php
+- In the dir 'sourceFiles/templates/layouts/'
+-> Modify 'error.php' with a custom layout and custom HTML (eg copy from default.php)
+
+
+
