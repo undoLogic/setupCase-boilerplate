@@ -83,12 +83,13 @@ return [
      * See app.php for more configuration options.
      */
     'Datasources' => [
-        'default' => [
-            'url' => filter_var(env('DATABASE_DEFAULT_URL', get_cfg_var('DATABASE.DEFAULT.URL')), FILTER_VALIDATE_URL),
-        ],
-        'test' => [
-            'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('DATABASE.TEST.URL')), FILTER_VALIDATE_URL),
-        ],
+        //@todo uncomment this if you want to use a database
+//        'default' => [
+//            'url' => filter_var(env('DATABASE_DEFAULT_URL', get_cfg_var('DATABASE.DEFAULT.URL')), FILTER_VALIDATE_URL),
+//        ],
+//        'test' => [
+//            'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('DATABASE.TEST.URL')), FILTER_VALIDATE_URL),
+//        ],
     ],
 
     /*
