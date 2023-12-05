@@ -761,6 +761,7 @@ When your project is ready to launch ensure the following
 - error500.php
 - missing_action.php
 - missing_controller.php
+- missing_template.php
 - In the dir 'sourceFiles/templates/layouts/'
 -> Modify 'error.php' with a custom layout and custom HTML (eg copy from default.php)
 
