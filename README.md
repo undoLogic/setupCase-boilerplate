@@ -653,6 +653,12 @@ vendor/bin/phpunit tests/TestCase/Model/ --filter testFunctionName
 
 ```
 
+Troubleshooting
+If you get errors running your test ensure you have given execute permission to the phpunit
+```php
+chmod +x vendor/bin/phpunit
+```
+
 
 ### Step 11 Enhance Security
 
