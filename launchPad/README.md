@@ -175,9 +175,10 @@ BROWSER_LOCAL_PATH_WITH_PROGRAM
 # Upgrade from previous version
 Navigate to the root of your source files
 ```shell
-mkdir launchPad
-cd launchPad
-svn export --force https://github.com/undoLogic/setupCase-boilerplate/trunk/launchPad .
+# Windows
+cd temp
+git clone https://github.com/undoLogic/setupCase-boilerplate.git
+robocopy setupCase-boilerplate/launchPad ../launchPad /MIR
 ```
 
 =================== OPTIONAL =======================
