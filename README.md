@@ -346,6 +346,10 @@ if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
 NOTE: You will need to right click and import these classes after you paste
 ```php
 //Added by SetupCase-BoilerPlate
+->add(new EncryptedCookieMiddleware(
+    ['CookieAuth'],
+    'CHANGEMEWITHSECURE'
+))
 ->add(new AuthenticationMiddleware($this->getAuthenticationService()))
 ->add(new LangMiddleware())
 ->add(new RbacMiddleware())
@@ -356,36 +360,45 @@ NOTE: You will need to right click and import these classes after you paste
 NOTE: Make sure you import the required classes after you paste
 ```php
 protected function getAuthenticationService() : AuthenticationService {
-
-   //Log::debug('getAuthenticationService');
-
-   $authenticationService = new AuthenticationService([
-       'unauthenticatedRedirect' => Router::url('/login'),
-       'queryParam' => 'redirect',
-   ]);
-
-   // Load identifiers, ensure we check email and password fields
-   $authenticationService->loadIdentifier('Authentication.Password', [
-       'fields' => [
-           'username' => 'email',
-           'password' => 'password',
-       ]
-   ]);
-
-   // Load the authenticators, you want session first
-   $authenticationService->loadAuthenticator('Authentication.Session');
-   // Configure form data check to pick email and password
-   $authenticationService->loadAuthenticator('Authentication.Form', [
-       'fields' => [
-           'username' => 'email',
-           'password' => 'password',
-       ],
-       'loginUrl' => Router::url('/login'),
-   ]);
-
-   return $authenticationService;
+  $authenticationService = new AuthenticationService([
+      'unauthenticatedRedirect' => Router::url('/login'),
+      'queryParam' => 'redirect',
+  ]);
+  $fields = [
+      'username' => 'email',
+      'password' => 'password',
+  ];
+  
+  // Load identifiers, ensure we check email and password fields
+  $authenticationService->loadIdentifier('Authentication.Password', [
+      'fields' => $fields
+  ]);
+  
+  // Load the authenticators, you want session first
+  $authenticationService->loadAuthenticator('Authentication.Session');
+  
+  // Configure form data check to pick email and password
+  $authenticationService->loadAuthenticator(FormLoginAttemptsAuthenticator::class, [
+      'fields' => $fields,
+      'loginUrl' => Router::url('/login'),
+  ]);
+  
+  // If the user is on the login page, check for a cookie as well.
+  $authenticationService->loadAuthenticator('Authentication.Cookie', [
+      'fields' => $fields,
+      'loginUrl' => '/login',
+  ]);
+  
+  return $authenticationService;
 }
 ```
+
+Ensure you import the required classes
+```php
+    use App\Authenticator\FormLoginAttemptsAuthenticator;
+    use Cake\Http\Middleware\EncryptedCookieMiddleware;
+```
+
 
 4. AppController->initialize: ADD
 ```php
@@ -614,6 +627,8 @@ bin/cake bake test Table Users
   - paste into sourceFiles/tests/schema.sql
 - Change the bootstrap file for the tests to use the schema.sql instead of migrations (for larger projects)
 ```php
+//ensure this reference is at the top of the file
+use Cake\TestSuite\Fixture\SchemaLoader;
 //Look at the bottom of sourceFiles/tests/bootstrap.php
 (new \Cake\TestSuite\Fixture\SchemaLoader())->loadSqlFiles('./tests/schema.sql', 'test');
 //(new Migrator())->run(); 
