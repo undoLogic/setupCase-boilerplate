@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Authenticator;
+namespace App\Middleware;
 
 use Authentication\Authenticator\ResultInterface;
 use Authentication\Authenticator\Result;

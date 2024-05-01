@@ -467,7 +467,7 @@ You can duplicate app_setupCase.php to a different environment
 - Then add different credentials within your php.ini file 
 
 8.1.9. Add routes
-- Routes are needed to connect the languages
+Add these to the "function (RouteBuilder $routes): void {"
 
 ```php
 # in the function 
@@ -490,7 +490,10 @@ $builder->connect('/{language}/{controller}', ['action' => 'index'], ['language'
 //$builder->connect('/fre/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
 //$builder->connect('/eng/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
 //$builder->connect('/fre/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
+```
 
+Add these BELOW the function 
+```php
 
 ### Then add below that function new functions for the different Usertypes / Prefixes
 $routes->prefix('staff', function (RouteBuilder $routes) {
