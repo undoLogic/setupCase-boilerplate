@@ -218,20 +218,20 @@ Our technology uses basic SSH commands to prepare the source files and does not 
 
 5.1 - Configure TEST
 Configure the test profile to push all the files from GITHUB to your test / dev server
-- modify launchPad/settings.json
 
-  "TESTING_URL": "test.undoweb.com", - Change to your dev URL
-  "TESTING_USER": "undoweb", - Server username
+modify launchPad/settings.json
+- "TESTING_URL": "test.undoweb.com", - Change to your dev URL
+- "TESTING_USER": "undoweb", - Server username
+- "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
+- "TESTING_COPY_SRC_TO_ROOT": false, - Only if you want to copy all the files to root
 
-Using PAT token
-  "TESTING_GIT_ADDRESS": "github.com/undoLogic/projectname.git",
-  "TESTING_USE_PAT": true,
-OR using SSH KEYS
-  "TESTING_GIT_ADDRESS": "git@github.com:undoLogic/projectname.git",
-  "TESTING_USE_PAT": false,
+EITHER Using PAT token
+- "TESTING_GIT_ADDRESS": "github.com/undoLogic/projectname.git",
+- "TESTING_USE_PAT": true,
 
-  "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
-  "TESTING_COPY_SRC_TO_ROOT": false, - Only if you want to copy all the files to root
+OR Using SSH KEYS
+- "TESTING_GIT_ADDRESS": "git@github.com:undoLogic/projectname.git",
+- "TESTING_USE_PAT": false,
 
 5.2 - Push files
 - Run the local script ./1_run.sh
