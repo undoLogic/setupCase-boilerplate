@@ -467,7 +467,7 @@ You can duplicate app_setupCase.php to a different environment
 - Then add different credentials within your php.ini file 
 
 8.1.9. Add routes
-Add these to the "function (RouteBuilder $routes): void {"
+Add these to the function "$routes->scope('/', function (RouteBuilder $builder): void {"
 
 ```php
 # in the function 
