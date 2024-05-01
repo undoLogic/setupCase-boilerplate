@@ -22,6 +22,7 @@ dependancies.
 15. [Refactor](#step-15-refactor)
 
 ### Step 1 Initial Setup / Preparation
+This is setup on your DEVELOPMENT server (not live)
 - Enable SSH (Control panel -> SSH Access -> SSH access is disabled -> Click Enable)
 - Activate Wget/Curl (Control panel -> SSH Access -> Network tools -> Enable)
 - Create sub-domains (Control panel -> Sub Domains -> Create 'test' & 'repos')
@@ -48,6 +49,9 @@ ssh user@domain.com
 - Navigate to the 'test' sub-domain (eg test.domain.com) OR you can use any subdomain you like (ensure you create first in the control panel first)
 ```angular2html
 cd ~/www/test
+```
+Copy/paste these commands to build the source files
+```angular2html
 wget https://raw.githubusercontent.com/undoLogic/setupCase-boilerplate/main/build/install_setupCase.sh
 chmod +x install_setupCase.sh
 ./install_setupCase.sh
