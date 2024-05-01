@@ -11,7 +11,7 @@ dependancies.
 4. [Checkout your new sourceFiles to your local computer](#step-4-checkout-your-new-sourcefiles-to-your-local-computer)
 5. [Configure your IDE to automatically push changes to your server](#step-5-configure-your-ide-to-automatically-push-changes-to-your-server)
 6. [Testing and watch updates on the test subdomain](#step-6-testing-and-watch-updates-on-the-test-subdomain)
-7. [Integrate a professional visual layout to your project](#step-7-integrate-a-professional-visual-layout-to-your-project)
+7. [Removed]
 8. [Initialization & Configuration of Source Files](#step-8-initialization--configuration-of-source-files)
 9. [Launch changes](#step-9-launch-changes)
 10. [Functional Testing](#step-10-functional-testing)
