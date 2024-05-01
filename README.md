@@ -9,9 +9,9 @@ dependancies.
 2. [Build a new CakePHP 4 project with our Platform-as-a-service](#step-2-build-a-new-cakephp-4-project-with-our-platform-as-a-service)
 3. [Install software on your local computer with Chocolatey.org](#step-3-install-software-with-chocolateyorg)
 4. [Checkout your new sourceFiles to your local computer](#step-4-checkout-your-new-sourcefiles-to-your-local-computer)
-5. [Configure your IDE to automatically push changes to your server](#step-5-configure-your-ide-to-automatically-push-changes-to-your-server)
-6. [Testing and watch updates on the test subdomain](#step-6-testing-and-watch-updates-on-the-test-subdomain)
-7. [Removed]
+5. [Launch Changes](#step-5-launch-changes)
+6. [Configure your IDE to automatically push changes to your server](#step-6-configure-your-ide-to-automatically-push-changes-to-your-server)
+7. [Testing and watch updates on the test subdomain](#step-7-testing-and-watch-updates-on-the-test-subdomain)
 8. [Initialization & Configuration of Source Files](#step-8-initialization--configuration-of-source-files)
 9. [Launch changes](#step-9-launch-changes)
 10. [Functional Testing](#step-10-functional-testing)
