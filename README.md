@@ -55,8 +55,9 @@ Copy/paste these commands to build the source files
 wget https://raw.githubusercontent.com/undoLogic/setupCase-boilerplate/main/build/install_setupCase.sh
 chmod +x install_setupCase.sh
 ./install_setupCase.sh
-# Accept the permissions with Y
 ```
+NOTE: Accept the permissions with Y
+
 
 When you get asked for "Web address" this is from the previous step: i.e. http://repos.undoweb.com/projectname.git
 
@@ -65,10 +66,14 @@ You can now test and view the working site: http://test.domain.com/sourceFiles
 
 IMPORTANT: If you get permission issues follow the instructions on the screen to allow the mixed permission directories and then manually commit / push the git files
 
+AFTER you followed the instructions on the screen, run these 2 commands to push all the files to the new REPO
 ```angular2html
 git add . && git commit -m "Creating new project"
 git push -u origin master
 ```
+
+At this point the new CakePHP project has been build and all the source files were pushed into our temp GIT repo
+- Now you can git pull these files to your local computer 
 
 [back to top](#overview-steps)
 
