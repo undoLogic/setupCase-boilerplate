@@ -7,6 +7,13 @@
         <legend><?= __('Please enter your username and password') ?></legend>
         <?= $this->Form->control('email', ['required' => true]) ?>
         <?= $this->Form->control('password', ['required' => true]) ?>
+
+        <?= $this->Form->control('remember_me', [
+            'label' => false,
+            'type' => 'checkbox',
+            'class' => "form-control",
+        ]); ?>
+
     </fieldset>
     <?= $this->Form->submit(__('Login')); ?>
     <?= $this->Form->end() ?>

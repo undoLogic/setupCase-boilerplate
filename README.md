@@ -12,7 +12,7 @@ dependancies.
 5. [Configure your IDE to automatically push changes to your server](#step-5-configure-your-ide-to-automatically-push-changes-to-your-server)
 6. [Testing and watch updates on the test subdomain](#step-6-testing-and-watch-updates-on-the-test-subdomain)
 7. [Integrate a professional visual layout to your project](#step-7-integrate-a-professional-visual-layout-to-your-project)
-8. [Programming](#step-8-programming)
+8. [Initialization & Configuration of Source Files](#step-8-initialization--configuration-of-source-files)
 9. [Launch changes](#step-9-launch-changes)
 10. [Functional Testing](#step-10-functional-testing)
 11. [Enhance Security](#step-11-enhance-security)
@@ -248,101 +248,32 @@ Test modifying a file on your computer and see the changes right away on your te
 http://test.domain.com/sourceFiles
 
 [back to top](#overview-steps)
-### Step 7 Integrate a professional visual layout to your project
 
-#### 7.1 Download layout source files
-Before we start any programming, we first must create our Visual Layout Clickthrough.
 
-Download a layout from your favourite Bootstrap layout supplier. GrayGrids is a great company which you can download beautiful professional layouts to create your visual clickthroughs.
+### Step 7 - Removed
 
-This is a crutial step as it allows you to link together all the visual pages with finalized visuals and add mock-features which outline what programming needs to be completed. You and your team can revise the visuals as much as needed until everything is thought through and approved.
 
-Now you can move on to the programming stage confidently knowing all the programming that will be developed has been throughly brainstormed and this ensures the programming scope won't change after it is started.
+### Step 8 Initialization & Configuration of Source Files
 
-#### 7.2 Add Layout Source Files
-
-After you download all the layout source files, save them into "/src/webroot/modules/layoutSourceFiles"
-
-#### 7.3 View in Browser
-
-Because they have been added to webroot, this means you can view the entire layout in your browser
-```angular2html
-http://test.domain.com/sourceFiles/modules/layoutSourceFiles
-```
-
-#### 7.4 Create a new layout file
-
-/src/templates/layout/newLayout.php
-Copy all the files from one of the pages from your new layout for example
-
-/src/webroot/modules/layoutSourceFiles/index.html
-COPY contents into
-
-/src/templates/layout/newLayout.php
-
-#### 7.5 Create baseLayout variable
-
-All the source files we added to our layout reference files which are located in our modules directory
--> So we are going to simply create a variable the allows us to reference the corrrect location.
-
-In your PagesController.php (or AppController.php) file
-
-```php
-function beforeFilter() {
-$this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
-}
-```
-
-Now in the layout file (/src/templates/newLayout.php)
-
-Find and replace the following:
-
-```angular2html
-FIND src=" REPLACEWITH src="<?= $baseLayout; ?>
-FIND href=" REPLACEWITH href="<?= $baseLayout; ?>
-```
-
-#### 7.6 Separate Layout Content From Each Page Content
-We currently have a SINGLE layout file, but we need to create separate pages, so you need to separate the content (on the layout) which is common to all pages apart from the content that is different on each page.
-
-Using inspector find the correct div and cut this content and add to a page
-
-#### 7.7 Create Each Page
-
-Create all the visual pages by doing the following
-
-Create a new function in the controller AND create a new view page
-
-[back to top](#overview-steps)
-### Step 8 Programming
-
-#### 8.1 Program with CodeBlocks
-
-We develop with a modular programming process by harnessing standarized blocks of code. 
-
-https://codeblocks.setupcase.com
-
-Search for the specific code fragments in order to convert the finalized visuals into working systems
-
-#### 8.2 Integration with SetupCase Plugin Module
+#### 8.1 Integration with our SetupCase Features
 Our solution will give a clear development path: 
 - Url based language switching
 - Authentication
-- MySQL database environments
-  - with server based credentials 
-  - source files do not store any private credentials
+- Optional MySQL database environments
+- Server based credentials 
+- No private credentials in source code (stored on server)
 - We are only going to make minor changes to the CakePHP framework core so we have a simple upgrade path in the future
 
-1. open BaseApplication.php (vendor\cakephp\cakephp\src\Http\BaseApplication.php)
+
+8.1.1. open BaseApplication.php (vendor\cakephp\cakephp\src\Http\BaseApplication.php)
 ```php
-//find the function
-//public function bootstrap(): void
+//find the function public function bootstrap(): void
 //Add below: require_once $this->configDir . 'bootstrap.php';
 if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
   require_once $this->configDir . 'bootstrap-setupCase.php';
 }
 ```
-2. Then in Application.php add ABOVE the CSRF (sourceFiles\src\Application.php):
+8.1.2. Then in Application.php add ABOVE the CSRF (sourceFiles\src\Application.php):
 NOTE: You will need to right click and import these classes after you paste
 ```php
 //Added by SetupCase-BoilerPlate
@@ -356,7 +287,7 @@ NOTE: You will need to right click and import these classes after you paste
 ->add(new AccessMiddleware())
 ```
 
-3. In the same page (application.php) add this function BELOW:
+8.1.3. In the same page (application.php) add this function BELOW:
 NOTE: Make sure you import the required classes after you paste
 ```php
 protected function getAuthenticationService() : AuthenticationService {
@@ -400,13 +331,13 @@ Ensure you import the required classes
 ```
 
 
-4. AppController->initialize: ADD
+8.1.4. AppController->initialize: ADD
 ```php
 $this->loadComponent('Authentication.Authentication');
 ```
 
-5. Don't forget to import the classes with right click (in PHPstorm)
-6. In App_controller / beforeFilter
+8.1.5. Don't forget to import the classes with right click (in PHPstorm)
+8.1.6. In App_controller / beforeFilter
 ```php
 public function beforeFilter(EventInterface $event) {
     parent::beforeFilter($event); // TODO: Change the autogenerated stub
@@ -441,7 +372,7 @@ function setupCase() {
 }
 ```
 
-7. Src / View Helpers
+8.1.7. Src / View Helpers
 - AppView.php - add into initalize()
 ```php
 $this->loadHelper('Auth');
@@ -450,7 +381,7 @@ $this->loadHelper('Lang');
 
 
 
-8. Bootstrap.php - add environments (sourceFiles\config\bootstrap.php)
+8.1.8. Bootstrap.php - add environments (sourceFiles\config\bootstrap.php)
 ```php
 //Keep this function
 //if (file_exists(CONFIG . 'app_local.php')) {
@@ -476,7 +407,7 @@ switch($activeEnv) {
 You can duplicate app_setupCase.php to a different environment
 - Then add different credentials within your php.ini file 
 
-9. Add routes
+8.1.9. Add routes
 - Routes are needed to connect the languages
 
 ```php
@@ -521,7 +452,7 @@ $routes->prefix('admin', function (RouteBuilder $routes) {
 ```
 
 
-Databases and Credentials (optional)
+#### 8.2 Databases and Credentials (optional)
 - We harness server based passwords / credentials / api keys, etc
 - The source files do NOT contain any secret information ensuring that even if your sourceFiles get leaked, no private connection info will be exposed
 - We will store all the private data in the server PHP.ini (GLOBAL) file.
@@ -553,8 +484,7 @@ FIX: You did not import the class SetupCase
 
 
 
-
-10. Fix windows line endings
+#### 8.3 Fix windows line endings
 - Ensure our windows line endings are corrected
 ```php
 cd PROJECTFILE/docker
@@ -568,7 +498,85 @@ cd PROJECTFILE/docker
 
 
 
+#### 8.4 Program with CodeBlocks
 
+We develop with a modular programming process by harnessing standarized blocks of code.
+
+https://codeblocks.setupcase.com
+
+Search for the specific code fragments in order to convert the finalized visuals into working systems
+
+
+
+
+
+
+#### 8.5 Integrate a professional visual layout to your project
+
+8.5.1 Download layout source files
+Before we start any programming, we first must create our Visual Layout Clickthrough.
+
+Download a layout from your favourite Bootstrap layout supplier. GrayGrids is a great company which you can download beautiful professional layouts to create your visual clickthroughs.
+
+This is a crucial step as it allows you to link together all the visual pages with finalized visuals and add mock-features which outline what programming needs to be completed. You and your team can revise the visuals as much as needed until everything is thought through and approved.
+
+Now you can move on to the programming stage confidently knowing all the programming that will be developed has been throughly brainstormed and this ensures the programming scope won't change after it is started.
+
+8.5.2 Add Layout Source Files
+
+After you download all the layout source files, save them into "/src/webroot/modules/layoutSourceFiles"
+
+8.5.3 View in Browser
+
+Because they have been added to webroot, this means you can view the entire layout in your browser
+```angular2html
+http://test.domain.com/sourceFiles/modules/layoutSourceFiles
+```
+
+8.5.4 Create a new layout file
+
+/src/templates/layout/newLayout.php
+Copy all the files from one of the pages from your new layout for example
+
+/src/webroot/modules/layoutSourceFiles/index.html
+COPY contents into
+
+/src/templates/layout/newLayout.php
+
+8.5.5 Create baseLayout variable
+
+All the source files we added to our layout reference files which are located in our modules directory
+-> So we are going to simply create a variable the allows us to reference the corrrect location.
+
+In your PagesController.php (or AppController.php) file
+
+```php
+function beforeFilter() {
+$this->set('baseLayout', Router::url('/').'modules'.DS.'layout'.DS);
+}
+```
+
+Now in the layout file (/src/templates/newLayout.php)
+
+Find and replace the following:
+
+```angular2html
+FIND src=" REPLACEWITH src="<?= $baseLayout; ?>
+FIND href=" REPLACEWITH href="<?= $baseLayout; ?>
+```
+
+8.5.6 Separate Layout Content From Each Page Content
+We currently have a SINGLE layout file, but we need to create separate pages, so you need to separate the content (on the layout) which is common to all pages apart from the content that is different on each page.
+
+Using inspector find the correct div and cut this content and add to a page
+
+8.5.7 Create Each Page
+
+Create all the visual pages by doing the following
+
+Create a new function in the controller AND create a new view page
+
+[back to top](#overview-steps)
 
 
 
