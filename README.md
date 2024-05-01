@@ -163,9 +163,16 @@ Synergy
 - Use one computers mouse / keyboard on another computer
 
 [back to top](#overview-steps)
+
 ### Step 4 Checkout your new sourceFiles to your local computer
 We will now prepare our IDE so we can program locally on our computer but all our files will be auto-uploaded to our server to view the changes
--> Open powershell / terminal
+
+Use EITHER: PHPStorm (easier) or Powershell / terminal
+
+PHP-Storm
+- Click GIT
+- Click Clone
+- Paste in the web address from Step 1 
 
 ```angular2html
 cd ~/PhpstormProjects
@@ -203,9 +210,53 @@ GITHUB
 
 
 [back to top](#overview-steps)
-### Step 5 Configure your IDE to automatically push changes to your server
 
-#### 5.1 Setup sFTP on your IDE
+
+### Step 5 Launch Changes
+Launch allows to efficiently uploads your GITHUB projects to testing, staging and LIVE servers.
+Our technology uses basic SSH commands to prepare the source files and does not require extra libraries.
+
+5.1 - Configure TEST
+Configure the test profile to push all the files from GITHUB to your test / dev server
+- modify launchPad/settings.json
+
+  "TESTING_URL": "test.undoweb.com", - Change to your dev URL
+  "TESTING_USER": "undoweb", - Server username
+
+Using PAT token
+  "TESTING_GIT_ADDRESS": "github.com/undoLogic/projectname.git",
+  "TESTING_USE_PAT": true,
+OR using SSH KEYS
+  "TESTING_GIT_ADDRESS": "git@github.com:undoLogic/projectname.git",
+  "TESTING_USE_PAT": false,
+
+  "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
+  "TESTING_COPY_SRC_TO_ROOT": false, - Only if you want to copy all the files to root
+
+5.2 - Push files
+- Run the local script ./1_run.sh
+- Launch will logon to your target server (your SSH passphrase adds extra security)
+- All the source files from your GitHub account will be exported to the testing and/or staging locations
+- You must create a Personal Access Token (in github). This file is NOT stored in your sourcFiles instead it is saved to a PHP.ini file on your server
+- This allows you to test and verify all the changes before going LIVE
+- After you are satisfied all changes and database changes have been completed you can 'PushLIVE' - which copies all the files to the LIVE location on your target server
+- You first need to adjust your 'launch/settings.json' file to match your target servers
+
+```php
+# navigate to the launch dir
+cd launchPad
+./1_run.sh
+```
+
+Read the full documentation in the README.md file in the launchPad directory:
+https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
+
+[back to top](#overview-steps)
+
+
+### Step 6 Configure your IDE to automatically push changes to your server
+
+#### 6.1 Setup sFTP on your IDE
 - This will allow to upload changes from your computer to your server 
 
 Using PHPstorm:
@@ -235,14 +286,14 @@ MAPPINGS (TAB)
 - click to navigate to 'www' - 'test' (OR the subdomain you created in the control panel)
     - During programming we upload to the root of the subdomain NOT the sourceFiles directory (better for authentication)
 
-#### 5.2 Auto-upload changes
+#### 6.2 Auto-upload changes
 When activated anytime you change a file on your computer it will automatically sFTP that file to the server, allowing you to develop on the server
 
 PHPstorm - Tools - Developement - Options
 - UPLOAD CHANGED FILES AUTOMATICALLY TO THE DEFAULT SERVER: "Always"
 
 
-#### 5.3 TROUBLESHOOTING
+#### 6.3 TROUBLESHOOTING
 If you have issues where your IDE is not uploads the changes to the server follow these steps
 
 Make sure your default upload is selected to the correct profile
@@ -250,7 +301,7 @@ Make sure your default upload is selected to the correct profile
 - Right click on the correct profile and choose 'Set as Default'
 
 [back to top](#overview-steps)
-### Step 6 Testing and watch updates on the test subdomain
+### Step 7 Testing and watch updates on the test subdomain
 
 Test modifying a file on your computer and see the changes right away on your test server
 
@@ -259,7 +310,6 @@ http://test.domain.com/sourceFiles
 [back to top](#overview-steps)
 
 
-### Step 7 - Removed
 
 
 ### Step 8 Initialization & Configuration of Source Files
@@ -590,28 +640,24 @@ Create a new function in the controller AND create a new view page
 
 
 
-### Step 9 Launch Changes
-Launch allows to efficiently uploads your GITHUB projects to testing, staging and LIVE servers.
-Our technology uses basic SSH commands to prepare the source files and does not require extra libraries.
 
-- Run the local script ./1_run.sh
-- Launch will logon to your target server (your SSH passphrase adds extra security)
-- All the source files from your GitHub account will be exported to the testing and/or staging locations
-- You must create a Personal Access Token (in github). This file is NOT stored in your sourcFiles instead it is saved to a PHP.ini file on your server
-- This allows you to test and verify all the changes before going LIVE
-- After you are satisfied all changes and database changes have been completed you can 'PushLIVE' - which copies all the files to the LIVE location on your target server
-- You first need to adjust your 'launch/settings.json' file to match your target servers
 
-```php
-# navigate to the launch dir
-cd launchPad
-./1_run.sh
-```
 
-Read the full documentation in the README.md file in the launchPad directory:
-https://github.com/undoLogic/setupCase-boilerplate/tree/main/launchPad
 
-[back to top](#overview-steps)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
