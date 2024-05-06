@@ -333,7 +333,7 @@ if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
 }
 ```
 
-8.1.2. In the same page (application.php) add this function BELOW:
+8.1.2. In the application.php page (sourceFiles/src/Application.php) add this function AFTER the "public function middleware(Middl....":
 NOTE: Make sure you import the required classes after you paste
 ```php
 protected function getAuthenticationService() : AuthenticationService {
@@ -370,7 +370,7 @@ protected function getAuthenticationService() : AuthenticationService {
 }
 ```
 
-8.1.3. Then in Application.php add ABOVE the CSRF (sourceFiles\src\Application.php):
+8.1.3. Now add to the same file Application.php add ABOVE the CSRF (sourceFiles\src\Application.php):
 NOTE: You will need to right click and import these classes after you paste
 ```php
 //Added by SetupCase-BoilerPlate
