@@ -332,21 +332,8 @@ if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
   require_once $this->configDir . 'bootstrap-setupCase.php';
 }
 ```
-8.1.2. Then in Application.php add ABOVE the CSRF (sourceFiles\src\Application.php):
-NOTE: You will need to right click and import these classes after you paste
-```php
-//Added by SetupCase-BoilerPlate
-->add(new EncryptedCookieMiddleware(
-    ['CookieAuth'],
-    'CHANGEMEWITHSECURE'
-))
-->add(new AuthenticationMiddleware($this->getAuthenticationService()))
-->add(new LangMiddleware())
-->add(new RbacMiddleware())
-->add(new AccessMiddleware())
-```
 
-8.1.3. In the same page (application.php) add this function BELOW:
+8.1.2. In the same page (application.php) add this function BELOW:
 NOTE: Make sure you import the required classes after you paste
 ```php
 protected function getAuthenticationService() : AuthenticationService {
@@ -382,6 +369,21 @@ protected function getAuthenticationService() : AuthenticationService {
   return $authenticationService;
 }
 ```
+
+8.1.3. Then in Application.php add ABOVE the CSRF (sourceFiles\src\Application.php):
+NOTE: You will need to right click and import these classes after you paste
+```php
+//Added by SetupCase-BoilerPlate
+->add(new EncryptedCookieMiddleware(
+    ['CookieAuth'],
+    'CHANGEMEWITHSECURE'
+))
+->add(new AuthenticationMiddleware($this->getAuthenticationService()))
+->add(new LangMiddleware())
+->add(new RbacMiddleware())
+->add(new AccessMiddleware())
+```
+
 
 Ensure you import the required classes
 ```php
