@@ -97,6 +97,7 @@ choco install googledrive -y
 choco install snagit -y
 choco install skype -y
 choco install virtualbox -y
+choco install unetbootin -y
 
 # Optional
 choco install steam -y
