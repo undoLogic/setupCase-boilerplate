@@ -858,3 +858,124 @@ When your project is ready to launch ensure the following
 
 
 
+### Step 17 Backup
+It is important to keep ongoing backups of your databases to mitigate data loss
+- We recommend to create a local script to download from your website daily to your local computer. 
+
+```powershell
+$url = "https://www.domain.com/path/to/download/script";
+
+# Define the current date in the format you want (e.g., YYYY-MM-DD)
+$currentDate = Get-Date -Format "yyyy-MM-dd"
+
+# Define the path where the file will be saved
+$outputFile = "D:\Backups\$currentDate.sql"
+
+try {
+    # Download the file
+    $response = Invoke-WebRequest -Uri $url -ErrorAction Stop
+
+    # Check if the status code is 200 (OK)
+    if ($response.StatusCode -eq 200) {
+        # Save the file
+        $response.Content | Out-File -FilePath $outputFile -Encoding ascii
+        Write-Output "File downloaded and saved successfully."
+    } else {
+        Write-Output "Download failed with status code: $($response.StatusCode)"
+    }
+} catch {
+    Write-Output "An error occurred: $_"
+}
+```
+
+Now create a Task Scheduler on Windows
+- Basic Task
+- Trigger Daily 7:30
+- Action: Start a program
+- Program/Script: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+- Add Arguments: -NoProfile -ExecutionPolicy Bypass -File "D:\PhpstormProjects\projectName\download.ps1"
+- Start in: D:\PhpstormProjects\projectName\
+
+Now daily you will get all your data saved to your local computer 
+- Setup the export directory to a location that is safe and is replicated offline
+
+```php
+public function dump($code = false): ?Response
+    {
+        ////////////////////////////////////// security /////////////////////////////
+        $settings = [
+            'allowed_ips' => [
+                '123.456.789.000'
+            ],
+            'codes' => [
+                '123'
+            ]
+        ];
+
+        $remoteAddr = $_SERVER['REMOTE_ADDR'];
+
+        $errors = false;
+
+        if (!in_array($remoteAddr, $settings['allowed_ips'])) {
+            throw new BadRequestException('Your location is NOT allowed to see this: '.$remoteAddr);
+            $errors = true;
+        }
+
+        if (!in_array($code, $settings['codes'])) {
+            throw new BadRequestException('Your access code is not correct: '.$code);
+            $errors = true;
+        }
+        
+        //IMPORTANT: Add more security here
+        
+        //////////////////////////////////////////////////////////////////////////
+
+        if (!$errors) { //incase our exectpions do not work we ensure errors are false
+
+            $connection = ConnectionManager::get('default');
+
+            $config = $connection->config();
+
+            $host = $config['host'];
+            $port = $config['port'];
+            $username = $config['username'];
+            $password = $config['password'];
+            $database = $config['database'];
+
+            //dd($port);
+
+            // Path to save the dump file
+            $file = TMP . 'dump_' . date('Y-m-d_H-i-s') . '.sql';
+
+            // mysqldump command
+            $command = sprintf(
+                'mysqldump --user=%s --password=%s --host=%s --port=%s %s > %s',
+                escapeshellarg($username),
+                escapeshellarg($password),
+                escapeshellarg($host),
+                escapeshellarg($port),
+                escapeshellarg($database),
+                escapeshellarg($file)
+            );
+
+            //dd($command);
+            // Execute the command
+            exec($command, $output, $returnVar);
+
+            //dd($returnVar);
+            if ($returnVar === 0) {
+                $this->response = $this->response->withFile($file, [
+                    'download' => true,
+                    'name' => basename($file),
+                ]);
+                return $this->response;
+            } else {
+                throw new BadRequestException('Could not create dump file');
+            }
+
+        } else {
+            throw new BadRequestException('ERRORS detected');
+        }
+
+    }
+```
