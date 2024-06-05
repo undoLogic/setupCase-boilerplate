@@ -3,29 +3,37 @@
 /*******
  * Add this to a CakePHP 4.x controller
 
+// Need to manually target file since we are pushing all classes in the same Util class for simplicity / deployment
+require_once ROOT . DS . 'src' . DS . 'Util' . DS . 'OfflineBox.php';
+use App\Util\ClientKey;
+use function App\Util\generate_client_key;
+use function App\Util\generate_client_request;
+use function App\Util\generate_nonce;
+use function App\Util\verify_client_request;
+
 public function testing() {
 
-$this->viewBuilder()->disableAutoLayout();
+    $this->viewBuilder()->disableAutoLayout();
 
-try {
-echo "Produce valid request and verification\n";
-$clientKey = generate_client_key();
-$nonce = generate_nonce();
-$backupRequest = generate_client_request($clientKey, $nonce);
+    try {
+        echo "Produce valid request and verification\n";
+        $clientKey = generate_client_key();
+        $nonce = generate_nonce();
+        $backupRequest = generate_client_request($clientKey, $nonce);
 
-verify_client_request($clientKey, $backupRequest);
-echo "Client request was good!\n";
+        verify_client_request($clientKey, $backupRequest);
+        echo "Client request was good!\n";
 
-if (0) { //if you want to test the fail
-echo "\nNow tamper with the signature, should fail\n";
-$backupRequest->signature = base64_encode("a bad signature");
-verify_client_request($clientKey, $backupRequest);
-echo "Should not see this message!";
-}
-} catch (Exception $e) {
-echo 'Caught exception: ', $e->getMessage(), "\n";
-exit(1);
-}
+        if (0) { //if you want to test the fail
+            echo "\nNow tamper with the signature, should fail\n";
+            $backupRequest->signature = base64_encode("a bad signature");
+            verify_client_request($clientKey, $backupRequest);
+            echo "Should not see this message!";
+        }
+    } catch (Exception $e) {
+        echo 'Caught exception: ', $e->getMessage(), "\n";
+    exit(1);
+    }
 exit(0);
 }
  ******/
