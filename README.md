@@ -118,6 +118,9 @@ https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
 TailScale
 - Login and install client
 
+PhpStorm
+- Settings -> Appearance & Behaviour -> System Settings -> Default directory for projects
+
 ### Remote Management (Default)
 UltraVNC (Free Method)
 - server -> service -> install -> start service
