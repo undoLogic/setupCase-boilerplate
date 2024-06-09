@@ -135,8 +135,11 @@ https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
 #### TailScale
 - Login and install client
 
+PhpStorm
+- Settings -> Appearance & Behaviour -> System Settings -> Default directory for projects
+
 ### Remote Management (Default)
-UltraVNC (Free Method)
+UltraVNC WINDOWS (Free Method)
 - server -> service -> install -> start service
 - Set secure password
 - login with vnc://tailscaleIP:590
@@ -155,12 +158,18 @@ RDP (Remote Desktop)
 - Requires Windows Pro
 
 iPad RealVNC (Free)
-- easy to use mouse with this program
+- easy to use mouse with this program to control another computer with VNC
 - login with vnc://tailscaleIP:5900
 
 RealVNC (Paid Method)
 - Requires an account that costs per device and per month
 - Supports multiple Monitors on WINDOWS and MAC
+
+MacOS - included VNC
+- Included with MacOS is the VNC server
+- System Preferences - Sharing - Screen Sharing
+- Computer settings - CHECK VNC viewers may control screen with password
+- Password allows to get access, but will also need the user of the computer password to see the screen
 
 NOTE:
 - Explorer show hidden files
