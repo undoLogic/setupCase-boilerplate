@@ -98,6 +98,7 @@ choco install snagit -y
 choco install skype -y
 choco install virtualbox -y
 choco install unetbootin -y
+choco install xampp-81
 
 # Optional
 choco install steam -y
@@ -105,17 +106,33 @@ choco install nvidia-display-driver -y
 choco install microsoft-teams -y
 ```
 
-Opera
+#### Xampp Server
+Allows to test locally.
+Make the following adjustments
+
+PHP.ini
+```php
+# uncomment
+extension=intl
+# increase
+post_max_size=400M
+upload_max_filesize=400M
+```
+
+my.ini - Increase packet size to allow to import large files
+
+
+#### Opera
 - Install RainDrop.io bookmark extension
 https://help.raindrop.io/install-extension
 
-Firefox
+#### Firefox
 - Install DarkMode extensions:
 https://addons.mozilla.org/en-US/firefox/addon/darkreader/
 - Install Bitwarden extension:
 https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
 
-TailScale
+#### TailScale
 - Login and install client
 
 ### Remote Management (Default)
