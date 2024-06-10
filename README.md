@@ -140,7 +140,7 @@ PhpStorm
 
 ### Remote Management (Default)
 UltraVNC WINDOWS (Free Method)
-- server -> service -> install -> start service
+- Search for 'UltraVNC server' -> Settings -> service -> install -> start service
 - Set secure password
 - login with vnc://tailscaleIP:590
 - Multiple Screen on WINDOWS only; MAC only displays ONE monitor (You can disable the extra screens snd just use the primary on all OS's)
