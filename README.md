@@ -127,6 +127,9 @@ my.ini - Increase packet size to allow to import large files
 - Install RainDrop.io bookmark extension
 https://help.raindrop.io/install-extension
 
+- Install Bitwarden for password management
+https://addons.opera.com/en/extensions/details/bitwarden-free-password-manager/
+
 #### Firefox
 - Install DarkMode extensions:
 https://addons.mozilla.org/en-US/firefox/addon/darkreader/
