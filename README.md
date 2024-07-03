@@ -246,14 +246,30 @@ Our solution will give a clear development path:
 - We are only going to make minor changes to the CakePHP framework core so we have a simple upgrade path in the future
 
 
-8.1.1. open BaseApplication.php (vendor\cakephp\cakephp\src\Http\BaseApplication.php)
+8.1.1. Add bootstrap override below the app_local 'bootstrap.php' (/sourceFiles/config/bootstrap.php)
 ```php
-//find the function public function bootstrap(): void
-//Add below: require_once $this->configDir . 'bootstrap.php';
+//if (file_exists(CONFIG . 'app_local.php')) {
+//    Configure::load('app_local', 'default');
+//}
+//Add this BELOW the code above
 if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
   require_once $this->configDir . 'bootstrap-setupCase.php';
 }
 ```
+
+Open 'bootstrap-setupCase.php' (/sourceFiles/config/bootstrap.php)
+- Choose the domain names for the correct environment
+```shell
+$liveDomains = [
+    'test.undoweb.com' => 'UNDOWEB',
+    'pending.undoweb.com' => 'PENDING',
+    'www.domain.com' => 'LIVE',
+];
+```
+
+You can duplicate app_setupCase.php to a different environment
+- Then add different credentials within your php.ini file
+
 
 8.1.2. In the application.php page (sourceFiles/src/Application.php) add this function AFTER the "public function middleware(Middl....":
 NOTE: Make sure you import the required classes after you paste
@@ -276,8 +292,14 @@ protected function getAuthenticationService() : AuthenticationService {
   // Load the authenticators, you want session first
   $authenticationService->loadAuthenticator('Authentication.Session');
   
-  // Configure form data check to pick email and password
-  $authenticationService->loadAuthenticator(FormLoginAttemptsAuthenticator::class, [
+  // Protect against Submit flooding
+  //  $authenticationService->loadAuthenticator(FormLoginAttemptsAuthenticator::class, [
+  //      'fields' => $fields,
+  //      'loginUrl' => Router::url('/login'),
+  //  ]);
+
+  //Normal without flooding prevention
+  $authenticationService->loadAuthenticator('Authentication.Form', [
       'fields' => $fields,
       'loginUrl' => Router::url('/login'),
   ]);
@@ -361,34 +383,6 @@ function setupCase() {
 $this->loadHelper('Auth');
 $this->loadHelper('Lang');
 ```
-
-
-
-8.1.8. Bootstrap.php - add environments (sourceFiles\config\bootstrap.php)
-```php
-//Keep this function
-//if (file_exists(CONFIG . 'app_local.php')) {
-//    Configure::load('app_local', 'default');
-//}
-//This will prepare all the correct values for your current environment
-$activeEnv = \App\Util\Environments::getActive();
-switch($activeEnv) {
-    case 'UNDOWEB':
-        Configure::load('app_setupCase', 'default');
-        break;
-    case 'DOCKER':
-        Configure::load('app_setupCase', 'default');
-        break;
-    case 'LOCAL':
-        Configure::load('app_local', 'default');
-        break;
-    default:
-        dd('missing environment config file');
-}
-```
-
-You can duplicate app_setupCase.php to a different environment
-- Then add different credentials within your php.ini file 
 
 8.1.9. Add routes
 Add these to the function "$routes->scope('/', function (RouteBuilder $builder): void {"

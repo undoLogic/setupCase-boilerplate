@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Util\SetupCase;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
@@ -275,14 +276,17 @@ class UsersController extends AppController
                     'url' => Router::url('/', true) . 'Users' . DS . 'reset' . DS . base64_encode($emailSubmitted) . DS . base64_encode($userToken['reset_token'])
                 ];
 
-                $sent = $this->sendEmail($emailSubmitted, 'Email Password Reset', $vars, false, false, 'email_reset');
+                $sent = SetupCase::sendEmail($emailSubmitted, 'email_reset','support@wealthway.ca', 'Email Password Reset', $vars);
+
                 if ($sent) {
+                    $this->set('email_sent', true);
                     $this->writeToLog('debug', 'email sent !');
                 } else {
                     $this->writeToLog('debug', 'email could NOT be sent');
                 }
             } else {
                 //does not exist
+                $this->Flash->error('Email does not exist');
                 $this->writeToLog('debug', 'That email does NOT exist: ' . $emailSubmitted, false);
             }
         } else {

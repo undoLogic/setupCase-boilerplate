@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Util;
+use Cake\Core\Configure;
+use Cake\Mailer\Mailer;
 use Cake\ORM\Table;
 use Cake\Datasource\FactoryLocator;
 
@@ -306,4 +308,43 @@ class SetupCase {
         $c .= '</div>';
         echo $c;
     }
+
+
+    public static function sendEmail($to, $template, $from, $subject, $vars, $cc = false, $attachments = [])
+    {
+        $mailer = new Mailer('default');
+
+        $env = Configure::read('App.current_env_profile');
+
+        if ($env === 'LIVE') {
+
+            dd('Will send LIVE email here');
+            $mailer->setTo($to);
+            if ($cc) { $mailer->setCc($cc);}
+            $mailer->setSubject($subject);
+            $mailer->setFrom([$from => 'CUSM']);
+
+        } else {
+            dd('testing sending email');
+
+            $mailer->setSubject($subject);
+            $mailer->setFrom([$from => 'TESTING Emails']);
+            dd('Add your testing email here');
+            $mailer->setTo(''); //ADD your testing email here
+
+        }
+
+        $mailer->setEmailFormat('html')
+            ->setViewVars($vars)
+            ->viewBuilder()
+            ->setTemplate($template)
+            ->setLayout('default');
+
+        $didSend = $mailer->send();
+
+        return $didSend;
+
+    }
+
+
 }
