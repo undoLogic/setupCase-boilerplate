@@ -308,6 +308,11 @@ protected function getAuthenticationService() : AuthenticationService {
   $authenticationService->loadAuthenticator('Authentication.Cookie', [
       'fields' => $fields,
       'loginUrl' => '/login',
+      'cookie' => [
+        'name' => 'remember_me_cookie',
+        'expire' => strtotime('+30 days'), // Set the desired expiration time
+        'httpOnly' => true,
+      ],
   ]);
   
   return $authenticationService;

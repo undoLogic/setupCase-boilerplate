@@ -9,9 +9,9 @@
         <?= $this->Form->control('password', ['required' => true]) ?>
 
         <?= $this->Form->control('remember_me', [
-            'label' => false,
             'type' => 'checkbox',
             'class' => "form-control",
+            'checked' => true
         ]); ?>
 
     </fieldset>
