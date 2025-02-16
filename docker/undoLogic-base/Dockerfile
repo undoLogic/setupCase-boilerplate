@@ -1,4 +1,4 @@
-FROM undoLogic-base:latest
+FROM php:8.1-apache
 
 # Enable Apache Modules
 RUN a2enmod rewrite ssl headers
@@ -36,8 +36,6 @@ RUN docker-php-ext-install \
     pdo \
     pdo_mysql \
     intl
-
-
 
 # Expose Ports
 EXPOSE 80
