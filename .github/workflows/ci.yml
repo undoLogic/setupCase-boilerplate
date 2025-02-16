@@ -3,9 +3,6 @@ name: web81-base-ci
 on:
   push:
 
-permissions:
-  contents: read
-
 jobs:
   docker:
     runs-on: ubuntu-latest
