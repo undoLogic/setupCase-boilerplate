@@ -1,42 +1,42 @@
 FROM php:8.1-apache
 
-RUN a2enmod rewrite
-RUN a2enmod ssl
+# Enable Apache Modules
+RUN a2enmod rewrite ssl headers
 
+# Update and Install Dependencies
 RUN apt-get update && apt-get install -y \
-        wkhtmltopdf \
-        dos2unix \
-        zip \
-        unzip \
-        rsync \
-        mariadb-client \
-        subversion \
-        curl \
-        libcurl4-gnutls-dev \
-        libkrb5-dev \
-        libc-client-dev \
-        screen \
-        vim \
-        git \
-        subversion \
-        curl \
-        imagemagick \
-        libcurl4-gnutls-dev \
-        --no-install-recommends \
-        libmagickwand-dev \
+    lpr \
+    qrencode \
+    wkhtmltopdf \
+    dos2unix \
+    zip \
+    unzip \
+    rsync \
+    mariadb-client \
+    curl \
+    libc-client-dev \
+    screen \
+    vim \
+    git \
+    imagemagick \
+    libmagickwand-dev \
+    libkrb5-dev \
+    libzip-dev \
+    libicu-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libxml2-dev \
+    libonig-dev \
+    libxslt1-dev \
     && rm -r /var/lib/apt/lists/*
 
-RUN docker-php-ext-install pdo pdo_mysql curl sockets mysqli
+# Install PHP Extensions
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    intl
 
-RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install imap
-
-RUN apt-get -y update \
-&& apt-get install -y libicu-dev \
-&& docker-php-ext-configure intl \
-&& docker-php-ext-install intl
-
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
-
+# Expose Ports
 EXPOSE 80
 EXPOSE 443
