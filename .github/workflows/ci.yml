@@ -25,6 +25,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@ca877d9245402d1537745e0e356eab47c3520991 #v6.13.0
         with:
-          context: docker/web81
+          context: docker/undoLogic-base
           push: true
           tags: undologic/undologic-base:latest
