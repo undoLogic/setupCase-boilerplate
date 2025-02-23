@@ -1,6 +1,6 @@
 services:
   web:
-    build: ./web81
+    image: undologic/setupcase-base
     ports:
       - "80:80"
       - "443:443"

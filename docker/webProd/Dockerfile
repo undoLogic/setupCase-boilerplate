@@ -1,4 +1,7 @@
-FROM web81:latest
+FROM undologic/setupcase-base
 
-# copy in sourcefiles
+# better to do this on github
+# copy in sourcefiles - github
+
+
 
