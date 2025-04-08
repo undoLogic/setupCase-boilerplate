@@ -2,13 +2,13 @@
   "ReadME": "Do not use trailing slashes but do use http|https / github current dir will be added to testing absolute path / GITHUB_CURRENT_BRANCH is either trunk OR branches/nameOfBranch",
 
   "TESTING": {
-    "url": "test.undoweb.com",
+    "url": "testundologic.undoweb.com",
     "user": "undoweb",
-    "absolute_path": "/home/undoweb/www/test",
+    "absolute_path": "/home/undoweb/www/testundologic",
     "github_repo": "undoLogic/undoLogicWebsite",
     "github_use_pat": true,
     "github_ssh_key_name": "undoLogic",
-    "copy_src_to_root": true
+    "copy_src_to_root": false
   },
 
 
