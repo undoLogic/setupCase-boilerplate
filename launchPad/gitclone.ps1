@@ -1,30 +1,55 @@
 # Load settings
 $settings = Get-Content -Raw -Path "settings.json" | ConvertFrom-Json
 
-# Extract values
-$usePAT = $settings.github_use_pat
-$repo = $settings.github_repo
-$sshKeyName = $settings.github_ssh_key_name
+############################################################################################### Extract values
+$github_use_pat = $settings.TESTING.github_use_pat
+$github_repo = $settings.TESTING.github_repo
+$github_ssh_key_name = $settings.TESTING.github_ssh_key_name
+$copy_src_to_root = $settings.TESTING.copy_src_to_root
+$absolute_path = $settings.TESTING.absolute_path
 
-# Git URL for remote command
-if ($usePAT -eq $true) {
-    # NOTE: PHP runs on remote server at execution time
-    $gitUrl = "`"https://\$(php -r 'echo get_cfg_var(\"PAT\");')@github.com/$repo.git`""
-} else {
-    $gitUrl = "`"git@$sshKeyName.github.com:$repo.git`""
+########################################################################################### Get Current Branch
+$github_current_branch = git branch --show-current
+if ($github_current_branch -eq "master") {
+    $github_current_branch = "master"
 }
 
-# Example: use main branch
-$branch = "main"
-$projectName = $repo.Split('/')[-1]
+# (Optional) Output
+Write-Host "Current Git branch: $github_current_branch"
+
+
+
+############################################################################################ Setup connection
+if ($github_use_pat -eq $true) {
+    $phpCall = '$(php -r ''echo get_cfg_var("PAT");'')'
+    $gitUrl = "`"https://$phpCall@github.com/$github_repo.git`""
+} else {
+    $gitUrl = "`"git@$github_ssh_key_name.github.com:$github_repo.git`""
+}
+
+############################################################# Define branch and extract project name from repo
+
+$projectName = $github_repo.Split('/')[-1]
 $remotePath = "~/projects/$projectName"
 
-# Build the full command to run on the server
-$remoteCommand = "cd ~/projects && rm -rf $projectName && git clone $gitUrl --branch $branch --single-branch $remotePath"
+# Remote command to run
+$remoteCommand = @"
+cd $absolute_path &&
+rm -rf $github_current_branch &&
+git clone $gitUrl --branch $github_current_branch --single-branch $absolute_path
+"@ -replace "`r`n", " "
 
-# Final ssh call to run on server
+# SSH command that will be run
 $sshCommand = "ssh user@host '$remoteCommand'"
 
-# Output to copy or debug
-Write-Host "`n--- SSH Command to Run on Remote Server ---"
-Write-Host $sshCommand
+
+
+############################################################################################# Copy src to root
+if ($copy_src_to_root -eq $true) {
+    $remoteCommand += " && rsync -av --no-perms --omit-dir-times --fake-super $absolute_path/$github_current_branch/ ."
+}
+
+$ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/ ."
+
+
+Write-Host $remoteCommand
