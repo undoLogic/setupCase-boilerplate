@@ -23,22 +23,28 @@ Write-Host "Using currnet Git branch: $github_current_branch"
 
 ############################################################################################ Setup connection
 if ($github_use_pat -eq $true) {
-    $phpCall = '$(php -r ''echo get_cfg_var("PAT");'')'
-    $gitUrl = "`"https://$phpCall@github.com/$github_repo.git`""
+    $phpCommand = '$(php -r ''\'echo get_cfg_var("PAT");'\'')'
+    $gitUrl = '"https://' + $phpCommand + '@github.com/' + $github_repo + '.git"'
 } else {
-    $gitUrl = "`"git@$github_ssh_key_name.github.com:$github_repo.git`""
+    $gitUrl = '"git@' + $github_ssh_key_name + '.github.com:' + $github_repo + '.git"'
 }
+
+
+
+
 
 ############################################################# Define branch and extract project name from repo
 
 #$projectName = $github_repo.Split('/')[-1]
 
 ######################################################################################## Remote command to run
-$remoteCommand = @"
-cd $absolute_path &&
-rm -rf $github_current_branch &&
-git clone $gitUrl --branch $github_current_branch --single-branch $absolute_path/$github_current_branch
-"@ -replace "`r`n", " "
+#$remoteCommand = @"
+#cd $absolute_path &&
+#rm -rf $github_current_branch &&
+#git clone $gitUrl --branch $github_current_branch --single-branch $absolute_path/$github_current_branch
+#"@ -replace "`r`n", " "
+$remoteCommand = "cd $absolute_path && rm -rf $github_current_branch && git clone $gitUrl --branch $github_current_branch --single-branch $absolute_path/$github_current_branch"
+
 
 ############################################################################################# Copy src to root
 if ($copy_src_to_root -eq $true) {
@@ -52,3 +58,9 @@ $sshCommand = "ssh $user@$url '$remoteCommand'"
 
 Write-Host $remoteCommand
 #Write-Host $sshCommand
+
+Write-Host "`n--- SSH Command to Run ---"
+Write-Host $sshCommand
+
+
+Invoke-Expression $sshCommand
