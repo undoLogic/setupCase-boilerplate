@@ -8,6 +8,14 @@
   "TESTING_ABSOLUTE_PATH": "/home/undoweb/www/test",
   "TESTING_COPY_SRC_TO_ROOT": false,
 
+
+  "TESTING2_URL": "",
+  "TESTING2_USER": "",
+  "TESTING2_GIT_ADDRESS": "",
+  "TESTING2_USE_PAT": true,
+  "TESTING2_ABSOLUTE_PATH": "",
+  "TESTING2_COPY_SRC_TO_ROOT": false,
+
   "STAGING_URL": "",
   "STAGING_USER": "",
   "STAGING_GIT_ADDRESS": "",
