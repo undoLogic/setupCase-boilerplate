@@ -1,10 +1,16 @@
-# Launch
-Launch allows to efficiently uploads your GITHUB projects to testing, staging and LIVE servers. 
-Our technology uses basic SSH commands to prepare the source files and does not require extra libraries.
+# LaunchPad
+Launch allows to efficiently deploy your GITHUB projects to testing, pending (staging) and LIVE servers. 
+Our technology is very simple and dependable. We uses basic SSH commands to login to the server, prepare the sourcefiles without extra libraries or complex installations.
 
-How it works:
-- Run the local script ./1_run.sh
-- Choose which environment to update
+## Index
+1. [ How it works](#how-it-works)
+2. [ Configuring settings ](#configuring)
+3. [ Using PAT (Github personal access token) ](#pat---personal-access-tokens)
+3. [ Use SSH Keys (instead of PAT token) ](#setup-ssh-keys-optional)
+3. [ Upgrade from previous versions ](#upgrade-from-previous-version)
+
+## How it works:
+- Run the local script for your environment DEV, PENDING and LIVE
 - Launch will logon to your target server (your SSH passphrase adds extra security)
 - All the source files from your GitHub account will be exported to the testing and/or staging locations
 - You must create a Personal Access Token (in github). This file is NOT stored in your sourcFiles instead it is saved to a PHP.ini file on your server
@@ -20,16 +26,15 @@ This is an optional server designed to be a URL which you can test that does NOT
 - Simply access the testing URL and preview your changes
 - See below how to [Configure your testing server as your DEV environment](#configure-testing-server-as-dev-environment)
 
-### Pending Server
+### Pending Server (Staging)
 This is designed to be a URL that shares the database with the LIVE production. 
-- This allows to verify all your changes before pushing to LIVE.
+- This allows to verify all your changes before deploying to LIVE.
 - The database can be modified and verified before going LIVE
-- Careful as all changes on Staging will be reflected on LIVE
-- When you are satisfied with all new changes the goLIVE script will rsync all files from staging to the LIVE folder
+- When you are satisfied with all new changes the goLIVE script will rsync these files from pending to the LIVE absolute folders
 
 ### Live Server
-Live server must be on the same server as PENDING
-- When you are happy with your PENDING server all files are copied to the live absolute path
+Live server must be on the same server as PENDING (different absolute paths)
+- When you are happy with your PENDING server all files are rsync (copied) to the live absolute path
 
 ## Configuring
 Launch needs to be configured for your target server as well as your github account.
@@ -47,7 +52,9 @@ PAT = 123456skdjflkdsj43094
 ```
 
 ### Configure Settings.json
-- open the file /launchPad/settings.json and add the info on the desired servers
+- First time rename your new.settings.json to settings.json
+- Future upgrades will not overwirte your existing settings.json file
+- This file keeps all server information WITHOUT any private credentials
 
 TESTING_URL
 - This requires you have CREATED a 'Subdomain' on your control panel
@@ -139,7 +146,6 @@ PENDING_COPY_SRC_TO_ROOT
   "PENDING_COPY_SRC_TO_ROOT": false
 ```
 
-
 LIVE_URL
 - Similar to 'PENDING_URL' but for your LIVE production files 
 - EXAMPLE: "LIVE_URL": "/home/undologic/www/www"
@@ -164,13 +170,13 @@ SRC_FILES_RELATIVE_PATH:
 ```angular2html
  "SRC_FILES_RELATIVE_PATH": "sourceFiles",
 ```
+
 BROWSER_LOCAL_PATH_WITH_PROGRAM
 - After launch uploads the files it will auto open Firefox to that correct location so you can test
 - This currently only works on Windows and does not work on MacOS yet.
 ```angular2html
     "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
 ```
-
 
 # Upgrade from previous version
 Navigate to the root of your source files
