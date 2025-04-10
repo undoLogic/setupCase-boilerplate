@@ -185,6 +185,7 @@ Open up a terminal and navigation to the root of your project files (you should 
 
 ```shell
 # Windows
+mkdir temp
 cd temp
 git clone https://github.com/undoLogic/setupCase-boilerplate.git
 robocopy setupCase-boilerplate/launchPad ../launchPad /MIR
