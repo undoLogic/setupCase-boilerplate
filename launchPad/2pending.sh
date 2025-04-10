@@ -15,12 +15,12 @@ LAUNCH_URL=""
 
 if [ $USE_PAT = true ]
   then
-  COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+  COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf * && rm -rf $GITHUB_CURRENT_BRANCH \
 && git clone \"https://\$(php -r 'echo get_cfg_var(\"PAT\");')@$GIT_ADDRESS\" \
 --branch $GITHUB_CURRENT_BRANCH --single-branch $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH\
 "
   else
-   COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf $GITHUB_CURRENT_BRANCH \
+   COMMAND="$USER@$URL cd $ABSOLUTE_PATH && rm -rf * && rm -rf $GITHUB_CURRENT_BRANCH \
  && git clone \"$GIT_ADDRESS\" \
  --branch $GITHUB_CURRENT_BRANCH --single-branch $ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH\
  "
