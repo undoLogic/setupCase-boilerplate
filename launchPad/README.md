@@ -183,6 +183,8 @@ Open up a terminal and navigation to the root of your project files (you should 
 - Run the following command which will download the newer files nad overwrite your launchPad directory
 - The settings is named new.settings.json so that file will NOT be overwritten
 
+**IMPORTANT: This will overwrite your settings.json file use github history to compare and merge your previous settings into the new file**
+
 ```shell
 # Windows
 mkdir temp
@@ -190,7 +192,6 @@ cd temp
 git clone https://github.com/undoLogic/setupCase-boilerplate.git
 robocopy setupCase-boilerplate/launchPad ../launchPad /MIR
 ```
-
 
 =================== OPTIONAL =======================
 
