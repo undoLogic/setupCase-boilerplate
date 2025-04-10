@@ -179,13 +179,17 @@ BROWSER_LOCAL_PATH_WITH_PROGRAM
 ```
 
 # Upgrade from previous version
-Navigate to the root of your source files
+Open up a terminal and navigation to the root of your project files (you should see sourceFiles and launchPad when you ls within the directory)
+- Run the following command which will download the newer files nad overwrite your launchPad directory
+- The settings is named new.settings.json so that file will NOT be overwritten
+
 ```shell
 # Windows
 cd temp
 git clone https://github.com/undoLogic/setupCase-boilerplate.git
 robocopy setupCase-boilerplate/launchPad ../launchPad /MIR
 ```
+
 
 =================== OPTIONAL =======================
 
