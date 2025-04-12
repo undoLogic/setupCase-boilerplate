@@ -47,6 +47,7 @@ This is ideal as you can export all the projects you have access to and you do N
 - At least choose 'Repo' (checkbox) - Generate token
 - Copy token and save to your server
 - Simple add to your php.ini file on the server
+- Use github format in settings: github.com/company/repo.git
 ```php
 PAT = 123456skdjflkdsj43094
 ```
@@ -198,6 +199,7 @@ robocopy setupCase-boilerplate/launchPad ../launchPad /MIR
 ### Setup SSH keys (OPTIONAL)
 If you do not want to use a PAT, you can also add SSH keys for EACH project. To allow to export the GitHub source files to the server we must setup a public / private key. the PRIVATE key is ONLY on the server. the PUBLIC key goes onto Github -> deploy keys
 1. Logon to your server via SSH using the PENDING credentials
+- Use format in Settings: git@github.com:company/repo.git
    
 NOTE: New servers you need to put your PUBLIC SSH KEY into the Control panel -> ssh keys -> import ssh key
    ssh PENDING_USER @ PENDING_URL
