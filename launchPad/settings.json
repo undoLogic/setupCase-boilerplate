@@ -7,6 +7,7 @@
   "TESTING_USE_PAT": true,
   "TESTING_ABSOLUTE_PATH": "",
   "TESTING_COPY_SRC_TO_ROOT": false,
+  "TESTING_POST_COMMANDS": "",
 
   "TESTING2_URL": "",
   "TESTING2_USER": "",
@@ -14,6 +15,8 @@
   "TESTING2_USE_PAT": true,
   "TESTING2_ABSOLUTE_PATH": "",
   "TESTING2_COPY_SRC_TO_ROOT": false,
+  "TESTING2_POST_COMMANDS": "",
+
 
   "PENDING_URL": "",
   "PENDING_USER": "",
@@ -21,6 +24,7 @@
   "PENDING_USE_PAT": false,
   "PENDING_ABSOLUTE_PATH": "",
   "PENDING_COPY_SRC_TO_ROOT": false,
+  "PENDING_POST_COMMANDS": "",
 
   "LIVE_URL": "",
   "LIVE_USER": "",

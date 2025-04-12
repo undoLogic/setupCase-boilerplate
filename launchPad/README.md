@@ -105,6 +105,14 @@ TESTING_COPY_SRC_TO_ROOT
   "TESTING_COPY_SRC_TO_ROOT": false
 ```
 
+TESTING_POST_COMMANDS
+- Allows to add a string command to run after the files have been succeffully deployed
+- Eg composer required rubix/ml
+```angular2html
+  "TESTING_POST_COMMANDS": "composer require rubix/ml"
+```
+
+
 PENDING_URL
 - This requires you have CREATED a 'Subdomain' on your control panel
 - If your subdomain is 'PENDING' then you would access your site with http://pending.YourDomain.com / http://pending.servername.com
@@ -147,6 +155,13 @@ PENDING_COPY_SRC_TO_ROOT
    - This is important when you deal with authentication and your auth requires the login page be on the root of your sub-domain
 ```angular2html
   "PENDING_COPY_SRC_TO_ROOT": false
+```
+
+PENDING_POST_COMMANDS
+- Allows to add a string command to run after the files have been succeffully deployed
+- Eg composer required rubix/ml
+```angular2html
+  "PENDING_POST_COMMANDS": "composer require rubix/ml"
 ```
 
 LIVE_URL

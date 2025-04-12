@@ -9,6 +9,7 @@ TESTING_USE_PAT=$(grep '^ *"TESTING_USE_PAT":' settings.json | awk '{ print $2 }
 TESTING_GIT_ADDRESS=$(grep '^ *"TESTING_GIT_ADDRESS":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING_ABSOLUTE_PATH=$(grep '^ *"TESTING_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING_COPY_SRC_TO_ROOT=$(grep '^ *"TESTING_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+TESTING_POST_COMMANDS=$(grep '^ *"TESTING_POST_COMMANDS":' settings.json | awk -F ': "' '{print $2}' | sed -e 's/",$//')
 
 TESTING2_URL=$(grep '^ *"TESTING2_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 # shellcheck disable=SC2034
@@ -18,6 +19,7 @@ TESTING2_USE_PAT=$(grep '^ *"TESTING2_USE_PAT":' settings.json | awk '{ print $2
 TESTING2_GIT_ADDRESS=$(grep '^ *"TESTING2_GIT_ADDRESS":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING2_ABSOLUTE_PATH=$(grep '^ *"TESTING2_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 TESTING2_COPY_SRC_TO_ROOT=$(grep '^ *"TESTING2_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+TESTING2_POST_COMMANDS=$(grep '^ *"TESTING2_POST_COMMANDS":' settings.json | awk -F ': "' '{print $2}' | sed -e 's/",$//')
 
 # Staging
 PENDING_URL=$(grep '^ *"PENDING_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
@@ -27,6 +29,7 @@ PENDING_USE_PAT=$(grep '^ *"PENDING_USE_PAT":' settings.json | awk '{ print $2 }
 PENDING_GIT_ADDRESS=$(grep '^ *"PENDING_GIT_ADDRESS":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 PENDING_ABSOLUTE_PATH=$(grep '^ *"PENDING_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 PENDING_COPY_SRC_TO_ROOT=$(grep '^ *"PENDING_COPY_SRC_TO_ROOT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+PENDING_POST_COMMANDS=$(grep '^ *"PENDING_POST_COMMANDS":' settings.json | awk -F ': "' '{print $2}' | sed -e 's/",$//')
 
 # Live
 LIVE_URL=$(grep '^ *"LIVE_URL":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')

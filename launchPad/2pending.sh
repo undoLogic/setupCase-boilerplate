@@ -10,6 +10,8 @@ GIT_ADDRESS=$PENDING_GIT_ADDRESS
 ABSOLUTE_PATH=$PENDING_ABSOLUTE_PATH
 COPY_SRC_TO_ROOT=$PENDING_COPY_SRC_TO_ROOT
 USE_PAT=$PENDING_USE_PAT
+POST_COMMANDS=$PENDING_POST_COMMANDS
+
 
 LAUNCH_URL=""
 
@@ -39,6 +41,9 @@ if [ $COPY_SRC_TO_ROOT = true ]
     # we are NOT rsyncing to root, so we want to load the full path in firefox
     LAUNCH_URL="$URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/"
 fi
+
+# add the post command
+COMMAND+=" && $POST_COMMANDS"
 
 # for windows
 COMMAND+=""
