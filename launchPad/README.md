@@ -48,6 +48,8 @@ This is ideal as you can export all the projects you have access to and you do N
 - Copy token and save to your server
 - Simple add to your php.ini file on the server
 - Use github format in settings: github.com/company/repo.git
+- Do Not use subdomain.github.com
+
 ```php
 PAT = 123456skdjflkdsj43094
 ```
