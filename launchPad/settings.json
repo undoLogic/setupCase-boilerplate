@@ -29,6 +29,8 @@
   "LIVE_URL": "",
   "LIVE_USER": "",
   "LIVE_ABSOLUTE_PATH": "",
+  "LIVE_POST_COMMANDS": "",
+
 
   "SRC_FILES_RELATIVE_PATH": "sourceFiles",
   "BROWSER_LOCAL_PATH_WITH_PROGRAM": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe"

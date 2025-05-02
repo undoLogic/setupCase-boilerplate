@@ -36,6 +36,8 @@ LIVE_URL=$(grep '^ *"LIVE_URL":' settings.json | awk '{ print $2 }' | sed -e 's/
 LIVE_USER=$(grep '^ *"LIVE_USER":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 LIVE_GITHUB_HOST=$(grep '^ *"LIVE_GITHUB_HOST":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 LIVE_ABSOLUTE_PATH=$(grep '^ *"LIVE_ABSOLUTE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
+LIVE_POST_COMMANDS=$(grep '^ *"LIVE_POST_COMMANDS":' settings.json | awk -F ': "' '{print $2}' | sed -e 's/",$//')
+
 # Other
 GITHUB_USER_SLASH_PROJECT=$(grep '^ *"GITHUB_USER_SLASH_PROJECT":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
 SRC_FILES_RELATIVE_PATH=$(grep '^ *"SRC_FILES_RELATIVE_PATH":' settings.json | awk '{ print $2 }' | sed -e 's/,$//' -e 's/^"//' -e 's/"$//')
