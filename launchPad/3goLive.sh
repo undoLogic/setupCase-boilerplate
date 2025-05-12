@@ -21,6 +21,13 @@ if [ $COPY_SRC_TO_ROOT = true ]
 else
     COMMAND="$USER@$URL rsync -av --no-perms --omit-dir-times --fake-super $PENDING_ABSOLUTE_PATH/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/. $LIVE_ABSOLUTE_PATH/." && echo ""
 fi
+
+
+# Append POST_COMMANDS only if it's not empty
+if [ -n "$POST_COMMANDS" ]; then
+    COMMAND+=" && $POST_COMMANDS"
+fi
+
 echo "ssh $COMMAND"
 LAUNCH_URL=$URL
 
