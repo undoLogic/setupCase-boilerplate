@@ -42,8 +42,9 @@ else
   LAUNCH_URL="$URL/$GITHUB_CURRENT_BRANCH/$SRC_FILES_RELATIVE_PATH/"
 fi
 
-# add the post command
-COMMAND+=" && $POST_COMMANDS"
+if [ -n "$POST_COMMANDS" ]; then
+  COMMAND+=" && $POST_COMMANDS"
+fi
 
 # for windows
 COMMAND+=""
