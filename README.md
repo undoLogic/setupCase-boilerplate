@@ -765,17 +765,26 @@ When your project is ready to launch ensure the following
 - Browse all the pages and ensure no errors
 
 3. Add custom ERROR page
-- In the dir 'sourceFiles/templates/Error/'
-- Add the following pages with your desired error message
-- error400.php
-- error500.php
-- missing_action.php
-- missing_controller.php
-- missing_template.php
-- In the dir 'sourceFiles/templates/layouts/'
--> Modify 'error.php' with a custom layout and custom HTML (eg copy from default.php)
-
-
+- First open the environment file which will have an ERROR page Instead of the debugging info
+- EG: app_SetupCase or app_pending or app_LIVE
+```aiignore
+    'debug' => true, //Show the debug info when errors are discovered
+    'debug' => false, //do NOT show debug info instead show an ERROR page
+```
+- Then modify the error page 
+```aiignore
+sourceFiles/templates/layouts/error.php
+```
+- Add your own custom logo to these pages to improve the branding
+OPTIONAL: to further adjust the specific types of error pages inline for each error
+```aiignore
+sourceFiles/templates/Error/error400.php
+sourceFiles/templates/Error/error500.php
+sourceFiles/templates/Error/missing_action.php
+sourceFiles/templates/Error/missing_controller.php
+sourceFiles/templates/Error/missing_template.php
+```
+- Now you will have a customized error page when visitors encounter errors
 
 ### Step 17 Backup
 It is important to keep ongoing backups of your databases to mitigate data loss
