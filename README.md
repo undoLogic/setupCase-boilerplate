@@ -640,6 +640,16 @@ public function testBoilerPlateTest(): void
     $this->assertEquals(1, $found->id);
 }
 ```
+The easiest way to create tests is by exporting a PHP array from PHPmyAdmin and then adding
+```aiignore
+
+       $users = array(
+            array('id' => '1',.........
+        );
+        $obj = FactoryLocator::get('Table')->get('Users'); $entities = $obj->newEntities($users); $response = $obj->saveMany($entities);
+        
+```
+Now those rows will be on your testing database ready to use
 
 6. Run the test
 ```php
