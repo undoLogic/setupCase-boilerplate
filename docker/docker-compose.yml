@@ -10,7 +10,9 @@ services:
       - DATABASE_TEST_URL=mysql://root:undologic@db/test_automation
       - DATABASE_NAME=local
       - SECURITY_SALT=123467683498
+      - FORCE_SEED=0
     volumes:
+      - ../.:/sourceFiles
       - ./sites-available/:/etc/apache2/sites-available/
       - ./control/:/var/www/html/
       - ./ini/php.ini:/usr/local/etc/php/conf.d/php.ini
