@@ -1,0 +1,46 @@
+services:
+  web:
+    build: ./web
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2222:22"
+    environment:
+      - DATABASE_DEFAULT_URL=mysql://root:undologic@db/LIVE_database
+      - DATABASE_TEST_URL=mysql://root:undologic@db/test_automation
+      - DATABASE_NAME=local
+      - SECURITY_SALT=123467683498
+      - FORCE_SEED=0
+    volumes:
+      - ../.:/sourceFiles
+      - ./sites-available/:/etc/apache2/sites-available/
+      - ./control/:/var/www/html/
+      - ./ini/php.ini:/usr/local/etc/php/conf.d/php.ini
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: "mysql:5.6.39"
+    command: --max_allowed_packet=932505856 --innodb-log-file-size=150663296
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql/:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: undologic
+      MYSQL_DATABASE: LIVE_database
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: "phpmyadmin/phpmyadmin"
+    environment:
+      PMA_HOST: db   # This ensures phpMyAdmin connects to the MySQL container
+      PMA_USER: root
+      PMA_PASSWORD: undologic
+      UPLOAD_LIMIT: 300M
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    restart: unless-stopped
