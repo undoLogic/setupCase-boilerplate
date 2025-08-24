@@ -8,3 +8,9 @@ rm -rf .git*
 
 # change the README
 rm README
+
+# Create a new README file with some content
+cat <<EOL > README
+# New README
+This is a new project
+EOL
