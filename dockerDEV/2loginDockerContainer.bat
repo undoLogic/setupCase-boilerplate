@@ -1,2 +1,2 @@
 @ECHO OFF
-docker exec -it docker-web-1 bash
+docker exec -it dockerdev-web-1 bash

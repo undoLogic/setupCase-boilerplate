@@ -2,7 +2,7 @@
 set -eu
 
 # You can override these with env vars if needed
-APP_DIR="${APP_DIR:-/var/www/vhosts/website.com/www/sourceFiles}"
+APP_DIR="${APP_DIR:-/var/www/vhosts/website.com/www}"
 SEED_DIR="${SEED_DIR:-/sourceFiles}"   # <- Windows bind mount comes here
 FORCE_SEED="${FORCE_SEED:-0}"
 
