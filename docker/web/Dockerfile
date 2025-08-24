@@ -9,6 +9,8 @@ RUN mkdir -p /var/www/vhosts/website.com/www/sourceFiles
 RUN echo '<!DOCTYPE html><html><head><title>Welcome</title></head><body><h1>Welcome to website.com!</h1></body></html>' > /var/www/vhosts/website.com/www/sourceFiles/index.html
 RUN chmod 777 -R /var/www/vhosts/website.com/www/sourceFiles
 
+# Add code to copy in from windows into the container here
+
 ########## Set up Composer #################
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
