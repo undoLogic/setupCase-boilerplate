@@ -15,6 +15,12 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 EXPOSE 22
 
+
+# Make all SetupCase files exec
+#RUN chmod +x /var/www/vhosts/website.com/www/setupCase*
+
+WORKDIR /var/www/vhosts/website.com/www
+
 # Ensure CUPS and SSH start on container run & add printer dynamically
 CMD service ssh start && \
     apache2-foreground
