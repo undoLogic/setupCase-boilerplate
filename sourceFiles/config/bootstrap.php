@@ -90,6 +90,10 @@ try {
 if (file_exists(CONFIG . 'app_local.php')) {
     Configure::load('app_local', 'default');
 }
+//SetupCase - get environment
+if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
+    require_once $this->configDir . 'bootstrap-setupCase.php';
+}
 
 /*
  * When debug = true the metadata cache should only last
