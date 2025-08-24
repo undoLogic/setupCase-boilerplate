@@ -1,0 +1,27 @@
+From 6ab5372ce6257649340831dec9d68f76e8fabac4 Mon Sep 17 00:00:00 2001
+From: Sacha-Lewis Dmytruk <sachalewis@undologic.com>
+Date: Sun, 24 Aug 2025 19:37:24 -0400
+Subject: [PATCH 2/2] setupcase - adjustment
+
+---
+ sourceFiles/config/bootstrap.php | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/sourceFiles/config/bootstrap.php b/sourceFiles/config/bootstrap.php
+index 5374a15..14f94b6 100644
+--- a/sourceFiles/config/bootstrap.php
++++ b/sourceFiles/config/bootstrap.php
+@@ -90,6 +90,10 @@ try {
+ if (file_exists(CONFIG . 'app_local.php')) {
+     Configure::load('app_local', 'default');
+ }
++//SetupCase - get environment
++if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
++    require_once $this->configDir . 'bootstrap-setupCase.php';
++}
+ 
+ /*
+  * When debug = true the metadata cache should only last
+-- 
+2.47.1.windows.1
+
