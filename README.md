@@ -690,6 +690,24 @@ chmod +x vendor/bin/phpunit
 2. Change file permissions
 - Coming soon...
 
+3. Database credentials stored on Server NOT Source-files
+- On your server navigate to PHP Settings
+- Create a global php.ini file (if it does not yet exist)
+- add key/value pairs in this file eg:
+```aiignore
+paypal_user = 1234556
+paypal_secret = 9999999
+```
+- Now in your PHP code to get this value do:
+```php
+echo get_cfg_var("paypal_user");
+//or
+echo get_cfg_var("paypal_secret");
+```
+- Now your DEV environment / server will automatically get test credentials and your live production will get the live 
+- You do not have to worry about leaking any secrets in your source files 
+
+
 
 ### Step 12 Manually Modify Files On Server
 - You are able to SSH into a server and perform emergency fixes.
