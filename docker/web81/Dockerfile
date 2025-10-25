@@ -45,6 +45,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer --version
 
+WORKDIR /var/www/vhosts/website.com/www
 
 EXPOSE 80
 EXPOSE 443
