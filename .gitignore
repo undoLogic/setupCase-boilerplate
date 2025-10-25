@@ -2,6 +2,7 @@
 
 ####### REMOVE when starting new project #########
 /sourceFiles/
+/sourceFilesDelete/
 ####### REMOVE-END #########
 
 #################################################
