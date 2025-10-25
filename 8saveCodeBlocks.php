@@ -6,6 +6,7 @@ echo "<h1 style='color: cornflowerblue;'>Saving CodeBlocks...</h1>";
 
 $dirs = [
     'sourceFiles/src/Controller/CodeBlocksController.php' => 'codeBlocks/cakePHP/4.x/src/Controller/CodeBlocksController.php',
+    'sourceFiles/templates/CodeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/CodeBlocks',
 ];
 
 foreach ($dirs as $src => $dst) {

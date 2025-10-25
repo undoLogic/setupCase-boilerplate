@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Open Source Framework Demo</title>
+    <title>SetupCase - CodeBlocks</title>
     <link href="<?= $webroot; ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= $webroot; ?>css/bootstrap-icons.css" rel="stylesheet">
     <link href="<?= $webroot; ?>css/custom.css" rel="stylesheet">
@@ -12,7 +12,7 @@
 <!-- Top Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">MyFramework</a>
+        <a class="navbar-brand" href="#">SetupCase.com - CodeBlocks</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop">
             <span class="navbar-toggler-icon"></span>
         </button>
