@@ -53,6 +53,11 @@ class CodeBlocksController extends AppController
 
     public function responsiveTable() {
 
+        $this->set('codeBlocks_title', 'Responsive Table');
+        $this->set('codeBlocks_renderFiles', [
+            APP . '../templates/CodeBlocks/responsive_table.php'
+        ]);
+
     }
 
 }
