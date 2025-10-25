@@ -45,12 +45,6 @@ class CodeBlocksController extends AppController
 
     public function index() {
 
-
-
-
-
-
-
     }
 
     public function home() {
@@ -62,8 +56,9 @@ class CodeBlocksController extends AppController
     public function responsiveTable() {
 
         $this->set('codeBlocks_title', 'Responsive Table');
+        $this->set('codeBlocks_subTitle', 'Auto adjust the table on mobile devices or when screen is thin to show in a nice format');
         $this->set('codeBlocks_renderFiles', [
-            APP . '../templates/CodeBlocks/responsive_table.php'
+            'View' => APP . '../templates/CodeBlocks/responsive_table.php'
         ]);
 
     }
@@ -92,15 +87,11 @@ class CodeBlocksController extends AppController
 
         // IGNORE
         $this->set('codeBlocks_title', 'Upload A File');
+        $this->set('codeBlocks_subTitle', 'Auto adjust the table on mobile devices or when screen is thin to show in a nice format');
         $this->set('codeBlocks_renderFiles', [
             'Template' => APP . '../templates/CodeBlocks/upload_file.php'
         ]);
-
-//        $ref = new ReflectionMethod(\App\Controller\CodeBlocksController::class, 'uploadFile');
-//        $code = implode("", array_slice(file($ref->getFileName()), $ref->getStartLine() - 1, $ref->getEndLine() - $ref->getStartLine()));
-//        $code = preg_replace('/^\s*\/\/\s*IGNORE\b[\s\S]*?\/\/\s*IGNORE-END.*$/m', '', $code);
-
-        $this->set('codeBlocks_renderController', [
+        $this->set('codeBlocks_renderVar', [
             'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'uploadFile')
         ]);
         // IGNORE-END
@@ -110,8 +101,19 @@ class CodeBlocksController extends AppController
 
 
 
-    function another() {
-        pr('in another');
+    function readMore() {
+
+
+        // IGNORE
+        $this->set('codeBlocks_title', 'Read More Expanded Text');
+        $this->set('codeBlocks_subTitle', 'Long text is faded away - Click link to expanded and show all faded text');
+        $this->set('codeBlocks_renderFiles', [
+            'Template' => APP . '../templates/CodeBlocks/read_more.php'
+        ]);
+//        $this->set('codeBlocks_renderVar', [
+//            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'uploadFile')
+//        ]);
+        // IGNORE-END
     }
 
 }

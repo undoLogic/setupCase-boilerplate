@@ -6,6 +6,13 @@
     <title>SetupCase - CodeBlocks</title>
     <link href="<?= $webroot; ?>css/bootstrap.min.css" rel="stylesheet">
 <!--    <link href="--><?php //= $webroot; ?><!--css/bootstrap-icons.css" rel="stylesheet">-->
+
+
+
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=68fd162823e7abe4dafd7d21&product=sop' async='async'></script>
+
+
+
     <style>
         /* custom styles */
 
@@ -82,6 +89,7 @@
                                 <ul class="nav flex-column">
                                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/responsiveTable">Responsive Table</a></li>
                                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/uploadFile">Upload File</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/readMore">Read More Expand</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -106,6 +114,14 @@
 
                     </ul>
                 </div>
+
+
+                Developed by <a href="https://www.undoLogic.com/" target="_blank">undoLogic</a>
+                <br/>
+                <a href="https://www.undologic.com/en/pages/terms" target="_blank">Terms & Conditions</a>
+
+
+
             </nav>
 
         </div>
@@ -118,8 +134,17 @@
                 <h1>
                     <?= $codeBlocks_title; ?>
                 </h1>
-
             <?php endif; ?>
+            <?php if (isset($codeBlocks_subTitle)): ?>
+                <p>
+                    <?= $codeBlocks_subTitle; ?>
+                </p>
+            <?php endif; ?>
+
+            <!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+
+
+            <hr/>
 
             <?= $this->fetch('content') ?>
 
@@ -138,8 +163,8 @@
 
 
 
-            <?php if (isset($codeBlocks_renderController)): ?>
-                <?php foreach ($codeBlocks_renderController as $title => $actionVar): ?>
+            <?php if (isset($codeBlocks_renderVar)): ?>
+                <?php foreach ($codeBlocks_renderVar as $title => $actionVar): ?>
                     <h3>
                         <?= $title; ?>
                     </h3>
