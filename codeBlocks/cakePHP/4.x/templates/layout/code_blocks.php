@@ -81,7 +81,7 @@
                             <div class="collapse ps-3" id="modulesMenu">
                                 <ul class="nav flex-column">
                                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/responsiveTable">Responsive Table</a></li>
-
+                                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/uploadFile">Upload File</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -126,14 +126,30 @@
 
 
             <?php if (isset($codeBlocks_renderFiles)): ?>
-                <h2>
-                    Copy and Paste these CodeBlocks into your Project
-                </h2>
-                <?php foreach ($codeBlocks_renderFiles as $file): ?>
-                    <?php echo $this->element('codeBlocks/render_file', ['file' => $file]); ?>
-                <?php endforeach; ?>
+                <?php foreach ($codeBlocks_renderFiles as $title => $file): ?>
 
+                    <h3>
+                        <?= $title; ?>
+                    </h3>
+                    <?php echo $this->element('codeBlocks/render_file', ['file' => $file]); ?>
+                <hr/>
+                <?php endforeach; ?>
             <?php endif; ?>
+
+
+
+            <?php if (isset($codeBlocks_renderController)): ?>
+                <?php foreach ($codeBlocks_renderController as $title => $actionVar): ?>
+                    <h3>
+                        <?= $title; ?>
+                    </h3>
+                    <?php echo $this->element('codeBlocks/render_var', ['actionVar' => $actionVar]); ?>
+                <hr/>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+
+
 
 
 

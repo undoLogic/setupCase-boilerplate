@@ -5,6 +5,7 @@ use Cake\Core\Configure;
 use Cake\Mailer\Mailer;
 use Cake\ORM\Table;
 use Cake\Datasource\FactoryLocator;
+use ReflectionMethod;
 
 class SetupCase {
 
@@ -344,6 +345,19 @@ class SetupCase {
 
         return $didSend;
 
+    }
+
+
+
+
+    public static function extractFunction($class, $functionName)
+    {
+
+        $ref = new ReflectionMethod($class, $functionName);
+        $code = implode("", array_slice(file($ref->getFileName()), $ref->getStartLine() - 1, $ref->getEndLine() - $ref->getStartLine()));
+        $code = preg_replace('/^\s*\/\/\s*IGNORE\b[\s\S]*?\/\/\s*IGNORE-END.*$/m', '', $code);
+
+        return $code;
     }
 
 

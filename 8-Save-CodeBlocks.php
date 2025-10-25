@@ -10,6 +10,7 @@ $dirs = [
     'sourceFiles/src/Model/Table/CodeBlocksTable.php' => 'codeBlocks/cakePHP/4.x/src/Model/Table/CodeBlocksTable.php',
     'sourceFiles/templates/element/codeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/element/codeBlocks',
     'sourceFiles/templates/layout/code_blocks.php' => 'codeBlocks/cakePHP/4.x/templates/layout/code_blocks.php',
+    'sourceFiles/src/Util/SetupCase.php' => 'codeBlocks/cakePHP/4.x/src/Util/SetupCase.php',
 ];
 
 foreach ($dirs as $src => $dst) {

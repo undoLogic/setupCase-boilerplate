@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Util\SetupCase;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
@@ -23,6 +24,7 @@ use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\Routing\Router;
 use Cake\View\Exception\MissingTemplateException;
+use ReflectionMethod;
 
 /**
  * Static content controller
@@ -43,6 +45,12 @@ class CodeBlocksController extends AppController
 
     public function index() {
 
+
+
+
+
+
+
     }
 
     public function home() {
@@ -58,6 +66,52 @@ class CodeBlocksController extends AppController
             APP . '../templates/CodeBlocks/responsive_table.php'
         ]);
 
+    }
+
+
+
+    public function uploadFile() {
+
+        if (!empty($this->request->getData())) {
+            $attachment = $this->request->getData('file');
+            $filename = $attachment->getClientFilename();
+            $typeOfUpload = $attachment->getClientMediaType();
+            $size = $attachment->getSize();
+            $uploadedFile = $attachment->getStream()->getMetadata('uri');
+            $error = $attachment->getError();
+
+            $csvFile = $uploadedFile;
+
+            $filename = APP.'Files'.DS.'uploadProducts_'.date('YmdHis').'.csv';
+
+            file_put_contents($filename,
+                file_get_contents($csvFile)
+            );
+
+        }
+
+        // IGNORE
+        $this->set('codeBlocks_title', 'Upload A File');
+        $this->set('codeBlocks_renderFiles', [
+            'Template' => APP . '../templates/CodeBlocks/upload_file.php'
+        ]);
+
+//        $ref = new ReflectionMethod(\App\Controller\CodeBlocksController::class, 'uploadFile');
+//        $code = implode("", array_slice(file($ref->getFileName()), $ref->getStartLine() - 1, $ref->getEndLine() - $ref->getStartLine()));
+//        $code = preg_replace('/^\s*\/\/\s*IGNORE\b[\s\S]*?\/\/\s*IGNORE-END.*$/m', '', $code);
+
+        $this->set('codeBlocks_renderController', [
+            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'uploadFile')
+        ]);
+        // IGNORE-END
+
+
+    }
+
+
+
+    function another() {
+        pr('in another');
     }
 
 }
