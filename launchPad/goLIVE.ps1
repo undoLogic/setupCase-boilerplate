@@ -38,7 +38,7 @@ $remoteCommandStripped = $remoteCommand -replace "`r`n", "`n"
 Write-Host $remoteCommandStripped
 
 # Execute remotely
-# ssh "$user@$url" $remoteCommandStripped
+Ssh "$user@$url" $remoteCommandStripped
 
 
 
