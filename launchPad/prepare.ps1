@@ -2,6 +2,18 @@
     [string]$envName = "dev"  # default if no argument provided
 )
 
+
+# Get the current Git branch name
+$branch = git rev-parse --abbrev-ref HEAD
+if ($branch -eq "master") {
+    $branch = "master"
+} else {
+    $branch = $branch
+}
+Write-Host "Current GIT branch: $branch"
+
+
+
 # Load configuration file
 $configFile = ".\config.json"
 if (-not (Test-Path $configFile)) {
@@ -23,10 +35,8 @@ $user = $config.USER
 $url = $config.URL
 $git = $config.GIT_ADDRESS
 $path = $config.ABSOLUTE_PATH
-$branch = if ($config.BRANCH) { $config.BRANCH } else { "master" }
 $postCommands = $config.POST_COMMANDS
 $usePAT = $config.USE_PAT
-
 
 if ($usePAT -eq $true) {
     # Build the remote command
