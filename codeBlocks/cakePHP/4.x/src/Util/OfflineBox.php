@@ -76,6 +76,8 @@ class OfflineBox
 
     public function __construct() {
 
+        //Best is to add these to your server php.ini
+        // and get them instead of adding to source-control
         $spaceKey = '';
         $spaceSecret = '';
         $spaceRegion = ''; // For example, the region for New York would be 'nyc3'
