@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy Bypass -File .\prepare.ps1 pending

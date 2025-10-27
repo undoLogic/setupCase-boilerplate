@@ -1,0 +1,37 @@
+{
+  "environments": {
+    "dev": {
+      "URL": "",
+      "USER": "",
+      "GIT_ADDRESS": "",
+      "USE_PAT": true,
+      "ABSOLUTE_PATH": "",
+      "COPY_SRC_TO_ROOT": true,
+      "POST_COMMANDS": ""
+    },
+    "dev2": {
+      "URL": "",
+      "USER": "",
+      "GIT_ADDRESS": "",
+      "USE_PAT": true,
+      "ABSOLUTE_PATH": "",
+      "COPY_SRC_TO_ROOT": true,
+      "POST_COMMANDS": ""
+    },
+    "pending": {
+      "URL": "",
+      "USER": "",
+      "GIT_ADDRESS": "",
+      "USE_PAT": false,
+      "ABSOLUTE_PATH": "",
+      "COPY_SRC_TO_ROOT": true,
+      "POST_COMMANDS": ""
+    },
+    "LIVE": {
+      "URL": "",
+      "USER": "",
+      "ABSOLUTE_PATH": "",
+      "POST_COMMANDS": ""
+    }
+  }
+}
