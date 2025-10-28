@@ -33,12 +33,7 @@ $liveURL = $config.LIVE.ABSOLUTE_PATH
 
 # Build the remote command
 $remoteCommand = @"
-rsync -av --no-perms --omit-dir-times --fake-super
-$pendingURL/$branch/sourceFiles/. $liveURL/.
-&&
-cd $liveURL
-&&
-$postCommands
+rsync -av --no-perms --omit-dir-times --fake-super $pendingURL/$branch/sourceFiles/. $liveURL/. && cd $liveURL && $postCommands
 "@
 
 # Strip CRLF (Windows -> Linux)
@@ -47,7 +42,10 @@ $remoteCommandStripped = $remoteCommand -replace "`r`n", "`n"
 Write-Host $remoteCommandStripped
 
 # Execute remotely
+Write-Host "ssh $user@$url" $remoteCommandStripped
+
 Ssh "$user@$url" $remoteCommandStripped
 
+Start-Process "https://$liveURL"
 
 
