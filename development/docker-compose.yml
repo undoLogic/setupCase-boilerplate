@@ -6,24 +6,17 @@ services:
     container_name: devlinux
     restart: unless-stopped
     ports:
-      - "6080:80"      # noVNC web access (browser)
-      - "5901:5901"    # optional: native VNC client
+      - "6080:80"      # VNC in browser
+      - "5901:5901"    # UltraVNC client
+      - "8090:8080"    # VS Code (code-server)
     volumes:
       - ./workspace:/workspace
-      - ./config:/root/config
     environment:
       - USER=root
-      - VNC_PASSWORD=1234
-#      - RESOLUTION=1536x960        # match your 125% scaled screen
-      - RESOLUTION=1536x760        # match your 125% scaled screen
+      - VNC_PASSWORD=devpass
+      - RESOLUTION=1536x960
       - TZ=America/Toronto
     shm_size: "2gb"
-    deploy:
-      resources:
-        limits:
-          memory: 4g
-    devices:
-      - /dev/dri:/dev/dri
     build:
       context: .
       dockerfile: Dockerfile
