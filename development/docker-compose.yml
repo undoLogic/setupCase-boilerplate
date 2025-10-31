@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  devlinux:
+    image: dorowu/ubuntu-desktop-lxde-vnc
+    container_name: devlinux
+    restart: unless-stopped
+    ports:
+      - "6080:80"      # noVNC web access (browser)
+      - "5901:5901"    # optional: native VNC client
+    volumes:
+      - ./workspace:/workspace
+      - ./config:/root/config
+    environment:
+      - USER=root
+      - VNC_PASSWORD=1234
+#      - RESOLUTION=1536x960        # match your 125% scaled screen
+      - RESOLUTION=1536x760        # match your 125% scaled screen
+      - TZ=America/Toronto
+    shm_size: "2gb"
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+    devices:
+      - /dev/dri:/dev/dri
+    build:
+      context: .
+      dockerfile: Dockerfile
