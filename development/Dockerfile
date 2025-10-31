@@ -12,12 +12,14 @@ RUN apt-get update && \
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 # --- Configure code-server ---
+# --- Configure code-server ---
 RUN mkdir -p /root/.config/code-server && \
-    echo "bind-addr: 0.0.0.0:8080\n" \
-         "auth:password\n" \
-         "password:devpass\n" \
-         "cert:false\n" \
-         > /root/.config/code-server/config.yaml
+    cat << 'EOF' > /root/.config/code-server/config.yaml
+bind-addr: 0.0.0.0:8080
+auth: password
+password: devpass
+cert: false
+EOF
 
 # --- Set working directory ---
 WORKDIR /workspace
@@ -25,6 +27,7 @@ WORKDIR /workspace
 # --- Expose ports ---
 EXPOSE 80 5901 8080
 
-# --- Run both VNC desktop and code-server ---
+# --- Start both VNC desktop and code-server ---
 CMD /startup.sh & \
-    /usr/bin/code-server --config /root/.config/code-server/config.yaml --bind-addr 0.0.0.0:8080
+    exec /usr/bin/code-server --config /root/.config/code-server/config.yaml --bind-addr 0.0.0.0:8080
+
