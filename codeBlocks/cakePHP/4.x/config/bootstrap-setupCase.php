@@ -5,8 +5,8 @@ use Cake\Core\Configure;
 
 //@todo Change your domains for your project here
 $liveDomains = [
-    'test.undoweb.com' => 'UNDOWEB',
-    'pending.undoweb.com' => 'PENDING',
+    'test.devServer.com' => 'DEV',
+    'pending.domain.com' => 'PENDING',
     'www.domain.com' => 'LIVE',
 ];
 
@@ -14,13 +14,13 @@ $current_domain = $_SERVER['SERVER_NAME'];
 if (isset($liveDomains[ $current_domain ])) {
     $current_env_profile = $liveDomains[ $current_domain ];
 } else {
-    die('ERROR: Unknown domain');
+    $current_env_profile = false;
 }
 
 //@todo
 switch($current_env_profile) {
-    case 'UNDOWEB':
-        Configure::load('app_setupCase', 'default');
+    case 'DEV':
+        Configure::load('app_DEV', 'default');
         break;
     case 'PENDING':
         Configure::load('app_pending', 'default');
@@ -29,7 +29,9 @@ switch($current_env_profile) {
         Configure::load('app_LIVE', 'default');
         break;
     default:
-        dd('missing environment config file');
+        //Unknown so we will use our dev env
+        Configure::load('app_DEV', 'default');
+
 }
 
 // Configure the environment setting
