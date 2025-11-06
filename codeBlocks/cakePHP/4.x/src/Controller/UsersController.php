@@ -276,7 +276,7 @@ class UsersController extends AppController
                     'url' => Router::url('/', true) . 'Users' . DS . 'reset' . DS . base64_encode($emailSubmitted) . DS . base64_encode($userToken['reset_token'])
                 ];
 
-                $sent = SetupCase::sendEmail($emailSubmitted, 'email_reset','support@wealthway.ca', 'Email Password Reset', $vars);
+                $sent = SetupCase::sendEmail($emailSubmitted, 'email_reset','support@domain.com', 'Email Password Reset', $vars);
 
                 if ($sent) {
                     $this->set('email_sent', true);

@@ -1,22 +1,25 @@
 version: "3.8"
 
 services:
+  apache:
+    image: php:8.2-apache
+    volumes:
+      - appdata:/var/www/html
+    ports:
+      - "80:80"
+
   devlinux:
     image: dorowu/ubuntu-desktop-lxde-vnc
-    container_name: devlinux
-    restart: unless-stopped
-    ports:
-      - "6080:80"      # VNC in browser
-      - "5901:5901"    # UltraVNC client
-      - "8090:8080"    # VS Code (code-server)
     volumes:
-      - ./workspace:/workspace
+      - appdata:/workspace
+    ports:
+      - "6080:80"
+      - "8090:8080"
+      - "5901:5901"
     environment:
-      - USER=root
       - VNC_PASSWORD=devpass
       - RESOLUTION=1536x960
-      - TZ=America/Toronto
     shm_size: "2gb"
-    build:
-      context: .
-      dockerfile: Dockerfile
+
+volumes:
+  appdata:
