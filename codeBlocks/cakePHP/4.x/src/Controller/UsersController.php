@@ -44,6 +44,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
+        # test inside codeblocks
 
     }
 
