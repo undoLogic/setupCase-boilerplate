@@ -1,8 +1,7 @@
-# setupCase-boilerPlate Version 4
-setupCase.com solution - Build and manage custom software and business websites
-with our block programming on our Platform-as-a-service and minimize your local computer
-dependancies.
--
+# SetupCase
+###  setupCase-boilerPlate Version 4
+SetupCase is an open-source development foundation used to rapidly create structured, maintainable business software.
+It provides a standardized base system, tooling, and workflows that act as building blocks for initializing and scaling CakePHP-based projects in a consistent, repeatable way.
 
 ## Overview Steps
 
