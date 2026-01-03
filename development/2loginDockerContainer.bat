@@ -1,2 +1,2 @@
 @ECHO OFF
-docker exec -it devlinux bash
+docker exec -it development-devlinux-1 bash
