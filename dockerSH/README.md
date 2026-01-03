@@ -5,10 +5,9 @@ Linux shell (.sh) scripts used to:
 - Manage Docker services
 - Standardize environment bootstrapping across systems
 
+## Roadmap / Planned Enhancements
 
-
-
-
+- Install Docker within WSL2
 
 ## WSL2 Intergration for rocket speed (avoid Windows filesystem translation layers issues)
 
