@@ -2,6 +2,9 @@
 
 ini_set('max_execution_time', 300);
 
+putenv('HOME=/var/www');
+putenv('COMPOSER_HOME=/var/www/.composer');
+
 // Install CakePHP
 echo "<h1 style='color: cornflowerblue;'>Installing CakePHP</h1>";
 exec('composer create-project --prefer-dist cakephp/app:~4.0 sourceFiles 2>&1', $create);
