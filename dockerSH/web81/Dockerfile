@@ -1,8 +1,16 @@
 FROM undologic/setupcase-base
 
-RUN a2enmod rewrite
-RUN a2enmod ssl
+ARG UID=1000
+ARG GID=1000
 
+# Ensure www-data matches host UID/GID
+RUN groupmod -g ${GID} www-data \
+ && usermod -u ${UID} www-data
+
+# Enable Apache modules
+RUN a2enmod rewrite ssl
+
+# System packages
 RUN apt-get update && apt-get install -y \
         dos2unix \
         zip \
@@ -17,35 +25,35 @@ RUN apt-get update && apt-get install -y \
         screen \
         vim \
         git \
-        subversion \
-        curl \
         imagemagick \
-        libcurl4-gnutls-dev \
-        --no-install-recommends \
         libmagickwand-dev \
-    && rm -r /var/lib/apt/lists/*
+        --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
+# PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql curl sockets mysqli
 
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install imap
+ && docker-php-ext-install imap
 
-RUN apt-get -y update \
-&& apt-get install -y libicu-dev \
-&& docker-php-ext-configure intl \
-&& docker-php-ext-install intl
+RUN apt-get update \
+ && apt-get install -y libicu-dev \
+ && docker-php-ext-configure intl \
+ && docker-php-ext-install intl \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
-
-########## Set up Composer #################
-ENV HOME=/root
-ENV COMPOSER_HOME=/root/.composer
+# ---- Composer (install as root, run as www-data) ----
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer \
-    && composer --version
+ && mv composer.phar /usr/local/bin/composer \
+ && composer --version
+
+# Fix HOME for www-data
+ENV HOME=/var/www
 
 WORKDIR /var/www/vhosts/website.com/www
+
+USER www-data
 
 EXPOSE 80
 EXPOSE 443
