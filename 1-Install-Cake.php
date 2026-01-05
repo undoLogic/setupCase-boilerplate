@@ -2,6 +2,7 @@
 
 ini_set('max_execution_time', 300);
 
+// Prevent Composer issues for web process
 putenv('HOME=/var/www');
 putenv('COMPOSER_HOME=/var/www/.composer');
 
