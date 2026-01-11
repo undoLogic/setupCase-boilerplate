@@ -11,7 +11,6 @@
 
     <style>
         /* custom styles */
-
         .sidebar .nav-link {
             color: #333;
             font-weight: 500;
@@ -31,8 +30,6 @@
             transform: rotate(180deg);
         }
 
-
-
     </style>
 </head>
 <body>
@@ -40,16 +37,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">CodeBlocks</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop">
+        <button class="navbar-toggler d-lg-none" type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#mobileSidebar"
+                aria-controls="mobileSidebar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTop">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.setupcase.com/">SetupCase.com</a></li>
-                <li class="nav-item"><a class="nav-link" target="_blank" href="https://store.setupcase.com/">Store</a></li>
-                <li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/undoLogic/setupCase-boilerplate">GitHub</a></li>
-            </ul>
+
+        <div class="d-none d-lg-flex">
+            <?= $this->element('codeBlocks/layout/sub-menu'); ?>
         </div>
+
     </div>
 </nav>
 
@@ -58,70 +56,30 @@
     <div class="row">
 
 
-        <div class="col-4">
+        <!-- Desktop Sidebar -->
+        <aside class="col-lg-2 d-none d-lg-block bg-light border-end">
+            <?php echo $this->element('codeBlocks/layout/sidebar-menu'); ?>
+        </aside>
 
-            <!-- Sidebar -->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="<?= $webroot; ?>CodeBlocks/">
-                                <i class="bi bi-speedometer2 me-1"></i> Dashboard
-                            </a>
-                        </li>
+        <!-- Mobile Sidebar -->
+        <div class="offcanvas offcanvas-start d-lg-none"
+             tabindex="-1"
+             id="mobileSidebar">
+            <div class="offcanvas-body p-0">
+                <?php echo $this->element('codeBlocks/layout/sidebar-menu'); ?>
 
-                        <!-- Sub-menu example -->
-                        <li class="nav-item">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                               data-bs-toggle="collapse"
-                               href="#modulesMenu"
-                               role="button"
-                               aria-expanded="false"
-                               aria-controls="modulesMenu">
-                                <span><i class="bi bi-box me-1"></i> Blocks</span>
-                                <i class="bi bi-chevron-down small"></i>
-                            </a>
-                            <div class="collapse ps-3" id="modulesMenu">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/responsiveTable">Responsive Table</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/uploadFile">Upload File</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/readMore">Read More Expand</a></li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link d-flex justify-content-between align-items-center"
-                               data-bs-toggle="collapse"
-                               href="#modulesMenu"
-                               role="button"
-                               aria-expanded="false"
-                               aria-controls="modulesMenu">
-                                <span><i class="bi bi-box me-1"></i> Blocks with DB</span>
-                                <i class="bi bi-chevron-down small"></i>
-                            </a>
-                            <div class="collapse ps-3" id="modulesMenu">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>Staff/CodeBlocks/crud">CRUD Starter</a></li>
-
-                                </ul>
-                            </div>
-                        </li>
-
-                    </ul>
+                <div class="offcanvas-body">
+                    <?php echo $this->element('codeBlocks/layout/sub-menu'); ?>
                 </div>
 
 
-                Developed by <a href="https://www.undoLogic.com/" target="_blank">undoLogic</a>
-                <br/>
-                <a href="https://www.undologic.com/en/pages/terms" target="_blank">Terms & Conditions</a>
-
-
-
-            </nav>
-
+            </div>
         </div>
-        <div class="col-8">
+
+
+
+
+        <main class="col-12 col-md-9 col-lg-10">
 
             <?= $this->Flash->render() ?>
 
@@ -168,22 +126,7 @@
                 <?php endforeach; ?>
             <?php endif; ?>
 
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-
+        </main>
 
     </div>
 </div>

@@ -1,5 +1,5 @@
-CodeBlocks Index page
+<h1>Welcome to SetupCase - CodeBlocks</h1>
 
-<br/>
 
-Home page 
+
+<img class="img-fluid" src="https://www.setupcase.com/Pages/image/369539"/>
