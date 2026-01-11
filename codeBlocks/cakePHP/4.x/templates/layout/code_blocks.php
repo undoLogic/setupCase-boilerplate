@@ -7,11 +7,7 @@
     <link href="<?= $webroot; ?>css/bootstrap.min.css" rel="stylesheet">
 <!--    <link href="--><?php //= $webroot; ?><!--css/bootstrap-icons.css" rel="stylesheet">-->
 
-
-
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=68fd162823e7abe4dafd7d21&product=sop' async='async'></script>
-
-
 
     <style>
         /* custom styles */
@@ -141,7 +137,6 @@
                 </p>
             <?php endif; ?>
 
-            <!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
 
 
             <hr/>
