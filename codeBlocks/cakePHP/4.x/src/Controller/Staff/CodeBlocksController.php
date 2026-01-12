@@ -84,6 +84,19 @@ class CodeBlocksController extends AppController
         $this->set(compact('entity'));
     }
 
+    public function view($id = null)
+    {
+        try {
+            $entity = $this->CodeBlocks->get($id);
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            $this->Flash->error(__('Record not found.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
+        $this->set(compact('entity'));
+    }
+
+
 
 
 }
