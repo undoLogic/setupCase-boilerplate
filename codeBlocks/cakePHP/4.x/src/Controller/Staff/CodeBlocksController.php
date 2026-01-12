@@ -46,8 +46,39 @@ class CodeBlocksController extends AppController
 
     public function index() {
         //Intro page
-        dd('staff index page');
+
+        $found = $this->CodeBlocks->find()
+            ->limit(2)
+            ->toArray()
+            ;
+
+        dd($found);
     }
+
+    public function create()
+    {
+        $entity = $this->CodeBlocks->newEmptyEntity();
+
+        if ($this->request->is('post')) {
+            $entity = $this->CodeBlocks->patchEntity(
+                $entity,
+                $this->request->getData()
+            );
+
+            if ($this->CodeBlocks->save($entity)) {
+                $this->Flash->success(__('The record has been created successfully.'));
+
+                return $this->redirect([
+                    'action' => 'index',
+                ]);
+            }
+
+            $this->Flash->error(__('The record could not be created. Please try again.'));
+        }
+
+        $this->set(compact('entity'));
+    }
+
 
 
 }

@@ -39,8 +39,8 @@
             </a>
             <div class="collapse ps-3" id="modulesMenu">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>staff/CodeBlocks/index">CRUD Starter</a></li>
-
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>staff/CodeBlocks/index">Staff INDEX</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>staff/CodeBlocks/create">Staff CREATE</a></li>
                 </ul>
             </div>
         </li>
