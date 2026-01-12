@@ -139,4 +139,21 @@ class CodeBlocksController extends AppController
 
 
 
+    function floatingSubmitBtn() {
+
+
+        // IGNORE
+        $this->set('codeBlocks_title', 'Floating Submit Button');
+        $this->set('codeBlocks_subTitle', 'When you scroll away from the submit button it will float on the page');
+        $this->set('codeBlocks_renderFiles', [
+            'Template' => APP . '../templates/CodeBlocks/floating_submit_btn.php'
+        ]);
+//        $this->set('codeBlocks_renderVar', [
+//            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'uploadFile')
+//        ]);
+        // IGNORE-END
+    }
+
+
+
 }
