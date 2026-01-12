@@ -54,6 +54,6 @@ PHP;
 
     file_put_contents($routesFile, $contents);
 
-    echo "Prefixes added successfully\n";
+    echo "Prefixes added successfully<br/><br/>";
 
 }

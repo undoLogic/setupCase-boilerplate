@@ -62,4 +62,4 @@ $contents =
 
 file_put_contents($bootstrapFile, $contents);
 
-echo "bootstrap-setupCase hook added successfully\n";
+echo "bootstrap-setupCase hook added successfully<br/><br/>";

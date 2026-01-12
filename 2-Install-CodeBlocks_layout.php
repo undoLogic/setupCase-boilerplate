@@ -37,9 +37,9 @@ if (file_exists('sourceFiles/webroot/css/bootstrap.min.css')) {
         $content = @file_get_contents($remote);
         if ($content !== false) {
             file_put_contents($target, $content);
-            echo "✅ Saved: $local\n";
+            echo "✅ Saved: $local<br/><br/>";
         } else {
-            echo "❌ Failed: $remote\n";
+            echo "❌ Failed: $remote<br/><br/>";
         }
     }
 /////////////////////////////////////////////////////////// end layout ///////////////////////
