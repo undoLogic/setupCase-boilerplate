@@ -1,6 +1,6 @@
 <?php
 
-if (file_exists('sourceFiles/templates/layout/code_blocks.php')) {
+if (file_exists('sourceFiles/webroot/css/bootstrap.min.css')) {
     echo "<br/>Layout already exists — skipping<br/>";
 } else {
 

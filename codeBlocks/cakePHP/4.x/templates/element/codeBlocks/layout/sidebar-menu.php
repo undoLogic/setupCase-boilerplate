@@ -39,7 +39,7 @@
             </a>
             <div class="collapse ps-3" id="modulesMenu">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>Staff/CodeBlocks/crud">CRUD Starter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>staff/CodeBlocks/index">CRUD Starter</a></li>
 
                 </ul>
             </div>

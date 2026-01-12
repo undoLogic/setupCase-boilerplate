@@ -6,6 +6,7 @@ echo "<h1 style='color: cornflowerblue;'>Saving CodeBlocks...</h1>";
 
 $dirs = [
     'sourceFiles/src/Controller/CodeBlocksController.php' => 'codeBlocks/cakePHP/4.x/src/Controller/CodeBlocksController.php',
+    'sourceFiles/src/Controller/Staff/CodeBlocksController.php' => 'codeBlocks/cakePHP/4.x/src/Controller/Staff/CodeBlocksController.php',
     'sourceFiles/templates/CodeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/CodeBlocks',
     'sourceFiles/src/Model/Table/CodeBlocksTable.php' => 'codeBlocks/cakePHP/4.x/src/Model/Table/CodeBlocksTable.php',
     'sourceFiles/templates/element/codeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/element/codeBlocks',
