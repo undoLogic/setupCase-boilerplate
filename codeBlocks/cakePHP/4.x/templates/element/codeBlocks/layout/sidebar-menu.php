@@ -21,6 +21,7 @@
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/responsiveTable">Responsive Table</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/uploadFile">Upload File</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/readMore">Read More Expand</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/sticky">Sticky</a></li>
                 </ul>
             </div>
         </li>

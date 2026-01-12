@@ -30,6 +30,11 @@
             transform: rotate(180deg);
         }
 
+
+        .pr-2 {
+            padding-right: 50px;
+        }
+
     </style>
 </head>
 <body>
@@ -109,7 +114,7 @@
                     <h3>
                         <?= $title; ?>
                     </h3>
-                    <?php echo $this->element('codeBlocks/render_file', ['file' => $file]); ?>
+<?php echo $this->element('codeBlocks/render_file', ['file' => $file]); ?>
                 <hr/>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -121,7 +126,7 @@
                     <h3>
                         <?= $title; ?>
                     </h3>
-                    <?php echo $this->element('codeBlocks/render_var', ['actionVar' => $actionVar]); ?>
+<?php echo $this->element('codeBlocks/render_var', ['actionVar' => $actionVar]); ?>
                 <hr/>
                 <?php endforeach; ?>
             <?php endif; ?>

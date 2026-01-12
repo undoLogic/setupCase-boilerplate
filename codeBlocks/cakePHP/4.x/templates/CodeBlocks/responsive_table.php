@@ -1,12 +1,18 @@
 
 <style>
+    .stack-on-sm {
+        width: 100%;
+    }
+
     @media (max-width: 640px) {
         .stack-on-sm thead { display: none; }
 
         .stack-on-sm,
         .stack-on-sm tbody,
         .stack-on-sm tr,
-        .stack-on-sm td { display: block; width: 100%; }
+        .stack-on-sm td {
+            display: block; width: 100%;
+        }
 
         .stack-on-sm tr { margin: 0 0 0.75rem; }
 
@@ -30,7 +36,7 @@
 
 </style>
 
-<table class="stack-on-sm">
+<table class="table stack-on-sm">
     <thead>
     <tr>
         <th>

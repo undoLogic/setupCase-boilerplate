@@ -15,4 +15,4 @@
 $code = file_get_contents($file);
 $escaped = htmlspecialchars($code);
 ?>
-<pre><code class="language-php language-html language-css"><?= $escaped ?></code></pre>
+<div class="pr-2"><pre><code class="language-php language-html language-css"><?= $escaped ?></code></pre></div>
