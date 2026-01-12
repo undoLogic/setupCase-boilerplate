@@ -8,10 +8,12 @@ $dirs = [
     //Controllers
     'sourceFiles/src/Controller/CodeBlocksController.php' => 'codeBlocks/cakePHP/4.x/src/Controller/CodeBlocksController.php',
     'sourceFiles/src/Controller/Staff/CodeBlocksController.php' => 'codeBlocks/cakePHP/4.x/src/Controller/Staff/CodeBlocksController.php',
+    'sourceFiles/src/Controller/Manager/CodeBlocksController.php' => 'codeBlocks/cakePHP/4.x/src/Controller/Manager/CodeBlocksController.php',
 
     //Templates
     'sourceFiles/templates/CodeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/CodeBlocks',
-    'sourceFiles/templates/Staff/CodeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/CodeBlocks',
+    'sourceFiles/templates/Staff/CodeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/Staff/CodeBlocks',
+    'sourceFiles/templates/Manager/CodeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/Manager/CodeBlocks',
 
     //Models
     'sourceFiles/src/Model/Table/CodeBlocksTable.php' => 'codeBlocks/cakePHP/4.x/src/Model/Table/CodeBlocksTable.php',

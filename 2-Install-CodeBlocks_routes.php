@@ -20,6 +20,19 @@ if (strpos($contents, "prefix('Staff'") !== false) {
 
         $routes->fallbacks(DashedRoute::class);
     });
+    
+    $routes->prefix('Manager', function (RouteBuilder $routes) {
+
+        $routes->connect(
+            '/:controller/:action/*',
+            []
+        );
+
+        $routes->fallbacks(DashedRoute::class);
+    });
+    
+    
+    
 
 PHP;
 
@@ -41,6 +54,6 @@ PHP;
 
     file_put_contents($routesFile, $contents);
 
-    echo "Staff prefix added successfully\n";
+    echo "Prefixes added successfully\n";
 
 }
