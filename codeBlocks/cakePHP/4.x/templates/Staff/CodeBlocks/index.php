@@ -39,7 +39,8 @@
                     <?= $this->Html->link('Edit', ['prefix' => 'Manager', 'action' => 'edit', $record->id]) ?>
                     <?= $this->Form->postLink(
                         'Delete',
-                        ['action' => 'delete', $record->id],
+                        [
+                            'prefix' => 'Manager', 'action' => 'delete', $record->id],
                         ['confirm' => 'Are you sure?']
                     ) ?>
                 </td>
