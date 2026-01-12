@@ -99,4 +99,34 @@ class CodeBlocksController extends AppController
 
 
 
+    function duplicate($id)
+    {
+        if (!$id) {
+            $this->Flash->error('Specify ID');
+            return $this->redirect($this->referer());
+        } else {
+            // Fetch the existing template clause with related template contracts
+            $entity = $this->CodeBlocks->get($id);
+
+            // Convert the entity to an array and reset the id
+            $data = $entity->toArray();
+            unset($data['id']);
+            unset($data['created']);
+            unset($data['modified']);
+
+            // Create a new entity instance with the duplicated data
+            $newEntity = $this->CodeBlocks->newEntity($data);
+
+            if ($this->CodeBlocks->save($newEntity)) {
+                $this->Flash->success('Template clause duplicated successfully');
+                return $this->redirect(['action' => 'edit', $newEntity->id]);
+            } else {
+                $this->Flash->error('Error duplicating template clause');
+                return $this->redirect($this->referer());
+            }
+        }
+    }
+
+
+
 }
