@@ -35,6 +35,13 @@
             padding-right: 50px;
         }
 
+        .sticky{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 80px;
+            margin: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -63,7 +70,9 @@
 
         <!-- Desktop Sidebar -->
         <aside class="col-lg-2 d-none d-lg-block bg-light border-end">
-            <?php echo $this->element('codeBlocks/layout/sidebar-menu'); ?>
+            <div class="sticky">
+                <?php echo $this->element('codeBlocks/layout/sidebar-menu'); ?>
+            </div>
         </aside>
 
         <!-- Mobile Sidebar -->
