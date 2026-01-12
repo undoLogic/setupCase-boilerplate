@@ -5,12 +5,24 @@
 echo "<h1 style='color: cornflowerblue;'>Saving CodeBlocks...</h1>";
 
 $dirs = [
+    //Controllers
     'sourceFiles/src/Controller/CodeBlocksController.php' => 'codeBlocks/cakePHP/4.x/src/Controller/CodeBlocksController.php',
     'sourceFiles/src/Controller/Staff/CodeBlocksController.php' => 'codeBlocks/cakePHP/4.x/src/Controller/Staff/CodeBlocksController.php',
+
+    //Templates
     'sourceFiles/templates/CodeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/CodeBlocks',
+    'sourceFiles/templates/Staff/CodeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/CodeBlocks',
+
+    //Models
     'sourceFiles/src/Model/Table/CodeBlocksTable.php' => 'codeBlocks/cakePHP/4.x/src/Model/Table/CodeBlocksTable.php',
+
+    //elements
     'sourceFiles/templates/element/codeBlocks/.' => 'codeBlocks/cakePHP/4.x/templates/element/codeBlocks',
+
+    //Layouts
     'sourceFiles/templates/layout/code_blocks.php' => 'codeBlocks/cakePHP/4.x/templates/layout/code_blocks.php',
+
+    //Util
     'sourceFiles/src/Util/SetupCase.php' => 'codeBlocks/cakePHP/4.x/src/Util/SetupCase.php',
 ];
 

@@ -9,3 +9,5 @@ echo "<br/>";
 include_once('2-Install-CodeBlocks_layout.php');
 
 include_once('2-Install-CodeBlocks_routes.php');
+
+include_once('2-Install-CodeBlocks_bootstrap.php');
