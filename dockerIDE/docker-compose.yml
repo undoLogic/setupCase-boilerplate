@@ -10,6 +10,7 @@ services:
     image: dorowu/ubuntu-desktop-lxde-vnc
     volumes:
       - appdata:/workspace
+      - ../.:/root/development
     ports:
       - "6080:80"
       - "8090:8080"
