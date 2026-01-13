@@ -26,6 +26,11 @@ wsl --unregister Ubuntu
 ```
 
 
+Restart WSL after install
+```aiignore
+wsl --shutdown
+```
+
 ## Step 2 - Create Linux Projects Directory
 eg /home/username/projects/APPS
 ```
@@ -38,3 +43,13 @@ cd ~/projects
 - file Or clone
 - Choose the file picker and navigate to Linux / Projects / name of app
 
+
+
+
+
+## Ensure docker-desktop is configured to work with WSL2
+- Open docker desktop settings
+- Resources
+- WSL intergration
+- Check "enable intergration with my default WSL distro
+- Also checkbox Enable intergration with other versions of WSL eg Ubuntu"
