@@ -1,9 +1,6 @@
 # CakePHP #
 
-####### REMOVE when starting new project #########
-/sourceFiles/
-/sourceFilesDelete/
-####### REMOVE-END #########
+
 
 #################################################
 /sourceFiles/logs/debug.log
