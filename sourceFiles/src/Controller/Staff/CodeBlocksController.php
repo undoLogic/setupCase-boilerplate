@@ -48,6 +48,7 @@ class CodeBlocksController extends AppController
     {
         // Intro / landing page for CodeBlocks
 
+        //From Latha here
         $query = $this->CodeBlocks->find()
             ->order([
                 'CodeBlocks.created' => 'DESC',
