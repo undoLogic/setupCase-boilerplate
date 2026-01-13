@@ -1,4 +1,4 @@
-<h1>Welcome to SetupCase - CodeBlocks - Latha test</h1>
+<h1>Welcome to SetupCase - CodeBlocks</h1>
 
 
 
