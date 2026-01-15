@@ -219,6 +219,7 @@ class CodeBlocksController extends AppController
 
 
 
+
     function floatingSubmitBtn() {
 
 
@@ -232,6 +233,10 @@ class CodeBlocksController extends AppController
 //            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'uploadFile')
 //        ]);
         // IGNORE-END
+    }
+
+    function addToQueue(){
+        echo 'test';
     }
 
 

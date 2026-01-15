@@ -24,7 +24,8 @@
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/sticky">Sticky</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/vueJs">vueJs</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/hideAndShowDesktopAndMobile">Hide And Show Desktop And Mobile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/DownloadCsv">Download CSV</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/downloadCsv">Download CSV</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>staff/EmailQueues/emailAddToQueue">Email Add to Queue</a></li>
                 </ul>
             </div>
         </li>
