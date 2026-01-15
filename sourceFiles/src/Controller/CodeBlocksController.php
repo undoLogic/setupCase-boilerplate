@@ -58,6 +58,7 @@ class CodeBlocksController extends AppController
 
 
     public function responsiveTable() {
+        $this->set('menuActive', 'Blokcs');
 
         $this->set('codeBlocks_title', 'Responsive Table');
         $this->set('codeBlocks_subTitle', 'Auto adjust the table on mobile devices or when screen is thin to show in a nice format');
@@ -136,6 +137,85 @@ class CodeBlocksController extends AppController
 //        ]);
         // IGNORE-END
     }
+
+    function vueJs(){
+        $id = 100;
+        $this->set(compact('id'));
+        $token = $this->request->getAttribute('csrfToken');
+        $this->set('csrf', $token);
+
+        $this->set('codeBlocks_title', 'VueJs');
+        $this->set('codeBlocks_subTitle', 'VueJs Features and Instructions');
+        $this->set('codeBlocks_renderFiles', [
+            'View' => APP . '../templates/CodeBlocks/vue_js.php'
+        ]);
+
+        $this->set('codeBlocks_renderVar', [
+            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'vueUpdate')
+        ]);
+
+
+    }
+
+    function vueIndex(){
+
+        $token = $this->request->getAttribute('csrfToken');
+        $this->set('csrf', $token);
+        $objData=file_get_contents('php://input');
+        if(empty($objData)){
+            //$objData = '{"name":"newClient","province":"QC","country":"CA"}';
+        }
+
+        $data = json_decode($objData, true);
+        $id = $data['id'];
+        $id++;
+
+        $response = ['STATUS'=>200, 'id'=> $id, 'message' => 'response results success'];
+
+
+        $this->jsonHeaders(json_encode($response));
+        exit;
+    }//vueIndex
+
+    function vueUpdate(){
+        $token = $this->request->getAttribute('csrfToken');
+        $this->set('csrf', $token);
+        $objData=file_get_contents('php://input');
+        if(empty($objData)){
+            $objData = '{"id":100}';
+        }
+        $data = json_decode($objData, true);
+
+
+
+        $id = $data['id'];
+        $id++;
+        dd($id);
+
+        $response = ['STATUS'=> 200, 'id'=> $id, 'message' => 'response results updated'];
+
+
+        $this->jsonHeaders(json_encode($response));
+        exit;
+    }//vueIndex
+
+    function hideAndShowDesktopAndMobile(){
+
+        $this->set('codeBlocks_title', 'Hide And Show Desktop And Mobile');
+        $this->set('codeBlocks_subTitle', 'Controlling Visibility on Desktop and Mobile Using CSS');
+        $this->set('codeBlocks_renderFiles', [
+            'View' => APP . '../templates/CodeBlocks/hide_and_show_desktop_and_mobile.php'
+        ]);
+    }
+
+    function downloadCsv(){
+        $this->set('codeBlocks_title', 'Download CSV File');
+        $this->set('codeBlocks_subTitle', 'Guidelines for Downloading CSV Files');
+        $this->set('codeBlocks_renderFiles', [
+            'View' => APP . '../templates/CodeBlocks/hide_and_show_desktop_and_mobile.php'
+        ]);
+    }
+
 
 
 

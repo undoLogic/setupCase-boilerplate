@@ -18,10 +18,13 @@
 
             <div class="collapse ps-3" id="blocksMenu">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/responsiveTable">Responsive Table</a></li>
+                    <li class="nav-item"><a class="nav-link " href="<?= $webroot; ?>CodeBlocks/responsiveTable">Responsive Table</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/uploadFile">Upload File</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/readMore">Read More Expand</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/sticky">Sticky</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/vueJs">vueJs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/hideAndShowDesktopAndMobile">Hide And Show Desktop And Mobile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/DownloadCsv">Download CSV</a></li>
                 </ul>
             </div>
         </li>
