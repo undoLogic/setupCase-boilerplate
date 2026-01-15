@@ -17,7 +17,7 @@
     </thead>
     <tbody>
     <?php if($queues): ?>
-    <? foreach($queues as $queue):?>
+    <?php foreach($queues as $queue):?>
     <tr>
         <td><?= $queue['id']; ?></td>
         <td><?= $queue['user_id']; ?></td>

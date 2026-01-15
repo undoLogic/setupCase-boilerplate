@@ -93,12 +93,12 @@ class EmailQueuesController extends AppController
 
 
         $this->set('codeBlocks_subTitle', 'Procedure for Emails Add to Queue');
-//        $this->set('codeBlocks_renderFiles', [
-//            'Template' => APP . '../templates/staff/EmailQueues/email_add_to_queue.php'
-//        ]);
-//        $this->set('codeBlocks_renderVar', [
-//            'Controller Action' => SetupCase::extractFunction(\App\Controller\EmailQueuesController::class, 'addToQueue'),
-//        ]);
+        $this->set('codeBlocks_renderFiles', [
+            'Template' => APP . '../templates/staff/EmailQueues/email_add_to_queue.php'
+        ]);
+        $this->set('codeBlocks_renderVar', [
+            'Controller Action' => SetupCase::extractFunction(\App\Controller\EmailQueuesController::class, 'addToQueue'),
+        ]);
 
         $queues = $this->EmailQueues->find()->where(['EmailQueues.sent' => 0]);
         $this->set(compact('queues'));
