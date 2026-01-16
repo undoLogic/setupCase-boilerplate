@@ -242,5 +242,20 @@ FIND href=" REPLACEWITH href="<?= $baseLayout; ?>
 
 
 
+Add to app.php
+```php
+ 'rbac' => [
+        //'user_type' => 'Prefix',
+        'ADMIN' => ['Admin' => [],'Staff' => [], 'Manager' => []],
+        'MANAGER' => ['Staff' => [], 'Manager' => []],
+        'STAFF' => ['Staff' => []],
+    ],
+```
+
+
+
+
+
+
 
 

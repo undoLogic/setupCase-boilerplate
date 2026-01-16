@@ -62,6 +62,20 @@ return function (RouteBuilder $routes): void {
          */
         $builder->connect('/pages/*', 'Pages::display');
 
+
+        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+        $builder->connect('/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
+        $builder->connect('/reset', ['controller' => 'Users', 'action' => 'reset']);
+
+        // language
+        $builder->connect('/{language}', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']) ;
+        $builder->connect('/{language}/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
+        $builder->connect('/{language}/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
+
+
+
+
         /*
          * Connect catchall routes for all controllers.
          *
@@ -89,6 +103,17 @@ return function (RouteBuilder $routes): void {
     });
 
     $routes->prefix('Manager', function (RouteBuilder $routes) {
+
+        $routes->connect(
+            '/{controller}/{action}/*',
+            []
+        );
+
+        $routes->fallbacks(DashedRoute::class);
+    });
+
+
+    $routes->prefix('Admin', function (RouteBuilder $routes) {
 
         $routes->connect(
             '/{controller}/{action}/*',

@@ -134,8 +134,7 @@ class UsersController extends AppController
             $userData->group_id = 1;
 
             if ($this->Users->save($userData)) {
-                $userData = json_encode($userData->toArray());
-                $this->writeToLog('debug', "user added.$userData");
+
                 //  writeToLog log created in appController
 
                 // pr($userData); exit;
@@ -173,7 +172,7 @@ class UsersController extends AppController
 
     public function add()
     {
-        //die('hi');
+
         //dd($this->request);
 
         $this->request->allowMethod(['get', 'post']);
@@ -181,7 +180,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
 
 
-            $this->writeToLog('debug', 'Signup', true);
+
 
             $emailSubmitted = $this->request->getData()['email'];
             $passSubmitted = $this->request->getData()['password'];
@@ -197,7 +196,6 @@ class UsersController extends AppController
             );
 
             if ($didCreateUser) {
-                $this->writeToLog('debug', 'User created user_id: ' . $didCreateUser['id'], false);
                 $this->Flash->success('User has been CREATED');
 
                 $session = $this->request->getSession();
