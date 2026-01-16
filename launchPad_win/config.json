@@ -7,7 +7,7 @@
       "USE_PAT": true,
       "ABSOLUTE_PATH": "/home/undoweb/www/codeblocks",
       "COPY_SRC_TO_ROOT": true,
-      "POST_COMMANDS": "ls"
+      "POST_COMMANDS": ""
     },
     "dev2": {
       "URL": "",
