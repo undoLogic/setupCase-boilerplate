@@ -39,8 +39,8 @@ protected function getAuthenticationService() : AuthenticationService {
       'loginUrl' => '/login',
       'cookie' => [
         'name' => 'remember_me_cookie',
-        'expire' => strtotime('+30 days'), // Set the desired expiration time
-        'httpOnly' => true,
+        'expires' => strtotime('+30 days'), // Set the desired expiration time
+        'httponly' => true,
       ],
   ]);
   

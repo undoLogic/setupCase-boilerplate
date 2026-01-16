@@ -227,10 +227,7 @@ class UsersController extends AppController
         if ($result && $result->isValid()) {
             // redirect to /articles after login success
             $this->Flash->success('You have been logged in');
-            $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'SetupPages',
-                'action' => 'home',
-            ]);
+            $redirect = $this->request->getQuery('redirect', '/');
             return $this->redirect($redirect);
         }
         // display error if user submitted and authentication failed

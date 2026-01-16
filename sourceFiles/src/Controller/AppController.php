@@ -88,6 +88,7 @@ class AppController extends Controller
             //We handle all RBAC from our RBAC middleware - disable the CakePHP authentication for all pages
             $this->Authentication->addUnauthenticatedActions([$this->request->getAttribute('params')['action']]);
         }
+
         $this->set('webroot', Router::url('/'));
     }
 
