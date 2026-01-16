@@ -15,7 +15,7 @@
     ) ?>
 </p>
 
-<?php if ($records->isEmpty()): ?>
+<?php if (!$rows->count()): ?>
     <p>No records found.</p>
 <?php else: ?>
 
@@ -29,7 +29,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($records as $record): ?>
+        <?php foreach ($rows as $record): ?>
             <tr>
                 <td><?= h($record->id) ?></td>
                 <td><?= h($record->name) ?></td>

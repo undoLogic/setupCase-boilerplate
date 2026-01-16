@@ -81,25 +81,25 @@ return function (RouteBuilder $routes): void {
     $routes->prefix('Staff', function (RouteBuilder $routes) {
 
         $routes->connect(
-            '/:controller/:action/*',
+            '/{controller}/{action}/*',
             []
         );
 
         $routes->fallbacks(DashedRoute::class);
     });
-    
+
     $routes->prefix('Manager', function (RouteBuilder $routes) {
 
         $routes->connect(
-            '/:controller/:action/*',
+            '/{controller}/{action}/*',
             []
         );
 
         $routes->fallbacks(DashedRoute::class);
     });
-    
-    
-    
+
+
+
 
 
     /*
