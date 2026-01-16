@@ -70,10 +70,10 @@
                 const that = this;
                 var objData = JSON.stringify(data);
                  that.id = that.id + 1;
-                //window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "<?= $csrf; ?>";
-              //  let URL = "<?= $webroot; ?>codeBlocks/vueIndex/";
-              //  console.log(URL);
-               // console.log(objData);
+                window.axios.defaults.headers.common['X-CSRF-TOKEN'] = "<?= $csrf; ?>";
+                let URL = "<?= $webroot; ?>codeBlocks/vueIndex/";
+               console.log(URL);
+                console.log(objData);
 
 
 

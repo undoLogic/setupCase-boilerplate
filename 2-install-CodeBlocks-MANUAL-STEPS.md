@@ -112,6 +112,9 @@ function setupCase() {
         $this->Authentication->addUnauthenticatedActions([$this->request->getAttribute('params')['action']]);
     }
     $this->set('webroot', Router::url('/'));
+    
+    $token = $this->request->getAttribute('csrfToken');
+    $this->set('csrf', $token);
 }
 
 ```
