@@ -68,23 +68,31 @@ class CodeBlocksController extends AppController
         }
 
         $this->set(compact('entity'));
+
+
+
+
+        // IGNORE
+        $this->set('codeBlocks_title', 'Edit a file');
+        $this->set('codeBlocks_subTitle', '');
+        $this->set('codeBlocks_renderFiles', [
+            'Template' => APP . '../templates/Manager/CodeBlocks/edit.php'
+        ]);
+        $this->set('codeBlocks_renderVar', [
+            'Controller Action' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'edit')
+        ]);
+        // IGNORE-END
     }
 
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
 
-        try {
-            $entity = $this->CodeBlocks->get($id);
+        $entity = $this->CodeBlocks->get($id);
 
-            if ($this->CodeBlocks->delete($entity)) {
-                $this->Flash->success(__('The record has been deleted.'));
-            } else {
-                $this->Flash->error(__('The record could not be deleted. Please try again.'));
-            }
-
-        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
-            $this->Flash->error(__('Record not found.'));
+        if ($this->CodeBlocks->delete($entity)) {
+            $this->Flash->success(__('The record has been deleted.'));
+        } else {
+            $this->Flash->error(__('The record could not be deleted. Please try again.'));
         }
 
         return $this->redirect(['prefix' => 'Staff', 'action' => 'index']);

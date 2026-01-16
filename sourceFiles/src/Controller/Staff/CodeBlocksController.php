@@ -73,6 +73,22 @@ class CodeBlocksController extends AppController
         $this->set(compact('rows'));
 
 
+
+
+
+
+        // IGNORE
+        $this->set('codeBlocks_title', 'Upload A File');
+        $this->set('codeBlocks_subTitle', 'Auto adjust the table on mobile devices or when screen is thin to show in a nice format');
+        $this->set('codeBlocks_renderFiles', [
+            'Template' => APP . '../templates/Staff/CodeBlocks/index.php'
+        ]);
+        $this->set('codeBlocks_renderVar', [
+            'Controller Action' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'index')
+        ]);
+        // IGNORE-END
+
+
     }//index
 
 
