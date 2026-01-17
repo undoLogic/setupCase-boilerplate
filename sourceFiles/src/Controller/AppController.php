@@ -93,4 +93,29 @@ class AppController extends Controller
     }
 
 
+
+    protected function safeRedirect(?string $url, array $fallback)
+    {
+        if (empty($url)) {
+            return $fallback;
+        }
+
+        $host = parse_url($url, PHP_URL_HOST);
+        $currentHost = $this->request->getUri()->getHost();
+
+        // Allow relative URLs
+        if ($host === null) {
+            return $url;
+        }
+
+        // Allow same-host absolute URLs only
+        if ($host === $currentHost) {
+            return $url;
+        }
+
+        return $fallback;
+    }
+
+
+
 }

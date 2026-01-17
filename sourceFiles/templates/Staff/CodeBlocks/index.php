@@ -1,52 +1,130 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \Cake\Datasource\ResultSetInterface $records
- */
-?>
+<div class="card shadow-sm">
 
-<h1>Code Blocks</h1>
+    <!-- Card Header -->
+    <div class="card-header">
 
-<p>
-    <?= $this->Html->link(
-        'Create New Code Block',
-        ['action' => 'create'],
-        ['class' => 'button']
-    ) ?>
-</p>
+        <!-- Title + Actions -->
+        <div class="d-flex align-items-start gap-3">
 
-<?php if (!$rows->count()): ?>
-    <p>No records found.</p>
-<?php else: ?>
+            <div>
+                <h5 class="mb-1">Title</h5>
+                <p class="mb-0 text-muted small">Sub-title</p>
+            </div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Created</th>
-            <th class="actions">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($rows as $record): ?>
+            <div class="ms-auto d-flex gap-2 flex-wrap">
+                <?= $this->Html->link('Create', ['action' => 'create'], ['class' => 'btn btn-sm btn-primary']) ?>
+
+                <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModalLive">
+                    Popup
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Filters -->
+        <div class="row g-2 mt-3 pt-3 border-top">
+            <div class="col-12 col-lg-3">
+                <?= $this->Form->control('dropdown', [
+                    'options' => ['1' => '1', '2' => '2'],
+                    'empty' => 'Choose …',
+                    'label' => false,
+                    'class' => 'form-select form-select-sm'
+                ]) ?>
+            </div>
+
+            <div class="col-12 col-lg-3">
+                <?= $this->Form->control('dropdown2', [
+                    'options' => ['1' => '1', '2' => '2'],
+                    'empty' => 'Choose …',
+                    'label' => false,
+                    'class' => 'form-select form-select-sm'
+                ]) ?>
+            </div>
+
+            <div class="col-12 col-lg-3">
+                <?= $this->Form->control('dropdown3', [
+                    'options' => ['1' => '1', '2' => '2'],
+                    'empty' => 'Choose …',
+                    'label' => false,
+                    'class' => 'form-select form-select-sm'
+                ]) ?>
+            </div>
+
+            <div class="col-12 col-lg-3">
+                <?= $this->Form->control('dropdown4', [
+                    'options' => ['1' => '1', '2' => '2'],
+                    'empty' => 'Choose …',
+                    'label' => false,
+                    'class' => 'form-select form-select-sm'
+                ]) ?>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body p-0">
+
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
             <tr>
-                <td><?= h($record->id) ?></td>
-                <td><?= h($record->name) ?></td>
-                <td><?= $record->created?->format('Y-m-d') ?></td>
-                <td class="actions">
-                    <?= $this->Html->link('View', ['action' => 'view', $record->id]) ?>
-                    <?= $this->Html->link('Edit', ['prefix' => 'Manager', 'action' => 'edit', $record->id]) ?>
-                    <?= $this->Form->postLink(
-                        'Delete',
-                        [
-                            'prefix' => 'Manager', 'action' => 'delete', $record->id],
-                        ['confirm' => 'Are you sure?']
-                    ) ?>
-                </td>
+                <th style="width: 1%;">Actions</th>
+                <th>Name</th>
+                <th>Description</th>
             </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
 
-<?php endif; ?>
+            <?php foreach ($rows as $each): ?>
+                <tr>
+                    <td class="text-nowrap">
+                        <?= $this->Html->link('View', ['action' => 'view', $each['id']], ['class' => 'btn btn-sm btn-primary']) ?>
+                        <?= $this->Html->link('Edit', ['prefix' => 'Manager', 'action' => 'edit', $each['id']], ['class' => 'btn btn-sm btn-warning']) ?>
+                        <?= $this->Form->postLink(
+                            'X',
+                            ['prefix' => 'Manager', 'action' => 'delete', $each['id']],
+                            ['class' => 'btn btn-sm btn-danger', 'confirm' => 'Are you sure?']
+                        ) ?>
+                    </td>
+                    <td><?= h($each['name']) ?></td>
+                    <td><?= h($each['description']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModalLive" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Help</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                Popup
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+

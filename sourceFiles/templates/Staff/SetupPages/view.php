@@ -8,7 +8,7 @@
             <div class="d-flex align-items-center gap-2">
 
                 <?= $this->Html->link(
-                    '←',
+                    '<i class="bi bi-house-door"></i>',
                     ['action' => 'index'],
                     [
                         'class' => 'btn btn-sm btn-outline-secondary',
@@ -20,9 +20,10 @@
                 <div>
                     <h5 class="mb-1">
                         <?= h($entity->name) ?>
+                        <span class="text-muted">(#<?= $entity->id ?>)</span>
                     </h5>
                     <p class="mb-0 text-muted small">
-                        Record #<?= $entity->id ?>
+                        <?= h($pageSubTitle) ?>
                     </p>
                 </div>
 
