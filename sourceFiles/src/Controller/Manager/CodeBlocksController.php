@@ -58,7 +58,9 @@ class CodeBlocksController extends AppController
             $entity = $this->CodeBlocks->patchEntity($entity, $data);
 
             if ($this->CodeBlocks->save($entity)) {
-                $this->Flash->success(__('The record has been updated successfully.'));
+                //$this->Flash->success(__('The record has been updated successfully.'));
+
+                $this->Flash->success('Saved successfully.');
 
                 return $this->redirect(
                     $this->safeRedirect($cameFrom, ['action' => 'index'])
@@ -103,7 +105,7 @@ class CodeBlocksController extends AppController
         $entity = $this->CodeBlocks->get($id);
 
         if ($this->CodeBlocks->delete($entity)) {
-            $this->Flash->success(__('The record has been deleted.'));
+            $this->Flash->warning(__('The record has been deleted.'));
         } else {
             $this->Flash->error(__('The record could not be deleted. Please try again.'));
         }

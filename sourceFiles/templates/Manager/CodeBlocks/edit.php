@@ -11,16 +11,34 @@
     <div class="card-header">
         <div class="d-flex align-items-start gap-3">
 
-            <div>
-                <h5 class="mb-1"><?= h($pageTitle) ?></h5>
-                <p class="mb-0 text-muted small"><?= h($pageSubTitle) ?></p>
+            <!-- Back icon + title -->
+            <div class="d-flex align-items-center gap-2">
+
+                <?= $this->Html->link(
+                    '←',
+                    ['prefix' => 'Staff', 'action' => 'index'],
+                    [
+                        'class' => 'btn btn-sm btn-outline-secondary',
+                        'title' => 'Back to list',
+                    ]
+                ) ?>
+
+                <div>
+                    <h5 class="mb-1"><?= h($pageTitle) ?></h5>
+                    <p class="mb-0 text-muted small"><?= h($pageSubTitle) ?></p>
+                </div>
+
             </div>
 
+            <!-- Actions -->
             <div class="ms-auto d-flex gap-2 flex-wrap">
-                <?= $this->Html->link('Back', ['prefix' => 'Staff', 'action' => 'index'], ['class' => 'btn btn-sm btn-outline-secondary']) ?>
 
                 <?php if (!$isCreate): ?>
-                    <?= $this->Html->link('View', ['action' => 'view', $entity->id], ['class' => 'btn btn-sm btn-primary']) ?>
+                    <?= $this->Html->link(
+                        'View',
+                        ['prefix' => 'Staff', 'action' => 'view', $entity->id],
+                        ['class' => 'btn btn-sm btn-primary']
+                    ) ?>
                 <?php endif; ?>
 
                 <button
@@ -30,6 +48,7 @@
                     data-bs-target="#exampleModalLive">
                     Help
                 </button>
+
             </div>
 
         </div>
@@ -60,10 +79,21 @@
                 <fieldset class="mb-3">
                     <legend class="col-form-label col-sm-3 pt-0">Radios</legend>
                     <div class="ms-sm-3">
-                        <?= $this->Form->radio('radio', [
-                            'option1' => 'First radio',
-                            'option2' => 'Second radio',
-                        ], ['hiddenField' => false]) ?>
+
+                        <div class="form-check">
+                            <?= $this->Form->radio('radio', ['option1' => 'First radio'], [
+                                'hiddenField' => false,
+                                'class' => 'form-check-input'
+                            ]) ?>
+                        </div>
+
+                        <div class="form-check">
+                            <?= $this->Form->radio('radio', ['option2' => 'Second radio'], [
+                                'hiddenField' => false,
+                                'class' => 'form-check-input'
+                            ]) ?>
+                        </div>
+
                     </div>
                 </fieldset>
 
@@ -108,9 +138,7 @@
 
 <?= $this->Form->end() ?>
 
-
-
-
+<!-- Help Modal -->
 <div class="modal fade" id="exampleModalLive" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

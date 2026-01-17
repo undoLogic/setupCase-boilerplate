@@ -41,6 +41,13 @@
             margin: 5px;
         }
 
+        .toast {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            z-index: 99999;
+        }
+
     </style>
 </head>
 <body>
@@ -94,7 +101,11 @@
 
         <main class="col-12 col-md-9 col-lg-10">
 
-            <?= $this->Flash->render() ?>
+
+
+            <?= $this->Flash->render(); ?>
+
+
 
 
             <?php if (isset($codeBlocks_title)): ?>
@@ -145,4 +156,14 @@
 </div>
 
 <script src="<?= $webroot; ?>js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.toast').forEach(el => {
+            new bootstrap.Toast(el).show();
+        });
+    });
+</script>
+
+
 </body>

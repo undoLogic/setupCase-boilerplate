@@ -152,10 +152,13 @@ class CodeBlocksController extends AppController
             }
 
             $this->Flash->error(__('The record could not be created. Please try again.'));
+        } else {
+            $cameFrom = $this->request->referer(true);
         }
 
         $this->set([
             'entity'   => $entity,
+            'cameFrom' => $cameFrom,
             'isCreate' => true,
             'pageTitle' => 'Create Code Block',
             'pageSubTitle' => 'Define the basic details',
@@ -172,7 +175,7 @@ class CodeBlocksController extends AppController
         $this->set('codeBlocks_title', 'Create a new Record');
         $this->set('codeBlocks_subTitle', 'Create new and share with the Manager EDIT template');
         $this->set('codeBlocks_renderFiles', [
-            'Template' => APP . '../templates/Staff/CodeBlocks/create.php'
+            'Template' => APP . '../templates/Manager/CodeBlocks/edit.php'
         ]);
         $this->set('codeBlocks_renderVar', [
             'Controller Action' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create')
@@ -202,6 +205,10 @@ class CodeBlocksController extends AppController
 
 
 
+
+        //$this->Flash->success('success88888888');
+        //$this->Flash->error('erroroooooooooo');
+        $this->Flash->info('info goes here');
 
 
         // IGNORE
