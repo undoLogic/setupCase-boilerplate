@@ -72,14 +72,98 @@ class AppController extends Controller
             ['name' => 'Dashboard',
                  'link' => ['prefix' => false, 'controller' => 'CodeBlocks', 'action' => 'index']
             ],
-            ['name' => 'Blocks', 'children' => [
-                    ['name' => 'Responsive Table', 'link' => ['prefix' => false, 'controller' => 'CodeBlocks', 'action' => 'responsiveTable']],
-                ]
+            [
+                'name' => 'Blocks',
+                'children' => [
+                    [
+                        'name' => 'Responsive Table',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'responsiveTable',
+                        ],
+                    ],
+                    [
+                        'name' => 'Upload File',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'uploadFile',
+                        ],
+                    ],
+                    [
+                        'name' => 'Read More Expand',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'readMore',
+                        ],
+                    ],
+                    [
+                        'name' => 'Sticky',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'sticky',
+                        ],
+                    ],
+                    [
+                        'name' => 'VueJS',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'vueJs',
+                        ],
+                    ],
+                    [
+                        'name' => 'Hide And Show Desktop And Mobile',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'hideAndShowDesktopAndMobile',
+                        ],
+                    ],
+                    [
+                        'name' => 'Download CSV',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'downloadCsv',
+                        ],
+                    ],
+                ],
             ],
-            ['name' => 'Blocks with DB', 'children' => [
-                    ['name' => 'CRUD Index', 'link' => ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'index']],
-                ]
+
+            [
+                'name' => 'Blocks with DB',
+                'children' => [
+                    [
+                        'name' => 'CRUD Index',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'CodeBlocks',
+                            'action' => 'index',
+                        ],
+                    ],
+                    [
+                        'name' => 'Staff Create',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'CodeBlocks',
+                            'action' => 'create',
+                        ],
+                    ],
+                    [
+                        'name' => 'Email Add to Queue',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'EmailQueues',
+                            'action' => 'emailAddToQueue',
+                        ],
+                    ],
+                ],
             ],
+
         ];
 
 
