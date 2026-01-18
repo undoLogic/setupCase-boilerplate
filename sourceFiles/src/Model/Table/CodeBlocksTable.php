@@ -10,9 +10,12 @@ class CodeBlocksTable extends Table
 {
     public function initialize(array $config):void
     {
-        $this->addBehavior('Timestamp');
+        parent::initialize($config); // REQUIRED
+
         $this->setTable('code_blocks');
 
+        $this->addBehavior('Timestamp');
+        $this->addBehavior('AuditLog');
     }
 
 }// end

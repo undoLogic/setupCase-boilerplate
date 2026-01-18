@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Util\AuditContext;
 use App\Util\SetupCase;
 use Cake\Controller\Controller;
 use Cake\Event\EventInterface;
@@ -245,6 +246,14 @@ class AppController extends Controller
 //    } elseif ($oldLangCheck == 'fre') {
 //        $this->redirect(['language' => 'fr']);
 //    }
+
+        $identity = $this->request->getAttribute('identity');
+        AuditContext::set(
+            $identity->id,
+            $this->request->clientIp()
+        );
+
+
 
         //RBAC/Access middleware decides if they are allowed in - here we redirect if needed
         $access_granted = $this->request->getAttribute('access_granted');

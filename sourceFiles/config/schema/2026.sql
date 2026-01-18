@@ -15,3 +15,38 @@ CREATE TABLE `email_queues` (
                                 KEY `idx_user_id` (`user_id`),
                                 KEY `idx_sent` (`sent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+
+CREATE TABLE `audit_logs` (
+                              `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+
+    -- What was changed
+                              `table_name` VARCHAR(100) NOT NULL,
+                              `entity_id` BIGINT UNSIGNED DEFAULT NULL,
+                              `action` ENUM('insert','update','delete') NOT NULL,
+
+    -- Change details
+                              `changed_fields` JSON DEFAULT NULL,
+                              `original_fields` JSON DEFAULT NULL,
+
+    -- Who / where
+                              `user_id` BIGINT UNSIGNED DEFAULT NULL,
+                              `ip_address` VARCHAR(45) DEFAULT NULL, -- IPv4 / IPv6
+
+    -- Metadata
+                              `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+                              PRIMARY KEY (`id`),
+
+    -- Performance / querying
+                              KEY `idx_table_entity` (`table_name`, `entity_id`),
+                              KEY `idx_user_id` (`user_id`),
+                              KEY `idx_action` (`action`),
+                              KEY `idx_created` (`created`)
+
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
