@@ -155,6 +155,14 @@ class AppController extends Controller
                         ],
                     ],
                     [
+                        'name' => 'Audit Logs',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'AuditLogs',
+                            'action' => 'index',
+                        ],
+                    ],
+                    [
                         'name' => 'Email Add to Queue',
                         'link' => [
                             'prefix' => 'Staff',
