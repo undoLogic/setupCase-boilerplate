@@ -203,14 +203,6 @@ class CodeBlocksController extends AppController
             'pageSubTitle' => 'Read-only details',
         ]);
 
-
-
-
-        //$this->Flash->success('success88888888');
-        //$this->Flash->error('erroroooooooooo');
-        $this->Flash->info('info goes here');
-
-
         // IGNORE
         $this->set('codeBlocks_title', 'View');
         $this->set('codeBlocks_subTitle', 'View one record with standard layout');

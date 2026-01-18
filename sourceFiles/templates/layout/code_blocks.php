@@ -15,7 +15,7 @@
             font-weight: 500;
             transition: background 0.2s ease;
         }
-        .sidebar .nav-link:hover {
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
             background-color: #e9ecef;
         }
         .sidebar .collapse .nav-link {

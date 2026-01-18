@@ -60,6 +60,10 @@ class CodeBlocksController extends AppController
     public function responsiveTable() {
         $this->set('menuActive', 'Blokcs');
 
+
+
+        $this->set('menuForceActive', 'Blocks');
+
         $this->set('codeBlocks_title', 'Responsive Table');
         $this->set('codeBlocks_subTitle', 'Auto adjust the table on mobile devices or when screen is thin to show in a nice format');
         $this->set('codeBlocks_renderFiles', [
