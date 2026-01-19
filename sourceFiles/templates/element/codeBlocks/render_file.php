@@ -15,4 +15,8 @@
 $code = file_get_contents($file);
 $escaped = htmlspecialchars($code);
 ?>
+
+<div class="readmore">
 <div class="pr-2"><pre><code class="language-php language-html language-css"><?= $escaped ?></code></pre></div>
+    <span class="readmore-link"></span>
+</div>

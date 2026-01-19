@@ -139,21 +139,14 @@ class AppController extends Controller
                 'name' => 'Blocks with DB',
                 'children' => [
                     [
-                        'name' => 'CRUD Index',
+                        'name' => 'Application Foundation',
                         'link' => [
                             'prefix' => 'Staff',
                             'controller' => 'CodeBlocks',
                             'action' => 'index',
                         ],
                     ],
-                    [
-                        'name' => 'Staff Create',
-                        'link' => [
-                            'prefix' => 'Staff',
-                            'controller' => 'CodeBlocks',
-                            'action' => 'create',
-                        ],
-                    ],
+
                     [
                         'name' => 'Audit Logs',
                         'link' => [

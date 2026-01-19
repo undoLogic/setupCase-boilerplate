@@ -94,13 +94,14 @@ class AuditLogsController extends AppController
 
 
         // IGNORE
-        $this->set('AuditLogs_title', 'Upload A File');
-        $this->set('AuditLogs_subTitle', 'Auto adjust the table on mobile devices or when screen is thin to show in a nice format');
-        $this->set('AuditLogs_renderFiles', [
-            'Template' => APP . '../templates/Staff/AuditLogs/index.php'
+        $this->set('codeBlocks_title', 'Audit Logs');
+        $this->set('codeBlocks_subTitle', 'Easily setup enterprise grade auditing for your application');
+        $this->set('codeBlocks_renderVar', [
+            'Controller INDEX action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\AuditLogsController::class, 'index'),
+            'Util Class' => file_get_contents(APP.'Util'.DS.'AuditContext.php'),
         ]);
-        $this->set('AuditLogs_renderVar', [
-            'Controller Action' => SetupCase::extractFunction(\App\Controller\Staff\AuditLogsController::class, 'index')
+        $this->set('codeBlocks_renderFiles', [
+            'Visual INDEX template (Staff access)' => APP . '../templates/Staff/AuditLogs/index.php',
         ]);
         // IGNORE-END
 

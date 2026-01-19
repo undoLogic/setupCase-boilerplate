@@ -94,13 +94,21 @@ class CodeBlocksController extends AppController
 
 
         // IGNORE
-        $this->set('codeBlocks_title', 'Upload A File');
-        $this->set('codeBlocks_subTitle', 'Auto adjust the table on mobile devices or when screen is thin to show in a nice format');
+        $this->set('codeBlocks_title', 'Application Foundation');
+        $this->set('codeBlocks_subTitle', 'The initial fully functional controller logic and working UI using that starts your new great application - including sessions, creating, editing and deleting database rows');
         $this->set('codeBlocks_renderFiles', [
-            'Template' => APP . '../templates/Staff/CodeBlocks/index.php'
+            'Visual INDEX template (Staff access)' => APP . '../templates/Staff/CodeBlocks/index.php',
+            'Visual CREATE template (Staff access)' => APP . '../templates/Staff/CodeBlocks/index.php',
+            'Visual VIEW template (Staff access)' => APP . '../templates/Staff/CodeBlocks/view.php',
+            'Visual EDIT template (Manager access)' => APP . '../templates/Manager/CodeBlocks/edit.php'
         ]);
         $this->set('codeBlocks_renderVar', [
-            'Controller Action' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'index')
+            'Controller INDEX action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'index'),
+            'Controller CREATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create'),
+            'Controller VIEW action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'view'),
+            'Controller DUPLICATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'duplicate'),
+            'Controller EDIT action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'edit'),
+            'Controller DELETE action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'delete')
         ]);
         // IGNORE-END
 
@@ -175,10 +183,10 @@ class CodeBlocksController extends AppController
         $this->set('codeBlocks_title', 'Create a new Record');
         $this->set('codeBlocks_subTitle', 'Create new and share with the Manager EDIT template');
         $this->set('codeBlocks_renderFiles', [
-            'Template' => APP . '../templates/Manager/CodeBlocks/edit.php'
+            'Visual CREATE template (Staff access)' => APP . '../templates/Manager/CodeBlocks/edit.php'
         ]);
         $this->set('codeBlocks_renderVar', [
-            'Controller Action' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create')
+            'Controller CREATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create')
         ]);
         // IGNORE-END
 
