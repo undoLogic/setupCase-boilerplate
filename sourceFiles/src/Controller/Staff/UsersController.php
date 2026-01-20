@@ -74,7 +74,8 @@ class UsersController extends AppController
     }
 
     function resetPassword(){
-
+        $this->set('codeBlocks_title', 'Reset Password');
+        $this->set('codeBlocks_subTitle', 'Allows user to reset password');
     }
 
 
