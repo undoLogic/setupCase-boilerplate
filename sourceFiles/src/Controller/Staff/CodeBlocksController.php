@@ -100,13 +100,15 @@ class CodeBlocksController extends AppController
             'Visual INDEX template (Staff access)' => APP . '../templates/Staff/CodeBlocks/index.php',
             'Visual CREATE template (Staff access)' => APP . '../templates/Staff/CodeBlocks/index.php',
             'Visual VIEW template (Staff access)' => APP . '../templates/Staff/CodeBlocks/view.php',
-            'Visual EDIT template (Manager access)' => APP . '../templates/Manager/CodeBlocks/edit.php'
+            'Visual EDIT template (Manager access)' => APP . '../templates/Manager/CodeBlocks/edit.php',
+            'Visual DOWNLOAD CSV template (Staff access)' => APP . '../templates/Staff/CodeBlocks/download_csv.php'
         ]);
         $this->set('codeBlocks_renderVar', [
             'Controller INDEX action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'index'),
             'Controller CREATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create'),
             'Controller VIEW action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'view'),
             'Controller DUPLICATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'duplicate'),
+            'Controller DOWNLOAD action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'downloadCsv'),
             'Controller EDIT action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'edit'),
             'Controller DELETE action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'delete')
         ]);
@@ -224,20 +226,103 @@ class CodeBlocksController extends AppController
     }
 
     function downloadCsv(){
+        echo 'test';
         $this->set('codeBlocks_title', 'Download CSV File');
         $this->set('codeBlocks_subTitle', 'Guidelines for Downloading CSV Files');
 
 
         $this->set('codeBlocks_renderFiles', [
-            'View' => APP . '../templates/Staff/CodeBlocks/download_csv.php'
+            'Visual DOWNLOAD template (Staff access)' => APP . '../templates/Staff/CodeBlocks/download_csv.php'
         ]);
 
 
         $this->set('codeBlocks_renderVar', [
-            'Controller DownloadCSV action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'downloadCsv'),
+            'Controller DownloadCSV action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'download'),
 
         ]);
+
+        $rows = $this->CodeBlocks->find()->toArray();
+
+        $filename = "data".date('YmdHis').'.csv';
+        $columnsSort = false;
+
+
+
+
+            // /download start
+            $f = fopen('php://memory', 'w');
+
+            $columnNames = array();
+            if (!empty($rows)) {
+                //We only need to loop through the first row of our result
+                //in order to collate the column names.
+                $firstRow = $rows[0];
+                if(!is_array($firstRow)){
+                    $firstRow = $firstRow->toArray();
+                }
+
+
+                if ($columnsSort) {
+
+                    //we have a custom sort
+                    foreach ($columnsSort as $eachColumnSort) {
+
+                        //dd($eachColumnSort);
+                        $columnNames[] = $eachColumnSort['label'];
+                    }
+                } else {
+
+                    //export the rows as they are
+
+
+                    foreach ($firstRow as $colName => $val) {
+
+                        $columnNames[] = $colName;
+                    }
+                }
+            }
+
+            fputcsv($f, $columnNames);
+
+            //pr ($rows);exit;
+            foreach ($rows as $rowName => $row) {
+
+                //dd($row);
+                if ($columnsSort) {
+                    $sortRow = [];
+                    foreach ($columnsSort as $eachColumnSort) {
+                        if (isset($row[$eachColumnSort['field']])) {
+                            $sortRow[$eachColumnSort['field']] = $row[$eachColumnSort['field']];
+                        } else {
+                            $sortRow[$eachColumnSort['field']] = '';
+                        }
+
+                    }
+                    fputcsv($f, $sortRow);
+                } else {
+                    fputcsv($f, $row->toArray());
+                }
+            }
+
+            fseek($f, 0);
+
+            header('Content-Encoding: UTF-8');
+            header('Content-type: text/csv; charset=UTF-8');
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename="' . $filename . '";');
+            echo "\xEF\xBB\xBF"; // UTF-8 BOM
+            fpassthru($f);
+            fclose($f);
+
+            exit;
+
+
+
+
+
     }
+
+
 
 
 
