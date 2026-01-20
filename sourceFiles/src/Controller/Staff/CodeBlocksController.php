@@ -223,6 +223,23 @@ class CodeBlocksController extends AppController
         // IGNORE-END
     }
 
+    function downloadCsv(){
+        $this->set('codeBlocks_title', 'Download CSV File');
+        $this->set('codeBlocks_subTitle', 'Guidelines for Downloading CSV Files');
+
+
+        $this->set('codeBlocks_renderFiles', [
+            'View' => APP . '../templates/Staff/CodeBlocks/download_csv.php'
+        ]);
+
+
+        $this->set('codeBlocks_renderVar', [
+            'Controller DownloadCSV action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'downloadCsv'),
+
+        ]);
+    }
+
+
 
 
 

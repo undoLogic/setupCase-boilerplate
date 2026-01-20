@@ -13,6 +13,7 @@
 
             <div class="ms-auto d-flex gap-2 flex-wrap">
                 <?= $this->Html->link('Create', ['action' => 'create'], ['class' => 'btn btn-sm btn-primary']) ?>
+                <?= $this->Html->link('Download', ['action' => 'downloadCsv'], ['class' => 'btn btn-sm btn-primary']) ?>
 
                 <button
                     type="button"

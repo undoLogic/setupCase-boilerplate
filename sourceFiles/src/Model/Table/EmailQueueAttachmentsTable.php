@@ -6,17 +6,21 @@ use Cake\ORM\Table;
 use Cake\Utility\Text;
 //use Cake\Validation\Validator;
 
-class EmailQueuesTable extends Table
+class EmailQueueAttachmentsTable extends Table
 {
     public function initialize(array $config):void
     {
-        $this->addBehavior('Timestamp');
-        $this->setTable('email_queues');
+        parent::initialize($config); // REQUIRED
 
-        $this->hasMany('EmailQueueAttachments', [
+        $this->setTable('email_queue_attachments');
+
+        $this->addBehavior('Timestamp');
+        $this->addBehavior('AuditLog');
+
+        //belongsTo
+        $this->belongsTo('EmailQueues', [
             'foreignKey' => 'email_queue_id'
         ]);
-
     }
 
 }// end

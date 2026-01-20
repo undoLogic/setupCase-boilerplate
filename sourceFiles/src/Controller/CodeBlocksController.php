@@ -212,13 +212,6 @@ class CodeBlocksController extends AppController
         ]);
     }
 
-    function downloadCsv(){
-        $this->set('codeBlocks_title', 'Download CSV File');
-        $this->set('codeBlocks_subTitle', 'Guidelines for Downloading CSV Files');
-        $this->set('codeBlocks_renderFiles', [
-            'View' => APP . '../templates/CodeBlocks/hide_and_show_desktop_and_mobile.php'
-        ]);
-    }
 
 
 
@@ -239,9 +232,6 @@ class CodeBlocksController extends AppController
         // IGNORE-END
     }
 
-    function addToQueue(){
-        echo 'test';
-    }
 
 
 
