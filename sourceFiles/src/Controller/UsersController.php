@@ -210,16 +210,17 @@ class UsersController extends AppController
 
     }//login
 
-    //        $pass = '1234';
-//        $passObj = new DefaultPasswordHasher;
-//        $hash = ($passObj)->hash($pass);
-//        $this->writeToLog('debug', 'pass is: ' . $pass, true);
-//        $this->writeToLog('debug', 'hash is: ' . $hash, true);
-//        $isCorrect = $passObj->check($pass, $hash);
-//        $this->writeToLog('debug', 'is correct: '.$isCorrect, true);
+     //       $pass = '1234';
+       // $passObj = new DefaultPasswordHasher;
+       // $hash = ($passObj)->hash($pass);
+       // $this->writeToLog('debug', 'pass is: ' . $pass, true);
+      //  $this->writeToLog('debug', 'hash is: ' . $hash, true);
+       // $isCorrect = $passObj->check($pass, $hash);
+        //$this->writeToLog('debug', 'is correct: '.$isCorrect, true);
 
     public function login()
     {
+
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 

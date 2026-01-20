@@ -125,11 +125,11 @@ class AppController extends Controller
                         ],
                     ],
                     [
-                        'name' => 'Download CSV',
+                        'name' => 'Lazy Loading Images',
                         'link' => [
                             'prefix' => false,
                             'controller' => 'CodeBlocks',
-                            'action' => 'downloadCsv',
+                            'action' => 'lazyLoadingImages',
                         ],
                     ],
                 ],
@@ -161,6 +161,24 @@ class AppController extends Controller
                             'prefix' => 'Staff',
                             'controller' => 'EmailQueues',
                             'action' => 'index',
+                        ],
+                    ],
+
+                    [
+                        'name' => 'Switch into user',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'Users',
+                            'action' => 'switchToUser',
+                        ],
+                    ],
+
+                    [
+                        'name' => 'Reset Password',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'Users',
+                            'action' => 'resetPassword',
                         ],
                     ],
                 ],
@@ -249,10 +267,13 @@ class AppController extends Controller
 //    }
 
         $identity = $this->request->getAttribute('identity');
-        AuditContext::set(
-            $identity->id,
-            $this->request->clientIp()
-        );
+       if($identity){
+           AuditContext::set(
+               $identity->id,
+               $this->request->clientIp()
+           );
+       }
+
 
 
 

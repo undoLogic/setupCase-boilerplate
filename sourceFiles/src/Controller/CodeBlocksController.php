@@ -232,6 +232,18 @@ class CodeBlocksController extends AppController
         // IGNORE-END
     }
 
+    function lazyLoadingImages(){
+        $this->set('codeBlocks_title', 'Lazy Loading Images');
+        $this->set('codeBlocks_subTitle', 'Lazy load images so you do not overload the server with too many image requests');
+        $this->set('codeBlocks_renderFiles', [
+            'View' => APP . '../templates/CodeBlocks/lazy_loading_images.php'
+        ]);
+       /* $this->set('codeBlocks_renderVar', [
+            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'lazyLoadingImages')
+        ]);*/
+
+    }
+
 
 
 
