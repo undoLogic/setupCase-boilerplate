@@ -156,11 +156,11 @@ class AppController extends Controller
                         ],
                     ],
                     [
-                        'name' => 'Email Add to Queue',
+                        'name' => 'Automated Emailers',
                         'link' => [
                             'prefix' => 'Staff',
                             'controller' => 'EmailQueues',
-                            'action' => 'emailAddToQueue',
+                            'action' => 'index',
                         ],
                     ],
                 ],

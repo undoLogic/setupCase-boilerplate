@@ -323,7 +323,7 @@ class SetupCase {
             $mailer->setTo($to);
             if ($cc) { $mailer->setCc($cc);}
             $mailer->setSubject($subject);
-            $mailer->setFrom([$from => 'CUSM']);
+            $mailer->setFrom([$from => 'SetupCase']);
 
         } else {
             dd('testing sending email');
