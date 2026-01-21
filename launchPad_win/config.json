@@ -16,7 +16,7 @@
       "USE_PAT": true,
       "ABSOLUTE_PATH": "",
       "COPY_SRC_TO_ROOT": true,
-      "POST_COMMANDS": ""
+      "POST_COMMANDS": "ls"
     },
     "pending": {
       "URL": "",
