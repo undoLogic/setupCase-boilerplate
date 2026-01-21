@@ -320,7 +320,14 @@ class CodeBlocksController extends AppController
 
 
 
-    }
+    }//
+
+
+//    function downloadPdf(){
+//        echo 'test';
+//        $this->set('codeBlocks_title', 'Download CSV File');
+//        $this->set('codeBlocks_subTitle', 'Guidelines for Downloading CSV Files');
+//        }
 
 
 
