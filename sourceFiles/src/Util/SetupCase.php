@@ -9,6 +9,39 @@ use ReflectionMethod;
 
 class SetupCase {
 
+    function createPdf($url, $filename)
+    {
+
+
+
+        $this->setSize(8.5, 11);
+
+        $cmd = "wkhtmltopdf "
+
+            . " --dpi " . $this->dpi . " --page-width " . $this->width_pixels . " --page-height " . $this->height_pixels
+            . " --margin-top 0 --margin-right 0 --margin-bottom 0 --margin-left 0 " . $url . " " . TMP . $filename;
+        if (isset($_GET['debug'])) {
+            die($cmd); //used to debug and get the link for testing
+        }
+
+        exec($cmd);
+        header("Content-type:application/pdf");
+        header("Content-Disposition:attachment;filename=\"$filename\"");
+        readfile(TMP . $filename);
+
+        exit;
+    }
+
+    var $dpi = 30;
+    var $factor = 1;
+    function setSize($width, $height)
+    {
+        $this->width_pixels = $width * (($this->dpi * $this->factor) + 0); //1 in = 96 px / add fine adjustments to the end
+        $this->height_pixels = $height * (($this->dpi * $this->factor) + 0); //1 in = 96 px
+    }
+
+
+
     public function getNextThirdThursday($date){
 
         $thirdThur = $this->getThirdThursday($date);

@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Controller\Staff;
 
 use App\Controller\AppController;
+use App\Util\Assets;
 use App\Util\SetupCase;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
@@ -24,6 +25,7 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\Routing\Router;
+use Cake\Utility\Security;
 use Cake\View\Exception\MissingTemplateException;
 use ReflectionMethod;
 
@@ -108,7 +110,6 @@ class CodeBlocksController extends AppController
             'Controller CREATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create'),
             'Controller VIEW action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'view'),
             'Controller DUPLICATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'duplicate'),
-            'Controller DOWNLOAD action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'downloadCsv'),
             'Controller EDIT action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'edit'),
             'Controller DELETE action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'delete')
         ]);
@@ -226,12 +227,11 @@ class CodeBlocksController extends AppController
     }
 
     function downloadCsv(){
+        //$this->download();
 
-
+        // IGNORE
         $this->set('codeBlocks_title', 'Download CSV File');
         $this->set('codeBlocks_subTitle', 'Guidelines for Downloading CSV Files');
-
-//
 //        $this->set('codeBlocks_renderFiles', [
 //            'Visual DOWNLOAD template (Staff access)' => APP . '../templates/Staff/CodeBlocks/download_csv.php'
 //        ]);
@@ -241,18 +241,54 @@ class CodeBlocksController extends AppController
             'Controller DownloadCSV action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'download'),
 
         ]);
-
-        $this->download();
-
+        // IGNORE-END
 
 
 
 
 
 
+
+
+
+    }//downloadCsv
+
+    function downloadPdf($id = false){
+
+
+        // IGNORE
+        $this->set('codeBlocks_title', 'Download PDF');
+        $this->set('codeBlocks_subTitle', 'Guidelines for Downloading PDF Files');
+        $this->set('codeBlocks_renderFiles', [
+            'Visual DOWNLOAD template (Staff access)' => APP . '../templates/Staff/CodeBlocks/download_pdf.php'
+        ]);
+
+
+        $this->set('codeBlocks_renderVar', [
+            'Controller DownloadPdf action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'downloadPdf'),
+
+        ]);
+        // IGNORE-END
+
+//        if(!$id){
+//            $id = 15;
+//        }
+//        $encrypted_order_id_url = Assets::encryptUrl($id);
+//
+//        $url = Router::url('/', true).'CodeBlocks/invoice/'.$id.DS.$encrypted_order_id_url;
+//
+//        $setupCase = new SetupCase;
+//
+//        $setupCase->createPdf(
+//            $url,
+//            'Invoice-'.$id.'.pdf'
+//        );
 
 
     }
+
+
+
 
 
 

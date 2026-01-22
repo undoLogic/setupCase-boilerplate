@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Util\Assets;
 use App\Util\SetupCase;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
@@ -242,6 +243,20 @@ class CodeBlocksController extends AppController
             'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'lazyLoadingImages')
         ]);*/
 
+    }
+
+    public function invoice($id, $encrypted_order_id) {
+
+
+        if ( Assets::doesEncryptionUrlMatch($id, $encrypted_order_id) ) {
+
+            $row = $this->CodeBlocks->get($id);
+
+            //dd($userInfo);
+            $this->set(compact('row', ));
+        } else {
+            die('ERROR: invoice cannot be displayed');
+        }
     }
 
 

@@ -171,6 +171,15 @@ class AppController extends Controller
                             'action' => 'downloadCsv',
                         ],
                     ],
+
+                    [
+                        'name' => 'Download To PDF',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'CodeBlocks',
+                            'action' => 'downloadPdf',
+                        ],
+                    ],
                     [
                         'name' => 'Switch into user',
                         'link' => [
