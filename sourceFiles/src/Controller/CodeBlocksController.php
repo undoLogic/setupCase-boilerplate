@@ -317,7 +317,7 @@ class CodeBlocksController extends AppController
         // IGNORE-END
     }//link
 
-    public function invoice($id, $encrypted_order_id) {
+    public function pdf($id, $encrypted_order_id) {
         $this->viewBuilder()->disableAutoLayout();
        // $this->viewBuilder()->setLayout('print');
 

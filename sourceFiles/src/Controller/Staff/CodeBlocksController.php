@@ -281,7 +281,7 @@ class CodeBlocksController extends AppController
 
             $encrypted_order_id_url = Assets::encryptUrl($id);
 
-            $url = Router::url('/', true) . 'CodeBlocks/invoice/' . $id . DS . $encrypted_order_id_url . '?login=1';
+            $url = Router::url('/', true) . 'CodeBlocks/pdf/' . $id . DS . $encrypted_order_id_url . '?login=1';
 
             if (isset($_GET['debug'])) {
                 dd($url);
