@@ -245,18 +245,92 @@ class CodeBlocksController extends AppController
 
     }
 
+    function anchor(){
+
+
+        $this->set('codeBlocks_title', 'Html Anchor');
+        $this->set('codeBlocks_subTitle', 'When clicking an anchor you can adjust the position so it does not get cut off by the screen or is too low ');
+        $this->set('codeBlocks_renderFiles', [
+            'View' => APP . '../templates/CodeBlocks/anchor.php'
+        ]);
+
+        $this->set('codeBlocks_renderVar', [
+            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'anchor')
+        ]);
+    }//anchor
+
+    function link(){
+
+
+        $this->set('codeBlocks_title', 'Html Link');
+        $this->set('codeBlocks_subTitle', 'Adding HTML Anchor Links in CakePHP');
+        $this->set('codeBlocks_renderFiles', [
+            'View' => APP . '../templates/CodeBlocks/link.php'
+        ]);
+
+//        $this->set('codeBlocks_renderVar', [
+//            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'link')
+//        ]);
+    }//link
+
+
+    function associations(){
+        /*
+         // Class name: CodeBlocks
+         // belongsTo
+        $this->belongsTo('CodeBlockTypes', [
+            'foreignKey' => 'code_block_type_id'
+        ]);
+
+        // Class name: CodeBlockTypes
+         // hasMany
+        $this->hasMany('CodeBlocks', [
+            'foreignKey' => 'code_block_type_id',
+        ]);
+
+        //class name:Locations
+          // belongsToMany
+        $this->belongsToMany('Users', [
+            'joinTable' => 'locations_users',
+            'foreignKey' => 'location_id',
+            'targetForeignKey' => 'user_id', //join table column - product_id
+        ]);
+            // class name:Users
+         // belongsToMany
+        $this->belongsToMany('Locations', [
+            'joinTable' => 'locations_users',
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'location_id', //join table column - product_id
+        ]);
+
+        */
+
+
+        // IGNORE
+        $this->set('codeBlocks_title', 'Class Associations');
+        $this->set('codeBlocks_subTitle', 'Types of Associations in CakePHP 4(Added in Model/Initialize)');
+
+
+        $this->set('codeBlocks_renderVar', [
+            'Controller Action' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'associations')
+        ]);
+        // IGNORE-END
+    }//link
+
     public function invoice($id, $encrypted_order_id) {
+        $this->viewBuilder()->disableAutoLayout();
+       // $this->viewBuilder()->setLayout('print');
 
 
-        if ( Assets::doesEncryptionUrlMatch($id, $encrypted_order_id) ) {
-
-            $row = $this->CodeBlocks->get($id);
-
-            //dd($userInfo);
-            $this->set(compact('row', ));
-        } else {
-            die('ERROR: invoice cannot be displayed');
-        }
+//        if ( Assets::doesEncryptionUrlMatch($id, $encrypted_order_id) ) {
+//
+//            $row = $this->CodeBlocks->get($id);
+//
+//            //dd($userInfo);
+//            $this->set(compact('row', ));
+//        } else {
+//            die('ERROR: invoice cannot be displayed');
+//        }
     }
 
 

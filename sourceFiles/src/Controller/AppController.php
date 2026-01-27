@@ -132,6 +132,38 @@ class AppController extends Controller
                             'action' => 'lazyLoadingImages',
                         ],
                     ],
+
+                    [
+                        'name' => 'Html Anchor',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'anchor',
+                        ],
+                    ],
+
+
+                    [
+                        'name' => 'Html Link',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'link',
+                        ],
+                    ],
+
+                    [
+                        'name' => 'Class Associations in Model',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'associations',
+                        ],
+                    ],
+
+
+
+
                 ],
             ],
 
@@ -177,7 +209,7 @@ class AppController extends Controller
                         'link' => [
                             'prefix' => 'Staff',
                             'controller' => 'CodeBlocks',
-                            'action' => 'downloadPdf',
+                            'action' => 'downloadPdf/0',
                         ],
                     ],
                     [
@@ -195,6 +227,15 @@ class AppController extends Controller
                             'prefix' => 'Staff',
                             'controller' => 'Users',
                             'action' => 'resetPassword',
+                        ],
+                    ],
+
+                    [
+                        'name' => 'Edit - BelongsToManyAssociation',
+                        'link' => [
+                            'prefix' => 'Manager',
+                            'controller' => 'Locations',1,
+                            'action' => 'edit',
                         ],
                     ],
                 ],

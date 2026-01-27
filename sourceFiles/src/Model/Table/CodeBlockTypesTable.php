@@ -6,23 +6,20 @@ use Cake\ORM\Table;
 use Cake\Utility\Text;
 //use Cake\Validation\Validator;
 
-class CodeBlocksTable extends Table
+class CodeBlockTypesTable extends Table
 {
     public function initialize(array $config):void
     {
         parent::initialize($config); // REQUIRED
 
-        $this->setTable('code_blocks');
+        $this->setTable('code_block_types');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('AuditLog');
 
-       // belongsTo
-        $this->belongsTo('CodeBlockTypes', [
-            'foreignKey' => 'code_block_type_id'
+        $this->hasMany('CodeBlocks', [
+            'foreignKey' => 'code_block_type_id',
         ]);
+
     }
-
-
 
 }// end
