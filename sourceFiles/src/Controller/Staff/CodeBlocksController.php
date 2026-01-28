@@ -267,7 +267,7 @@ class CodeBlocksController extends AppController
 
         $this->set('codeBlocks_renderVar', [
             'Controller DownloadPdf action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'downloadPdf'),
-            'Controller DownloadPdf action (NO prefix)' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'invoice'),
+            'Controller DownloadPdf action (NO prefix)' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'pdf'),
 
         ]);
 
@@ -290,7 +290,7 @@ class CodeBlocksController extends AppController
 
             $setupCase->createPdf(
                 $url,
-                'Invoice-' . $id . '.pdf'
+                'pdf-' . $id . '.pdf'
             );
         }else{
             //dd('stop');

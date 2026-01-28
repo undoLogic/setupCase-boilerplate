@@ -2,12 +2,14 @@
 
 namespace App\Util;
 use Cake\Core\Configure;
+use Cake\Log\Log;
 use Cake\Mailer\Mailer;
 use Cake\ORM\Table;
 use Cake\Datasource\FactoryLocator;
 use ReflectionMethod;
 
 class SetupCase {
+
 
     function createPdf($url, $filename)
     {
@@ -42,57 +44,11 @@ class SetupCase {
 
 
 
-    public function getNextThirdThursday($date){
-
-        $thirdThur = $this->getThirdThursday($date);
-
-        if (strtotime($thirdThur) < strtotime($date)) {
-            //it's last month, let's get the next month
-            $nextMonth = date('Y-m-d', strtotime('+1 month', strtotime($date)));
-
-            $thirdThur = $this->getThirdThursday($nextMonth);
-        }
-
-        return $thirdThur;
-    }
-
-    public function getThirdThursday($date){
-
-        //$date = '2022-11-29';
-        // pr($this->thirdThurs($date)); exit;
-        $today = date('l', strtotime($date));
 
 
-        $first = date('Y-m-01', strtotime("$date"));
-        $last = date('Y-m-31', strtotime("$date"));
-
-        $date = $first;
-        $count = 0;
-
-        do {
-
-            if(date('l', strtotime($date)) === 'Thursday'){
-                $count++;
-            }
-            if($count == 3){
-                return $date;
-            }
-
-            $date = date('Y-m-d', strtotime($date. "+1day"));
 
 
-        } while ($date <= $last);
 
-        return false;
-
-    }
-
-    public static function addToLog($message,$json_data, $user_id, $params)
-    {
-
-       FactoryLocator::get('Table')->get('ActivityLogs')->add($message,$json_data, $user_id, $params);
-
-    }// addToLog
 
 
 
@@ -125,26 +81,6 @@ class SetupCase {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static function isLanguageAllowed($currentLang, $currentWebsite, $websiteLanguages) {
@@ -392,6 +328,209 @@ class SetupCase {
 
         return $code;
     }
+
+    public static function getActiveMonth($currentDate = false)
+    {
+
+        if (!$currentDate) {
+            $currentDate = self::getDate('Y-m-d H:i:s');
+        }
+
+        $thirdThurs = self::getThirdThursday($currentDate);
+
+        $prevSunday = date('Y-m-d', strtotime('previous monday', strtotime($thirdThurs)));
+        //$nextSunday = date('Y-m-d', strtotime('next sunday', strtotime($thirdThurs)));
+
+        $prevSunday = $prevSunday . ' 00:00:00';
+        $showTime = $thirdThurs . ' 13:00:00';
+
+        if (strtotime($currentDate) < strtotime($prevSunday)) {
+            //last month
+            $cuttOff = date('Y-M', strtotime($currentDate));
+
+            $cuttOffPrev = date('Y-M', strtotime('-1 months', strtotime($currentDate)));
+
+            $nextClosingDate = $prevSunday;
+
+            $closingDate = date('Y-m-d H:i:s', strtotime('previous monday', strtotime($thirdThurs)));
+
+        } else {
+            //this month
+            //fix weird glitch end of month giving +2 months
+            $currentDateCalc = date('Y-m-01', strtotime($currentDate));
+            $cuttOff = date('Y-M', strtotime('+1 month', strtotime($currentDateCalc)));
+
+            //$cuttOff = date('Y-M', strtotime($currentDate));
+            $cuttOffPrev = date('Y-M', strtotime($currentDateCalc));
+
+            $nextThirdThurs = self::getThirdThursday(date('Y-m-d', strtotime('+1 month', strtotime($currentDateCalc))));
+            $nextClosingDate = date('Y-m-d H:i:s', strtotime('previous monday', strtotime($nextThirdThurs)));
+            $closingDate = date('Y-m-d H:i:s', strtotime('previous monday', strtotime($thirdThurs)));
+
+        }
+
+        if (
+            strtotime($currentDate) < strtotime($closingDate)
+        ) {
+            $registrationActive = true;
+            $msg = 1;
+        } else if (strtotime($currentDate) >= strtotime($showTime)) {
+            $registrationActive = true;
+            $msg = 2;
+        } else {
+            $registrationActive = false;
+            $msg = 3;
+        }
+
+        $difference = strtotime($nextClosingDate) - strtotime($currentDate);
+        $days = $difference / 86400;
+        if ($days > 2) {
+            $nextClosingDateDaysRemain = "in " . floor($days) . " days";
+        } else if ($days > 1) {
+            $nextClosingDateDaysRemain = 'Tomorrow';
+        } else if ($days > 0) {
+            $nextClosingDateDaysRemain = 'Today';
+        } else {
+            $nextClosingDateDaysRemain = $days;
+        }
+
+        return array(
+            'currentDate' => $currentDate,
+            'cutOffPrev' => strtoupper($cuttOffPrev),
+            'cutOffPrev_year_and_month' => date('Y-m-01', strtotime($cuttOffPrev)),
+            'cutOff' => strtoupper($cuttOff),
+            'cutOff_year_and_month' => date('Y-m-01', strtotime($cuttOff)),
+            'thirdThurs' => $thirdThurs,
+            'nextClosingDate' => $nextClosingDate,
+            'nextClosingDateDaysRemain' => $nextClosingDateDaysRemain,
+            'closingDate' => $closingDate,
+            'showTime' => $showTime,
+            'registrationActive' => $registrationActive,
+            'votingActive' => $registrationActive, //currently the same as registration
+            'msg' => $msg
+        );
+    }// activeMonth
+
+    public function getNextThirdThursday($date){
+
+        $thirdThur = $this->getThirdThursday($date);
+
+        if (strtotime($thirdThur) < strtotime($date)) {
+            //it's last month, let's get the next month
+            $nextMonth = date('Y-m-d', strtotime('+1 month', strtotime($date)));
+
+            $thirdThur = $this->getThirdThursday($nextMonth);
+        }
+
+        return $thirdThur;
+    }
+
+    public static function getDate($format = 'Y-m-d H:i:s')
+    {
+        if (isset($_GET['testDate'])) {
+            return date($format, strtotime($_GET['testDate']));
+        } else {
+            return date($format);
+        }
+    }// getDate
+
+    public function getThirdThursday($date){
+
+        //$date = '2022-11-29';
+        // pr($this->thirdThurs($date)); exit;
+        $today = date('l', strtotime($date));
+
+
+        $first = date('Y-m-01', strtotime("$date"));
+        $last = date('Y-m-31', strtotime("$date"));
+
+        $date = $first;
+        $count = 0;
+
+        do {
+
+            if(date('l', strtotime($date)) === 'Thursday'){
+                $count++;
+            }
+            if($count == 3){
+                return $date;
+            }
+
+            $date = date('Y-m-d', strtotime($date. "+1day"));
+
+
+        } while ($date <= $last);
+
+        return false;
+
+    }
+
+    public static function getEncrypt($decrypted) {
+        return base64_encode($decrypted);
+    }
+
+    public static function getDecrypt($encrypted){
+        return base64_decode($encrypted);
+    }
+
+    public static function updateCase(){
+        require_once(WWW_ROOT.DS.'updateCase-v5.php');
+        $updateCase = new UpdateCase([
+            'debug' => true,
+            'variant_id' => 227,
+            'version' => 5,
+            'lang' => 'en' ]);
+        return $updateCase;
+
+    }
+
+    public static function FilterValidateEmail($emailOrg){
+
+        //all lower case
+        $emailOrg = strtolower($emailOrg);
+
+        $email = '';
+
+        $parts = explode('@', $emailOrg);
+
+        if ($parts[1] == 'gmail.com' || $parts[1] == 'gmail.ca') {
+            $email = str_replace('.', '', $parts[0]) . '@' . $parts[1];
+
+            // Use a regular expression to remove the +alias part
+            $email = preg_replace('/\+[^@]+/', '', $email);
+
+        } else {
+            $email = $emailOrg; //not a gmail
+        }
+
+        //remove spaces
+        $email = str_replace(' ',"", $email);
+
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return false; //not a valid email
+        }else{
+            return $email;
+        }
+
+    }//FilterValidateEmail
+
+    public static function prepareString($string){
+        $string = str_replace(' ',"", $string);
+        $string = strtolower($string);
+
+        return trim($string);
+
+    }
+
+    public static function writeToLog($level, $msg, $newLine = true) {
+        $levels = explode(',', $level);
+        foreach ($levels as $eachLevel) {
+            Log::write($eachLevel, $msg);
+        }
+    }
+
+
+
 
 
 }
