@@ -1,3 +1,24 @@
+<style>
+    .card td {
+        word-wrap: anywhere;
+    }
+
+    pre {
+        background: #f8f9fa;
+        border: 1px solid #e5e7eb;
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+    pre {
+        max-height: 500px;
+        overflow: auto;
+        max-width: 500px;
+    }
+
+
+
+
+</style>
 <div class="card shadow-sm mb-4">
 
     <!-- Header -->
@@ -48,7 +69,7 @@
 <div class="row g-4">
 
     <!-- Left column: Audit Details -->
-    <div class="col-12 col-lg-4">
+    <div class="col-12 col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h6 class="mb-0">Audit Details</h6>
@@ -56,49 +77,62 @@
 
             <div class="card-body">
 
-                <dl class="row mb-0 small">
+                <dl class="row mb-0">
 
-                    <dt class="col-4 text-muted">Action</dt>
-                    <dd class="col-8">
-                        <span class="badge bg-<?= match ($entity->action) {
-                            'insert' => 'success',
-                            'update' => 'warning',
-                            'delete' => 'danger',
-                            default  => 'secondary',
-                        } ?>">
-                            <?= strtoupper(h($entity->action)) ?>
-                        </span>
-                    </dd>
+                    <div class="col-6">
+                        <dt class="col-4 text-muted">Action</dt>
+                        <dd class="col-8">
+                            <span class="badge bg-<?= match ($entity->action) {
+                                'insert' => 'success',
+                                'update' => 'warning',
+                                'delete' => 'danger',
+                                default => 'secondary',
+                            } ?>">
+                                <?= strtoupper(h($entity->action)) ?>
+                            </span>
+                        </dd>
 
-                    <dt class="col-4 text-muted">Table</dt>
-                    <dd class="col-8"><?= h($entity->table_name) ?></dd>
+                        <dt class="col-4 text-muted">Table</dt>
+                        <dd class="col-8"><?= h($entity->table_name) ?></dd>
 
-                    <dt class="col-4 text-muted">Record ID</dt>
-                    <dd class="col-8"><?= h($entity->entity_id ?? '—') ?></dd>
+                        <dt class="col-4 text-muted">Record ID</dt>
+                        <dd class="col-8"><?= h($entity->entity_id ?? '—') ?></dd>
 
-                    <dt class="col-4 text-muted">User</dt>
-                    <dd class="col-8">
-                        <?= $entity->user_id !== null
-                            ? 'User #' . h($entity->user_id)
-                            : 'System / CLI' ?>
-                    </dd>
 
-                    <dt class="col-4 text-muted">IP</dt>
-                    <dd class="col-8"><?= h($entity->ip_address ?? '—') ?></dd>
+                        <dt class="col-4 text-muted">Date</dt>
+                        <dd class="col-8">
+                            <?= $entity->created?->format('Y-m-d H:i:s') ?>
+                        </dd>
+                    </div>
 
-                    <dt class="col-4 text-muted">Date</dt>
-                    <dd class="col-8">
-                        <?= $entity->created?->format('Y-m-d H:i:s') ?>
-                    </dd>
+                    <div class="col-6">
+                        <dt class="col-4 text-muted">User</dt>
+                        <dd class="col-8">
+                            <?= $entity->user_id !== null
+                                ? 'User #' . h($entity->user_id)
+                                : 'System / CLI' ?>
+
+                            <?php if (isset($entity['user']['fullName'])): ?>
+                                <?= $entity['user']['fullName']; ?>
+                            <?php endif; ?>
+                        </dd>
+
+                        <dt class="col-4 text-muted">IP</dt>
+                        <dd class="col-8"><?= h($entity->ip_address ?? '—') ?></dd>
+
+
+                    </div>
 
                 </dl>
+
+
 
             </div>
         </div>
     </div>
 
     <!-- Right column: Changes -->
-    <div class="col-12 col-lg-8">
+    <div class="col-12 col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h6 class="mb-0">Changes</h6>
@@ -124,6 +158,17 @@
                         array_keys($before),
                         array_keys($after)
                     ));
+
+                    // Normalize values for reliable comparison
+                    $normalize = function ($value) {
+                        if (is_array($value) || is_object($value)) {
+                            return json_encode(
+                                $value,
+                                JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+                            );
+                        }
+                        return (string)$value;
+                    };
                     ?>
 
                     <?php if (empty($fields)): ?>
@@ -133,20 +178,61 @@
                             </td>
                         </tr>
                     <?php else: ?>
-                        <?php foreach ($fields as $field): ?>
-                            <tr>
-                                <td class="fw-semibold">
+                        <?php foreach ($fields as $field):
+
+                            $beforeVal = $before[$field] ?? null;
+                            $afterVal  = $after[$field]  ?? null;
+
+                            $beforeNorm = isset($beforeVal) ? $normalize($beforeVal) : null;
+                            $afterNorm  = isset($afterVal)  ? $normalize($afterVal)  : null;
+
+                            $isDifferent = $beforeNorm !== $afterNorm;
+
+
+                            if ($beforeNorm == '[]' && $afterNorm == '') {
+                                $isDifferent = false;
+                            }
+
+
+
+                            ?>
+                            <tr class="<?= $isDifferent ? 'table-danger' : '' ?>">
+                                <th class="fw-semibold">
                                     <?= h($field) ?>
+
+
+                                </th>
+
+                                <!-- BEFORE -->
+                                <td class="<?= $isDifferent ? 'bg-danger-subtle' : '' ?>">
+                                    <?php if (isset($beforeVal)): ?>
+                                        <?php if (is_array($beforeVal) || is_object($beforeVal)): ?>
+                                            <pre class="mb-0"><?= h(json_encode(
+                                                    $beforeVal,
+                                                    JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+                                                )) ?></pre>
+                                        <?php else: ?>
+                                            <?= h($beforeVal) ?>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        —
+                                    <?php endif; ?>
                                 </td>
-                                <td class="text-muted">
-                                    <?= isset($before[$field])
-                                        ? h(json_encode($before[$field]))
-                                        : '—' ?>
-                                </td>
-                                <td>
-                                    <?= isset($after[$field])
-                                        ? h(json_encode($after[$field]))
-                                        : '—' ?>
+
+                                <!-- AFTER -->
+                                <td class="<?= $isDifferent ? 'bg-danger-subtle fw-semibold' : '' ?>">
+                                    <?php if (isset($afterVal)): ?>
+                                        <?php if (is_array($afterVal) || is_object($afterVal)): ?>
+                                            <pre class="mb-0"><?= h(json_encode(
+                                                    $afterVal,
+                                                    JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+                                                )) ?></pre>
+                                        <?php else: ?>
+                                            <?= h($afterVal) ?>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        —
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
