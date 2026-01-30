@@ -128,6 +128,7 @@ class EmailQueuesController extends AppController
         $this->set('codeBlocks_title', 'Email Add to Queue');
 
 
+
         $view = new View();
         $view->set([
             'user_id' => $user_id,

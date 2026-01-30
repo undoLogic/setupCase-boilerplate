@@ -125,13 +125,45 @@ class AppController extends Controller
                         ],
                     ],
                     [
-                        'name' => 'Download CSV',
+                        'name' => 'Lazy Loading Images',
                         'link' => [
                             'prefix' => false,
                             'controller' => 'CodeBlocks',
-                            'action' => 'downloadCsv',
+                            'action' => 'lazyLoadingImages',
                         ],
                     ],
+
+                    [
+                        'name' => 'Html Anchor',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'anchor',
+                        ],
+                    ],
+
+
+                    [
+                        'name' => 'Html Link',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'link',
+                        ],
+                    ],
+
+                    [
+                        'name' => 'Class Associations in Model',
+                        'link' => [
+                            'prefix' => false,
+                            'controller' => 'CodeBlocks',
+                            'action' => 'associations',
+                        ],
+                    ],
+
+
+
+
                 ],
             ],
 
@@ -161,6 +193,49 @@ class AppController extends Controller
                             'prefix' => 'Staff',
                             'controller' => 'EmailQueues',
                             'action' => 'index',
+                        ],
+                    ],
+                    [
+                        'name' => 'Download To CSV',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'CodeBlocks',
+                            'action' => 'downloadCsv',
+                        ],
+                    ],
+
+                    [
+                        'name' => 'Download To PDF',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'CodeBlocks',
+                            'action' => 'downloadPdf/0',
+                        ],
+                    ],
+                    [
+                        'name' => 'Switch into user',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'Users',
+                            'action' => 'switchToUser',
+                        ],
+                    ],
+
+                    [
+                        'name' => 'Reset Password',
+                        'link' => [
+                            'prefix' => 'Staff',
+                            'controller' => 'Users',
+                            'action' => 'resetPassword',
+                        ],
+                    ],
+
+                    [
+                        'name' => 'Edit - BelongsToManyAssociation',
+                        'link' => [
+                            'prefix' => 'Manager',
+                            'controller' => 'Locations',1,
+                            'action' => 'edit',
                         ],
                     ],
                 ],
@@ -249,10 +324,13 @@ class AppController extends Controller
 //    }
 
         $identity = $this->request->getAttribute('identity');
-        AuditContext::set(
-            $identity->id,
-            $this->request->clientIp()
-        );
+       if($identity){
+           AuditContext::set(
+               $identity->id,
+               $this->request->clientIp()
+           );
+       }
+
 
 
 

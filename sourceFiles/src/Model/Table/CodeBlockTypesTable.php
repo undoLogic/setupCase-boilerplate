@@ -6,15 +6,18 @@ use Cake\ORM\Table;
 use Cake\Utility\Text;
 //use Cake\Validation\Validator;
 
-class EmailQueuesTable extends Table
+class CodeBlockTypesTable extends Table
 {
     public function initialize(array $config):void
     {
-        $this->addBehavior('Timestamp');
-        $this->setTable('email_queues');
+        parent::initialize($config); // REQUIRED
 
-        $this->hasMany('EmailQueueAttachments', [
-            'foreignKey' => 'email_queue_id'
+        $this->setTable('code_block_types');
+
+        $this->addBehavior('Timestamp');
+
+        $this->hasMany('CodeBlocks', [
+            'foreignKey' => 'code_block_type_id',
         ]);
 
     }

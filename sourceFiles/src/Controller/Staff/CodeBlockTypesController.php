@@ -36,7 +36,7 @@ use ReflectionMethod;
  *
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
-class CodeBlocksController extends AppController
+class CodeBlockTypesController extends AppController
 {
 
     public function beforeFilter(EventInterface $event)
@@ -77,7 +77,6 @@ class CodeBlocksController extends AppController
 
         // Build query
         $query = $this->CodeBlocks->find()
-            ->contain('CodeBlockTypes')
             ->orderDesc('CodeBlocks.created')
             ->limit(20);
 
@@ -107,10 +106,10 @@ class CodeBlocksController extends AppController
             'Visual DOWNLOAD CSV template (Staff access)' => APP . '../templates/Staff/CodeBlocks/download_csv.php'
         ]);
         $this->set('codeBlocks_renderVar', [
-            'Controller INDEX action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'index'),
-            'Controller CREATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create'),
-            'Controller VIEW action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'view'),
-            'Controller DUPLICATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'duplicate'),
+            'Controller INDEX action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlockTypesController::class, 'index'),
+            'Controller CREATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlockTypesController::class, 'create'),
+            'Controller VIEW action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlockTypesController::class, 'view'),
+            'Controller DUPLICATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlockTypesController::class, 'duplicate'),
             'Controller EDIT action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'edit'),
             'Controller DELETE action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'delete')
         ]);
@@ -121,182 +120,6 @@ class CodeBlocksController extends AppController
 
 
 
-    public function duplicate($id) {
-        if (!$id) {
-            $this->Flash->error('Specify ID');
-            return $this->redirect($this->referer());
-        } else {
-            // Fetch the existing entity
-            $entity = $this->CodeBlocks->get($id);
-
-            // Convert the entity to an array, reset the id and other fields that need to be unique
-            $data = $entity->toArray();
-            unset($data['id']); // Remove the ID to let CakePHP know it's a new entity
-
-            // Create a new entity instance with the duplicated data
-            $newEntity = $this->CodeBlocks->newEntity($data);
-
-            if ($this->CodeBlocks->save($newEntity)) {
-                $this->Flash->success('Duplicated ' . $newEntity->name);
-                return $this->redirect(['action' => 'edit', $newEntity->id]);
-            } else {
-                $this->Flash->error('Error, cannot duplicate');
-                return $this->redirect($this->referer());
-            }
-        }
-    }
-
-
-    public function create()
-    {
-        $entity = $this->CodeBlocks->newEmptyEntity();
-
-        if ($this->request->is('post')) {
-            $entity = $this->CodeBlocks->patchEntity(
-                $entity,
-                $this->request->getData()
-            );
-
-            if ($this->CodeBlocks->save($entity)) {
-                $this->Flash->success(__('The record has been created successfully.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-
-            $this->Flash->error(__('The record could not be created. Please try again.'));
-        } else {
-            $cameFrom = $this->request->referer(true);
-        }
-
-        $this->set([
-            'entity'   => $entity,
-            'cameFrom' => $cameFrom,
-            'isCreate' => true,
-            'pageTitle' => 'Create Code Block',
-            'pageSubTitle' => 'Define the basic details',
-        ]);
-
-        // Reuse Manager template
-        $this->viewBuilder()->setTemplate('/Manager/CodeBlocks/edit');
-
-
-
-
-
-        // IGNORE
-        $this->set('codeBlocks_title', 'Create a new Record');
-        $this->set('codeBlocks_subTitle', 'Create new and share with the Manager EDIT template');
-        $this->set('codeBlocks_renderFiles', [
-            'Visual CREATE template (Staff access)' => APP . '../templates/Manager/CodeBlocks/edit.php'
-        ]);
-        $this->set('codeBlocks_renderVar', [
-            'Controller CREATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create')
-        ]);
-        // IGNORE-END
-
-
-    }
-
-
-    public function view($id)
-    {
-        try {
-            $entity = $this->CodeBlocks->get($id, [
-                // 'contain' => ['RelatedTable'], // future-ready
-            ]);
-        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
-            $this->Flash->error(__('Record not found.'));
-            return $this->redirect(['action' => 'index']);
-        }
-
-        $this->set([
-            'entity' => $entity,
-            'pageTitle' => 'View Code Block',
-            'pageSubTitle' => 'Read-only details',
-        ]);
-
-        // IGNORE
-        $this->set('codeBlocks_title', 'View');
-        $this->set('codeBlocks_subTitle', 'View one record with standard layout');
-        $this->set('codeBlocks_renderFiles', [
-            'Template' => APP . '../templates/Staff/CodeBlocks/view.php'
-        ]);
-        $this->set('codeBlocks_renderVar', [
-            'Controller Action' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'index')
-        ]);
-        // IGNORE-END
-    }
-
-    function downloadCsv(){
-        //$this->download();
-
-        // IGNORE
-        $this->set('codeBlocks_title', 'Download CSV File');
-        $this->set('codeBlocks_subTitle', 'Guidelines for Downloading CSV Files');
-//        $this->set('codeBlocks_renderFiles', [
-//            'Visual DOWNLOAD template (Staff access)' => APP . '../templates/Staff/CodeBlocks/download_csv.php'
-//        ]);
-
-
-        $this->set('codeBlocks_renderVar', [
-            'Controller DownloadCSV action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'download'),
-
-        ]);
-        // IGNORE-END
-
-
-
-
-
-
-
-
-
-    }//downloadCsv
-
-    function downloadPdf($download = false){
-
-
-        // IGNORE
-        $this->set('codeBlocks_title', 'Download PDF');
-        $this->set('codeBlocks_subTitle', 'Guidelines for Downloading PDF Files');
-        $this->set('codeBlocks_renderFiles', [
-            'Visual DOWNLOAD template (Staff access)' => APP . '../templates/Staff/CodeBlocks/download_pdf.php'
-        ]);
-
-
-        $this->set('codeBlocks_renderVar', [
-            'Controller DownloadPdf action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'downloadPdf'),
-            'Controller DownloadPdf action (NO prefix)' => SetupCase::extractFunction(\App\Controller\CodeBlocksController::class, 'pdf'),
-
-        ]);
-
-
-
-        // IGNORE-END
-        if($download) {
-            //dd('continue');
-
-                $id = 15;
-
-            $encrypted_order_id_url = Assets::encryptUrl($id);
-
-            $url = Router::url('/', true) . 'CodeBlocks/pdf/' . $id . DS . $encrypted_order_id_url . '?login=1';
-
-            if (isset($_GET['debug'])) {
-                dd($url);
-            }
-            $setupCase = new SetupCase;
-
-            $setupCase->createPdf(
-                $url,
-                'pdf-' . $id . '.pdf'
-            );
-        }else{
-            //dd('stop');
-        }
-
-    }
 
 
 

@@ -51,6 +51,8 @@ CREATE TABLE `audit_logs` (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE `email_queue_attachments` (`id` INT NOT NULL AUTO_INCREMENT , `email_queue_id` INT NOT NULL , `attachment` TEXT NOT NULL , `created` DATETIME NOT NULL , `modified` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = MyISAM;
+
 
 
 
