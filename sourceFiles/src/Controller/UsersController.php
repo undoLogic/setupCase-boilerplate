@@ -134,8 +134,7 @@ class UsersController extends AppController
             $userData->group_id = 1;
 
             if ($this->Users->save($userData)) {
-                $userData = json_encode($userData->toArray());
-                $this->writeToLog('debug', "user added.$userData");
+
                 //  writeToLog log created in appController
 
                 // pr($userData); exit;
@@ -173,7 +172,7 @@ class UsersController extends AppController
 
     public function add()
     {
-        //die('hi');
+
         //dd($this->request);
 
         $this->request->allowMethod(['get', 'post']);
@@ -181,7 +180,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
 
 
-            $this->writeToLog('debug', 'Signup', true);
+
 
             $emailSubmitted = $this->request->getData()['email'];
             $passSubmitted = $this->request->getData()['password'];
@@ -197,7 +196,6 @@ class UsersController extends AppController
             );
 
             if ($didCreateUser) {
-                $this->writeToLog('debug', 'User created user_id: ' . $didCreateUser['id'], false);
                 $this->Flash->success('User has been CREATED');
 
                 $session = $this->request->getSession();
@@ -212,16 +210,17 @@ class UsersController extends AppController
 
     }//login
 
-    //        $pass = '1234';
-//        $passObj = new DefaultPasswordHasher;
-//        $hash = ($passObj)->hash($pass);
-//        $this->writeToLog('debug', 'pass is: ' . $pass, true);
-//        $this->writeToLog('debug', 'hash is: ' . $hash, true);
-//        $isCorrect = $passObj->check($pass, $hash);
-//        $this->writeToLog('debug', 'is correct: '.$isCorrect, true);
+     //       $pass = '1234';
+       // $passObj = new DefaultPasswordHasher;
+       // $hash = ($passObj)->hash($pass);
+       // $this->writeToLog('debug', 'pass is: ' . $pass, true);
+      //  $this->writeToLog('debug', 'hash is: ' . $hash, true);
+       // $isCorrect = $passObj->check($pass, $hash);
+        //$this->writeToLog('debug', 'is correct: '.$isCorrect, true);
 
     public function login()
     {
+
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 
@@ -229,10 +228,7 @@ class UsersController extends AppController
         if ($result && $result->isValid()) {
             // redirect to /articles after login success
             $this->Flash->success('You have been logged in');
-            $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'SetupPages',
-                'action' => 'home',
-            ]);
+            $redirect = $this->request->getQuery('redirect', '/');
             return $this->redirect($redirect);
         }
         // display error if user submitted and authentication failed
