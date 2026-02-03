@@ -46,3 +46,36 @@ http://localhost:5173/
 ```
 
 
+
+
+## Requirements
+
+This requires
+- Node 20+
+
+On Ubuntu the node is usually old so you must upgrade first
+
+```bash
+# ensure you do Not have an older Node version installed 
+node -v
+# should say: command not found
+```
+
+If there IS an older version installed remove first
+```bash
+sudo apt remove -y nodejs
+sudo apt autoremove -y
+```
+
+Install the latest version
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+Install latest dependancies
+```bash
+cd mobile-app
+rm -rf node_modules package-lock.json
+npm install
+```
