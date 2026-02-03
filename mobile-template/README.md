@@ -40,4 +40,9 @@ npm install
 npm run dev
 ```
 
+7. Open in your browser to test
+```php
+http://localhost:5173/
+```
+
 
