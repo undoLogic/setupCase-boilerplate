@@ -26,7 +26,7 @@ http://localhost:5173/
 4. Copy our template into our project
 ```bash
 # From root of boilerplate
-cd mobile=template
+cd mobile-template
 ./0-copy-to-app.sh
 ```
 
