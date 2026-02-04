@@ -282,42 +282,64 @@ class SetupCase {
     }
 
 
-    public static function sendEmail($to, $template, $from, $subject, $vars, $cc = false, $attachments = [])
-    {
-        $mailer = new Mailer('default');
+    public static function sendEmail(
+        $to,
+        $template,
+        $from,
+        $subject,
+        array $vars,
+        $cc = false,
+        array $attachments = []
+    ): bool {
+        try {
+            $mailer = new Mailer('default');
+            $env = Configure::read('App.current_env_profile');
 
-        $env = Configure::read('App.current_env_profile');
+            if ($env === 'LIVE') {
 
-        if ($env === 'LIVE') {
+                die('LIVE EMAIL SENDING !!!! (remove when ready to go live)');
 
-            dd('Will send LIVE email here');
-            $mailer->setTo($to);
-            if ($cc) { $mailer->setCc($cc);}
-            $mailer->setSubject($subject);
-            $mailer->setFrom([$from => 'SetupCase']);
+                $mailer->setTo($to);
 
-        } else {
+                if ($cc) {
+                    $mailer->setCc($cc);
+                }
 
+                $mailer->setFrom([$from => 'SetupCase']);
+            } else {
+                $mailer->setTo('testing@undoweb.com');
+                $mailer->setFrom([$from => 'TESTING Emails']);
+            }
 
-            //dd('testing sending email');
+            $mailer
+                ->setSubject($subject)
+                ->setEmailFormat('both')
+                ->setViewVars($vars)
+                ->viewBuilder()
+                ->setTemplate($template)
+                ->setLayout('default');
 
-            $mailer->setSubject($subject);
-            $mailer->setFrom([$from => 'TESTING Emails']);
+            // Attachments (safe)
+            if (!empty($attachments)) {
+                $mailer->setAttachments($attachments);
+            }
 
-            $mailer->setTo('testing@undoweb.com'); //ADD your testing email here
+            $mailer->send();
 
+            // If we reach here, SMTP accepted the message
+            return true;
+
+        } catch (\Throwable $e) {
+
+            // Log, but do NOT block caller
+            Log::error('Email send failed', [
+                'to' => $to,
+                'subject' => $subject,
+                'error' => $e->getMessage(),
+            ]);
+
+            return false;
         }
-
-        $mailer->setEmailFormat('html')
-            ->setViewVars($vars)
-            ->viewBuilder()
-            ->setTemplate($template)
-            ->setLayout('default');
-
-        $didSend = $mailer->send();
-
-        return $didSend;
-
     }
 
 

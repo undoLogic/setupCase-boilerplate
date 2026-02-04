@@ -207,7 +207,7 @@ class EmailQueuesController extends AppController
             'message_html' => $entity['message_html'],
             'message_text' => $entity['message_text'],
         ];
-        SetupCase::sendEmail(
+        $didSend = SetupCase::sendEmail(
             $entity->email_to,
             'email_queues',
             $entity->email_from,
@@ -217,7 +217,13 @@ class EmailQueuesController extends AppController
             $attachments = []
         );
 
-        die('Email Sent !');
+        if ($didSend) {
+            die('SUCCESS: Email Sent !');
+        } else {
+            die('ERROR: Email NOT Sent');
+        }
+
+
 
     }
 
