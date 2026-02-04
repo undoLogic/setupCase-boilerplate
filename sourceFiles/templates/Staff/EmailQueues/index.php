@@ -77,7 +77,6 @@
                 <th>User ID</th>
                 <th>Email To</th>
                 <th>Email From</th>
-                <th>Letter</th>
                 <th>Lang</th>
                 <th>Sent</th>
                 <th>Response</th>
@@ -86,7 +85,7 @@
             <tbody>
 
             <?php foreach ($rows as $each): ?>
-                <tr>
+                <tr <?php if ($each['sent']): ?>class="table-success"<?php endif; ?>>
                     <td class="text-nowrap">
                         <?= $this->Html->link('Send', ['action' => 'send', $each['id']], ['class' => 'btn btn-sm btn-success']) ?>
                         <?= $this->Html->link('View', ['action' => 'view', $each['id']], ['class' => 'btn btn-sm btn-primary']) ?>
@@ -101,7 +100,6 @@
                     <td><?= h($each['user_id']) ?></td>
                     <td><?= h($each['email_to']) ?></td>
                     <td><?= h($each['email_from']) ?></td>
-                    <td><?= h($each['letter']) ?></td>
                     <td><?= h($each['lang']) ?></td>
                     <td><?= $each['sent'] ? 'Yes' : 'No' ?></td>
                     <td><?= h($each['response']) ?></td>

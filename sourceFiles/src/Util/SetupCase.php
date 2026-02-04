@@ -304,7 +304,6 @@ class SetupCase {
                 if ($cc) {
                     $mailer->setCc($cc);
                 }
-
                 $mailer->setFrom([$from => 'SetupCase']);
             } else {
                 $mailer->setTo('testing@undoweb.com');

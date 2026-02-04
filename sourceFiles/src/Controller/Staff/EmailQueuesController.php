@@ -128,7 +128,6 @@ class EmailQueuesController extends AppController
         $this->set('codeBlocks_title', 'Email Add to Queue');
 
 
-
         $view = new View();
         $view->set([
             'user_id' => $user_id,
@@ -192,7 +191,8 @@ class EmailQueuesController extends AppController
 
     }
 
-    function send($id) {
+    function send($id)
+    {
 
         try {
             $entity = $this->EmailQueues->get($id, [
@@ -202,28 +202,38 @@ class EmailQueuesController extends AppController
             $this->Flash->error(__('Record not found.'));
             return $this->redirect(['action' => 'index']);
         }
-        $vars = [
-            'id' => $id,
-            'message_html' => $entity['message_html'],
-            'message_text' => $entity['message_text'],
-        ];
-        $didSend = SetupCase::sendEmail(
-            $entity->email_to,
-            'email_queues',
-            $entity->email_from,
-            $entity->message_subject,
-            $vars,
-            $cc = false,
-            $attachments = []
-        );
 
-        if ($didSend) {
-            die('SUCCESS: Email Sent !');
+        if ($entity->sent) {
+            $this->Flash->error('Email Already Sent');
+            return $this->redirect($this->referer());
         } else {
-            die('ERROR: Email NOT Sent');
+
+            $vars = [
+                'id' => $id,
+                'message_html' => $entity['message_html'],
+                'message_text' => $entity['message_text'],
+            ];
+            $didSend = SetupCase::sendEmail(
+                $entity->email_to,
+                'email_queues',
+                $entity->email_from,
+                $entity->message_subject,
+                $vars,
+                $cc = false,
+                $attachments = []
+            );
+
+            if ($didSend) {
+
+                $entity->sent = 1;
+                $this->EmailQueues->save($entity);
+                die('SUCCESS: Email Sent !');
+
+            } else {
+                die('ERROR: Email NOT Sent');
+            }
+
         }
-
-
 
     }
 
