@@ -135,8 +135,12 @@ class EmailQueuesController extends AppController
             'order_id' => $order_id
         ]);
 
-        $message_html = $html = $view->element('emails/order_confirmation');
-        $message_text = strip_tags($message_html);
+        $raw_html = $view->element('emails/order_confirmation');
+        $styled_html = SetupCase::styleTables($raw_html);
+        $text_html = strip_tags($raw_html);
+
+        $message_html = $styled_html;
+        $message_text = $text_html;
         $entity = $this->EmailQueues->newEmptyEntity();
         $entity->user_id = $user_id;
         $entity->order_id = $order_id;
@@ -198,8 +202,11 @@ class EmailQueuesController extends AppController
             $this->Flash->error(__('Record not found.'));
             return $this->redirect(['action' => 'index']);
         }
-
-        $vars = ['id' => $id];
+        $vars = [
+            'id' => $id,
+            'message_html' => $entity['message_html'],
+            'message_text' => $entity['message_text'],
+        ];
         SetupCase::sendEmail(
             $entity->email_to,
             'email_queues',
@@ -210,33 +217,7 @@ class EmailQueuesController extends AppController
             $attachments = []
         );
 
-
-        pr ($entity->message_html);
-        $mailer = new Mailer('default');
-
-        $message = $mailer->getMessage();
-
-        $message
-            ->setTo($entity->email_to)
-            ->setFrom($entity->email_from)
-            ->setSubject($entity->message_subject)
-            ->setEmailFormat('both')
-            ->setBodyHtml($entity->message_html)
-            ->setBodyText($entity->message_text);
-
-// 🔴 THIS IS THE MISSING LINE
-        $mailer->setMessage($message);
-
-        debug($message);
-
-        $mailer->send();
-
-
-
-        dd($mailer);
-
-        //SetupCase::sendEmail('support@undologic.com', 'database', $entity['email_from'], 'subject', $vars);
-        //sendEmail($to, $template, $from, $subject, $vars, $cc = false, $attachments = [])
+        die('Email Sent !');
 
     }
 

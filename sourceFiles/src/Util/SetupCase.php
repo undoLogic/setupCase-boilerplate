@@ -7,6 +7,8 @@ use Cake\Mailer\Mailer;
 use Cake\ORM\Table;
 use Cake\Datasource\FactoryLocator;
 use ReflectionMethod;
+use DOMDocument;
+use DOMXPath;
 
 class SetupCase {
 
@@ -295,12 +297,14 @@ class SetupCase {
             $mailer->setFrom([$from => 'SetupCase']);
 
         } else {
-            dd('testing sending email');
+
+
+            //dd('testing sending email');
 
             $mailer->setSubject($subject);
             $mailer->setFrom([$from => 'TESTING Emails']);
-            dd('Add your testing email here');
-            $mailer->setTo(''); //ADD your testing email here
+
+            $mailer->setTo('testing@undoweb.com'); //ADD your testing email here
 
         }
 
@@ -530,6 +534,59 @@ class SetupCase {
     }
 
 
+
+
+
+    public static function styleTables(string $html): string
+    {
+        libxml_use_internal_errors(true);
+
+        $dom = new DOMDocument('1.0', 'UTF-8');
+
+        // Load HTML safely
+        $dom->loadHTML(
+            '<?xml encoding="UTF-8">' . $html,
+            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+        );
+
+        $xpath = new DOMXPath($dom);
+
+        $borderColor = '#d0d0d0';
+        $headerBg    = '#f4f4f4';
+        $textColor  = '#333333';
+
+        // Tables
+        foreach ($xpath->query('//table') as $table) {
+            self::appendStyle($table, 'border-collapse:collapse;width:100%;');
+        }
+
+        // Headers
+        foreach ($xpath->query('//th') as $th) {
+            self::appendStyle(
+                $th,
+                "border:1px solid {$borderColor};padding:8px;background:{$headerBg};color:{$textColor};font-weight:bold;"
+            );
+        }
+
+        // Cells
+        foreach ($xpath->query('//td') as $td) {
+            self::appendStyle(
+                $td,
+                "border:1px solid {$borderColor};padding:8px;color:{$textColor};"
+            );
+        }
+
+        return $dom->saveHTML();
+    }
+
+    private static function appendStyle($node, string $style): void
+    {
+        $existing = $node->getAttribute('style');
+        $node->setAttribute(
+            'style',
+            rtrim($existing, ';') . ';' . $style
+        );
+    }
 
 
 
