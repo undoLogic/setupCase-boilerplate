@@ -1,10 +1,13 @@
 <template>
   <div class="app-shell">
-    <nav class="navbar navbar-light bg-light border-bottom">
+    <nav class="navbar navbar-light border-bottom app-navbar">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">Mobile App</span>
+    <span class="navbar-brand mb-0 h1">
+      SetupCase – Mobile App Template
+    </span>
       </div>
     </nav>
+
 
     <main class="container-fluid py-3">
       <router-view />
