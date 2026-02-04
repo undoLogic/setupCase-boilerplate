@@ -21,32 +21,22 @@ npm create vite@latest mobile-app -- --template vue-ts
 ```php
 http://localhost:5173/
 ```
-3. Exit out of the hello world (Ctrl+C)
+3. Exit out of the hello world (Q then Enter)
 
 4. Copy our template into our project
 ```bash
 # From root of boilerplate
-rsync -av mobile-template/. mobile-app/.
+cd mobile=template
+./0-copy-to-app.sh
 ```
 
-5. Update our packages and install required libraries
+5. Start up our test project
 ```bash
-cd mobile-app
-npm install
-```
-
-6. Start up our test project
-```bash
+cd ../mobile-app
 npm run dev
 ```
 
-7. Open in your browser to test
-```php
-http://localhost:5173/
-```
-
-
-
+6. Open in your browser to test using the link provided
 
 ## Requirements
 
