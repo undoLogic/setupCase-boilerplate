@@ -91,6 +91,14 @@
         }
 
 
+        .navbar-nav a {
+            color: white;
+            padding-top: 0px;
+        }
+        .navbar-nav li {
+            margin-right: 10px;
+        }
+
 
 
     </style>

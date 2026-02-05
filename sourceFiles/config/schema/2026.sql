@@ -59,9 +59,8 @@ CREATE TABLE `email_queue_attachments` (`id` INT NOT NULL AUTO_INCREMENT , `emai
 
 ALTER TABLE `email_queues` ADD `sent_date` DATETIME NOT NULL AFTER `sent`;
 
-ALTER TABLE `email_queues` ADD `message_subject` VARCHAR(1000) NOT NULL AFTER `user_id`;
-
-
-
+ALTER TABLE `email_queues` ADD `message_subject` VARCHAR(255) NOT NULL AFTER `user_id`;
 
 ALTER TABLE `email_queues` DROP `letter`;
+
+

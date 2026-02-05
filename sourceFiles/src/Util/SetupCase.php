@@ -578,12 +578,12 @@ class SetupCase {
 
         // Tables
         foreach ($xpath->query('//table') as $table) {
-            self::appendStyle($table, 'border-collapse:collapse;width:100%;');
+            self::styleTables_appendStyle($table, 'border-collapse:collapse;width:100%;');
         }
 
         // Headers
         foreach ($xpath->query('//th') as $th) {
-            self::appendStyle(
+            self::styleTables_appendStyle(
                 $th,
                 "border:1px solid {$borderColor};padding:8px;background:{$headerBg};color:{$textColor};font-weight:bold;"
             );
@@ -591,7 +591,7 @@ class SetupCase {
 
         // Cells
         foreach ($xpath->query('//td') as $td) {
-            self::appendStyle(
+            self::styleTables_appendStyle(
                 $td,
                 "border:1px solid {$borderColor};padding:8px;color:{$textColor};"
             );
@@ -600,7 +600,7 @@ class SetupCase {
         return $dom->saveHTML();
     }
 
-    private static function appendStyle($node, string $style): void
+    private static function styleTables_appendStyle($node, string $style): void
     {
         $existing = $node->getAttribute('style');
         $node->setAttribute(
