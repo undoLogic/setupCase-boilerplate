@@ -2,6 +2,14 @@
 
 
 
+
+## Python
+**/.venv
+**/__pycache__
+**/dist
+
+
+
 #################################################
 /sourceFiles/logs/debug.log
 /sourceFiles/tmp/cache/models/myapp*
