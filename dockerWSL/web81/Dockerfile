@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y \
         git \
         imagemagick \
         libmagickwand-dev \
+        tree \
         \
         # ---- Python support (OPTIONAL: used by localApp template) ----
         python3 \
