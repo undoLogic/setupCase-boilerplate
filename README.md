@@ -23,6 +23,26 @@ Small reusable utilities
 Non-business-specific components
 
 
+## Codex Support
+If you install Codex in the WSL container then when you start up each docker container
+you will be able to share the existing login
+- This allows to have multiple projects running on the same server without having to configure Codex on each project / docker container
+
+install codex
+```
+npm install -g @openai/codex   # install Codex globally
+codex login                    # login with ChatGPT (device or browser)
+```
+Now ~/.codex contains the keys, if you want you can remove Codex for security and use only Codex within each container
+```
+npm uninstall -g @openai/codex
+```
+
+
+
+
+
+
 ###  setupCase-boilerPlate Version 4
 SetupCase is an open-source development foundation used to rapidly create structured, maintainable business software.
 It provides a standardized base system, tooling, and workflows that act as building blocks for initializing and scaling CakePHP-based projects in a consistent, repeatable way.
