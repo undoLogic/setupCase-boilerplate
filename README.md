@@ -1,4 +1,28 @@
 # SetupCase
+
+SetupCase is opinionated. Not all feature requests will be accepted. The project roadmap is maintained by undoLogic.
+
+# Open-Source CORE
+Framework Enhancements
+CakePHP structure patterns
+Controller conventions
+View conventions
+Template layout standards
+CodeBlocks (if generic)
+Reusable UI helpers
+Generic CRUD scaffolding
+Generic Auth integration (not multi-tenant advanced logic)
+Generic utilities
+
+## This includes
+Directory conventions
+Template extraction patterns
+Helper naming patterns
+Class structure philosophy
+Small reusable utilities
+Non-business-specific components
+
+
 ###  setupCase-boilerPlate Version 4
 SetupCase is an open-source development foundation used to rapidly create structured, maintainable business software.
 It provides a standardized base system, tooling, and workflows that act as building blocks for initializing and scaling CakePHP-based projects in a consistent, repeatable way.
