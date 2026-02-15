@@ -1,13 +1,13 @@
 {
   "environments": {
     "dev": {
-      "URL": "",
-      "USER": "",
-      "GIT_ADDRESS": "",
+      "URL": "codeblocks.undoweb.com",
+      "USER": "undoweb",
+      "GIT_ADDRESS": "github.com/undoLogic/setupCase-boilerplate.git",
       "USE_PAT": true,
-      "ABSOLUTE_PATH": "",
+      "ABSOLUTE_PATH": "/home/undoweb/www/codeblocks",
       "COPY_SRC_TO_ROOT": true,
-      "POST_COMMANDS": ""
+      "POST_COMMANDS": "composer install"
     },
     "dev2": {
       "URL": "",
@@ -16,7 +16,7 @@
       "USE_PAT": true,
       "ABSOLUTE_PATH": "",
       "COPY_SRC_TO_ROOT": true,
-      "POST_COMMANDS": ""
+      "POST_COMMANDS": "ls"
     },
     "pending": {
       "URL": "",
