@@ -19,7 +19,7 @@ services:
     links:
       - db
   db:
-    image: "mysql:5.6.39"
+    image: "mysql:5.7"
     command: --max_allowed_packet=932505856 --innodb-log-file-size=150663296     # Set max_allowed_packet to 256M (or any other value)
     volumes:
       - ./sql/:/docker-entrypoint-initdb.d

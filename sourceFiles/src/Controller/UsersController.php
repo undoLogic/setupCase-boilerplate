@@ -52,7 +52,7 @@ class UsersController extends AppController
 //    function testing()
 //    {
 //
-//        $email = 'sachalewis@undologic.com';
+//        $email = 'support@undologic.com';
 //        $pass = '1234';
 //
 //        $passObj = new DefaultPasswordHasher;
