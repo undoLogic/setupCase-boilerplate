@@ -28,5 +28,7 @@ cp "$SOURCE_HOOK" "$TARGET_HOOK"
 chmod +x "$TARGET_HOOK"
 
 echo "Installed pre-commit hook to: $TARGET_HOOK"
-echo "This hook blocks commits when public functions exceed the limit."
+echo "This hook blocks commits when size rules are violated."
+echo "- public functions over limit"
+echo "- base templates over limit (elements are exempt)"
 echo "You can still skip hooks with: git commit --no-verify"

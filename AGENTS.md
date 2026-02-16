@@ -33,6 +33,17 @@ Repository-specific instructions for coding, reviews, and collaboration.
 - For controller/model changes, run available project tests when possible.
 - If tests cannot be run, clearly state what was verified manually.
 
+## Pre-Commit Hook Policy
+- Pre-commit blocks when `public` PHP functions exceed one screen (default limit: `45` lines).
+- Methods without explicit visibility are treated as `public`.
+- `private` and `protected` function lengths are not limited by this hook.
+- Pre-commit blocks when base templates under `sourceFiles/templates/` exceed one screen (default limit: `45` lines).
+- Template elements under `sourceFiles/templates/element/` and `sourceFiles/templates/elements/` are exempt from template length limits.
+- Override function limit per commit with `PRECOMMIT_PUBLIC_FUNCTION_MAX_LINES=<n>`.
+- Override template limit per commit with `PRECOMMIT_TEMPLATE_MAX_LINES=<n>`.
+- Bypass this hook logic for one commit with `SOFT_PRECOMMIT_DISABLE=1`.
+- Skip all hooks for one commit with `git commit --no-verify`.
+
 ## Git and Change Hygiene
 - Never revert user changes that are unrelated to the task.
 - Keep diffs minimal.

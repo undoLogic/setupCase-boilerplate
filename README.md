@@ -979,7 +979,7 @@ public function dump($code = false): ?Response
     }
 ```
 ## Pre-Commit Hook (Portable)
-Use this control plane repo to install a pre-commit function length check.
+Use this control plane repo to install pre-commit size checks.
 
 Files:
 - `git-hooks/pre-commit`
@@ -997,4 +997,6 @@ Install into another project directory:
 ```
 
 This check blocks commit when `public` functions exceed the limit.
+This check also blocks commit when base templates in `sourceFiles/templates/` exceed the limit.
+Template files inside `sourceFiles/templates/element/` are exempt.
 Override when needed with `git commit --no-verify` or `SOFT_PRECOMMIT_DISABLE=1`.

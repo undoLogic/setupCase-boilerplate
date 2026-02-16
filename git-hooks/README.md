@@ -14,16 +14,19 @@ Install into another project directory:
 
 What it does:
 - Blocks commit when `public` PHP functions are longer than the nudge limit.
-- Does not enforce any limit for `private` PHP functions.
-- Still overrideable when needed.
+- Treats methods with no visibility keyword as `public` (PHP default).
+- Does not enforce any limit for `private` or `protected` PHP functions.
+- Blocks commit when base templates under `sourceFiles/templates/` exceed the template limit.
+- Does not enforce template limits for `sourceFiles/templates/element/` or `sourceFiles/templates/elements/`.
 
 Defaults:
-- `public`: 45 lines
+- `public` functions: 45 lines
+- base templates: 45 lines
 
 Optional env overrides:
 
 ```bash
-PRECOMMIT_PUBLIC_FUNCTION_MAX_LINES=40 git commit -m "..."
+PRECOMMIT_PUBLIC_FUNCTION_MAX_LINES=40 PRECOMMIT_TEMPLATE_MAX_LINES=50 git commit -m "..."
 ```
 
 Disable for one commit:
