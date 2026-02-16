@@ -18,6 +18,13 @@ class UsersTable extends Table
             'foreignKey' => 'group_id'
         ]);
 
+        // belongsToMany
+        $this->belongsToMany('Locations', [
+            'joinTable' => 'locations_users',
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'location_id', //join table column - product_id
+        ]);
+
     }
 
     //TO USE BEFORE $this->save(

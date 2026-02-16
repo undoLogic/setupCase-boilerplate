@@ -6,8 +6,8 @@ use Cake\Core\Configure;
 //@todo Change your domains for your project here
 $liveDomains = [
     'test.devServer.com' => 'DEV',
-    'pending.domain.com' => 'PENDING',
-    'www.domain.com' => 'LIVE',
+    'codeblocks.undoweb.com' => 'UNDOWEB',
+    'domain.com' => 'LIVE',
 ];
 
 $current_domain = $_SERVER['SERVER_NAME'];
@@ -18,15 +18,13 @@ if (isset($liveDomains[ $current_domain ])) {
 }
 
 //@todo
+//dd($current_env_profile);
 switch($current_env_profile) {
     case 'DEV':
         Configure::load('app_DEV', 'default');
         break;
-    case 'PENDING':
-        Configure::load('app_pending', 'default');
-        break;
-    case 'LIVE':
-        Configure::load('app_LIVE', 'default');
+    case 'UNDOWEB':
+        Configure::load('app_undoweb', 'default');
         break;
     default:
         //Unknown so we will use our dev env

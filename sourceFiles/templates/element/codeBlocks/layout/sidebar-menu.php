@@ -1,54 +1,61 @@
 <nav class="sidebar pt-3">
     <ul class="nav flex-column">
 
-        <li class="nav-item">
-            <a class="nav-link active" href="<?= $webroot; ?>CodeBlocks/">
-                Dashboard
-            </a>
-        </li>
+        <?php foreach ($menu as $menuKey => $eachMenu): ?>
 
-        <li class="nav-item">
-            <a class="nav-link d-flex justify-content-between align-items-center"
-               data-bs-toggle="collapse"
-               href="#blocksMenu"
-               role="button">
-                Blocks
-                <span class="bi bi-chevron-down small"></span>
-            </a>
+            <li class="nav-item <?= !empty($eachMenu['active']) ? 'active' : '' ?>">
 
-            <div class="collapse ps-3" id="blocksMenu">
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/responsiveTable">Responsive Table</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/uploadFile">Upload File</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/readMore">Read More Expand</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>CodeBlocks/sticky">Sticky</a></li>
-                </ul>
-            </div>
-        </li>
+                <?php if (empty($eachMenu['children'])): ?>
 
+                    <?= $this->Html->link(
+                        $eachMenu['name'],
+                        $eachMenu['link'],
+                        [
+                            'class' => 'nav-link ' . (!empty($eachMenu['active']) ? 'active' : '')
+                        ]
+                    ); ?>
 
-        <li class="nav-item">
-            <a class="nav-link d-flex justify-content-between align-items-center"
-               data-bs-toggle="collapse"
-               href="#modulesMenu"
-               role="button"
-               aria-expanded="false"
-               aria-controls="modulesMenu">
-                <span><i class="bi bi-box me-1"></i> Blocks with DB</span>
-                <i class="bi bi-chevron-down small"></i>
-            </a>
-            <div class="collapse ps-3" id="modulesMenu">
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>staff/CodeBlocks/index">Staff INDEX</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= $webroot; ?>staff/CodeBlocks/create">Staff CREATE</a></li>
-                </ul>
-            </div>
-        </li>
+                <?php else: ?>
 
+                    <a class="nav-link d-flex justify-content-between align-items-center <?= !empty($eachMenu['active']) ? 'active' : '' ?>"
+                       data-bs-toggle="collapse"
+                       href="#menu<?= h($menuKey); ?>"
+                       role="button"
+                       aria-expanded="<?= !empty($eachMenu['active']) ? 'true' : 'false' ?>">
+                        <?= h($eachMenu['name']); ?>
+                        <span class="bi bi-chevron-down small"></span>
+                    </a>
 
+                    <div class="collapse ps-3 <?= !empty($eachMenu['active']) ? 'show' : '' ?>"
+                         id="menu<?= h($menuKey); ?>">
+                        <ul class="nav flex-column">
 
+                            <?php foreach ($eachMenu['children'] as $eachSubMenu): ?>
+
+                                <li class="nav-item <?= !empty($eachSubMenu['active']) ? 'active' : '' ?>">
+                                    <?= $this->Html->link(
+                                        $eachSubMenu['name'],
+                                        $eachSubMenu['link'],
+                                        [
+                                            'class' => 'nav-link ' . (!empty($eachSubMenu['active']) ? 'active' : '')
+                                        ]
+                                    ); ?>
+                                </li>
+
+                            <?php endforeach; ?>
+
+                        </ul>
+                    </div>
+
+                <?php endif; ?>
+
+            </li>
+
+        <?php endforeach; ?>
 
     </ul>
+</nav>
+
 
     <hr class="my-3">
 

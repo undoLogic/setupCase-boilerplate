@@ -11,5 +11,9 @@
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
 
-
-<pre><code class="language-php language-html language-css"><?= $actionVar; ?></code></pre>
+<div class="readmore">
+    <div class="pr-2">
+        <pre><code class="language-php language-html language-css"><?= $actionVar; ?></code></pre>
+        <span class="readmore-link"></span>
+    </div>
+</div>

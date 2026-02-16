@@ -18,6 +18,26 @@
 <html>
 <head>
     <title><?= $this->fetch('title') ?></title>
+
+    <style type="text/css">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+    </style>
+
 </head>
 <body>
     <?= $this->fetch('content') ?>
