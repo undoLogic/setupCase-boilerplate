@@ -1000,3 +1000,16 @@ This check blocks commit when `public` functions exceed the limit.
 This check also blocks commit when base templates in `sourceFiles/templates/` exceed the limit.
 Template files inside `sourceFiles/templates/element/` are exempt.
 Override when needed with `git commit --no-verify` or `SOFT_PRECOMMIT_DISABLE=1`.
+
+## Web Init Scripts
+One-time web bootstrap scripts are grouped under `init-web/` so they can be removed after setup.
+
+- `init-web/1-Install-Cake.php`
+- `init-web/2-Install-CodeBlocks.php`
+- `init-web/2-install-CodeBlocks-MANUAL-STEPS.md`
+- `init-web/3-View-CodeBlocks.php`
+- `init-web/5-Create-New-Project.php`
+- `init-web/8-Save-CodeBlocks.php`
+
+`init-web/1-Install-Cake.php` now includes a guard:
+- If `sourceFiles/` already exists, install is skipped and no composer commands run.
