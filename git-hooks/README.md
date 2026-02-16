@@ -37,3 +37,9 @@ Or skip all hooks for one commit:
 ```bash
 git commit --no-verify -m "..."
 ```
+
+Self-test the hook after install:
+
+```bash
+./git-hooks/test-hook.sh
+```
