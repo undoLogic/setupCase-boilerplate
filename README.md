@@ -978,3 +978,23 @@ public function dump($code = false): ?Response
 
     }
 ```
+## Pre-Commit Hook (Portable)
+Use this control plane repo to install a pre-commit function length check.
+
+Files:
+- `git-hooks/pre-commit`
+- `git-hooks/9-Install-Soft-PreCommit-Hook.sh`
+- `git-hooks/README.md`
+
+Quick install in this project:
+```bash
+./git-hooks/9-Install-Soft-PreCommit-Hook.sh
+```
+
+Install into another project directory:
+```bash
+./git-hooks/9-Install-Soft-PreCommit-Hook.sh /path/to/other/project
+```
+
+This check blocks commit when `public` functions exceed the limit.
+Override when needed with `git commit --no-verify` or `SOFT_PRECOMMIT_DISABLE=1`.
