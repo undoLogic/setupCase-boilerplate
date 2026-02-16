@@ -69,9 +69,45 @@ class AppController extends Controller
         $controller = $this->request->getParam('controller');
         $action = $this->request->getParam('action');
 
+        $this->getMenu();
+
+        $matchesRoute = function (array $link) use ($prefix, $controller, $action): bool {
+
+            // PREFIX logic
+            if (array_key_exists('prefix', $link)) {
+                // Explicitly NO prefix (false or null)
+                if (($link['prefix'] === false || $link['prefix'] === null) && $prefix !== null) {
+                    return false;
+                }
+
+                // Explicit prefix required
+                if (is_string($link['prefix']) && $link['prefix'] !== $prefix) {
+                    return false;
+                }
+            }
+
+            // Controller / action
+            if (($link['controller'] ?? null) !== $controller) {
+                return false;
+            }
+
+            if (($link['action'] ?? null) !== $action) {
+                return false;
+            }
+
+            return true;
+        };
+
+
+
+       // dd($menu);
+    }
+
+    private function getMenu() {
+
         $menu = [
             ['name' => 'Dashboard',
-                 'link' => ['prefix' => false, 'controller' => 'CodeBlocks', 'action' => 'index']
+                'link' => ['prefix' => false, 'controller' => 'CodeBlocks', 'action' => 'index']
             ],
             [
                 'name' => 'Blocks',
@@ -245,35 +281,6 @@ class AppController extends Controller
 
 
 
-
-
-        $matchesRoute = function (array $link) use ($prefix, $controller, $action): bool {
-
-            // PREFIX logic
-            if (array_key_exists('prefix', $link)) {
-                // Explicitly NO prefix (false or null)
-                if (($link['prefix'] === false || $link['prefix'] === null) && $prefix !== null) {
-                    return false;
-                }
-
-                // Explicit prefix required
-                if (is_string($link['prefix']) && $link['prefix'] !== $prefix) {
-                    return false;
-                }
-            }
-
-            // Controller / action
-            if (($link['controller'] ?? null) !== $controller) {
-                return false;
-            }
-
-            if (($link['action'] ?? null) !== $action) {
-                return false;
-            }
-
-            return true;
-        };
-
         foreach ($menu as &$item) {
             $item['active'] = false;
 
@@ -297,15 +304,15 @@ class AppController extends Controller
         }
         unset($item);
 
-
-
-        //dd($menu);
-
-
-
         $this->set('menu', $menu);
+    }
 
-       // dd($menu);
+    public function newfunctionhere() {
+        //this is a test
+        /*
+
+         */
+        //this is too long
     }
     function setupCase() {
 
