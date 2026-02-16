@@ -19,6 +19,7 @@ $dirs = [
 
     //Models
     $rootDir . '/sourceFiles/src/Model/Table/CodeBlocksTable.php' => $rootDir . '/codeBlocks/cakePHP/4.x/src/Model/Table/CodeBlocksTable.php',
+    $rootDir . '/sourceFiles/src/Model/Behavior/.' => $rootDir . '/codeBlocks/cakePHP/4.x/src/Model/Behavior',
 
     //elements
     $rootDir . '/sourceFiles/templates/element/codeBlocks/.' => $rootDir . '/codeBlocks/cakePHP/4.x/templates/element/codeBlocks',
