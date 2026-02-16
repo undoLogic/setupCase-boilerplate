@@ -20,8 +20,8 @@ echo implode("<br/>", $install);
 
 echo "<br/>";
 
-include_once(__DIR__ . '/2-Install-CodeBlocks_layout.php');
+include_once(__DIR__ . '/9-Install-CodeBlocks_layout.php');
 
-include_once(__DIR__ . '/2-Install-CodeBlocks_routes.php');
+include_once(__DIR__ . '/9-Install-CodeBlocks_routes.php');
 
-include_once(__DIR__ . '/2-Install-CodeBlocks_bootstrap.php');
+include_once(__DIR__ . '/9-Install-CodeBlocks_bootstrap.php');
