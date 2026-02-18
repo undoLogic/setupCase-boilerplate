@@ -1,4 +1,48 @@
 # SetupCase
+
+SetupCase is opinionated. Not all feature requests will be accepted. The project roadmap is maintained by undoLogic.
+
+# Open-Source CORE
+Framework Enhancements
+CakePHP structure patterns
+Controller conventions
+View conventions
+Template layout standards
+CodeBlocks (if generic)
+Reusable UI helpers
+Generic CRUD scaffolding
+Generic Auth integration (not multi-tenant advanced logic)
+Generic utilities
+
+## This includes
+Directory conventions
+Template extraction patterns
+Helper naming patterns
+Class structure philosophy
+Small reusable utilities
+Non-business-specific components
+
+
+## Codex Support
+If you install Codex in the WSL container then when you start up each docker container
+you will be able to share the existing login
+- This allows to have multiple projects running on the same server without having to configure Codex on each project / docker container
+
+install codex
+```
+npm install -g @openai/codex   # install Codex globally
+codex login                    # login with ChatGPT (device or browser)
+```
+Now ~/.codex contains the keys, if you want you can remove Codex for security and use only Codex within each container
+```
+npm uninstall -g @openai/codex
+```
+
+
+
+
+
+
 ###  setupCase-boilerPlate Version 4
 SetupCase is an open-source development foundation used to rapidly create structured, maintainable business software.
 It provides a standardized base system, tooling, and workflows that act as building blocks for initializing and scaling CakePHP-based projects in a consistent, repeatable way.
@@ -934,3 +978,38 @@ public function dump($code = false): ?Response
 
     }
 ```
+## Pre-Commit Hook (Portable)
+Use this control plane repo to install pre-commit size checks.
+
+Files:
+- `git-hooks/pre-commit`
+- `git-hooks/9-Install-Soft-PreCommit-Hook.sh`
+- `git-hooks/README.md`
+
+Quick install in this project:
+```bash
+./git-hooks/9-Install-Soft-PreCommit-Hook.sh
+```
+
+Install into another project directory:
+```bash
+./git-hooks/9-Install-Soft-PreCommit-Hook.sh /path/to/other/project
+```
+
+This check blocks commit when `public` functions exceed the limit.
+This check also blocks commit when base templates in `sourceFiles/templates/` exceed the limit.
+Template files inside `sourceFiles/templates/element/` are exempt.
+Override when needed with `git commit --no-verify` or `SOFT_PRECOMMIT_DISABLE=1`.
+
+## Web Init Scripts
+One-time web bootstrap scripts are grouped under `init-web/` so they can be removed after setup.
+
+- `init-web/1-Install-Cake.php`
+- `init-web/2-Install-CodeBlocks.php`
+- `init-web/2-install-CodeBlocks-MANUAL-STEPS.md`
+- `init-web/3-View-CodeBlocks.php`
+- `init-web/5-Create-New-Project.php`
+- `init-web/8-Save-CodeBlocks.php`
+
+`init-web/1-Install-Cake.php` now includes a guard:
+- If `sourceFiles/` already exists, install is skipped and no composer commands run.

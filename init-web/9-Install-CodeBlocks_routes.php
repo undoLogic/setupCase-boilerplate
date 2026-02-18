@@ -1,6 +1,6 @@
 <?php
 
-$routesFile = __DIR__ . '/sourceFiles/config/routes.php';
+$routesFile = dirname(__DIR__) . '/sourceFiles/config/routes.php';
 
 $contents = file_get_contents($routesFile);
 

@@ -1,6 +1,6 @@
 <?php
 
-$CONFIG = 'sourceFiles/config/';
+$CONFIG = dirname(__DIR__) . '/sourceFiles/config/';
 $bootstrapFile = $CONFIG . 'bootstrap.php';
 
 if (!file_exists($bootstrapFile)) {

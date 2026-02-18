@@ -85,6 +85,31 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 # Configure Poetry to keep virtualenvs inside project folders
 RUN poetry config virtualenvs.in-project true
 
+# Set a safe temp dir and ensure PATH includes npm globals
+ENV TMPDIR=/tmp
+ENV PATH="/usr/local/bin:$PATH"
+
+# --------------------------------------------------
+# Node.js (Required for Codex CLI)
+# --------------------------------------------------
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && node -v \
+    && npm -v
+
+# --------------------------------------------------
+# Codex CLI
+# --------------------------------------------------
+RUN npm install -g @openai/codex
+
+RUN codex --version
+
+# Ensure www-data has a real home with writable shell config
+RUN mkdir -p /var/www \
+    && touch /var/www/.bashrc \
+    && touch /var/www/.profile \
+    && chown -R www-data:www-data /var/www
+
 # --------------------------------------------------
 # Runtime user / paths
 # --------------------------------------------------
