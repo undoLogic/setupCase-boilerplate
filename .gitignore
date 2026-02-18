@@ -1,9 +1,14 @@
 # CakePHP #
 
-####### REMOVE when starting new project #########
-/sourceFiles/
-/sourceFilesDelete/
-####### REMOVE-END #########
+
+
+
+## Python
+**/.venv
+**/__pycache__
+**/dist
+
+
 
 #################################################
 /sourceFiles/logs/debug.log

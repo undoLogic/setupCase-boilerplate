@@ -3,14 +3,20 @@ FROM undologic/setupcase-base
 ARG UID=1000
 ARG GID=1000
 
-# Ensure www-data matches host UID/GID
+# --------------------------------------------------
+# User / permissions (shared)
+# --------------------------------------------------
 RUN groupmod -g ${GID} www-data \
  && usermod -u ${UID} www-data
 
-# Enable Apache modules
+# --------------------------------------------------
+# Apache (CakePHP primary)
+# --------------------------------------------------
 RUN a2enmod rewrite ssl
 
-# System packages
+# --------------------------------------------------
+# System packages (shared across PHP, mobile, localApp)
+# --------------------------------------------------
 RUN apt-get update && apt-get install -y \
         dos2unix \
         zip \
@@ -27,10 +33,19 @@ RUN apt-get update && apt-get install -y \
         git \
         imagemagick \
         libmagickwand-dev \
+        tree \
+        \
+        # ---- Python support (OPTIONAL: used by localApp template) ----
+        python3 \
+        python3-venv \
+        python3-pip \
+        \
         --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-# PHP extensions
+# --------------------------------------------------
+# PHP extensions (CakePHP)
+# --------------------------------------------------
 RUN docker-php-ext-install pdo pdo_mysql curl sockets mysqli
 
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
@@ -42,15 +57,37 @@ RUN apt-get update \
  && docker-php-ext-install intl \
  && rm -rf /var/lib/apt/lists/*
 
-# ---- Composer (install as root, run as www-data) ----
+# --------------------------------------------------
+# Composer (PHP dependency management)
+# --------------------------------------------------
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php \
  && mv composer.phar /usr/local/bin/composer \
  && composer --version
 
-# Fix HOME for www-data
+# --------------------------------------------------
+# Prepare Poetry directories for www-data
+# Poetry REQUIRES this exact path to exist & be writable
+# --------------------------------------------------
 ENV HOME=/var/www
 
+RUN mkdir -p /var/www/.local/share/pypoetry \
+ && chown -R www-data:www-data /var/www/.local
+
+# --------------------------------------------------
+# Poetry (Python dependency management)
+# Installed into /var/www/.local/bin
+# --------------------------------------------------
+ENV PATH="/var/www/.local/bin:$PATH"
+
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+# Configure Poetry to keep virtualenvs inside project folders
+RUN poetry config virtualenvs.in-project true
+
+# --------------------------------------------------
+# Runtime user / paths
+# --------------------------------------------------
 WORKDIR /var/www/vhosts/website.com/www
 
 USER www-data
