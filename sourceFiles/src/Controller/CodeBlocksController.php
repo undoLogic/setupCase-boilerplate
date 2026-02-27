@@ -48,6 +48,36 @@ class CodeBlocksController extends AppController
 
     }
 
+
+    public function applicationFoundation()
+    {
+
+
+
+
+        // IGNORE
+        $this->set('codeBlocks_title', 'Application Foundation');
+        $this->set('codeBlocks_subTitle', 'The initial fully functional controller logic and working UI using that starts your new great application - including sessions, creating, editing and deleting database rows');
+        $this->set('codeBlocks_renderFiles', [
+            'Visual INDEX template (Staff access)' => APP . '../templates/Staff/CodeBlocks/index.php',
+            'Visual CREATE template (Staff access)' => APP . '../templates/Staff/CodeBlocks/index.php',
+            'Visual VIEW template (Staff access)' => APP . '../templates/Staff/CodeBlocks/view.php',
+            'Visual EDIT template (Manager access)' => APP . '../templates/Manager/CodeBlocks/edit.php',
+            'Visual DOWNLOAD CSV template (Staff access)' => APP . '../templates/Staff/CodeBlocks/download_csv.php'
+        ]);
+        $this->set('codeBlocks_renderVar', [
+            'Controller INDEX action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'index'),
+            'Controller CREATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'create'),
+            'Controller VIEW action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'view'),
+            'Controller DUPLICATE action (Staff access)' => SetupCase::extractFunction(\App\Controller\Staff\CodeBlocksController::class, 'duplicate'),
+            'Controller EDIT action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'edit'),
+            'Controller DELETE action (Manager access)' => SetupCase::extractFunction(\App\Controller\Manager\CodeBlocksController::class, 'delete')
+        ]);
+        // IGNORE-END
+
+
+    }//index
+
     public function index() {
         //Intro page
     }
