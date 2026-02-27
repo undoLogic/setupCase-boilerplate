@@ -13,14 +13,16 @@ Repository-specific instructions for coding, reviews, and collaboration.
 - Avoid unrelated refactors unless explicitly requested.
 - Prefer readable code over clever shortcuts.
 - Add comments only when logic is non-obvious.
-- Keep public functions short enough to fit on one screen.
+- Keep public functions short enough to fit on one screen (less then 35 lines).
 - If a public function gets long, split logic into private helper functions.
+- Name private helper functions similar to their related public function prepend public function name then underscore private function name).
 - For helper-to-public data flow, set class properties in private functions and read them in the public function.
 - Do not rely on returning values from private helper functions for this pattern.
-- Private functions may be longer than one screen when needed.
+- Private functions may be longer than one screen when needed (no limit).
 - Keep each template file short enough to fit on one screen.
-- If a template gets long, extract parts into elements (elements may be longer than one screen).
-- Name private helper functions similar to their related public function.
+- Always add the entire bootstrap structure to this template file
+- If a template gets long, extract parts into elements, but keep the bootstrap overview 
+- Elements may be longer than one screen (no limit).
 - Name template elements similar to the public function/action they support.
 
 ## File Editing Rules
