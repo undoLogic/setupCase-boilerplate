@@ -10,7 +10,7 @@
     ['CookieAuth'],
     'CHANGEMEWITHSECURE'
 ))
-->add(new AuthenticationMiddleware($this->getAuthenticationService()))
+->add(new AuthenticationMiddleware($this))
 ->add(new LangMiddleware())
 ->add(new RbacMiddleware())
 ->add(new AccessMiddleware())
@@ -76,7 +76,7 @@ if (strpos($contents, '->add(new EncryptedCookieMiddleware(') === false) {
                 ['CookieAuth'],
                 'CHANGEMEWITHSECURE'
             ))
-            ->add(new AuthenticationMiddleware($this->getAuthenticationService()))
+            ->add(new AuthenticationMiddleware($this))
             ->add(new LangMiddleware())
             ->add(new RbacMiddleware())
             ->add(new AccessMiddleware())
@@ -92,6 +92,18 @@ PHP;
     }
 
     $updated = true;
+}
+
+if (strpos($contents, '->add(new AuthenticationMiddleware($this->getAuthenticationService()))') !== false) {
+    $contents = str_replace(
+        '->add(new AuthenticationMiddleware($this->getAuthenticationService()))',
+        '->add(new AuthenticationMiddleware($this))',
+        $contents,
+        $count
+    );
+    if ($count > 0) {
+        $updated = true;
+    }
 }
 
 if (!$updated) {

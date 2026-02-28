@@ -1,52 +1,4 @@
 <?php
-//8.1.2. In the application.php page (sourceFiles/src/Application.php) add this function AFTER the "public function middleware(Middl....": NOTE: Make sure you import the required classes after you paste
-/*
-```php
-protected function getAuthenticationService() : AuthenticationService {
-  $authenticationService = new AuthenticationService([
-      'unauthenticatedRedirect' => Router::url('/login'),
-      'queryParam' => 'redirect',
-  ]);
-  $fields = [
-      'username' => 'email',
-      'password' => 'password',
-  ];
-
-  // Load identifiers, ensure we check email and password fields
-  $authenticationService->loadIdentifier('Authentication.Password', [
-      'fields' => $fields
-  ]);
-
-  // Load the authenticators, you want session first
-  $authenticationService->loadAuthenticator('Authentication.Session');
-
-  // Protect against Submit flooding
-  //  $authenticationService->loadAuthenticator(FormLoginAttemptsAuthenticator::class, [
-  //      'fields' => $fields,
-  //      'loginUrl' => Router::url('/login'),
-  //  ]);
-
-  //Normal without flooding prevention
-  $authenticationService->loadAuthenticator('Authentication.Form', [
-      'fields' => $fields,
-      'loginUrl' => Router::url('/login'),
-  ]);
-
-  // If the user is on the login page, check for a cookie as well.
-  $authenticationService->loadAuthenticator('Authentication.Cookie', [
-      'fields' => $fields,
-      'loginUrl' => '/login',
-      'cookie' => [
-        'name' => 'remember_me_cookie',
-        'expires' => strtotime('+30 days'), // Set the desired expiration time
-        'httponly' => true,
-      ],
-  ]);
-
-  return $authenticationService;
-}
-```
-*/
 
 $applicationFile = dirname(__DIR__) . '/sourceFiles/src/Application.php';
 
@@ -65,95 +17,128 @@ if ($contents === false) {
 $contents = str_replace(["\r\n", "\r"], "\n", $contents);
 $updated = false;
 
-if (strpos($contents, "use Authentication\\AuthenticationService;") === false) {
-    $anchor = "namespace App;\n\n";
-    $replacement = "namespace App;\n\nuse Authentication\\AuthenticationService;\n";
-    $contents = str_replace($anchor, $replacement, $contents, $count);
+$imports = [
+    "use Authentication\\AuthenticationService;",
+    "use Authentication\\AuthenticationServiceInterface;",
+    "use Authentication\\AuthenticationServiceProviderInterface;",
+    "use Psr\\Http\\Message\\ServerRequestInterface;",
+];
+
+if (preg_match('/namespace App;\n\n((?:use [^\n]+;\n)+)/', $contents, $matches, PREG_OFFSET_CAPTURE) !== 1) {
+    echo "ERROR - use import block not found";
+    exit;
+}
+
+$importInsertPos = $matches[1][1] + strlen($matches[1][0]);
+
+foreach ($imports as $import) {
+    if (strpos($contents, $import) !== false) {
+        continue;
+    }
+
+    $contents = substr($contents, 0, $importInsertPos) . $import . "\n" . substr($contents, $importInsertPos);
+    $importInsertPos += strlen($import) + 1;
+    $updated = true;
+}
+
+if (strpos($contents, 'implements AuthenticationServiceProviderInterface') === false) {
+    $contents = preg_replace(
+        '/class Application extends BaseApplication(\s*{)/',
+        'class Application extends BaseApplication implements AuthenticationServiceProviderInterface$1',
+        $contents,
+        1,
+        $count
+    );
     if ($count !== 1) {
-        echo "ERROR - namespace anchor for AuthenticationService import not found";
+        echo "ERROR - class declaration anchor not found";
         exit;
     }
     $updated = true;
 }
 
-if (strpos($contents, "use Cake\\Routing\\Router;") === false) {
-    $anchor = "use Cake\\Routing\\Middleware\\RoutingMiddleware;\n";
-    if (strpos($contents, $anchor) !== false) {
-        $contents = str_replace($anchor, $anchor . "use Cake\\Routing\\Router;\n", $contents, $count);
-        if ($count !== 1) {
-            echo "ERROR - RoutingMiddleware anchor for Router import not found";
-            exit;
-        }
-    } else {
-        $namespaceAnchor = "namespace App;\n\n";
-        $contents = str_replace($namespaceAnchor, $namespaceAnchor . "use Cake\\Routing\\Router;\n", $contents, $count);
-        if ($count !== 1) {
-            echo "ERROR - namespace anchor for Router import not found";
-            exit;
-        }
+if (strpos($contents, '->add(new AuthenticationMiddleware($this->getAuthenticationService()))') !== false) {
+    $contents = str_replace(
+        '->add(new AuthenticationMiddleware($this->getAuthenticationService()))',
+        '->add(new AuthenticationMiddleware($this))',
+        $contents,
+        $count
+    );
+    if ($count > 0) {
+        $updated = true;
     }
-    $updated = true;
 }
 
-if (strpos($contents, 'protected function getAuthenticationService() : AuthenticationService') === false) {
-    $insert = <<<'PHP'
+$newMethodBlock = <<<'PHP'
 
-    protected function getAuthenticationService() : AuthenticationService
+    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
+        $loginUrl = $this->getAuthenticationService_loginUrl($request);
         $authenticationService = new AuthenticationService([
-            'unauthenticatedRedirect' => Router::url('/login'),
+            'unauthenticatedRedirect' => $loginUrl,
             'queryParam' => 'redirect',
         ]);
         $fields = [
             'username' => 'email',
             'password' => 'password',
         ];
-
-        // Load identifiers, ensure we check email and password fields
         $authenticationService->loadIdentifier('Authentication.Password', [
             'fields' => $fields,
         ]);
-
-        // Load the authenticators, you want session first
         $authenticationService->loadAuthenticator('Authentication.Session');
-
-        // Protect against Submit flooding
-        // $authenticationService->loadAuthenticator(FormLoginAttemptsAuthenticator::class, [
-        //     'fields' => $fields,
-        //     'loginUrl' => Router::url('/login'),
-        // ]);
-
-        // Normal without flooding prevention
         $authenticationService->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            'loginUrl' => Router::url('/login'),
+            'loginUrl' => $loginUrl,
         ]);
-
-        // If the user is on the login page, check for a cookie as well.
         $authenticationService->loadAuthenticator('Authentication.Cookie', [
             'fields' => $fields,
-            'loginUrl' => '/login',
+            'loginUrl' => $loginUrl,
             'cookie' => [
                 'name' => 'remember_me_cookie',
                 'expires' => strtotime('+30 days'),
                 'httponly' => true,
             ],
         ]);
-
         return $authenticationService;
+    }
+
+    private function getAuthenticationService_loginUrl(ServerRequestInterface $request): string
+    {
+        $basePath = rtrim((string)$request->getAttribute('base'), '/');
+
+        return $basePath . '/login';
     }
 
 PHP;
 
-    $needle = "        return \$middlewareQueue;\n    }\n";
-    $contents = str_replace($needle, $needle . $insert, $contents, $count);
-
-    if ($count !== 1) {
-        echo "ERROR - middleware anchor not found";
-        exit;
+if (strpos($contents, 'public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface') === false) {
+    if (strpos($contents, 'protected function getAuthenticationService() : AuthenticationService') !== false) {
+        $contents = preg_replace(
+            '/\n\s*protected function getAuthenticationService\(\)\s*:\s*AuthenticationService\s*\{.*?\n\s*\}\n/s',
+            $newMethodBlock,
+            $contents,
+            1,
+            $count
+        );
+        if ($count !== 1) {
+            echo "ERROR - old getAuthenticationService method replacement failed";
+            exit;
+        }
+    } else {
+        $needle = "        return \$middlewareQueue;\n    }\n";
+        $contents = str_replace($needle, $needle . $newMethodBlock, $contents, $count);
+        if ($count !== 1) {
+            echo "ERROR - middleware anchor not found";
+            exit;
+        }
     }
-
     $updated = true;
+}
+
+if (strpos($contents, 'use Cake\\Routing\\Router;') !== false && strpos($contents, 'Router::') === false) {
+    $contents = str_replace("use Cake\\Routing\\Router;\n", '', $contents, $count);
+    if ($count > 0) {
+        $updated = true;
+    }
 }
 
 if (!$updated) {
