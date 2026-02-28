@@ -95,6 +95,9 @@ class LangMiddleware implements MiddlewareInterface
         $uri = $request->getUri();
         $fullPath = $uri->getPath();
         $basePath = rtrim((string)$request->getAttribute('base'), '/');
+        $params = $request->getAttribute('params') ?? [];
+        $urlLang = strtolower((string)($params['language'] ?? ''));
+        $prefix = strtolower((string)($params['prefix'] ?? ''));
 
         $pathAfterBase = $fullPath;
         if ($basePath !== '' && strpos($fullPath, $basePath . '/') === 0) {
@@ -103,12 +106,40 @@ class LangMiddleware implements MiddlewareInterface
             $pathAfterBase = '/';
         }
 
-        $segments = explode('/', ltrim($pathAfterBase, '/'));
+        $segments = explode('/', trim($pathAfterBase, '/'));
+        if (count($segments) === 1 && $segments[0] === '') {
+            $segments = [];
+        }
 
-        if ($segments[0] !== '') {
-            $segments[0] = $fallbackLanguage;
-            $pathAfterBase = '/' . implode('/', $segments);
-        } else {
+        // Root routes: /{language}/...
+        // Prefix routes: /{prefix}/{language}/...
+        $languageIndex = 0;
+        if ($prefix !== '' && isset($segments[0]) && strtolower($segments[0]) === $prefix) {
+            $languageIndex = 1;
+        }
+
+        $replaced = false;
+        if ($urlLang !== '') {
+            if (isset($segments[$languageIndex]) && strtolower((string)$segments[$languageIndex]) === $urlLang) {
+                $segments[$languageIndex] = $fallbackLanguage;
+                $replaced = true;
+            } else {
+                foreach ($segments as $index => $segment) {
+                    if (strtolower((string)$segment) === $urlLang) {
+                        $segments[$index] = $fallbackLanguage;
+                        $replaced = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!$replaced) {
+            array_splice($segments, $languageIndex, 0, [$fallbackLanguage]);
+        }
+
+        $pathAfterBase = '/' . implode('/', $segments);
+        if ($pathAfterBase === '/') {
             $pathAfterBase = '/' . $fallbackLanguage;
         }
 
