@@ -52,7 +52,7 @@ if (strpos($contents, "\$this->loadComponent('Authentication.Authentication');")
 
 $beforeFilterBlock = <<<'PHP'
 
-    public function beforeFilter(EventInterface $event): void
+    public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
         $this->setupCase();
@@ -62,7 +62,7 @@ PHP;
 
 $setupCaseBlock = <<<'PHP'
 
-    public function setupCase(): void
+    public function setupCase()
     {
         $setupCase = new SetupCase();
         $setupCase->requirePasswordExcept(['www.LIVESITE.com', 'LIVESITE.com'], $_SERVER, $this->request->getSession());
@@ -97,7 +97,7 @@ PHP;
 
 $setupMenuBlock = <<<'PHP'
 
-    private function setupMenu(): void
+    private function setupMenu()
     {
         //dd($this->request);
         $prefix = $this->request->getParam('prefix');

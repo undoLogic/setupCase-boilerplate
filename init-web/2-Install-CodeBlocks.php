@@ -28,7 +28,7 @@ include_once(__DIR__ . '/9-Install-CodeBlocks_bootstrap.php');
 
 include_once(__DIR__ . '/9-Install-CodeBlocks_application.php');
 
-include_once(__DIR__ . '/9-Install-CodeBlocks_application2.php');
+include_once(__DIR__ . '/9-Install-CodeBlocks_middleware.php');
 
 include_once(__DIR__ . '/9-Install-CodeBlocks_appController.php');
 
