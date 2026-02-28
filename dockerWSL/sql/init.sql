@@ -319,3 +319,9 @@ ALTER TABLE `locations_users`
 --
 ALTER TABLE `users`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+
+
+
+
+CREATE TABLE `LIVE_database`.`form_attempts` (`id` INT NOT NULL AUTO_INCREMENT , `date` DATETIME NOT NULL , `ip` VARCHAR(20) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;

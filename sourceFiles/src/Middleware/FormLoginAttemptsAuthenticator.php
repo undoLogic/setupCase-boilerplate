@@ -4,17 +4,9 @@ namespace App\Middleware;
 
 use Authentication\Authenticator\ResultInterface;
 use Authentication\Authenticator\Result;
-
 use Cake\Log\Log;
-use Cake\Routing\Router;
-
 use Authentication\Authenticator\FormAuthenticator;
-
-use Authentication\Identifier\IdentifierInterface;
-use Authentication\UrlChecker\UrlCheckerTrait;
-use Cake\Datasource\FactoryLocator;
 use Cake\ORM\Locator\LocatorAwareTrait;
-use Composer\Util\Url;
 use Psr\Http\Message\ServerRequestInterface;
 
 class FormLoginAttemptsAuthenticator extends FormAuthenticator
@@ -23,11 +15,6 @@ class FormLoginAttemptsAuthenticator extends FormAuthenticator
 
     public function authenticate(ServerRequestInterface $request): ResultInterface
     {
-        Log::debug('authe');
-
-        dd('hi');
-        $sameRequest = Router::getRequest();
-
         if (!$this->_checkUrl($request)) {
             return $this->_buildLoginUrlErrorResult($request);
         }
@@ -39,32 +26,38 @@ class FormLoginAttemptsAuthenticator extends FormAuthenticator
             ]);
         }
 
-        dd('before');
-        $ip = $sameRequest->clientIp();
-        dd($ip);
-        if ($this->fetchTable('FormAttempts')->tooManyFailures()) {
-            //dd('true');
-            die('too many');
-            //Log::debug('too many');
-            //PHP redirect to static page
-            header('Location: '.'/tooMany.php');
-        } else {
-            die('else');
+        $clientIp = $this->authenticate_getClientIp($request);
+        if ($this->fetchTable('FormAttempts')->tooManyFailures($clientIp)) {
+            Log::debug('Login blocked due to too many failures for IP: ' . $clientIp);
+
+            return new Result(null, Result::FAILURE_OTHER, [
+                'Too many failed login attempts. Please wait 5 minutes and try again.',
+            ]);
         }
 
-
         $user = $this->_identifier->identify($data);
-
-        dd($user);
         if (empty($user)) {
-
-
-            //add to db here
-            $this->fetchTable('FormAttempts')->saveFailure($sameRequest->clientIp());
+            $this->fetchTable('FormAttempts')->saveFailure($clientIp);
 
             return new Result(null, Result::FAILURE_IDENTITY_NOT_FOUND, $this->_identifier->getErrors());
         }
 
+        $this->fetchTable('FormAttempts')->clearFailures($clientIp);
+
         return new Result($user, Result::SUCCESS);
+    }
+
+    private function authenticate_getClientIp(ServerRequestInterface $request): string
+    {
+        if (method_exists($request, 'clientIp')) {
+            $clientIp = (string)$request->clientIp();
+            if ($clientIp !== '') {
+                return $clientIp;
+            }
+        }
+
+        $serverParams = $request->getServerParams();
+
+        return (string)($serverParams['REMOTE_ADDR'] ?? '0.0.0.0');
     }
 }
