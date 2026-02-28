@@ -101,6 +101,14 @@ $prefixBlocks = <<<'PHP'
         $routes->fallbacks(DashedRoute::class);
     });
 
+    $routes->prefix('manager', function (RouteBuilder $routes) {
+
+        //with the lang
+        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']);
+
+        $routes->fallbacks(DashedRoute::class);
+    });
+
     $routes->prefix('admin', function (RouteBuilder $routes) {
 
         //with the lang
