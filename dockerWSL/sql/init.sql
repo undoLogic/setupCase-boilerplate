@@ -194,8 +194,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_type`, `group_id`, `name`, `email`, `password`, `reset_token`, `created`, `modified`) VALUES
-    (10, 'ADMIN', 1, 'support', 'support@undologic.com', '$2y$10$.OWKXoJyMo3i3ppmzIYzn.BXuUbegWv8gk16jPvfJI79uJNfqXJSG', '', '2026-01-16 19:46:35', '2026-01-16 19:46:35');
+INSERT INTO `users` (`id`, `user_type`, `name`, `email`, `password`, `reset_token`, `created`, `modified`) VALUES
+    (10, 'ADMIN', 'support', 'support@undologic.com', '$2y$10$.OWKXoJyMo3i3ppmzIYzn.BXuUbegWv8gk16jPvfJI79uJNfqXJSG', '', '2026-01-16 19:46:35', '2026-01-16 19:46:35');
 
 --
 -- Indexes for dumped tables
