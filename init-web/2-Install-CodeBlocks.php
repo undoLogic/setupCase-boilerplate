@@ -25,3 +25,11 @@ include_once(__DIR__ . '/9-Install-CodeBlocks_layout.php');
 include_once(__DIR__ . '/9-Install-CodeBlocks_routes.php');
 
 include_once(__DIR__ . '/9-Install-CodeBlocks_bootstrap.php');
+
+include_once(__DIR__ . '/9-Install-CodeBlocks_application.php');
+
+include_once(__DIR__ . '/9-Install-CodeBlocks_application2.php');
+
+include_once(__DIR__ . '/9-Install-CodeBlocks_appController.php');
+
+include_once(__DIR__ . '/9-Install-CodeBlocks_helpers.php');
