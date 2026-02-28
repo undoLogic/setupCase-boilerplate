@@ -56,26 +56,6 @@ INSERT INTO `code_blocks` (`id`, `code_block_type_id`, `name`, `description`, `c
                                                                                                          (16, 1, 'name1234', 'description ', '2026-01-19 22:54:30', '2026-01-19 22:54:30'),
                                                                                                          (17, 2, 'name3333', 'description 3333', '2026-01-19 22:55:06', '2026-01-19 22:55:06');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `code_block_types`
---
-
-CREATE TABLE `code_block_types` (
-                                    `id` int(11) NOT NULL,
-                                    `name` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `code_block_types`
---
-
-INSERT INTO `code_block_types` (`id`, `name`) VALUES
-                                                  (1, 'Type1'),
-                                                  (2, 'Type2');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `email_queues`
