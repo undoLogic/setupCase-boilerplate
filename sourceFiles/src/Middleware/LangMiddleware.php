@@ -55,9 +55,12 @@ class LangMiddleware implements MiddlewareInterface
                 ->withHeader('Location', $this->process_buildRedirectUrl($request, $defaultLang));
         }
 
+        $missingUrlLang = true;
+
         if ($urlLang !== '') {
             $currentLang = $urlLang;
             $langFrom = 'url_lang';
+            $missingUrlLang = false;
         } elseif ($sessionLang !== '' && in_array($sessionLang, $allowedLanguages, true)) {
             $currentLang = $sessionLang;
             $langFrom = 'session_lang';
@@ -67,6 +70,13 @@ class LangMiddleware implements MiddlewareInterface
         } else {
             $currentLang = $defaultLang;
             $langFrom = 'default_lang';
+        }
+
+        //if address URL does NOT exist let's redireect to the URL with the latest language from any
+        if ($missingUrlLang) {
+            return (new Response())
+                ->withStatus(302)
+                ->withHeader('Location', $this->process_buildRedirectUrl($request, $currentLang));
         }
 
         $request = $request->withAttribute('lang', $currentLang);
