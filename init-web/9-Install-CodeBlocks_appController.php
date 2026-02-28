@@ -56,6 +56,7 @@ $beforeFilterBlock = <<<'PHP'
     {
         parent::beforeFilter($event);
         $this->setupCase();
+        $this->setupMenu();
     }
 
 PHP;
