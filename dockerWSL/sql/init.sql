@@ -210,11 +210,6 @@ ALTER TABLE `audit_logs`
 ALTER TABLE `code_blocks`
     ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `code_block_types`
---
-ALTER TABLE `code_block_types`
-    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `email_queues`
@@ -264,8 +259,8 @@ ALTER TABLE `audit_logs`
 ALTER TABLE `code_blocks`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
---
--- AUTO_INCREMENT for table `code_block_types`
+
+
 
 CREATE TABLE `code_block_types` (
                                     `id` int(11) NOT NULL,
@@ -283,9 +278,6 @@ ALTER TABLE `code_block_types`
     ADD PRIMARY KEY (`id`);
 ALTER TABLE `code_block_types`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
-
-
 
 
 
