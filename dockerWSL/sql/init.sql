@@ -182,14 +182,13 @@ INSERT INTO `locations_users` (`id`, `location_id`, `user_id`, `created`, `modif
 CREATE TABLE `users` (
                          `id` int(11) NOT NULL,
                          `user_type` varchar(19) NOT NULL,
-                         `group_id` int(11) NOT NULL,
-                         `name` varchar(99) NOT NULL,
-                         `email` varchar(99) NOT NULL,
-                         `password` varchar(1000) NOT NULL,
-                         `reset_token` varchar(1000) NOT NULL,
+                         `email` varchar(99) NULL,
+                         `password` varchar(1000) NULL,
+                         `reset_token` varchar(1000) NULL,
                          `created` datetime NOT NULL,
                          `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 --
 -- Dumping data for table `users`

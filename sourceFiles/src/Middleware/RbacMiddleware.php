@@ -36,6 +36,8 @@ class RbacMiddleware implements MiddlewareInterface
         //the user is logged in - add that access to the request
         if (!is_null($loggedUser)) {
             $user_type = $loggedUser->get('user_type');
+
+            //dd($user_type);
             $rbac = Configure::read('rbac');
             $request = $request->withAttribute('access', $rbac[$user_type]);
             //pr ($rbac);

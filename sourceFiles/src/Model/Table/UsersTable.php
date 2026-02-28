@@ -14,9 +14,9 @@ class UsersTable extends Table
         $this->setTable('users');
 
         // associations
-        $this->belongsTo('Groups', [
-            'foreignKey' => 'group_id'
-        ]);
+//        $this->belongsTo('Groups', [
+//            'foreignKey' => 'group_id'
+//        ]);
 
     }
 

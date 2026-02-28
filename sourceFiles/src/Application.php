@@ -143,19 +143,19 @@ class Application extends BaseApplication
 
 
         // Protect against Submit flooding
-         $authenticationService->loadAuthenticator(FormLoginAttemptsAuthenticator::class, [
-             'fields' => $fields,
-             'loginUrl' => [
-                 'controller' => 'Users',
-                 'action' => 'login',
-             ],
-         ]);
+//         $authenticationService->loadAuthenticator(FormLoginAttemptsAuthenticator::class, [
+//             'fields' => $fields,
+//             'loginUrl' => [
+//                 'controller' => 'Users',
+//                 'action' => 'login',
+//             ],
+//         ]);
 
         // Normal without flooding prevention
-//        $authenticationService->loadAuthenticator('Authentication.Form', [
-//            'fields' => $fields,
-//            'loginUrl' => Router::url('/login'),
-//        ]);
+        $authenticationService->loadAuthenticator('Authentication.Form', [
+            'fields' => $fields,
+            'loginUrl' => Router::url('/login'),
+        ]);
 
         // If the user is on the login page, check for a cookie as well.
         $authenticationService->loadAuthenticator('Authentication.Cookie', [

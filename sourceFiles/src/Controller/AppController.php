@@ -19,6 +19,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use App\Util\SetupCase;
 use Cake\Event\EventInterface;
+use Cake\Log\Log;
 use Cake\Routing\Router;
 
 /**
@@ -320,6 +321,19 @@ class AppController extends Controller
 
         //dd($menu);
         $this->set('menu', $menu);
+    }
+
+    /**
+     * Write message to a specific log configuration.
+     *
+     * @param string $whichLog   The log config name (as defined in app.php)
+     * @param string|array $message  Message or data to log
+     * @param bool $newLine      Add separator newline after message
+     * @return void
+     */
+    public function writeToLog(string $level, $message, bool $newLine = true): void
+    {
+        Log::write($level, $message);
     }
 
 }

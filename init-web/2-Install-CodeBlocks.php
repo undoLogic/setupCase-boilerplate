@@ -33,3 +33,5 @@ include_once(__DIR__ . '/9-Install-CodeBlocks_middleware.php');
 include_once(__DIR__ . '/9-Install-CodeBlocks_appController.php');
 
 include_once(__DIR__ . '/9-Install-CodeBlocks_helpers.php');
+
+include_once(__DIR__ . '/9-Install-CodeBlocks_app.php');

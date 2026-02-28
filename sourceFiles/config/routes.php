@@ -94,29 +94,29 @@ return function (RouteBuilder $routes): void {
         //$builder->connect('/fre/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
         $builder->fallbacks();
     });
-    $routes->prefix('staff', function (RouteBuilder $routes) {
 
-        //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']);
+    foreach (['Staff', 'Admin', 'Manager'] as $prefix) {
 
-        $routes->fallbacks(DashedRoute::class);
-    });
+        $routes->prefix($prefix, function (RouteBuilder $routes) {
 
-    $routes->prefix('manager', function (RouteBuilder $routes) {
+            $routes->setRouteClass(DashedRoute::class);
 
-        //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']);
+            $routes->connect(
+                '/:language/:controller',
+                ['action' => 'index']
+            )->setPatterns([
+                'language' => 'en|fr|es'
+            ]);
 
-        $routes->fallbacks(DashedRoute::class);
-    });
+            $routes->connect(
+                '/:language/:controller/:action/*'
+            )->setPatterns([
+                'language' => 'en|fr|es'
+            ]);
 
-    $routes->prefix('admin', function (RouteBuilder $routes) {
-
-        //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']);
-
-        $routes->fallbacks(DashedRoute::class);
-    });
+            $routes->fallbacks(DashedRoute::class);
+        });
+    }
 
 
     /*
