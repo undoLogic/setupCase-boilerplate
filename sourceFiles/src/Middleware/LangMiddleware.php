@@ -12,6 +12,15 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Lang middleware
+ *
+ * Add to App.php
+ * 'allowedLanguages' => [
+ * 'en',
+ * //'fr',
+ * //'es'
+ * ],
+ *
+ *
  */
 class LangMiddleware implements MiddlewareInterface
 {
@@ -29,7 +38,6 @@ class LangMiddleware implements MiddlewareInterface
         $sessionLang = strtolower((string)$request->getSession()->read('lang'));
         $browserLang = $this->process_extractBrowserLang($request->getHeaderLine('Accept-Language'));
 
-        //dd($urlLang);
         $allowedLanguages = Configure::read('allowedLanguages');
         if (!is_array($allowedLanguages) || empty($allowedLanguages)) {
             $allowedLanguages = ['en'];
@@ -41,14 +49,12 @@ class LangMiddleware implements MiddlewareInterface
 
         $defaultLang = in_array('en', $allowedLanguages, true) ? 'en' : $allowedLanguages[0];
 
-
         if ($urlLang !== '' && !in_array($urlLang, $allowedLanguages, true)) {
             return (new Response())
                 ->withStatus(302)
                 ->withHeader('Location', $this->process_buildRedirectUrl($request, $defaultLang));
         }
 
-        //dd($urlLang);
         if ($urlLang !== '') {
             $currentLang = $urlLang;
             $langFrom = 'url_lang';
@@ -63,13 +69,9 @@ class LangMiddleware implements MiddlewareInterface
             $langFrom = 'default_lang';
         }
 
-        //pr ($currentLang);
-        //dd($langFrom);
-
         $request = $request->withAttribute('lang', $currentLang);
         $request = $request->withAttribute('lang_from', $langFrom);
         $request->getSession()->write('lang', $currentLang);
-
 
         return $handler->handle($request);
     }
