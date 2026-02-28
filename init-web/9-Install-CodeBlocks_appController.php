@@ -20,6 +20,7 @@ $updated = false;
 $imports = [
     "use App\\Util\\SetupCase;",
     "use Cake\\Event\\EventInterface;",
+    "use Cake\\Log\\Log;",
     "use Cake\\Routing\\Router;",
 ];
 
@@ -330,6 +331,23 @@ $setupMenuBlock = <<<'PHP'
 
 PHP;
 
+$writeToLogBlock = <<<'PHP'
+
+    /**
+     * Write message to a specific log configuration.
+     *
+     * @param string $whichLog   The log config name (as defined in app.php)
+     * @param string|array $message  Message or data to log
+     * @param bool $newLine      Add separator newline after message
+     * @return void
+     */
+    public function writeToLog(string $level, $message, bool $newLine = true): void
+    {
+        Log::write($level, $message);
+    }
+
+PHP;
+
 $insertBeforeClassEnd = static function (string $input, string $block, int &$count): string {
     $count = 0;
     $pos = strrpos($input, "\n}");
@@ -364,6 +382,15 @@ if (strpos($contents, 'private function setupMenu()') === false) {
     $contents = $insertBeforeClassEnd($contents, $setupMenuBlock, $count);
     if ($count !== 1) {
         echo "ERROR - class closing brace not found for setupMenu";
+        exit;
+    }
+    $updated = true;
+}
+
+if (strpos($contents, 'public function writeToLog(') === false) {
+    $contents = $insertBeforeClassEnd($contents, $writeToLogBlock, $count);
+    if ($count !== 1) {
+        echo "ERROR - class closing brace not found for writeToLog";
         exit;
     }
     $updated = true;

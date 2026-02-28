@@ -48,82 +48,47 @@ if (strpos($contents, "\$builder->connect('/login', ['controller' => 'Users', 'a
     $updated = true;
 }
 
-$oldStaffBlock = <<<'PHP'
-    $routes->prefix('Staff', function (RouteBuilder $routes) {
-
-        $routes->connect(
-            '/:controller/:action/*',
-            []
-        );
-
-        $routes->fallbacks(DashedRoute::class);
-    });
-    
-PHP;
-
-$oldManagerBlock = <<<'PHP'
-    $routes->prefix('Manager', function (RouteBuilder $routes) {
-
-        $routes->connect(
-            '/:controller/:action/*',
-            []
-        );
-
-        $routes->fallbacks(DashedRoute::class);
-    });
-    
-    
-    
-
-PHP;
-
-if (strpos($contents, "prefix('Staff'") !== false) {
-    $contents = str_replace($oldStaffBlock, '', $contents, $count);
-    if ($count > 0) {
-        $updated = true;
-    }
+// Remove individual Staff/Admin/Manager prefix blocks if they exist.
+$pattern = <<<'REGEX'
+/\n\s*\$routes->prefix\('(Staff|staff|Admin|admin|Manager|manager)'\s*,\s*function\s*\(RouteBuilder \$routes\)\s*\{.*?\n\s*\}\);\n/s
+REGEX;
+$contents = preg_replace($pattern, "\n", $contents, -1, $removedCount);
+if ($removedCount > 0) {
+    $updated = true;
 }
 
-if (strpos($contents, "prefix('Manager'") !== false) {
-    $contents = str_replace($oldManagerBlock, '', $contents, $count);
-    if ($count > 0) {
-        $updated = true;
+$prefixBlock = <<<'PHP'
+
+    foreach (['Staff', 'Admin', 'Manager'] as $prefix) {
+
+        $routes->prefix($prefix, function (RouteBuilder $routes) {
+
+            $routes->setRouteClass(DashedRoute::class);
+
+            $routes->connect(
+                '/:language/:controller',
+                ['action' => 'index']
+            )->setPatterns([
+                'language' => 'en|fr|es'
+            ]);
+
+            $routes->connect(
+                '/:language/:controller/:action/*'
+            )->setPatterns([
+                'language' => 'en|fr|es'
+            ]);
+
+            $routes->fallbacks(DashedRoute::class);
+        });
     }
-}
-
-$prefixBlocks = <<<'PHP'
-
-    $routes->prefix('staff', function (RouteBuilder $routes) {
-
-        //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']);
-
-        $routes->fallbacks(DashedRoute::class);
-    });
-
-    $routes->prefix('manager', function (RouteBuilder $routes) {
-
-        //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']);
-
-        $routes->fallbacks(DashedRoute::class);
-    });
-
-    $routes->prefix('admin', function (RouteBuilder $routes) {
-
-        //with the lang
-        $routes->connect('/:language/:controller/:action/*', [])->setPatterns(['language' => 'en|fr|es']);
-
-        $routes->fallbacks(DashedRoute::class);
-    });
 
 PHP;
 
-if (strpos($contents, "prefix('staff'") === false || strpos($contents, "prefix('admin'") === false) {
+if (strpos($contents, "foreach (['Staff', 'Admin', 'Manager'] as \$prefix)") === false) {
     $needle = "\n\n    /*\n     * If you need a different set of middleware or none at all,\n";
-    $contents = str_replace($needle, $prefixBlocks . $needle, $contents, $count);
+    $contents = str_replace($needle, $prefixBlock . $needle, $contents, $count);
     if ($count !== 1) {
-        echo "ERROR - API comment anchor not found for prefix blocks";
+        echo "ERROR - API comment anchor not found for prefix block";
         exit;
     }
     $updated = true;
