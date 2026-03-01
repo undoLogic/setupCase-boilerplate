@@ -103,9 +103,18 @@ $newMethodBlock = <<<'PHP'
 
     private function getAuthenticationService_loginUrl(ServerRequestInterface $request): string
     {
+        $allowedLanguages = Configure::read('allowedLanguages');
+        if (!is_array($allowedLanguages) || empty($allowedLanguages)) {
+            $allowedLanguages = ['en'];
+        }
+        $allowedLanguages = array_values(array_unique(array_map(
+            static fn($lang): string => strtolower((string)$lang),
+            $allowedLanguages
+        )));
+        $defaultLang = in_array('en', $allowedLanguages, true) ? 'en' : $allowedLanguages[0];
         $basePath = rtrim((string)$request->getAttribute('base'), '/');
 
-        return $basePath . '/login';
+        return $basePath . '/' . $defaultLang . '/login';
     }
 
 PHP;
@@ -132,6 +141,37 @@ if (strpos($contents, 'public function getAuthenticationService(ServerRequestInt
         }
     }
     $updated = true;
+}
+
+$newLoginUrlHelperBlock = <<<'PHP'
+    private function getAuthenticationService_loginUrl(ServerRequestInterface $request): string
+    {
+        $allowedLanguages = Configure::read('allowedLanguages');
+        if (!is_array($allowedLanguages) || empty($allowedLanguages)) {
+            $allowedLanguages = ['en'];
+        }
+        $allowedLanguages = array_values(array_unique(array_map(
+            static fn($lang): string => strtolower((string)$lang),
+            $allowedLanguages
+        )));
+        $defaultLang = in_array('en', $allowedLanguages, true) ? 'en' : $allowedLanguages[0];
+        $basePath = rtrim((string)$request->getAttribute('base'), '/');
+
+        return $basePath . '/' . $defaultLang . '/login';
+    }
+PHP;
+
+if (strpos($contents, "return \$basePath . '/login';") !== false) {
+    $contents = preg_replace(
+        '/\n\s*private function getAuthenticationService_loginUrl\(ServerRequestInterface \$request\): string\s*\{\s*\$basePath = rtrim\(\(string\)\$request->getAttribute\(\'base\'\), \'\/\'\);\s*return \$basePath \. \'\/login\';\s*\}\n/s',
+        "\n\n" . $newLoginUrlHelperBlock . "\n",
+        $contents,
+        1,
+        $count
+    );
+    if ($count > 0) {
+        $updated = true;
+    }
 }
 
 if (strpos($contents, 'use Cake\\Routing\\Router;') !== false && strpos($contents, 'Router::') === false) {
