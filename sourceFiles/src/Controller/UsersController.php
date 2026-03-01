@@ -230,8 +230,9 @@ class UsersController extends AppController
             // redirect to /articles after login success
             $this->Flash->success('You have been logged in');
             $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'SetupPages',
-                'action' => 'home',
+                'prefix' => 'Staff',
+                'controller' => 'CodeBlocks',
+                'action' => 'index',
             ]);
             return $this->redirect($redirect);
         }

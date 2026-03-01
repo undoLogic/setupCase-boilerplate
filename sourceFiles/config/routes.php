@@ -57,41 +57,29 @@ return function (RouteBuilder $routes): void {
          */
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
-        /*
-         * ...and connect the rest of 'Pages' controller's URLs.
-         */
+        $builder->connect(
+            '/{language}',
+            ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'index'],
+            ['language' => 'en|fr|es']
+        );
+        $builder->connect(
+            '/{language}/csv',
+            ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'download-csv'],
+            ['language' => 'en|fr|es']
+        );
+
         $builder->connect('/pages/*', 'Pages::display');
 
-        /*
-         * Connect catchall routes for all controllers.
-         *
-         * The `fallbacks` method is a shortcut for
-         *
-         * ```
-         * $builder->connect('/{controller}', ['action' => 'index']);
-         * $builder->connect('/{controller}/{action}/*', []);
-         * ```
-         *
-         * You can remove these routes once you've connected the
-         * routes you want in your application.
-         */
-        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
-        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-        $builder->connect('/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
-        $builder->connect('/reset', ['controller' => 'Users', 'action' => 'reset']);
+        $builder->connect('/{language}/login', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/{language}/logout', ['controller' => 'Users', 'action' => 'logout']);
+        $builder->connect('/{language}/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
+        $builder->connect('/{language}/reset', ['controller' => 'Users', 'action' => 'reset']);
 
         // language
         $builder->connect('/{language}', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']);
         $builder->connect('/{language}/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
         $builder->connect('/{language}/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
 
-        //redirect for older langs
-        //$builder->connect('/eng', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']);
-        //$builder->connect('/fre', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']);
-        //$builder->connect('/eng/{controller}/{action}/*', ['language' => 'eng', 'controller' => 'Pages', 'action' => 'redirect'], ['language' => 'en|fr|es']);
-        //$builder->connect('/fre/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
-        //$builder->connect('/eng/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
-        //$builder->connect('/fre/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
         $builder->fallbacks();
     });
     foreach (['Staff', 'Admin', 'Manager'] as $prefix) {
