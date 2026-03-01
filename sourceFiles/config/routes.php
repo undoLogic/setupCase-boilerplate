@@ -68,8 +68,6 @@ return function (RouteBuilder $routes): void {
             ['language' => 'en|fr|es']
         );
 
-        $builder->connect('/pages/*', 'Pages::display');
-
         $builder->connect('/{language}/login', ['controller' => 'Users', 'action' => 'login']);
         $builder->connect('/{language}/logout', ['controller' => 'Users', 'action' => 'logout']);
         $builder->connect('/{language}/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
