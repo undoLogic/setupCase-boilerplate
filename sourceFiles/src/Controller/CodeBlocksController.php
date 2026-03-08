@@ -48,7 +48,6 @@ class CodeBlocksController extends AppController
 
     }
 
-
     public function applicationFoundation()
     {
 

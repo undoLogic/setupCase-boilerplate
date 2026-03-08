@@ -2,58 +2,108 @@
 
 $routesFile = dirname(__DIR__) . '/sourceFiles/config/routes.php';
 
+if (!file_exists($routesFile)) {
+    echo "ERROR - routes.php not found";
+    exit;
+}
+
 $contents = file_get_contents($routesFile);
 
-if (strpos($contents, "prefix('Staff'") !== false) {
-    echo "<br/>Staff prefix already exists — skipping<br/>";
+if ($contents === false) {
+    echo "ERROR - Could not read routes.php";
+    exit;
+}
 
-} else {
+$contents = str_replace(["\r\n", "\r"], "\n", $contents);
+$updated = false;
 
-    $insert = <<<'PHP'
+$rootRoutes = <<<'PHP'
+         $builder->connect('/', ['controller' => 'CodeBlocks', 'action' => 'index']);
 
-    $routes->prefix('Staff', function (RouteBuilder $routes) {
-
-        $routes->connect(
-            '/:controller/:action/*',
-            []
+        $builder->connect(
+            '/{language}',
+            ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'index'],
+            ['language' => 'en|fr|es']
         );
-
-        $routes->fallbacks(DashedRoute::class);
-    });
-    
-    $routes->prefix('Manager', function (RouteBuilder $routes) {
-
-        $routes->connect(
-            '/:controller/:action/*',
-            []
+        $builder->connect(
+            '/{language}/csv',
+            ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'download-csv'],
+            ['language' => 'en|fr|es']
         );
+        
+        // Login and Logout
+        $builder->connect('/{language}/login', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/{language}/logout', ['controller' => 'Users', 'action' => 'logout']);
+        $builder->connect('/{language}/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
+        $builder->connect('/{language}/reset', ['controller' => 'Users', 'action' => 'reset']);
 
-        $routes->fallbacks(DashedRoute::class);
-    });
-    
-    
-    
-
+        // language
+        $builder->connect('/{language}', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']);
+        $builder->connect('/{language}/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
+        $builder->connect('/{language}/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
 PHP;
 
-    $needle = <<<PHP
-    });
-PHP;
-
-    $replacement = <<<PHP
-    });
-$insert
-PHP;
-
-    $count = 0;
-    $contents = str_replace($needle, $replacement, $contents, $count);
-
+if (strpos($contents, "\$builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);") === false) {
+    $needle = "        \$builder->fallbacks();\n";
+    $contents = str_replace($needle, $rootRoutes . $needle, $contents, $count);
     if ($count !== 1) {
-        throw new RuntimeException("Expected to replace 1 root scope, replaced {$count}");
+        echo "ERROR - root scope fallback anchor not found";
+        exit;
+    }
+    $updated = true;
+}
+
+// Remove individual Staff/Admin/Manager prefix blocks if they exist.
+$pattern = <<<'REGEX'
+/\n\s*\$routes->prefix\('(Staff|staff|Admin|admin|Manager|manager)'\s*,\s*function\s*\(RouteBuilder \$routes\)\s*\{.*?\n\s*\}\);\n/s
+REGEX;
+$contents = preg_replace($pattern, "\n", $contents, -1, $removedCount);
+if ($removedCount > 0) {
+    $updated = true;
+}
+
+$prefixBlock = <<<'PHP'
+
+    foreach (['Staff', 'Admin', 'Manager'] as $prefix) {
+
+        $routes->prefix($prefix, function (RouteBuilder $routes) {
+
+            $routes->setRouteClass(DashedRoute::class);
+
+            $routes->connect(
+                '/:language/:controller',
+                ['action' => 'index']
+            )->setPatterns([
+                'language' => 'en|fr|es'
+            ]);
+
+            $routes->connect(
+                '/:language/:controller/:action/*'
+            )->setPatterns([
+                'language' => 'en|fr|es'
+            ]);
+
+            $routes->fallbacks(DashedRoute::class);
+        });
     }
 
-    file_put_contents($routesFile, $contents);
+PHP;
 
-    echo "Prefixes added successfully<br/><br/>";
-
+if (strpos($contents, "foreach (['Staff', 'Admin', 'Manager'] as \$prefix)") === false) {
+    $needle = "\n\n    /*\n     * If you need a different set of middleware or none at all,\n";
+    $contents = str_replace($needle, $prefixBlock . $needle, $contents, $count);
+    if ($count !== 1) {
+        echo "ERROR - API comment anchor not found for prefix block";
+        exit;
+    }
+    $updated = true;
 }
+
+if (!$updated) {
+    echo "Routes setup already exists — skipping<br/>";
+    exit;
+}
+
+file_put_contents($routesFile, $contents);
+
+echo "Routes setup added successfully<br/><br/>";

@@ -15,11 +15,14 @@ class CodeBlockTypesTable extends Table
         $this->setTable('code_block_types');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('AuditLog');
 
-        $this->hasMany('CodeBlocks', [
-            'foreignKey' => 'code_block_type_id',
-        ]);
-
+       // belongsTo
+//        $this->hasMany('CodeBlocks', [
+//            'foreignKey' => 'code_block_type_id'
+//        ]);
     }
+
+
 
 }// end

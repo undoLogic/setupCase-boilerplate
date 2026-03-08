@@ -16,12 +16,6 @@ declare(strict_types=1);
  */
 namespace App;
 
-use App\Middleware\AccessMiddleware;
-use App\Middleware\FormLoginAttemptsAuthenticator;
-use App\Middleware\LangMiddleware;
-use App\Middleware\RbacMiddleware;
-use Authentication\AuthenticationService;
-use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
@@ -29,12 +23,19 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
-use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
-use Cake\Routing\Router;
+use Authentication\AuthenticationService;
+use Authentication\AuthenticationServiceInterface;
+use Authentication\AuthenticationServiceProviderInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use App\Middleware\AccessMiddleware;
+use App\Middleware\LangMiddleware;
+use App\Middleware\RbacMiddleware;
+use Authentication\Middleware\AuthenticationMiddleware;
+use Cake\Http\Middleware\EncryptedCookieMiddleware;
 
 /**
  * Application setup class.
@@ -42,7 +43,7 @@ use Cake\Routing\Router;
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication
+class Application extends BaseApplication implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -103,17 +104,15 @@ class Application extends BaseApplication
             // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
             ->add(new BodyParserMiddleware())
 
-
             //Added by SetupCase-BoilerPlate
             ->add(new EncryptedCookieMiddleware(
                 ['CookieAuth'],
                 'CHANGEMEWITHSECURE'
             ))
-            ->add(new AuthenticationMiddleware($this->getAuthenticationService()))
+            ->add(new AuthenticationMiddleware($this))
             ->add(new LangMiddleware())
             ->add(new RbacMiddleware())
             ->add(new AccessMiddleware())
-
             // Cross Site Request Forgery (CSRF) Protection Middleware
             // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
             ->add(new CsrfProtectionMiddleware([
@@ -123,48 +122,51 @@ class Application extends BaseApplication
         return $middlewareQueue;
     }
 
-    protected function getAuthenticationService() : AuthenticationService {
+    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
+    {
+        $loginUrl = $this->getAuthenticationService_loginUrl($request);
         $authenticationService = new AuthenticationService([
-            'unauthenticatedRedirect' => Router::url('/login'),
+            'unauthenticatedRedirect' => $loginUrl,
             'queryParam' => 'redirect',
         ]);
         $fields = [
             'username' => 'email',
             'password' => 'password',
         ];
-
-        // Load identifiers, ensure we check email and password fields
         $authenticationService->loadIdentifier('Authentication.Password', [
-            'fields' => $fields
+            'fields' => $fields,
         ]);
-
-        // Load the authenticators, you want session first
         $authenticationService->loadAuthenticator('Authentication.Session');
-
-//        # Protect against Submit flooding
-//          $authenticationService->loadAuthenticator(FormLoginAttemptsAuthenticator::class, [
-//              'fields' => $fields,
-//              'loginUrl' => Router::url('/login'),
-//          ]);
-
-        //Normal without flooding prevention
         $authenticationService->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            'loginUrl' => Router::url('/login'),
+            'loginUrl' => $loginUrl,
         ]);
-
-        // If the user is on the login page, check for a cookie as well.
         $authenticationService->loadAuthenticator('Authentication.Cookie', [
             'fields' => $fields,
-            'loginUrl' => '/login',
+            'loginUrl' => $loginUrl,
             'cookie' => [
                 'name' => 'remember_me_cookie',
-                'expires' => strtotime('+30 days'), // Set the desired expiration time
+                'expires' => strtotime('+30 days'),
                 'httponly' => true,
             ],
         ]);
-
         return $authenticationService;
+    }
+
+    private function getAuthenticationService_loginUrl(ServerRequestInterface $request): string
+    {
+        $allowedLanguages = Configure::read('allowedLanguages');
+        if (!is_array($allowedLanguages) || empty($allowedLanguages)) {
+            $allowedLanguages = ['en'];
+        }
+        $allowedLanguages = array_values(array_unique(array_map(
+            static fn($lang): string => strtolower((string)$lang),
+            $allowedLanguages
+        )));
+        $defaultLang = in_array('en', $allowedLanguages, true) ? 'en' : $allowedLanguages[0];
+        $basePath = rtrim((string)$request->getAttribute('base'), '/');
+
+        return $basePath . '/' . $defaultLang . '/login';
     }
 
     /**
