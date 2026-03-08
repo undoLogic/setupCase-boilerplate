@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Middleware;
 
 use Cake\Core\Configure;
+use Cake\Http\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -11,6 +12,15 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Lang middleware
+ *
+ * Add to App.php
+ * 'allowedLanguages' => [
+ * 'en',
+ * //'fr',
+ * //'es'
+ * ],
+ *
+ *
  */
 class LangMiddleware implements MiddlewareInterface
 {
@@ -23,66 +33,136 @@ class LangMiddleware implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $params = $request->getAttribute('params');
+        $params = $request->getAttribute('params') ?? [];
+        $urlLang = isset($params['language']) ? strtolower((string)$params['language']) : '';
+        $sessionLang = strtolower((string)$request->getSession()->read('lang'));
+        $browserLang = $this->process_extractBrowserLang($request->getHeaderLine('Accept-Language'));
 
-        $url_lang = isset($params['language']) ? $params['language'] : false;
-        $session_lang = $request->getSession()->read('lang');
-        $browser_lang = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : false;
-        $default_lang = 'en';
+        $allowedLanguages = Configure::read('allowedLanguages');
+        if (!is_array($allowedLanguages) || empty($allowedLanguages)) {
+            $allowedLanguages = ['en'];
+        }
+        $allowedLanguages = array_values(array_unique(array_map(
+            static fn($lang): string => strtolower((string)$lang),
+            $allowedLanguages
+        )));
 
-        if ($url_lang != null && !empty($url_lang)) {
-            $current_lang = $url_lang;
-            $lang_from = 'url_lang';
-        } elseif (!empty($session_lang)) {
-            $current_lang = $session_lang;
-            $lang_from = 'session_lang';
-        } elseif ($browser_lang) {
-            $current_lang = $browser_lang;
-            $lang_from = 'browser_lang';
-        } else {
-            $current_lang = $default_lang;
-            $lang_from = 'default_lang';
+        $defaultLang = in_array('en', $allowedLanguages, true) ? 'en' : $allowedLanguages[0];
+
+        if ($urlLang !== '' && !in_array($urlLang, $allowedLanguages, true)) {
+            return (new Response())
+                ->withStatus(302)
+                ->withHeader('Location', $this->process_buildRedirectUrl($request, $defaultLang));
         }
 
+        $missingUrlLang = true;
 
-        //ensure this language is allowed or assign the default lang
-        $allowedLanguages = Configure::read('allowedLanguages');
-        if (is_array($allowedLanguages)) {
-            if (!in_array($current_lang, $allowedLanguages)) {
-                $current_lang = $default_lang;
+        if ($urlLang !== '') {
+            $currentLang = $urlLang;
+            $langFrom = 'url_lang';
+            $missingUrlLang = false;
+        } elseif ($sessionLang !== '' && in_array($sessionLang, $allowedLanguages, true)) {
+            $currentLang = $sessionLang;
+            $langFrom = 'session_lang';
+        } elseif ($browserLang !== '' && in_array($browserLang, $allowedLanguages, true)) {
+            $currentLang = $browserLang;
+            $langFrom = 'browser_lang';
+        } else {
+            $currentLang = $defaultLang;
+            $langFrom = 'default_lang';
+        }
+
+        //if address URL does NOT exist let's redireect to the URL with the latest language from any
+        if ($missingUrlLang) {
+            return (new Response())
+                ->withStatus(302)
+                ->withHeader('Location', $this->process_buildRedirectUrl($request, $currentLang));
+        }
+
+        $request = $request->withAttribute('lang', $currentLang);
+        $request = $request->withAttribute('lang_from', $langFrom);
+        $request->getSession()->write('lang', $currentLang);
+
+        return $handler->handle($request);
+    }
+
+    private function process_extractBrowserLang(string $acceptLanguage): string
+    {
+        if ($acceptLanguage === '') {
+            return '';
+        }
+
+        $first = strtolower(trim(explode(',', $acceptLanguage)[0]));
+        if ($first === '') {
+            return '';
+        }
+
+        return substr($first, 0, 2);
+    }
+
+    private function process_buildRedirectUrl(ServerRequestInterface $request, string $fallbackLanguage): string
+    {
+        $uri = $request->getUri();
+        $fullPath = $uri->getPath();
+        $basePath = rtrim((string)$request->getAttribute('base'), '/');
+        $params = $request->getAttribute('params') ?? [];
+        $urlLang = strtolower((string)($params['language'] ?? ''));
+        $prefix = strtolower((string)($params['prefix'] ?? ''));
+
+        $pathAfterBase = $fullPath;
+        if ($basePath !== '' && strpos($fullPath, $basePath . '/') === 0) {
+            $pathAfterBase = substr($fullPath, strlen($basePath));
+        } elseif ($basePath !== '' && $fullPath === $basePath) {
+            $pathAfterBase = '/';
+        }
+
+        $segments = explode('/', trim($pathAfterBase, '/'));
+        if (count($segments) === 1 && $segments[0] === '') {
+            $segments = [];
+        }
+
+        // Root routes: /{language}/...
+        // Prefix routes: /{prefix}/{language}/...
+        $languageIndex = 0;
+        if ($prefix !== '' && isset($segments[0]) && strtolower($segments[0]) === $prefix) {
+            $languageIndex = 1;
+        }
+
+        $replaced = false;
+        if ($urlLang !== '') {
+            if (isset($segments[$languageIndex]) && strtolower((string)$segments[$languageIndex]) === $urlLang) {
+                $segments[$languageIndex] = $fallbackLanguage;
+                $replaced = true;
+            } else {
+                foreach ($segments as $index => $segment) {
+                    if (strtolower((string)$segment) === $urlLang) {
+                        $segments[$index] = $fallbackLanguage;
+                        $replaced = true;
+                        break;
+                    }
+                }
             }
         }
 
+        if (!$replaced) {
+            array_splice($segments, $languageIndex, 0, [$fallbackLanguage]);
+        }
 
+        $pathAfterBase = '/' . implode('/', $segments);
+        if ($pathAfterBase === '/') {
+            $pathAfterBase = '/' . $fallbackLanguage;
+        }
 
-        //assign the lang and how it was found
-        $baseLang = substr($current_lang, 0, 2);
-        $request = $request->withAttribute('lang', $baseLang);
-        $request = $request->withAttribute('lang_from', $lang_from);
+        if ($basePath !== '') {
+            $path = $basePath . $pathAfterBase;
+        } else {
+            $path = $pathAfterBase;
+        }
 
-        //save to a session for next time
-        $request->getSession()->write('lang', $baseLang);
+        if ($uri->getQuery() !== '') {
+            $path .= '?' . $uri->getQuery();
+        }
 
-        //OPTIONAL: Make sure we always have a language in the address bar
-//        $attributes = $this->request->getAttributes();
-//        if (!isset($attributes['params']['language'])) {
-//            $redirectArray = array();
-//            $redirectArray['language'] = $this->language;
-//            if (isset($attributes['params']['?'])) {
-//                $redirectArray['?'] = $attributes['params']['?'];
-//            }
-//            if (!empty($attributes['params']['pass'])) {
-//                $redirectArray = $redirectArray + $attributes['params']['pass'];
-//            }
-//
-//            $this->writeToLog('debug', 'Language-NOT-SET redirecting to '.json_encode($redirectArray), false);
-//
-//            $this->redirect($redirectArray);
-//        }
-
-        //pr('current_lang: '.$request->getAttribute('lang'));
-        //dd($request);
-
-        return $handler->handle($request);
+        return $path;
     }
 }

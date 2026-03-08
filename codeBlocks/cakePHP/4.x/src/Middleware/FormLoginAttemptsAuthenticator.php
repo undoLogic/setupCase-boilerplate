@@ -25,6 +25,7 @@ class FormLoginAttemptsAuthenticator extends FormAuthenticator
     {
         Log::debug('authe');
 
+        dd('hi');
         $sameRequest = Router::getRequest();
 
         if (!$this->_checkUrl($request)) {
@@ -38,14 +39,25 @@ class FormLoginAttemptsAuthenticator extends FormAuthenticator
             ]);
         }
 
-        if ($this->fetchTable('FormAttempts')->tooManyFailures($sameRequest->clientIp())) {
-            Log::debug('too many');
+        dd('before');
+        $ip = $sameRequest->clientIp();
+        dd($ip);
+        if ($this->fetchTable('FormAttempts')->tooManyFailures()) {
+            //dd('true');
+            die('too many');
+            //Log::debug('too many');
             //PHP redirect to static page
             header('Location: '.'/tooMany.php');
+        } else {
+            die('else');
         }
 
+
         $user = $this->_identifier->identify($data);
+
+        dd($user);
         if (empty($user)) {
+
 
             //add to db here
             $this->fetchTable('FormAttempts')->saveFailure($sameRequest->clientIp());

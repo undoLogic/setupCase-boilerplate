@@ -1,66 +1,68 @@
 <?php
-declare(strict_types=1);
 
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link      https://cakephp.org CakePHP(tm) Project
- * @since     0.2.9
- * @license   https://opensource.org/licenses/mit-license.php MIT License
- */
-namespace App\Controller;
+$appControllerFile = dirname(__DIR__) . '/sourceFiles/src/Controller/AppController.php';
 
-use Cake\Controller\Controller;
-use App\Util\SetupCase;
-use Cake\Event\EventInterface;
-use Cake\Log\Log;
-use Cake\Routing\Router;
+if (!file_exists($appControllerFile)) {
+    echo "ERROR - AppController.php not found";
+    exit;
+}
 
-/**
- * Application Controller
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
- *
- * @link https://book.cakephp.org/4/en/controllers.html#the-app-controller
- */
-class AppController extends Controller
-{
-    /**
-     * Initialization hook method.
-     *
-     * Use this method to add common initialization code like loading components.
-     *
-     * e.g. `$this->loadComponent('FormProtection');`
-     *
-     * @return void
-     */
-    public function initialize(): void
-    {
-        parent::initialize();
+$contents = file_get_contents($appControllerFile);
 
-        $this->loadComponent('RequestHandler');
-        $this->loadComponent('Flash');
-        $this->loadComponent('Authentication.Authentication');
+if ($contents === false) {
+    echo "ERROR - Could not read AppController.php";
+    exit;
+}
 
-        /*
-         * Enable the following component for recommended CakePHP form protection settings.
-         * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
-         */
-        //$this->loadComponent('FormProtection');
+$contents = str_replace(["\r\n", "\r"], "\n", $contents);
+$updated = false;
+
+$imports = [
+    "use App\\Util\\SetupCase;",
+    "use Cake\\Event\\EventInterface;",
+    "use Cake\\Log\\Log;",
+    "use Cake\\Routing\\Router;",
+];
+
+if (preg_match('/namespace App\\\\Controller;\n\n((?:use [^\n]+;\n)+)/', $contents, $matches, PREG_OFFSET_CAPTURE) !== 1) {
+    echo "ERROR - use import block not found";
+    exit;
+}
+
+$importInsertPos = $matches[1][1] + strlen($matches[1][0]);
+
+foreach ($imports as $import) {
+    if (strpos($contents, $import) !== false) {
+        continue;
     }
+
+    $contents = substr($contents, 0, $importInsertPos) . $import . "\n" . substr($contents, $importInsertPos);
+    $importInsertPos += strlen($import) + 1;
+    $updated = true;
+}
+
+if (strpos($contents, "\$this->loadComponent('Authentication.Authentication');") === false) {
+    $anchor = "\$this->loadComponent('Flash');\n";
+    $contents = str_replace($anchor, $anchor . "        \$this->loadComponent('Authentication.Authentication');\n", $contents, $count);
+    if ($count !== 1) {
+        echo "ERROR - initialize anchor not found";
+        exit;
+    }
+    $updated = true;
+}
+
+$beforeFilterBlock = <<<'PHP'
+
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
         $this->setupCase();
         $this->setupMenu();
     }
+
+PHP;
+
+$setupCaseBlock = <<<'PHP'
 
     public function setupCase()
     {
@@ -92,6 +94,10 @@ class AppController extends Controller
         $token = $this->request->getAttribute('csrfToken');
         $this->set('csrf', $token);
     }
+
+PHP;
+
+$setupMenuBlock = <<<'PHP'
 
     private function setupMenu()
     {
@@ -323,6 +329,10 @@ class AppController extends Controller
         $this->set('menu', $menu);
     }
 
+PHP;
+
+$writeToLogBlock = <<<'PHP'
+
     /**
      * Write message to a specific log configuration.
      *
@@ -336,4 +346,61 @@ class AppController extends Controller
         Log::write($level, $message);
     }
 
+PHP;
+
+$insertBeforeClassEnd = static function (string $input, string $block, int &$count): string {
+    $count = 0;
+    $pos = strrpos($input, "\n}");
+    if ($pos === false) {
+        return $input;
+    }
+
+    $count = 1;
+
+    return substr($input, 0, $pos) . $block . substr($input, $pos);
+};
+
+if (strpos($contents, 'public function beforeFilter(EventInterface $event)') === false) {
+    $contents = $insertBeforeClassEnd($contents, $beforeFilterBlock, $count);
+    if ($count !== 1) {
+        echo "ERROR - class closing brace not found for beforeFilter";
+        exit;
+    }
+    $updated = true;
 }
+
+if (strpos($contents, 'public function setupCase(') === false) {
+    $contents = $insertBeforeClassEnd($contents, $setupCaseBlock, $count);
+    if ($count !== 1) {
+        echo "ERROR - class closing brace not found for setupCase";
+        exit;
+    }
+    $updated = true;
+}
+
+if (strpos($contents, 'private function setupMenu()') === false) {
+    $contents = $insertBeforeClassEnd($contents, $setupMenuBlock, $count);
+    if ($count !== 1) {
+        echo "ERROR - class closing brace not found for setupMenu";
+        exit;
+    }
+    $updated = true;
+}
+
+if (strpos($contents, 'public function writeToLog(') === false) {
+    $contents = $insertBeforeClassEnd($contents, $writeToLogBlock, $count);
+    if ($count !== 1) {
+        echo "ERROR - class closing brace not found for writeToLog";
+        exit;
+    }
+    $updated = true;
+}
+
+if (!$updated) {
+    echo "AppController SetupCase wiring already exists — skipping<br/>";
+    exit;
+}
+
+file_put_contents($appControllerFile, $contents);
+
+echo "AppController SetupCase wiring added successfully<br/><br/>";

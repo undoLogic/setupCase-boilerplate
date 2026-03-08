@@ -55,26 +55,12 @@ return function (RouteBuilder $routes): void {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'index']);
+        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
         $builder->connect('/pages/*', 'Pages::display');
-
-
-        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
-        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-        $builder->connect('/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
-        $builder->connect('/reset', ['controller' => 'Users', 'action' => 'reset']);
-
-        // language
-        $builder->connect('/{language}', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']) ;
-        $builder->connect('/{language}/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
-        $builder->connect('/{language}/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);
-
-
-
 
         /*
          * Connect catchall routes for all controllers.
@@ -89,42 +75,52 @@ return function (RouteBuilder $routes): void {
          * You can remove these routes once you've connected the
          * routes you want in your application.
          */
-        $builder->fallbacks();
-    });
+         $builder->connect('/', ['controller' => 'CodeBlocks', 'action' => 'index']);
 
-    $routes->prefix('Staff', function (RouteBuilder $routes) {
-
-        $routes->connect(
-            '/{controller}/{action}/*',
-            []
+        $builder->connect(
+            '/{language}',
+            ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'index'],
+            ['language' => 'en|fr|es']
         );
-
-        $routes->fallbacks(DashedRoute::class);
-    });
-
-    $routes->prefix('Manager', function (RouteBuilder $routes) {
-
-        $routes->connect(
-            '/{controller}/{action}/*',
-            []
+        $builder->connect(
+            '/{language}/csv',
+            ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'download-csv'],
+            ['language' => 'en|fr|es']
         );
+        
+        // Login and Logout
+        $builder->connect('/{language}/login', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/{language}/logout', ['controller' => 'Users', 'action' => 'logout']);
+        $builder->connect('/{language}/beginReset', ['controller' => 'Users', 'action' => 'beginReset']);
+        $builder->connect('/{language}/reset', ['controller' => 'Users', 'action' => 'reset']);
 
-        $routes->fallbacks(DashedRoute::class);
+        // language
+        $builder->connect('/{language}', ['controller' => 'Pages', 'action' => 'home'], ['language' => 'en|fr|es']);
+        $builder->connect('/{language}/{controller}/{action}/*', [], ['language' => 'en|fr|es']);
+        $builder->connect('/{language}/{controller}', ['action' => 'index'], ['language' => 'en|fr|es']);        $builder->fallbacks();
     });
+    foreach (['Staff', 'Admin', 'Manager'] as $prefix) {
 
+        $routes->prefix($prefix, function (RouteBuilder $routes) {
 
-    $routes->prefix('Admin', function (RouteBuilder $routes) {
+            $routes->setRouteClass(DashedRoute::class);
 
-        $routes->connect(
-            '/{controller}/{action}/*',
-            []
-        );
+            $routes->connect(
+                '/:language/:controller',
+                ['action' => 'index']
+            )->setPatterns([
+                'language' => 'en|fr|es'
+            ]);
 
-        $routes->fallbacks(DashedRoute::class);
-    });
+            $routes->connect(
+                '/:language/:controller/:action/*'
+            )->setPatterns([
+                'language' => 'en|fr|es'
+            ]);
 
-
-
+            $routes->fallbacks(DashedRoute::class);
+        });
+    }
 
 
     /*

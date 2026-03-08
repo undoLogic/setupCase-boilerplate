@@ -56,26 +56,6 @@ INSERT INTO `code_blocks` (`id`, `code_block_type_id`, `name`, `description`, `c
                                                                                                          (16, 1, 'name1234', 'description ', '2026-01-19 22:54:30', '2026-01-19 22:54:30'),
                                                                                                          (17, 2, 'name3333', 'description 3333', '2026-01-19 22:55:06', '2026-01-19 22:55:06');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `code_block_types`
---
-
-CREATE TABLE `code_block_types` (
-                                    `id` int(11) NOT NULL,
-                                    `name` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `code_block_types`
---
-
-INSERT INTO `code_block_types` (`id`, `name`) VALUES
-                                                  (1, 'Type1'),
-                                                  (2, 'Type2');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `email_queues`
@@ -179,24 +159,36 @@ INSERT INTO `locations_users` (`id`, `location_id`, `user_id`, `created`, `modif
 -- Table structure for table `users`
 --
 
+
 CREATE TABLE `users` (
                          `id` int(11) NOT NULL,
                          `user_type` varchar(19) NOT NULL,
-                         `group_id` int(11) NOT NULL,
-                         `name` varchar(99) NOT NULL,
-                         `email` varchar(99) NOT NULL,
-                         `password` varchar(1000) NOT NULL,
-                         `reset_token` varchar(1000) NOT NULL,
+                         `email` varchar(99) DEFAULT NULL,
+                         `password` varchar(1000) DEFAULT NULL,
+                         `reset_token` varchar(1000) DEFAULT NULL,
                          `created` datetime NOT NULL,
                          `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Indexes for dumped tables
 --
 
-INSERT INTO `users` (`id`, `user_type`, `group_id`, `name`, `email`, `password`, `reset_token`, `created`, `modified`) VALUES
-    (10, 'ADMIN', 1, 'support', 'support@undologic.com', '$2y$10$.OWKXoJyMo3i3ppmzIYzn.BXuUbegWv8gk16jPvfJI79uJNfqXJSG', '', '2026-01-16 19:46:35', '2026-01-16 19:46:35');
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Indexes for dumped tables
@@ -218,11 +210,6 @@ ALTER TABLE `audit_logs`
 ALTER TABLE `code_blocks`
     ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `code_block_types`
---
-ALTER TABLE `code_block_types`
-    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `email_queues`
@@ -257,12 +244,6 @@ ALTER TABLE `locations_users`
     ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-    ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -278,11 +259,32 @@ ALTER TABLE `audit_logs`
 ALTER TABLE `code_blocks`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
+
+
+
+CREATE TABLE `code_block_types` (
+                                    `id` int(11) NOT NULL,
+                                    `name` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
 --
--- AUTO_INCREMENT for table `code_block_types`
+-- Dumping data for table `code_block_types`
 --
+
+INSERT INTO `code_block_types` (`id`, `name`) VALUES
+                                                  (1, 'Type1'),
+                                                  (2, 'Type2');
+ALTER TABLE `code_block_types`
+    ADD PRIMARY KEY (`id`);
 ALTER TABLE `code_block_types`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+
+
+
+
+
+
 
 --
 -- AUTO_INCREMENT for table `email_queues`
@@ -314,8 +316,10 @@ ALTER TABLE `locations`
 ALTER TABLE `locations_users`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+
+
+
+
+
+CREATE TABLE `LIVE_database`.`form_attempts` (`id` INT NOT NULL AUTO_INCREMENT , `date` DATETIME NOT NULL , `ip` VARCHAR(20) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;

@@ -13,17 +13,10 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
         $this->setTable('users');
 
-        // associations
-        $this->belongsTo('Groups', [
-            'foreignKey' => 'group_id'
-        ]);
-
-        // belongsToMany
-        $this->belongsToMany('Locations', [
-            'joinTable' => 'locations_users',
-            'foreignKey' => 'user_id',
-            'targetForeignKey' => 'location_id', //join table column - product_id
-        ]);
+        // associations optionally add this
+//        $this->belongsTo('Groups', [
+//            'foreignKey' => 'group_id'
+//        ]);
 
     }
 
