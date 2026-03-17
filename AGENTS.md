@@ -12,6 +12,7 @@ Repository-specific instructions for coding, reviews, and collaboration.
 - Preserve existing naming/style in touched files.
 - Avoid unrelated refactors unless explicitly requested.
 - Prefer readable code over clever shortcuts.
+- Keep controllers slim and push data/logic into models when possible (fat models).
 - Add comments only when logic is non-obvious.
 - Any public method in a table must return a response array with at least:
     - `STATUS` (e.g., `200`)
@@ -26,6 +27,7 @@ Repository-specific instructions for coding, reviews, and collaboration.
 - Private functions may be longer than one screen when needed (no limit).
 - Keep each template file short enough to fit on one screen.
 - Always add the entire bootstrap structure to this template file
+- When setting up the bootstrap structure, always separate filters from the body
 - If a template gets long, extract parts into elements, but keep the bootstrap overview
 - For base templates under `sourceFiles/templates/`, keep a short Bootstrap overview shell (row/col/card structure only).
 - Move detailed UI/content blocks into elements and render them from the base template.
@@ -86,6 +88,8 @@ When asked for a review, prioritize:
 
 ## Local Conventions
 - Put reusable template snippets in `sourceFiles/templates/element/` when appropriate.
+- For all new or refactored template elements, use a year-prefixed folder under `sourceFiles/templates/element/` (example: `sourceFiles/templates/element/2026/...`).
+- Keep existing older year folders intact unless explicitly requested to migrate, so cleanup/deprecation can happen gradually.
 - Keep `CodeBlocks` examples simple and copy/paste-friendly.
 
 ## Notes For Future Updates
