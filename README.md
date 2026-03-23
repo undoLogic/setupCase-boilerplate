@@ -2,6 +2,10 @@
 
 SetupCase is opinionated. Not all feature requests will be accepted. The project roadmap is maintained by undoLogic.
 
+# Get Started
+Login to GitHub - SetupCase-BoilerPlate
+- Click use a template
+
 # Open-Source CORE
 Framework Enhancements
 CakePHP structure patterns

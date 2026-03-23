@@ -22,12 +22,12 @@ $rootRoutes = <<<'PHP'
 
         $builder->connect(
             '/{language}',
-            ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'index'],
+            ['controller' => 'CodeBlocks', 'action' => 'index'],
             ['language' => 'en|fr|es']
         );
         $builder->connect(
             '/{language}/csv',
-            ['prefix' => 'Staff', 'controller' => 'CodeBlocks', 'action' => 'download-csv'],
+            ['controller' => 'CodeBlocks', 'action' => 'download-csv'],
             ['language' => 'en|fr|es']
         );
         
