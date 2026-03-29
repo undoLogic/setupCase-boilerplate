@@ -10,15 +10,15 @@ $liveDomains = [
     'www.domain.com' => 'LIVE',
 ];
 
-$current_domain = $_SERVER['SERVER_NAME'];
-if (isset($liveDomains[ $current_domain ])) {
-    $current_env_profile = $liveDomains[ $current_domain ];
+$current_domain = $_SERVER['SERVER_NAME'] ?? $_SERVER['HTTP_HOST'] ?? '';
+if (isset($liveDomains[$current_domain])) {
+    $current_env_profile = $liveDomains[$current_domain];
 } else {
     $current_env_profile = false;
 }
 
 //@todo
-switch($current_env_profile) {
+switch ($current_env_profile) {
     case 'DEV':
         Configure::load('app_DEV', 'default');
         break;
@@ -29,10 +29,9 @@ switch($current_env_profile) {
         Configure::load('app_LIVE', 'default');
         break;
     default:
-        //Unknown so we will use our dev env
+        // Unknown so we will use our dev env.
         Configure::load('app_DEV', 'default');
-
 }
 
-// Configure the environment setting
+// Configure the environment setting.
 Configure::write('App.current_env_profile', $current_env_profile);

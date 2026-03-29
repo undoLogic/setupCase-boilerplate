@@ -1,3 +1,53 @@
+<?php
+
+$sourceFilesDir = dirname(__DIR__) . '/sourceFiles';
+$githubDir = $sourceFilesDir . '/.github';
+$workflowDir = $githubDir . '/workflows';
+$workflowFile = $workflowDir . '/ci.yml';
+$baselineDir = $sourceFilesDir . '/tests/TestCase/SetupCase';
+$baselineFile = $baselineDir . '/SetupCaseBaselineTest.php';
+
+if (!is_dir($sourceFilesDir)) {
+    echo "ERROR - sourceFiles not found";
+    exit;
+}
+
+function ensureDirExists(string $dir): void
+{
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+}
+
+function writeFileIfChanged(string $path, string $contents, string $label): void
+{
+    $exists = file_exists($path);
+    $current = $exists ? file_get_contents($path) : false;
+
+    if ($exists && $current === false) {
+        echo "ERROR - Could not read {$label}<br/>";
+        exit;
+    }
+
+    if ($current === $contents) {
+        echo "{$label} already up to date — skipping<br/>";
+        return;
+    }
+
+    file_put_contents($path, $contents);
+
+    if ($exists) {
+        echo "{$label} updated successfully<br/>";
+        return;
+    }
+
+    echo "{$label} created successfully<br/>";
+}
+
+ensureDirExists($workflowDir);
+ensureDirExists($baselineDir);
+
+$workflowContents = <<<'YAML'
 name: SetupCase CI
 
 on:
@@ -135,3 +185,40 @@ jobs:
           if [ "${{ steps.phpunit.outputs.exit_code }}" != "0" ]; then
             exit 1
           fi
+YAML;
+
+$baselineContents = <<<'PHP'
+<?php
+declare(strict_types=1);
+
+namespace App\Test\TestCase\SetupCase;
+
+use Cake\TestSuite\TestCase;
+
+class SetupCaseBaselineTest extends TestCase
+{
+    public function testSetupCaseBaseline(): void
+    {
+        $this->fail('CI not configured yet');
+    }
+}
+PHP;
+
+writeFileIfChanged($workflowFile, $workflowContents . "\n", 'CI workflow');
+
+if (!file_exists($baselineFile)) {
+    writeFileIfChanged($baselineFile, $baselineContents . "\n", 'SetupCase baseline test');
+} else {
+    $baselineCurrent = file_get_contents($baselineFile);
+
+    if ($baselineCurrent === false) {
+        echo "ERROR - Could not read SetupCase baseline test<br/>";
+        exit;
+    }
+
+    if (strpos($baselineCurrent, "CI not configured yet") !== false) {
+        writeFileIfChanged($baselineFile, $baselineContents . "\n", 'SetupCase baseline test');
+    } else {
+        echo "SetupCase baseline test already customized — skipping<br/>";
+    }
+}

@@ -90,9 +90,9 @@ try {
 if (file_exists(CONFIG . 'app_local.php')) {
     Configure::load('app_local', 'default');
 }
-    if (file_exists($this->configDir . 'bootstrap-setupCase.php')) {
-        require_once $this->configDir . 'bootstrap-setupCase.php';
-    }
+if (file_exists(CONFIG . 'bootstrap-setupCase.php')) {
+    require_once CONFIG . 'bootstrap-setupCase.php';
+}
 
 /*
  * When debug = true the metadata cache should only last
