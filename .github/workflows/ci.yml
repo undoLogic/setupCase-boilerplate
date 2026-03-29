@@ -57,10 +57,20 @@ jobs:
       - name: Push pending CI status
         if: github.event_name == 'push'
         run: |
+          git add .ci_status.json
+          
+          # Stash any changes to allow rebase
+          git stash push -m "ci-temp" || true
+          
           git pull --rebase
+          
+          # Restore stashed changes
+          git stash pop || true
+          
           git add .ci_status.json
           git commit -m "CI status: pending for ${{ github.sha }}" || echo "No changes"
           git push origin HEAD:${{ github.ref_name }}
+          
 
       # -------------------------------
       # DOCKER START
@@ -144,7 +154,14 @@ jobs:
       - name: Push final CI status
         if: always() && github.event_name == 'push'
         run: |
+          git add .ci_status.json
+          
+          git stash push -m "ci-temp" || true
+          
           git pull --rebase
+          
+          git stash pop || true
+          
           git add .ci_status.json
           git commit -m "CI status: final for ${{ github.sha }}" || echo "No changes"
           git push origin HEAD:${{ github.ref_name }}
