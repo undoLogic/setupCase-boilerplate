@@ -1,6 +1,6 @@
 {
-  "status": "pending",
-  "timestamp": "2026-03-29T18:50:16Z",
+  "status": "fail",
+  "timestamp": "2026-03-29T18:53:36Z",
   "commit": "7bcb5b4dad54b2ff85beb59dac60a14383c029dc",
   "branch": "ci-testing",
   "environment": "github_actions_docker_wsl",
