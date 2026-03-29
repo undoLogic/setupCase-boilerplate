@@ -102,7 +102,7 @@ jobs:
           fi
 
       - name: Install dependencies in container
-        run: docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "cd sourceFiles && composer install --no-interaction --prefer-dist"
+        run: docker compose -f dockerWSL/docker-compose.yml exec -T -u 0 web bash -lc "cd sourceFiles && composer install --no-interaction --prefer-dist"
 
       - name: Run PHPUnit in container
         if: always()
