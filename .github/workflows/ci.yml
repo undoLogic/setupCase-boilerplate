@@ -1,4 +1,4 @@
-name: SetupCase CI
+name: SetupCase CI v2
 
 on:
   push:
