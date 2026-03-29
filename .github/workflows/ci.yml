@@ -118,7 +118,6 @@ jobs:
         run: docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "cd sourceFiles && composer install --no-interaction --prefer-dist"
 
       - name: Run PHPUnit in container
-        id: phpunit
         run: |
           set +e
 
@@ -129,11 +128,8 @@ jobs:
 
           echo "PHPUNIT EXIT CODE: $TEST_EXIT"
 
-          # Force output
-          echo "exit_code=$TEST_EXIT" >> "$GITHUB_OUTPUT"
-
-          # Also export for debugging
-          echo "EXIT_CODE=$TEST_EXIT" >> "$GITHUB_ENV"
+          # Save to file instead of output
+          echo $TEST_EXIT > .ci_test_result
 
           exit 0
 
@@ -144,8 +140,10 @@ jobs:
         if: always()
         run: |
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          TEST_EXIT=$(cat .ci_test_result)
+          echo "Test result: $TEST_EXIT"
           RESULT="fail"
-          if [ "${{ steps.phpunit.outputs.exit_code }}" = "0" ]; then
+          if [ "$TEST_EXIT" = "0" ]; then
             RESULT="success"
           fi
           cat > .ci_status.json <<EOF_JSON
@@ -187,19 +185,10 @@ jobs:
       - name: Fail workflow if tests failed
         if: always()
         run: |
-          EXIT_CODE="${{ steps.phpunit.outputs.exit_code }}"
-
-          echo "From output: $EXIT_CODE"
-          echo "From env: $EXIT_CODE"
-
-          if [ -z "$EXIT_CODE" ]; then
-            echo "ERROR: exit_code not set properly"
-            exit 1
-          fi
-
+          EXIT_CODE=$(cat .ci_test_result)
+          echo "Final exit code: $EXIT_CODE"
           if [ "$EXIT_CODE" != "0" ]; then
             echo "Tests failed"
             exit 1
           fi
-
           echo "Tests passed"
