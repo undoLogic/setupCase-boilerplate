@@ -87,8 +87,12 @@ jobs:
       - name: Fix ownership and permissions
         run: |
           docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "
-          chown -R www-data:www-data /var/www/vhosts/website.com/www &&
-          chmod -R 775 /var/www/vhosts/website.com/www
+          if ! chown -R www-data:www-data /var/www/vhosts/website.com/www; then
+            echo 'Skipping chown; mounted GitHub Actions workspace does not allow ownership changes'
+          fi
+          if ! chmod -R 775 /var/www/vhosts/website.com/www; then
+            echo 'Skipping chmod failures on mounted workspace paths'
+          fi
           "
 
       - name: Prepare app_local.php
