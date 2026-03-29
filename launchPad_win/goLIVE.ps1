@@ -1,16 +1,34 @@
-# Load configuration file
+function Get-CiStatus {
+    $statusPath = Join-Path $PSScriptRoot "..\.ci_status.json"
+    if (-not (Test-Path $statusPath)) {
+        throw "Missing .ci_status.json at repository root"
+    }
 
-# Get the current Git branch name
-$branch = git rev-parse --abbrev-ref HEAD
-if ($branch -eq "master") {
-    $branch = "master"
-} else {
-    $branch = $branch
+    try {
+        $status = Get-Content $statusPath -Raw | ConvertFrom-Json
+    } catch {
+        throw "Invalid JSON in .ci_status.json"
+    }
+
+    foreach ($field in @('status', 'timestamp', 'commit', 'branch')) {
+        if (-not ($status.PSObject.Properties.Name -contains $field) -or [string]::IsNullOrWhiteSpace([string]$status.$field)) {
+            throw ".ci_status.json is missing required field '$field'"
+        }
+    }
+
+    Write-Host "CI status: $($status.status)"
+    Write-Host "CI commit: $($status.commit)"
+    Write-Host "CI timestamp: $($status.timestamp)"
+
+    return $status
 }
+
+$branch = git rev-parse --abbrev-ref HEAD
+$localCommit = git rev-parse HEAD
 Write-Host "Current GIT branch: $branch"
+Write-Host "Current GIT commit: $localCommit"
 
-
-$configFile = ".\config.json"
+$configFile = Join-Path $PSScriptRoot "config.json"
 if (-not (Test-Path $configFile)) {
     Write-Error "Config file not found: $configFile"
     exit 1
@@ -19,33 +37,60 @@ if (-not (Test-Path $configFile)) {
 $configRoot = Get-Content $configFile -Raw | ConvertFrom-Json
 $config = $configRoot.environments
 
-# Testing display
-$configJson = Get-Content $configFile -Raw
-Write-Host $configJson | Format-List *
-
-# Extract values
-$user = $config.pending.USER
-$url = $config.LIVE.URL
+$pendingUser = $config.pending.USER
+$pendingUrl = $config.pending.URL
+$pendingPath = $config.pending.ABSOLUTE_PATH
+$liveUrl = $config.LIVE.URL
+$livePath = $config.LIVE.ABSOLUTE_PATH
 $postCommands = $config.LIVE.POST_COMMANDS
 
-$pendingURL = $config.pending.ABSOLUTE_PATH
-$liveURL = $config.LIVE.ABSOLUTE_PATH
+if ([string]::IsNullOrWhiteSpace($pendingUser) -or [string]::IsNullOrWhiteSpace($pendingUrl) -or [string]::IsNullOrWhiteSpace($pendingPath)) {
+    Write-Error "Pending environment is missing USER, URL, or ABSOLUTE_PATH in config.json"
+    exit 1
+}
 
-# Build the remote command
+if ([string]::IsNullOrWhiteSpace($liveUrl) -or [string]::IsNullOrWhiteSpace($livePath)) {
+    Write-Error "LIVE environment is missing URL or ABSOLUTE_PATH in config.json"
+    exit 1
+}
+
+try {
+    $ciStatus = Get-CiStatus
+} catch {
+    Write-Error $_
+    exit 1
+}
+
+if ($ciStatus.status -ne 'success') {
+    Write-Error "LIVE deploy blocked: CI status must be 'success' for the exact commit being deployed"
+    exit 1
+}
+
+$pendingCommitCommand = "git -C $pendingPath/$branch rev-parse HEAD"
+$pendingCommit = ssh "$pendingUser@$pendingUrl" $pendingCommitCommand
+$pendingCommit = ($pendingCommit | Out-String).Trim()
+
+if ([string]::IsNullOrWhiteSpace($pendingCommit)) {
+    Write-Error "Unable to determine the commit currently prepared on pending"
+    exit 1
+}
+
+Write-Host "Pending prepared commit: $pendingCommit"
+
+if ($ciStatus.commit -ne $pendingCommit) {
+    Write-Error "LIVE deploy blocked: .ci_status.json commit does not match the commit prepared on pending"
+    exit 1
+}
+
 $remoteCommand = @"
-rsync -av --no-perms --omit-dir-times --fake-super $pendingURL/$branch/sourceFiles/. $liveURL/. && cd $liveURL && $postCommands
+rsync -av --no-perms --omit-dir-times --fake-super $pendingPath/$branch/sourceFiles/. $livePath/. && cd $livePath && $postCommands
 "@
 
-# Strip CRLF (Windows -> Linux)
 $remoteCommandStripped = $remoteCommand -replace "`r`n", "`n"
 
 Write-Host $remoteCommandStripped
+Write-Host "ssh $pendingUser@$liveUrl $remoteCommandStripped"
 
-# Execute remotely
-Write-Host "ssh $user@$url" $remoteCommandStripped
+ssh "$pendingUser@$liveUrl" $remoteCommandStripped
 
-Ssh "$user@$url" $remoteCommandStripped
-
-Start-Process "https://$liveURL"
-
-
+Start-Process "https://$liveUrl"
