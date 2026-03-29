@@ -121,12 +121,20 @@ jobs:
         id: phpunit
         run: |
           set +e
+
           docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "
             cd sourceFiles && vendor/bin/phpunit --configuration phpunit.xml.dist
           "
           TEST_EXIT=$?
+
           echo "PHPUNIT EXIT CODE: $TEST_EXIT"
-          echo "exit_code=$TEST_EXIT" >> $GITHUB_OUTPUT
+
+          # Force output
+          echo "exit_code=$TEST_EXIT" >> "$GITHUB_OUTPUT"
+
+          # Also export for debugging
+          echo "EXIT_CODE=$TEST_EXIT" >> "$GITHUB_ENV"
+
           exit 0
 
       # -------------------------------
@@ -180,8 +188,18 @@ jobs:
         if: always()
         run: |
           EXIT_CODE="${{ steps.phpunit.outputs.exit_code }}"
-          echo "Final exit code: $EXIT_CODE"
-          if [ "$EXIT_CODE" != "0" ]; then
-            echo "Tests failed or did not run properly"
+
+          echo "From output: $EXIT_CODE"
+          echo "From env: $EXIT_CODE"
+
+          if [ -z "$EXIT_CODE" ]; then
+            echo "ERROR: exit_code not set properly"
             exit 1
           fi
+
+          if [ "$EXIT_CODE" != "0" ]; then
+            echo "Tests failed"
+            exit 1
+          fi
+
+          echo "Tests passed"
