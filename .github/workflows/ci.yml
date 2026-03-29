@@ -89,10 +89,11 @@ jobs:
         run: docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "git config --global --add safe.directory /var/www/vhosts/website.com/www"
 
       - name: Fix ownership and permissions
-        run: docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "
+        run: |
+          docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "
           chown -R www-data:www-data /var/www/vhosts/website.com/www &&
           chmod -R 775 /var/www/vhosts/website.com/www
-        "
+          "
 
       # -------------------------------
       # APP SETUP
