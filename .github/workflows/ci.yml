@@ -37,9 +37,6 @@ jobs:
           git config user.name "ci-bot"
           git config user.email "ci@undologic.com"
 
-      # -------------------------------
-      # CI STATUS: PENDING
-      # -------------------------------
       - name: Write pending CI status
         run: |
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
@@ -58,23 +55,15 @@ jobs:
         if: github.event_name == 'push'
         run: |
           git add .ci_status.json
-          
-          # Stash any changes to allow rebase
+
           git stash push -m "ci-temp" || true
-          
           git pull --rebase
-          
-          # Restore stashed changes
           git stash pop || true
-          
+
           git add .ci_status.json
           git commit -m "CI status: pending for ${{ github.sha }}" || echo "No changes"
           git push origin HEAD:${{ github.ref_name }}
-          
 
-      # -------------------------------
-      # DOCKER START
-      # -------------------------------
       - name: Start DockerWSL services
         run: docker compose -f dockerWSL/docker-compose.yml up -d --build
 
@@ -92,9 +81,6 @@ jobs:
       - name: Prepare test database
         run: docker compose -f dockerWSL/docker-compose.yml exec -T db mysql -uroot -pundologic -e "CREATE DATABASE IF NOT EXISTS test_automation"
 
-      # -------------------------------
-      # FIX PERMISSIONS + GIT
-      # -------------------------------
       - name: Fix git safe directory inside container
         run: docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "git config --global --add safe.directory /var/www/vhosts/website.com/www"
 
@@ -105,9 +91,6 @@ jobs:
           chmod -R 775 /var/www/vhosts/website.com/www
           "
 
-      # -------------------------------
-      # APP SETUP
-      # -------------------------------
       - name: Prepare app_local.php
         run: |
           if [ ! -f sourceFiles/config/app_local.php ] && [ -f sourceFiles/config/app_local.example.php ]; then
@@ -118,6 +101,7 @@ jobs:
         run: docker compose -f dockerWSL/docker-compose.yml exec -T web bash -lc "cd sourceFiles && composer install --no-interaction --prefer-dist"
 
       - name: Run PHPUnit in container
+        if: always()
         run: |
           set +e
 
@@ -127,20 +111,20 @@ jobs:
           TEST_EXIT=$?
 
           echo "PHPUNIT EXIT CODE: $TEST_EXIT"
-
-          # Save to file instead of output
-          echo $TEST_EXIT > .ci_test_result
+          printf '%s\n' "$TEST_EXIT" > .ci_test_result
 
           exit 0
 
-      # -------------------------------
-      # FINAL STATUS
-      # -------------------------------
       - name: Write final CI status
         if: always()
         run: |
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          TEST_EXIT=$(cat .ci_test_result)
+          TEST_EXIT=1
+          if [ -f .ci_test_result ]; then
+            TEST_EXIT=$(cat .ci_test_result)
+          else
+            echo ".ci_test_result was not created; treating workflow as failed before PHPUnit completed"
+          fi
           echo "Test result: $TEST_EXIT"
           RESULT="fail"
           if [ "$TEST_EXIT" = "0" ]; then
@@ -161,30 +145,26 @@ jobs:
         if: always() && github.event_name == 'push'
         run: |
           git add .ci_status.json
-          
+
           git stash push -m "ci-temp" || true
-          
           git pull --rebase
-          
           git stash pop || true
-          
+
           git add .ci_status.json
           git commit -m "CI status: final for ${{ github.sha }}" || echo "No changes"
           git push origin HEAD:${{ github.ref_name }}
 
-      # -------------------------------
-      # CLEANUP
-      # -------------------------------
       - name: Stop DockerWSL services
         if: always()
         run: docker compose -f dockerWSL/docker-compose.yml down -v
 
-      # -------------------------------
-      # FAIL PIPELINE IF TESTS FAIL
-      # -------------------------------
       - name: Fail workflow if tests failed
         if: always()
         run: |
+          if [ ! -f .ci_test_result ]; then
+            echo ".ci_test_result was not created"
+            exit 1
+          fi
           EXIT_CODE=$(cat .ci_test_result)
           echo "Final exit code: $EXIT_CODE"
           if [ "$EXIT_CODE" != "0" ]; then
