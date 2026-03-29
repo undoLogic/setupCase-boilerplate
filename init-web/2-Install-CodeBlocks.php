@@ -21,17 +21,11 @@ echo implode("<br/>", $install);
 echo "<br/>";
 
 include_once(__DIR__ . '/9-Install-CodeBlocks_layout.php');
-
 include_once(__DIR__ . '/9-Install-CodeBlocks_routes.php');
-
 include_once(__DIR__ . '/9-Install-CodeBlocks_bootstrap.php');
-
 include_once(__DIR__ . '/9-Install-CodeBlocks_application.php');
-
 include_once(__DIR__ . '/9-Install-CodeBlocks_middleware.php');
-
 include_once(__DIR__ . '/9-Install-CodeBlocks_appController.php');
-
 include_once(__DIR__ . '/9-Install-CodeBlocks_helpers.php');
-
 include_once(__DIR__ . '/9-Install-CodeBlocks_app.php');
+include_once(__DIR__ . '/9-install-CodeBlocks_citesting.php');
