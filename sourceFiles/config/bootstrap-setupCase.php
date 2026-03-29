@@ -8,6 +8,7 @@ $liveDomains = [
     'test.devServer.com' => 'DEV',
     'pending.domain.com' => 'PENDING',
     'www.domain.com' => 'LIVE',
+    'localhost' => 'DEV'
 ];
 
 $current_domain = $_SERVER['SERVER_NAME'] ?? $_SERVER['HTTP_HOST'] ?? '';
@@ -16,6 +17,7 @@ if (isset($liveDomains[$current_domain])) {
 } else {
     $current_env_profile = false;
 }
+
 
 //@todo
 switch ($current_env_profile) {
