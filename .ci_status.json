@@ -1,7 +1,7 @@
 {
-  "status": "success",
-  "timestamp": "2026-03-30T00:12:01Z",
-  "commit": "50a6a7bdda9d7e34361768fad804348073e9d071",
+  "status": "fail",
+  "timestamp": "2026-03-30T00:19:47Z",
+  "commit": "aeda821b198254de70f50ad0118ccce1d248a64c",
   "branch": "main",
   "environment": "github_actions_docker_wsl",
   "workflow": "SetupCase CI v2"
