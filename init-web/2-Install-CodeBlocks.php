@@ -18,6 +18,12 @@ exec(
 );
 echo implode("<br/>", $install);
 
+$sourceGitignore = $rootDir . '/sourceFiles/.gitignore';
+if (is_file($sourceGitignore)) {
+    unlink($sourceGitignore);
+    echo "<br/>Removed sourceFiles/.gitignore";
+}
+
 echo "<br/>";
 
 include_once(__DIR__ . '/9-Install-CodeBlocks_layout.php');
