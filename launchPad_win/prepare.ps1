@@ -39,15 +39,33 @@ $postCommands = $config.POST_COMMANDS
 $usePAT = $config.USE_PAT
 
 if ($usePAT -eq $true) {
+
+    $pat = $env:GITHUB_PAT
+
+    if ([string]::IsNullOrWhiteSpace($pat)) {
+        Write-Host ""
+        Write-Host "ERROR: GITHUB_PAT is not set on your machine." -ForegroundColor Red
+        Write-Host ""
+        Write-Host "Please set your personal PAT using the following PowerShell command:" -ForegroundColor Yellow
+        Write-Host ""
+        Write-Host '[System.Environment]::SetEnvironmentVariable("GITHUB_PAT", "ghp_xxxxxxxxxxxxxx", "User")' -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "Then restart your PowerShell session." -ForegroundColor Yellow
+        Write-Host ""
+        exit 1
+    }
+
     # Build the remote command
     $remoteCommand = @"
+PAT='$pat' &&
 cd $path &&
 rm -rf * &&
 rm -rf $branch &&
-git clone `"https://`$(php -r 'echo get_cfg_var(\"PAT\");')@$git`" --branch $branch --single-branch $path/$branch &&
+git clone `"https://\$PAT@$git`" --branch $branch --single-branch $path/$branch &&
 rsync -a --info=progress2,stats --no-perms --omit-dir-times --fake-super $path/$branch/sourceFiles/ . &&
 $postCommands
 "@
+
 } else {
     # Build the remote command
     $remoteCommand = @"
