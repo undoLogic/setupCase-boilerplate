@@ -86,10 +86,10 @@ return [
     'Datasources' => [
         //@todo uncomment this if you want to use a database
         'default' => [
-            'url' => filter_var(env('DATABASE_DEFAULT_URL', get_cfg_var('DATABASE.DEFAULT.URL')), FILTER_VALIDATE_URL),
+            'url' => env('DATABASE_DEFAULT_URL', get_cfg_var('DATABASE.DEFAULT.URL') ?: null),
         ],
         'test' => [
-            'url' => filter_var(env('DATABASE_TEST_URL', get_cfg_var('DATABASE.TEST.URL')), FILTER_VALIDATE_URL),
+            'url' => env('DATABASE_TEST_URL', get_cfg_var('DATABASE.TEST.URL') ?: null),
         ],
     ],
 

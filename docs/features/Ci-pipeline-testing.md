@@ -1,320 +1,198 @@
-# FEATURE: SetupCase CI Pipeline (Launchpad Integration)
+# Feature: CI Pipeline Testing
 
----
+## Summary
 
-## OVERVIEW
+Add a lightweight CI validation pipeline to SetupCase. GitHub Actions runs CakePHP tests inside DockerWSL, writes a repository status file at `.ci_status.json`, and LaunchPad_win reads that file to display CI state and block live deployment unless the exact commit being deployed has passed.
 
-Introduce a lightweight CI system integrated into SetupCase that:
+## Goals
 
-- Runs CakePHP integration tests automatically via GitHub Actions
-- Uses **DockerWSL** ONLY for CI (not required in production)
-- Outputs a deterministic CI status file into the repository
-- Uses a **state-based CI model: pending → success / fail**
-- Keeps **manual control over staging and live deployment via LaunchPad_win**
-- Integrates directly with existing LaunchPad_win workflow
+- Run CakePHP tests automatically on GitHub pushes and pull requests.
+- Keep CI infrastructure ephemeral and simple.
+- Use DockerWSL only for CI, not for staging or production runtime.
+- Expose CI result inside the repository through a deterministic JSON file.
+- Preserve manual deployment control through LaunchPad_win.
+- Prevent stale CI success from being used for a newer untested commit.
 
----
+## Non-Goals
 
-## CORE PRINCIPLES
+- No automatic deployment from GitHub Actions.
+- No persistent CI service or separate status database.
+- No Docker runtime requirement for Apache staging or live environments.
+- No change to the manual LaunchPad_win deployment sequence.
+- No local test execution triggered by `/init-web`.
 
-- Keep system **simple, transparent, and deterministic**
-- Maintain **manual control over production deployment**
-- Avoid maintaining persistent CI infrastructure (DB, services)
-- Ensure every project is initialized via:
+## LaunchPad Mapping
 
-/init-web
+Current LaunchPad_win flow:
 
-- CI must be included automatically in every new project
-- Use **ephemeral Docker environments (DockerWSL specifically)**
-- CI results must be **visible and machine-readable inside repo**
-- CI is **validation only**, not deployment
-- CI must always reflect **current truth (no stale success allowed)**
+1. `1-prepare-dev.bat`
+2. `2-prepare-pending.bat`
+3. `3-go-LIVE.bat`
 
----
+CI integration rules:
 
-## LAUNCHPAD MAPPING (CRITICAL)
+- `1-prepare-dev.bat` shows the current CI state if `.ci_status.json` exists.
+- `2-prepare-pending.bat` shows the current CI state if `.ci_status.json` exists.
+- `3-go-LIVE.bat` must stop unless the status file reports `success` for the exact commit being deployed.
 
-CI integrates directly into existing LaunchPad_win structure:
+## High-Level Flow
 
-### EXISTING LAUNCHPAD STEPS
+1. A project is initialized with `/init-web`.
+2. `/init-web` creates the CI workflow files, baseline test scaffolding, and supporting config.
+3. `/init-web` does not run tests locally. It only prepares the repository so GitHub can run CI later.
+4. A developer pushes code to GitHub.
+5. GitHub Actions starts the CI workflow.
+6. The workflow writes `.ci_status.json` with `status = pending`.
+7. The workflow installs dependencies, starts DockerWSL services, and runs CakePHP tests.
+8. The workflow overwrites `.ci_status.json` with `status = success` or `status = fail`.
+9. LaunchPad_win reads `.ci_status.json` and enforces deployment rules.
 
-1. **1-prepare-dev.bat - Setup Test Environment for development (cloud Apache)**
-2. **2-prepare-pending.bat - Prepare Staging (Subdomain on production server)**
-3. **3-go-LIVE.bat - Go Live (rsync from staging subdomain → live)**
+## Environments
 
----
+### Local Developer
 
-### CI ROLE
+- Apache-based, non-Docker runtime.
+- Can show CI status if `.ci_status.json` exists locally.
+- Uses `1-prepare-dev.bat`.
 
-- CI runs on every GitHub update (commit / pull-request)
-- CI does NOT deploy (manual LaunchPad_win workflow only)
-- CI produces a **status file (.ci_status.json)**
-- LaunchPad_win reads CI result and decides:
+### GitHub Actions CI
 
-| Launchpad Step | CI Dependency |
-|----------------|-------------|
-| 1-prepare-dev | Show green/red bar based on `.ci_status.json` |
-| 2-prepare-pending | Show green/red bar based on `.ci_status.json` |
-| 3-go-LIVE | **BLOCKED unless status = success** |
+- Triggered on push and pull request.
+- Uses DockerWSL for the test runtime.
+- Creates an ephemeral database/service stack.
+- Runs CakePHP tests only.
+- Does not deploy.
 
----
+### Staging
 
-## ENVIRONMENTS
+- Apache-based runtime.
+- Receives files and reads `.ci_status.json`.
+- Does not run CI tests.
+- Uses `2-prepare-pending.bat`.
 
-### 1. LOCAL (Developer)
-- Apache-based (non-Docker)
-- Always deploy files for development
-- Show CI status (green/red) if available
-- 1-prepare-dev.bat
+### Live
 
----
+- Apache-based runtime.
+- Receives files from the manual LaunchPad flow.
+- Does not run CI tests.
+- Uses `3-go-LIVE.bat`.
 
-### 2. GITHUB ACTIONS (CI)
-- Runs on every push / PR
-- Uses **DockerWSL configuration**
-- Spins up ephemeral DB
-- Runs CakePHP tests
-- Writes `.ci_status.json` twice:
-    - First: `pending`
-    - Final: `success` or `fail`
+## Status File Contract
 
----
+Path:
 
-### 3. STAGING (Apache Server)
-- Receives files
-- Reads `.ci_status.json`
-- Shows green/red bar
-- Does NOT run tests
-- 2-prepare-pending.bat
+`/.ci_status.json`
 
----
+Rules:
 
-### 4. LIVE
-- Manual rsync from staging
-- BLOCKED unless `status = success`
-- Shows green/red bar
-- Does NOT run tests
-- 3-go-LIVE.bat
+- The file must live at the repository root.
+- The file is overwritten on each CI run.
+- The file must describe the current CI state for one commit.
+- Invalid or missing JSON must be treated as a failed CI state by LaunchPad_win.
 
----
+Allowed states:
 
-## CI WORKFLOW (HIGH LEVEL)
+- `pending`
+- `success`
+- `fail`
 
-1. Developer pushes code to GitHub
-2. GitHub Actions triggers workflow
+Required fields:
 
-### CI Execution Flow
+- `status`
+- `timestamp`
+- `commit`
+- `branch`
 
-3. Immediately write .ci_status.json:
+Optional fields:
+
+- `environment`
+- `workflow`
+- `run_url`
+
+Example:
 
 ```json
-{ "status": "pending" }
-```
-
-Boot Docker environment (DockerWSL)
-Install dependencies
-Run CakePHP tests
-- Overwrite .ci_status.json:
-- SUCCESS → "status": "success"
-- FAILURE → "status": "fail"
-
-🚫 NO deployment
-🚫 NO staging interaction
-🚫 NO live automation
-
-STATUS FILE DESIGN
-
-File Name
-.ci_status.json
-
-Location
-MUST be at repo root
-
-STATES
-Status	Meaning
-- pending	CI is running or incomplete
-- success	CI passed
-- fail	CI failed
-STATUS FILE STRUCTURE
-
-Example (Success)
 {
   "status": "success",
   "timestamp": "2026-03-29T14:32:10Z",
-  "commit": "abc123",
+  "commit": "abc123def456",
   "branch": "main",
   "environment": "github_actions_docker_wsl"
 }
-
-Example (Fail)
-{
-  "status": "fail",
-  "timestamp": "2026-03-29T14:32:10Z",
-  "commit": "abc123",
-  "branch": "main",
-  "environment": "github_actions_docker_wsl"
-}
-
-Example (Pending)
-{
-  "status": "pending",
-  "timestamp": "2026-03-29T14:30:00Z",
-  "commit": "abc123",
-  "branch": "main"
-}
-
-LAUNCHPAD_win DEPLOYMENT RULE
-HARD RULE
-
-LaunchPad_win 3-go-LIVE.bat must:
-
-Read .ci_status.json
-ONLY proceed if:
-status == success
-WINDOWS (.bat) IMPLEMENTATION
-```batch
-@echo off
-
-if not exist .ci_status.json (
-    echo ERROR: CI status file not found
-    exit /b 1
-)
-
-set STATUS=
-
-for /f "delims=" %%i in ('type .ci_status.json ^| findstr "status"') do set LINE=%%i
-
-echo %LINE% | findstr "success" >nul
-if %errorlevel%==0 (
-    echo CI PASSED — proceed to go live
-    exit /b 0
-)
-
-echo ERROR: CI NOT SUCCESS (pending or fail) — BLOCK DEPLOY
-exit /b 1
 ```
 
-GITHUB ACTIONS WORKFLOW
-Location
-.github/workflows/ci.yml
-```yaml
-REQUIRED PERMISSIONS
-permissions:
-  contents: write
-TRIGGER (NO LOOP)
-on:
-  push:
-    branches: [ "*" ]
-    paths-ignore:
-      - ".ci_status.json"
-  pull_request:
-WORKFLOW TEMPLATE
-name: SetupCase CI
+### Anti-Stale Rule
 
-permissions:
-  contents: write
+LaunchPad_win must not trust a green status unless:
 
-on:
-  push:
-    branches: [ "*" ]
-    paths-ignore:
-      - ".ci_status.json"
-  pull_request:
+- `status == "success"`
+- `.ci_status.json.commit` matches the exact commit being deployed
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
+If the commit does not match, LaunchPad_win must treat the result as not deployable.
 
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+## GitHub Actions Workflow
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
+Location:
 
-      - name: Write CI status = pending
-        run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+`.github/workflows/ci.yml`
 
-          cat <<EOF > .ci_status.json
-          {
-            "status": "pending",
-            "timestamp": "$TIMESTAMP",
-            "commit": "${{ github.sha }}",
-            "branch": "${{ github.ref_name }}"
-          }
-          EOF
+Required behavior:
 
-      - name: Commit pending status
-        run: |
-          git config user.name "ci-bot"
-          git config user.email "ci@undologic.com"
-          git add .ci_status.json
-          git commit -m "CI status: pending" || echo "No changes"
-          git push
+- Trigger on `push` and `pull_request`.
+- Ignore `.ci_status.json` changes on `push` to avoid self-trigger loops.
+- Use `permissions: contents: write` because the workflow writes the status file back to the branch.
+- Write `pending` at the start of the job.
+- Always write the final `success` or `fail` result, even if a step fails.
+- Use DockerWSL services for the test runtime.
+- Run CakePHP tests through PHPUnit.
+- Never deploy or call LaunchPad scripts.
 
-      - name: Install dependencies
-        run: composer install --no-progress --prefer-dist
+Suggested workflow outline:
 
-      - name: Start DockerWSL environment
-        run: docker compose -f DockerWSL/docker-compose.yml up -d
+1. Checkout repository.
+2. Set up PHP and Composer dependencies.
+3. Write `.ci_status.json` with `pending`.
+4. Commit and push the pending status.
+5. Start DockerWSL services.
+6. Wait for the database/service stack.
+7. Run `vendor/bin/phpunit`.
+8. Write `.ci_status.json` with `success` or `fail`.
+9. Commit and push the final status.
 
-      - name: Wait for DB
-        run: sleep 10
+## `/init-web` Responsibilities
 
-      - name: Run CakePHP tests
-        run: vendor/bin/phpunit
+`/init-web` must scaffold CI for every new project.
 
-      - name: Write final CI status
-        if: always()
-        run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+It prepares the repository so GitHub Actions can run tests after the first push. `/init-web` itself does not execute the test suite.
 
-          if [ "${{ job.status }}" = "success" ]; then
-            RESULT="success"
-          else
-            RESULT="fail"
-          fi
+### Dedicated Init Step
 
-          cat <<EOF > .ci_status.json
-          {
-            "status": "$RESULT",
-            "timestamp": "$TIMESTAMP",
-            "commit": "${{ github.sha }}",
-            "branch": "${{ github.ref_name }}"
-          }
-          EOF
+`/init-web` must add a dedicated installer file named `9-install-CodeBlocks_citesting.php`.
 
-      - name: Commit final CI status
-        if: always()
-        run: |
-          git config user.name "ci-bot"
-          git config user.email "ci@undologic.com"
-          git add .ci_status.json
-          git commit -m "CI status: final" || echo "No changes"
-          git push
-```
+Purpose:
 
-INIT-web INTEGRATION (SETUPCASE)
-LOCATION
-/init-web
-NEW INIT STEP
-CI_SETUP
+- Centralize the CI bootstrap logic in one place.
+- Generate or copy the GitHub Actions YAML file and related CI support files.
+- Keep CI setup adjustable in the future without rewriting unrelated `/init-web` steps.
+- Make future process changes easier when CI requirements evolve.
 
-RESPONSIBILITIES
-Copy .github/workflows/ci.yml
-Ensure DockerWSL config exists
-Add baseline CakePHP test
-Configure PHPUnit
-Ensure CI runs immediately after first push
-DEFAULT BASE TEST (MANDATORY)
-STRATEGY
-Test FAILS by default
-Forces developer to configure CI properly
+This file is responsible for the scripts that add or update the GitHub workflow, CI config, baseline test scaffolding, and any related setup files needed for CI enablement.
 
-EXAMPLE
+Required outputs:
+
+- `9-install-CodeBlocks_citesting.php`
+- `.github/workflows/ci.yml`
+- DockerWSL CI configuration
+- PHPUnit configuration
+- A baseline CakePHP test
+- Any bootstrap needed for the baseline test to execute
+
+### Baseline Test Rule
+
+The generated baseline test must fail by default so CI is visible immediately after first push and forces the developer to finish project-specific setup.
+
+Example:
+
 ```php
 public function testSetupCaseBaseline()
 {
@@ -322,30 +200,65 @@ public function testSetupCaseBaseline()
 }
 ```
 
-EXPECTED FLOW
-New project initialized via /init-web
-First push → CI runs → FAILS
-Developer configures DB/tests
-Replace baseline test
-CI passes → system is active
+Expected first-run behavior:
 
-OPTIONAL FUTURE ENHANCEMENTS
-1. Test Metrics
-"tests": {
-  "total": 42,
-  "passed": 42,
-  "failed": 0
-}
-2. LaunchPad_win UI
-Show:
-✔ PASS
-❌ FAIL
-⏳ PENDING
-3. Artifact Logs
-Store full PHPUnit output
-FINAL ARCHITECTURE
-GitHub = CI engine
-DockerWSL = test runtime
-Repo = CI truth (.ci_status.json)
-LaunchPad_win = deployment control
-Apache = runtime environment
+1. Project is created with `/init-web`.
+2. `/init-web` writes `9-install-CodeBlocks_citesting.php`, which generates or installs the GitHub workflow and supporting CI files.
+3. No tests run during initialization.
+4. First push starts GitHub Actions CI.
+5. CI fails because the baseline test fails.
+6. Developer configures the project test setup.
+7. Developer replaces or updates the baseline test.
+8. CI passes and the project becomes deployable.
+
+## LaunchPad_win Rules
+
+### Display Rules
+
+`1-prepare-dev.bat` and `2-prepare-pending.bat` should display:
+
+- current CI state
+- commit from `.ci_status.json`
+- timestamp from `.ci_status.json`
+
+### Deployment Gate
+
+`3-go-LIVE.bat` must block when any of the following is true:
+
+- `.ci_status.json` is missing
+- `.ci_status.json` is invalid JSON
+- `status` is `pending`
+- `status` is `fail`
+- `commit` does not match the commit being deployed
+
+`3-go-LIVE.bat` may proceed only when:
+
+- `status` is `success`
+- `commit` matches the commit being deployed
+
+## Constraints and Scope Notes
+
+- Version 1 targets normal branch pushes and same-repository pull requests.
+- Fork-based pull requests may run tests, but writing `.ci_status.json` back to the source branch is not guaranteed by GitHub permissions.
+- CI is the validation layer only. Deployment remains manual and local to LaunchPad_win.
+
+## Acceptance Criteria
+
+- A new project created by `/init-web` contains `9-install-CodeBlocks_citesting.php`, CI workflow scaffolding, and a failing baseline test.
+- `/init-web` creates the GitHub workflow files through `9-install-CodeBlocks_citesting.php` but does not run tests itself.
+- A push to GitHub starts the CI workflow automatically.
+- The workflow writes `.ci_status.json` with `pending` before tests start.
+- A passing test run updates `.ci_status.json` to `success`.
+- A failing test run updates `.ci_status.json` to `fail`.
+- The status file contains the commit hash and branch name for the tested revision.
+- LaunchPad_win displays the CI state in dev and pending flows.
+- LaunchPad_win blocks `3-go-LIVE.bat` unless the current commit has `success`.
+- No part of the CI workflow deploys code.
+- DockerWSL is required only for CI execution, not for Apache staging or live runtime.
+
+## Implementation Order
+
+1. Add GitHub Actions workflow and status file handling.
+2. Add `/init-web` CI scaffolding through `9-install-CodeBlocks_citesting.php` and include the failing baseline test.
+3. Add LaunchPad_win status display and live-deploy gate.
+4. Validate the full flow with one failing run and one passing run.

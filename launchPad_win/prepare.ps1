@@ -2,6 +2,41 @@
     [string]$envName = "dev"  # default if no argument provided
 )
 
+function Get-CiStatusInfo {
+    param(
+        [string]$StatusFilePath
+    )
+
+    $result = [ordered]@{
+        FilePath  = $StatusFilePath
+        Exists    = $false
+        IsValid   = $false
+        Status    = ""
+        Commit    = ""
+        Timestamp = ""
+        Error     = ""
+    }
+
+    if (-not (Test-Path $StatusFilePath)) {
+        return [pscustomobject]$result
+    }
+
+    $result.Exists = $true
+
+    try {
+        $statusJson = Get-Content $StatusFilePath -Raw | ConvertFrom-Json -ErrorAction Stop
+    } catch {
+        $result.Error = $_.Exception.Message
+        return [pscustomobject]$result
+    }
+
+    $result.IsValid = $true
+    $result.Status = [string]$statusJson.status
+    $result.Commit = [string]$statusJson.commit
+    $result.Timestamp = [string]$statusJson.timestamp
+
+    return [pscustomobject]$result
+}
 
 # Get the current Git branch name
 $branch = git rev-parse --abbrev-ref HEAD
@@ -12,7 +47,7 @@ if ($branch -eq "master") {
 }
 Write-Host "Current GIT branch: $branch"
 
-
+###
 
 # Load configuration file
 $configFile = ".\config.json"
@@ -94,3 +129,24 @@ ssh "$user@$url" $remoteCommandStripped
 
 # Open browser
 Start-Process "https://$url"
+
+
+
+
+
+if ($envName -eq "dev" -or $envName -eq "pending") {
+    $ciStatusFile = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..\.ci_status.json"))
+    $ciStatus = Get-CiStatusInfo -StatusFilePath $ciStatusFile
+
+    Write-Host "`n--- CI Status ---"
+    if (-not $ciStatus.Exists) {
+        Write-Host ".ci_status.json not found: $($ciStatus.FilePath)"
+    } elseif (-not $ciStatus.IsValid) {
+        Write-Host ".ci_status.json is invalid JSON"
+        Write-Host "error: $($ciStatus.Error)"
+    } else {
+        Write-Host "status: $($ciStatus.Status)"
+        Write-Host "commit: $($ciStatus.Commit)"
+        Write-Host "timestamp: $($ciStatus.Timestamp)"
+    }
+}
