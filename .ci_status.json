@@ -1,6 +1,6 @@
 {
-  "status": "pending",
-  "timestamp": "2026-04-07T14:33:47Z",
+  "status": "fail",
+  "timestamp": "2026-04-07T14:36:38Z",
   "commit": "6210dce610832efa72ed2ae7662d4452159a95bf",
   "branch": "main",
   "environment": "github_actions_docker_wsl",
