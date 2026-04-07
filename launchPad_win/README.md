@@ -3,8 +3,9 @@
 Batch files launch POWERSHELL script for LaunchPad
 - Works with SSH-AGENT
 
-### 2 methods for "git_address"
+## 2 methods for "git_address"
 
+### 1. Github Personal Access Token (PAT)
 Using PAT = true
 ```angular2html
   "TESTING_GIT_ADDRESS": "github.com/undoLogic/setupCase-boilerplate.git",
@@ -13,20 +14,19 @@ If you use PAT you must add to your LOCAL Windows computer using Powershell:
 ```powershell
 [System.Environment]::SetEnvironmentVariable("GITHUB_PAT", "ghp_xxxxxxxxxxxxxx", "User")
 ```
+Reboot your PowerShell and you can confirm it is working
+```powershell
+echo $env:GITHUB_PAT
+```
 
-#### OR with SSH-KEYS on the server (PAT = false)
+### 2. SSH-Keys
+OR with SSH-KEYS on the server (PAT = false)
 ```angular2html
   "TESTING_GIT_ADDRESS": "git@github.com:undoLogic/setupCase-boilerplate.git",
 ```
 Then you must setup SSH keys on your server and add the public key to your GitHub account.
 
-
-
-
-
-
-
-### Setup SSH keys (OPTIONAL)
+####  Setup SSH keys 
 If you do not want to use a PAT, you can also add SSH keys for EACH project. To allow to export the GitHub source files to the server we must setup a public / private key. the PRIVATE key is ONLY on the server. the PUBLIC key goes onto Github -> deploy keys
 1. Logon to your server via SSH using the PENDING credentials
 - Use format in Settings: git@github.com:company/repo.git
@@ -52,6 +52,13 @@ IMPORTANT: The first time you need to manually run the script as it will require
 cd launch
 ./2_setupPendingServer.sh
 ```
+
+
+
+
+
+
+
 ### GITHUB_HOST - Configure multiple projects on the same server
 
 Github does NOT allow (for security) to add mutliple SSH-KEYS to the same server. In order to setup multiple projects on the same server you need to create separate github hostnames to reference each project.
@@ -60,11 +67,13 @@ Github does NOT allow (for security) to add mutliple SSH-KEYS to the same server
 cd ~/.ssh
 ssh-keygen -t ed25519 -C "you@email.com" -f id_ed25519_projectName1
 chmod 600 id_ed25519_projectName1*
+
+cat id_ed25519_projectName1.pub
 ```
 
 - Now create or edit your ssh config file
 ```
-  vi ~/.ssh/config
+  nano ~/.ssh/config
 ```
 - Add your new public (ends with .PUB) you created above into the ssh config file
 - Ensure the GITHUB_HOST matches the Host line (Hostname is ALWAYS github.com)
@@ -82,7 +91,7 @@ Host project2.github.com
 NOTE: You do NOT need to manually clone, but just so you understand how this works, and if you wanted to manually clone
 Launch will automatically do this for you after you change 'GITHUB_HOST' in the launch/settings.json
 
-```angular2html
+```shell
 git clone git@project1.github.com:OWNER/repo-project1.git
 # OR
 git clone git@project2.github.com:OWNER/repo-project2.git
