@@ -14,6 +14,12 @@ If you use PAT you must add to your LOCAL Windows computer using Powershell:
 ```powershell
 [System.Environment]::SetEnvironmentVariable("GITHUB_PAT", "ghp_xxxxxxxxxxxxxx", "User")
 ```
+To get your PAT, go to https://github.com/settings/tokens/new
+- Add a note or label for this token eg "Laptop"
+- Choose a date when expiry (eg until the end of the year)
+- Choose REPO checkbox (which checks 5 sub checkboxes)
+- Click at the bottom "Generate token"
+
 Reboot your PowerShell and you can confirm it is working
 ```powershell
 echo $env:GITHUB_PAT
