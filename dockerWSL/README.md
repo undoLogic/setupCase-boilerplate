@@ -53,3 +53,15 @@ cd ~/projects
 - WSL intergration
 - Check "enable intergration with my default WSL distro
 - Also checkbox Enable intergration with other versions of WSL eg Ubuntu"
+
+
+
+## SQL MODE
+Best to use
+```shell
+SET GLOBAL sql_mode = 'NO_ENGINE_SUBSTITUTION';
+```
+You can then verify with 
+```shell
+SELECT @@GLOBAL.sql_mode, @@SESSION.sql_mode;
+```
