@@ -8,13 +8,19 @@ $liveDomains = [
     'test.devServer.com' => 'DEV',
     'pending.domain.com' => 'PENDING',
     'www.domain.com' => 'LIVE',
+    'localhost' => 'DOCKER',
 ];
 
-$current_domain = $_SERVER['SERVER_NAME'] ?? $_SERVER['HTTP_HOST'] ?? '';
-if (isset($liveDomains[$current_domain])) {
-    $current_env_profile = $liveDomains[$current_domain];
-} else {
-    $current_env_profile = false;
+if (isset($_SERVER['HTTP_HOST'])) {
+
+    $current_domain = $_SERVER['SERVER_NAME'] ?? $_SERVER['HTTP_HOST'] ?? '';
+    if (isset($liveDomains[$current_domain])) {
+        $current_env_profile = $liveDomains[$current_domain];
+    } else {
+        $current_env_profile = false;
+    }
+} elseif ($_SERVER['DOCKER_LOCAL_TESTING']) {
+    $current_env_profile = 'DOCKER';
 }
 
 //@todo
@@ -27,6 +33,9 @@ switch ($current_env_profile) {
         break;
     case 'LIVE':
         Configure::load('app_LIVE', 'default');
+        break;
+    case 'DOCKER':
+        Configure::load('app_DEV', 'default');
         break;
     default:
         // Unknown so we will use our dev env.
