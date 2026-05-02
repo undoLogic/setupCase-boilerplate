@@ -65,7 +65,7 @@ class AppController extends Controller
     public function setupCase()
     {
         $setupCase = new SetupCase();
-        $setupCase->requirePasswordExcept(['www.LIVESITE.com', 'LIVESITE.com'], $_SERVER, $this->request->getSession());
+        $setupCase->requirePasswordExcept(['www.LIVESITE.com', 'LIVESITE.com','testflight.setupcase.com'], $_SERVER, $this->request->getSession());
         $setupCase->requireSSLExcept([
             'localhost', //add other hosts which should NOT redict to SSL
         ], $this);
